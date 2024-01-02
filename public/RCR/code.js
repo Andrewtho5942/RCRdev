@@ -345,6 +345,7 @@ window.preload = function () {
     var loanCapCount = -60;
     var incomeUpdates = [-60, -60, -60, -60, -60, -60, -60, -60, -60, -60, -60, -60, -60];
     var roadCooldowns = [-360, -360, -360, -360, -360, -360, -360, -360, -360, -360, -360, -360, -360];
+    var charSelectCount = [-360,-360,-360,-360];
 
     var textStart = [];
     var menuOpen = false;
@@ -1030,8 +1031,13 @@ window.preload = function () {
     
     
     var credsBackBtn = createSprite(1255, 740, 160, 60);
+    var hintsMenuBtn = createSprite(165,665,280,50);
+    var musicMenuBtn = createSprite(165,750,280,50);
+
+
     credsBackBtn.shapeColor = rgb(180, 200, 255);
-    tutorialBtn.visible = startBtn.visible= leaderBtn.visible = credsBtn.visible = credsBackBtn.visible = false;
+    hintsMenuBtn.visible=musicMenuBtn.visible=tutorialBtn.visible = startBtn.visible= leaderBtn.visible 
+    = credsBtn.visible = credsBackBtn.visible = false;
     
     var rChars = createGroup();
     rChars.add(createSprite(465, 760, 50, 50));
@@ -1138,7 +1144,7 @@ window.preload = function () {
 
     //Annual meeting sprites
     var meetingSprites = createGroup();
-    meetingSprites.add(createSprite(400, 350, 780, 680)); meetingSprites[0].shapeColor = rgb(220, 220, 220, 0.9);
+    meetingSprites.add(createSprite(400, 350, 780, 680)); meetingSprites[0].shapeColor = rgb(240, 240, 255, 0.85);
     meetingSprites.add(createSprite(200, 535)); meetingSprites[1].setAnimation("groupIcon");
     meetingSprites.add(createSprite(400, 535)); meetingSprites[2].setAnimation("groupIcon");
     meetingSprites.add(createSprite(600, 535)); meetingSprites[3].setAnimation("groupIcon");
@@ -1157,6 +1163,16 @@ window.preload = function () {
     meetingSprites.add(createSprite(600, 280));
 
     meetingSprites.setVisibleEach(false);
+
+    //meeting buttons
+    var meetingBtns = createGroup();
+    meetingBtns.add(createSprite(250,335,140,50));
+    meetingBtns.add(createSprite(550,335,140,50));
+    meetingBtns.add(createSprite(250,370,140,50));
+    meetingBtns.add(createSprite(550,370,140,50));
+    meetingBtns.add(createSprite(225,568,120,36));
+    meetingBtns.add(createSprite(575,568,120,36));
+    meetingBtns.setVisibleEach(false);
 
     //grad screen sprites
     var gradScreen = createSprite(400,350);
@@ -1281,7 +1297,29 @@ window.preload = function () {
             xSlide += credsCounter*3;
             credsCounter--;
           }
-            
+          
+          //char select movement
+          if (charSelectCount[0] + 1 == loopCount) {
+            leftChar1.setAnimation("leftWalkDown");
+          }else if (charSelectCount[0] + 45 == loopCount){
+            leftChar1.setAnimation("leftDown");
+          }
+          if (charSelectCount[2] + 1 == loopCount) {
+            rightChar1.setAnimation("rightWalkDown");
+          }else if (charSelectCount[2] + 45 == loopCount){
+            rightChar1.setAnimation("rightDown");
+          }
+          if (charSelectCount[1] + 1 == loopCount) {
+            bChar1.setAnimation("bWalkDown");
+          }else if (charSelectCount[1] + 45 == loopCount){
+            bChar1.setAnimation("bDown");
+          }
+          if (charSelectCount[3] + 1 == loopCount) {
+            aChar1.setAnimation("aWalkDown");
+          }else if (charSelectCount[3] + 45 == loopCount){
+            aChar1.setAnimation("aDown");
+          }
+
           //char selection
           if (keyWentDown("r")) {
             playSound("audio/app_menu_button_2.mp3");
@@ -1289,6 +1327,7 @@ window.preload = function () {
             if (charNum == 5) {
               charNum = 1;
             }
+            charSelectCount[charNum-1]=loopCount;
           }
         }else{
             if(credsCounter>6){
@@ -1303,12 +1342,16 @@ window.preload = function () {
           }
         }
 
-          //start intro animation
+          //start game/tutorial
           if ((mousePressedOver(tutorialBtn) || mousePressedOver(startBtn) || keyWentDown('ENTER')) && zoomedIn && !credsPage) {
             playSound("audio/app_interface_button_3.mp3");
             playSound("audio/bgTraffic.mp3",true);
             stopLongSounds(false);
             stopMusic();
+              leftChar1.setAnimation("leftDown");
+              rightChar1.setAnimation("rightDown");
+              bChar1.setAnimation("bDown");
+              aChar1.setAnimation("aDown");
                 //set starting funds
                 var randStart=randomNumber(4000,6000)*5;//1000000;
                 totIncome = randStart;
@@ -1394,6 +1437,7 @@ window.preload = function () {
           rChars[2].x=rChars[6].x=645+xSlide;
           rChars[3].x=rChars[7].x=735+xSlide;
           rChars[8].x=rChars[9].x=350+xSlide;
+          musicMenuBtn.x=hintsMenuBtn.x = 165 + xSlide;
         }
         
         drawSprites();
@@ -1498,19 +1542,40 @@ window.preload = function () {
             if(mousePressedOver(rChars[xp])&&mouseWentDown("leftButton")){
               playSound("audio/app_interface_button_3.mp3");
               charNum = xp+1;
+              charSelectCount[xp]=loopCount;
             }
           }
           
           rChars[charNum + 3].shapeColor = "lightGreen";  
         
         //left menu variable text
-        fill(rgb(200, 215, 255,0.5));
-        strokeWeight(3); stroke("black");
-        rect(25+xSlide,640,280,50);
-        fill(rgb(150, 230, 180,0.5));
-        strokeWeight(3); stroke("black");
-        rect(25+xSlide,725,280,50);
-          
+        //music and tips/hints hover color changes
+        var musicColor = ""; 
+        if(mouseIsOver(rChars[9]) || mouseIsOver(musicMenuBtn)) {
+          musicColor="_red";
+          fill(rgb(180, 255, 210, 0.4));
+          strokeWeight(3); stroke("black");
+          rect(25+xSlide,725,280,50);
+        }else {
+          fill(rgb(150, 230, 180,0.5));
+          strokeWeight(3); stroke("black");
+          rect(25+xSlide,725,280,50);
+        }
+
+        var hintColor = ""; 
+        if(mouseIsOver(rChars[8])||mouseIsOver(hintsMenuBtn)) {
+          hintColor="_red";
+
+          fill(rgb(220, 235, 255,0.4));
+          strokeWeight(3); stroke("black");
+          rect(25+xSlide,640,280,50);
+        } else {
+          fill(rgb(200, 215, 255,0.5));
+          strokeWeight(3); stroke("black");
+          rect(25+xSlide,640,280,50);
+        }
+
+        
         textSize(35);fill("black");noStroke();textAlign(CENTER,CENTER);
         
         if(hintsOn)(text("Hints are on!",165+xSlide,665));
@@ -1519,13 +1584,13 @@ window.preload = function () {
         if(muteMusic)(text("Music is muted!",165+xSlide,750));
         else(text("Music is playing!",165+xSlide,750));
         textAlign(LEFT,CENTER);
+
         //Music hover and mute 
-        var musicColor = ""; 
-        if(mouseIsOver(rChars[9]))(musicColor="_red");
+        
         if(muteMusic)(rChars[9].setAnimation("noMusic"+musicColor));
         else(rChars[9].setAnimation("music"+musicColor));
 
-        if(mousePressedOver(rChars[9])&&mouseWentDown("leftButton")){
+        if((mousePressedOver(rChars[9]) || mousePressedOver(musicMenuBtn)) && mouseWentDown("leftButton")){
           playSound("audio/app_interface_button_3.mp3");
           if(muteMusic){
             muteMusic=false;
@@ -1538,12 +1603,11 @@ window.preload = function () {
         }
         
         //Tips hover and prevent 
-        var hintColor = ""; 
-        if(mouseIsOver(rChars[8]))(hintColor="_red");
+        
         if(!hintsOn)(rChars[8].setAnimation("noHint"+hintColor));
         else(rChars[8].setAnimation("hint"+hintColor));
 
-        if(mousePressedOver(rChars[8])&&mouseWentDown("leftButton")){
+        if((mousePressedOver(rChars[8]) || mousePressedOver(hintsMenuBtn))&&mouseWentDown("leftButton")){
           playSound("audio/app_interface_button_3.mp3");
           hintsOn=!hintsOn;
           if(hintsOn)(hintList=[false,false,false,
@@ -1596,7 +1660,7 @@ window.preload = function () {
           noStroke(); textSize(22);
           text("[Sprint Cooldown]", 313, 778);
           textSize(17);
-          text("[P] Pause", 360,725);
+          text("[P] Pause", 368,725);
           fill("white"); stroke("black"); strokeWeight(3);
           rect(315, 751, 171, 14);
           fill(sprintCooldownColors[charNum - 1]); noStroke();
@@ -1660,12 +1724,6 @@ window.preload = function () {
         textAlign('center', 'top'); noStroke(); textSize(30); textFont('tahoma');
           
         fill('black'); textSize(28); textAlign('center', 'top');
-        
-        
-        if (keyWentDown("BACKSPACE")) {
-          resetGame(true);
-          if(!muteMusic)(playSound("audio/TrackTribe - A Night Alone.mp3",true));
-        }
         //////intro complete, gameplay begins/////////
       }
       //main game
@@ -2046,7 +2104,7 @@ window.preload = function () {
           noStroke(); textSize(22);
           text("[Sprint Cooldown]", 313, 778);
           textSize(17);
-          text("[P] Pause", 360,725);
+          text("[P] Pause", 368,725);
           fill("white"); stroke("black"); strokeWeight(3);
           rect(315, 751, 171, 14);
           fill(sprintCooldownColors[charNum - 1]); noStroke();
@@ -3444,7 +3502,7 @@ window.preload = function () {
             }
             if(totProfits>(reserveRate*100000))(totalPayouts += totProfits * (1 - reserveRate));
             
-            meetingControl = 1;
+            meetingControl = 6;
             loopCopy = 0;
             lightning.x = lightning.y = -100;
             if (charNum == 1) {
@@ -3834,16 +3892,112 @@ window.preload = function () {
           text(meetingYear + wordifyNum(meetingYear) + " Annual CLDC Shareholder Meeting", 400, 134);
 
           switch (meetingControl) {
+            //meeting outline
+            case 6:
+              if(loopCopy==0){
+                meetingSprites[0].visible = true;
+              }
+              if(keyWentDown("ENTER")){
+                loopCopy=0;
+                meetingControl=1;
+              }
+              textSize(30);
+              text("Meeting Outline", 400, 182);
+              
+              if (loopCopy>30) {
+                stroke("black");strokeWeight(2);
+                var t1 = (loopCopy-30)/15;
+                fill(rgb(237, 254, 231, t1));
+                rect(150, 240, 500, 40);
+                fill(rgb(0,0,0, t1));noStroke();
+                text("Item 1: Distributing Profits",400,262);
+                if(loopCopy>90) {
+                  fill("black");textSize(20);
+                  text("↓",400,295);textSize(30);
+
+                  stroke("black");strokeWeight(2);
+                  var t2 = (loopCopy-90)/15;
+                  fill(rgb(217, 234, 211, t2));
+                  rect(150, 310, 500, 40);
+                  fill(rgb(0,0,0, t2)); noStroke();
+                  text("Item 2: Profit History & Statistics",400,332);
+                  if(meetingYear==1){
+                    if(loopCopy>150){
+                      fill("black");textSize(20);
+                      text("↓",400,365);textSize(30);
+
+                      stroke("black");strokeWeight(2);
+                      var t3 = (loopCopy-150)/15;
+                      fill(rgb(197, 214, 191, t3));
+                      rect(150, 380, 500, 40);
+                      fill(rgb(0,0,0, t3)); noStroke();
+                      text("Item 3: Create Development Plan",400,402);
+                      
+                      if (loopCopy>210) {
+                        fill("black");textSize(20);
+                        text("↓",400,435);textSize(30);
+
+                      stroke("black");strokeWeight(2);
+                      var t4 = (loopCopy-210)/15;
+                      fill(rgb(177, 194, 171, t4));
+                      rect(150, 450, 500, 40);
+                      fill(rgb(0,0,0, t4)); noStroke();
+                      text("Item 4: Vote for a CLDC Leader",400,472);
+                      if (loopCopy>270) {
+                        fill("black");textSize(20);
+                        text("↓",400,505);textSize(30);
+
+                      stroke("black");strokeWeight(2);
+                      var t5 = (loopCopy-270)/15;
+                      fill(rgb(157, 174, 151, t5));
+                      rect(150, 520, 500, 40);
+                      fill(rgb(0,0,0, t5)); noStroke();
+                      text("Item 5: CLDC Leader Election",400,542);
+                      }
+                      }
+                    }
+
+                  }else{
+                    if(loopCopy>150){
+                      fill("black");textSize(20);
+                      text("↓",400,365);textSize(30);
+
+                      stroke("black");strokeWeight(2);
+                      var t3 = (loopCopy-150)/15;
+                      fill(rgb(197, 214, 191, t3));
+                      rect(150, 380, 500, 40);
+                      fill(rgb(0,0,0, t3)); noStroke();
+                      text("Item 3: Vote for a CLDC Leader",400,402);
+                      
+                      if (loopCopy>210) {
+                        fill("black");textSize(20);
+                        text("↓",400,435);textSize(30);
+
+                      stroke("black");strokeWeight(2);
+                      var t4 = (loopCopy-210)/15;
+                      fill(rgb(177, 194, 171, t4));
+                      rect(150, 450, 500, 40);
+                      fill(rgb(0,0,0, t4)); noStroke();
+                      text("Item 4: CLDC Leader Election",400,472);
+
+                      }
+                    }
+                  }
+                }
+              }
+
+
+              break;
             //dividend animation
             case 1:
               //initialize sprites and data
-              if (loopCopy == 0) {
-                meetingSprites[0].visible = meetingSprites[1].visible = meetingSprites[2].visible =
+              if (loopCopy == 1) {
+                meetingSprites[1].visible = meetingSprites[2].visible =
                   meetingSprites[3].visible = true;
                 profitRemaining = 1 - reserveRate;
               }
               textSize(30);
-              text("Part 1/4: Distributing Profits", 400, 180);
+              text("Item 1: Distributing Profits", 400, 180);
 
               //main animation
               fill("white"); strokeWeight(3); stroke("black");
@@ -3949,7 +4103,7 @@ window.preload = function () {
             //
             case 2:
               textSize(30);
-              text("Part 2/4: Profit History and Statistics", 400, 180);
+              text("Item 2: Profit History & Statistics", 400, 180);
 
               //hint text
               if(meetingYear==1&&!hintList[6]){
@@ -4057,7 +4211,12 @@ window.preload = function () {
                 meetingSprites[4].visible = meetingSprites[5].visible = true;
               }
               textSize(30);
-              text("Part 3/4: Vote for a CLDC Leader", 400, 180);    
+              if(meetingYear!=1){
+                text("Item 3: Vote for a CLDC Leader", 400, 180);   
+              }else {
+                text("Item 4: Vote for a CLDC Leader", 400, 180);   
+              }
+               
 
               //hint text
               if(meetingYear==1&&!hintList[1]){
@@ -4073,6 +4232,16 @@ window.preload = function () {
               var selectionColors = [];
               if (incumbentSelected) (selectionColors = [rgb(180, 255, 200), "lightgray"]);
               else (selectionColors = ["lightgray", rgb(180, 255, 200)]);
+
+              if(mouseIsOver(meetingBtns[4])){
+                selectionColors[0]=rgb(210,255,230);
+                incumbentSelected=true;
+              }
+              if(mouseIsOver(meetingBtns[5])){
+                selectionColors[1]=rgb(210,255,230);
+                incumbentSelected=false;
+              }
+
               fill(selectionColors[0]);
               rect(165, 550, 120, 35);
 
@@ -4101,7 +4270,8 @@ window.preload = function () {
                 playSound("audio/app_menu_button_2.mp3");
                 incumbentSelected = !incumbentSelected;
               }
-              if (keyWentDown("ENTER")||keyWentDown('e')) {
+              if (keyWentDown("ENTER") || keyWentDown('e') || 
+              mousePressedOver(meetingBtns[4]) || mousePressedOver(meetingBtns[5])) {
                 playSound("audio/app_interface_button_3.mp3");
                 loopCopy = 0;
                 meetingControl++;
@@ -4127,7 +4297,11 @@ window.preload = function () {
                 else (incumbentPopularity = randomNumber(25, 60));
               }
               textSize(30);
-              text("Part 4/4: CLDC Leader Election", 400, 180);
+              if(meetingYear!=1){
+                text("Item 4: CLDC Leader Election", 400, 180);
+              }else{
+                text("Item 5: CLDC Leader Election", 400, 180);
+              }
               rect(10, 160, 85, 50);
               rect(707, 160, 83, 50);
 
@@ -4350,7 +4524,7 @@ window.preload = function () {
             case 5:
               
                textSize(30);fill("black");noStroke();
-              text("Decision: Create Development Plan", 400, 180);
+              text("Item 3: Decision - Create Development Plan", 400, 180);
               //investment choice relocation
               if(introSelection==0){
               //choose esop investment
@@ -4364,22 +4538,33 @@ window.preload = function () {
                    "Cons: Investment offers are less frequent,\n\t\tcost to the CLDC for paid incentives",75,470);
               textAlign(CENTER,CENTER);
               stroke("black");strokeWeight(4);
-              fill(rgb(160,255,180));  
+              if(mouseIsOver(meetingBtns[0])){
+                fill(rgb(190,255,210));  
+              }else{
+                fill(rgb(160,255,180));  
+              }
+              
               rect(180,310,140,50);//left button
-              fill(rgb(255,160,180));
+              if(mouseIsOver(meetingBtns[1])){
+                fill(rgb(255,180,200)); 
+              }else{
+                fill(rgb(255,160,180));  
+              }
               rect(480,310,140,50);//right button
               fill("black");noStroke();
               text("[E] Yes",250,335);
               text("[R] No",550,335);
                 
-              if(keyWentDown("e")){
+                
+
+              if(keyWentDown("e") || (mousePressedOver(meetingBtns[0]))){
                 playSound("audio/app_interface_button_3.mp3");
                 introSelection++;
                 esopChosen=true;
                 offerDebuff+=10;
                 if(offerDebuff>100)(offerDebuff=100);
                 
-              }else if(keyWentDown("r")){
+              }else if(keyWentDown("r")|| (mousePressedOver(meetingBtns[1]))){
                 playSound("audio/app_interface_button_3.mp3");
                 introSelection++;
                 esopChosen=false;
@@ -4410,21 +4595,32 @@ window.preload = function () {
             text("Invest in More Resilient Infrastructure?",400,315);
               text("Pros: Less damage from natural disasters\nCons: Spend more revenue on infrastructure",400,450);
               stroke("black");strokeWeight(4);
-              fill(rgb(160,255,180));  
+
+              if(mouseIsOver(meetingBtns[2])){
+                fill(rgb(190,255,210)); 
+              }else{
+                fill(rgb(160,255,180));  
+              }
               rect(180,345,140,50);//left button
-              fill(rgb(255,160,180));
+              
+              if(mouseIsOver(meetingBtns[3])){
+                fill(rgb(255,180,200));
+              }else{
+                fill(rgb(255,160,180));  
+              }
               rect(480,345,140,50);//right button
+              
               fill("black");noStroke();
               text("[E] Yes",250,370);
               text("[R] No",550,370);
 
-              if(keyWentDown("e")){
+              if(keyWentDown("e") || (mousePressedOver(meetingBtns[2]) && mouseWentDown("leftButton"))){
                 playSound("audio/app_interface_button_3.mp3");
                 infrastructureChosen = true;
                 introSelection++;
                 floodFactor+=150;
                 
-              }else if(keyWentDown("r")){
+              }else if(keyWentDown("r") || (mousePressedOver(meetingBtns[3]) && mouseWentDown("leftButton"))){
                 playSound("audio/app_interface_button_3.mp3");
                 infrastructureChosen = false;
                 introSelection++;
@@ -5005,7 +5201,20 @@ window.preload = function () {
       if(level == 1){
         textAlign(CENTER,CENTER);
         if(introControl==0){
+          
         if(loopCount<380){
+          //go back to main menu if backspace is pressed
+          if (keyWentDown("BACKSPACE")) {
+            stopSound("audio/typing.mp3");
+            resetGame(true);
+            if(!muteMusic)(playSound("audio/TrackTribe - A Night Alone.mp3",true));
+          }
+          if (keyWentDown("ENTER")) {
+            stopSound("audio/typing.mp3");
+            loopCount=379;
+            textStart[0]=15;
+          }
+
           spotlight(0,0,0,0);
           if(loopCount==10)(playSound("audio/typing.mp3"));
           if(loopCount==15){
@@ -5019,12 +5228,30 @@ window.preload = function () {
           if(loopCount==375)(playSound("audio/typing.mp3"));
         }
         else if(loopCount<760){
+          if (keyWentDown("BACKSPACE")) {
+            stopSound("audio/typing.mp3");
+            loopCount=0;
+          }
+          if (keyWentDown("ENTER")) {
+            stopSound("audio/typing.mp3");
+            loopCount=759;
+            textStart=[15,380];
+          }
           spotlight(10,10,780,460);
           if(loopCount==380)(textStart.push(380));
           typeText("The north side, your home, has fallen\ninto a state of disrepair and poverty.\nCrime is rampant, and the land is empty.",400,570,40,1,false,"white",loopCount);
           if(loopCount==620)(stopSound("audio/typing.mp3"));
         }
         else if(loopCount<1100){
+          if (keyWentDown("BACKSPACE")) {
+            stopSound("audio/typing.mp3");
+            loopCount=379;
+          }
+          if (keyWentDown("ENTER")) {
+            stopSound("audio/typing.mp3");
+            loopCount=1095;
+            textStart=[15,380,770];
+          }
           spotlight(10,500,780,190);
           if(loopCount==765)(playSound("audio/typing.mp3"));
           if(loopCount==770)(textStart.push(770));
@@ -5032,6 +5259,16 @@ window.preload = function () {
           if(loopCount==970)(stopSound("audio/typing.mp3"));
         }
         else if(loopCount<1880){
+          if (keyWentDown("BACKSPACE")) {
+            stopSound("audio/typing.mp3");
+            loopCount=759;
+          }
+          if (keyWentDown("ENTER")) {
+            stopSound("audio/typing.mp3");
+            loopCount=1879;
+            textStart=[1880];
+          }
+          
           spotlight(0,0,0,0);
           if(loopCount==1105)(playSound("audio/typing.mp3"));
           if(loopCount==1110)(textStart.push(1110));
@@ -5043,6 +5280,19 @@ window.preload = function () {
           }
         }
         else {
+          if (keyWentDown("BACKSPACE")) {
+            stopSound("audio/typing.mp3");
+            loopCount=1099;
+            textStart=[15,380,770];
+          }
+          if (keyWentDown("ENTER")) {
+            stopLongSounds(false);
+            stopMusic();
+            loopCount=0;
+            introControl=1;
+            textStart=[];
+          }
+
           spotlight(0,0,0,0);
           fill(rgb(190,200,255));stroke(rgb(200,220,255));strokeWeight(0.25);textSize(30);
           text("Phases of CLDC Development",400,30);
@@ -5063,9 +5313,21 @@ window.preload = function () {
                   textStart=[];
                 }
           }
+          textSize(30);fill("white");noStroke();
+          text('[ENTER] Skip   |   [BACKSPACE] Back   |   [P] Pause', 400, 754);
         }
         else if(introControl==1){
           if(loopCount<600){
+            if (keyWentDown("BACKSPACE")) {
+              stopSound("audio/typing.mp3");
+              introControl=0;
+              loopCount=1879;
+            }
+            if (keyWentDown("ENTER")) {
+              stopSound("audio/typing.mp3");
+              loopCount=599;
+              textStart=[1];
+            }
             spotlight(0,0,0,0);
             fill(rgb(190,200,255));stroke(rgb(190,200,255));strokeWeight(0.25);textSize(30);
           text("Phases of CLDC Development",400,30);
@@ -5080,42 +5342,103 @@ window.preload = function () {
             textAlign(CENTER,CENTER);
             if(loopCount==455)(stopSound("audio/typing.mp3"));
             if(loopCount==595)(playSound("audio/typing.mp3"));
-          }else if(loopCount<970){
+          }
+          else if(loopCount<970){
+            if (keyWentDown("BACKSPACE")) {
+              stopSound("audio/typing.mp3");
+              loopCount=0;
+            }
+            if (keyWentDown("ENTER")) {
+              stopSound("audio/typing.mp3");
+              loopCount=969;
+              textStart=[1,600];
+            }
             spotlight(800,0,800,800);
             if(loopCount==600)(textStart.push(600));
             typeText("The right half of the screen is where important\ninformation is located, like financials, statistics,\nobjectives, and controls.",400,350,35,1,false,"white",loopCount);
             if(loopCount==850)(stopSound("audio/typing.mp3"));
             if(loopCount==965)(playSound("audio/typing.mp3"));
-          }else if(loopCount<1460){
+          }
+          else if(loopCount<1490){
+            if (keyWentDown("BACKSPACE")) {
+              stopSound("audio/typing.mp3");
+              loopCount=599;
+            }
+            if (keyWentDown("ENTER")) {
+              stopSound("audio/typing.mp3");
+              loopCount=1489;
+              textStart=[1,600,970];
+            }
             spotlight(808,66,384,260);
             if(loopCount==970)(textStart.push(970));
             typeText("This area shows the CLDC's cumulative annual\nrevenue, expenses, and profit. Any profits\nexceeding the reserve minimum are distributed\nas dividends to CLDC members\nat the annual shareholder meeting.",400,350,35,2,false,"white",loopCount);
             if(loopCount==1360)(stopSound("audio/typing.mp3"));
             if(loopCount==1455)(playSound("audio/typing.mp3"));
-          }else if(loopCount<1750){
+          }
+          else if(loopCount<1810){
+            if (keyWentDown("BACKSPACE")) {
+              stopSound("audio/typing.mp3");
+              loopCount=969;
+            }
+            if (keyWentDown("ENTER")) {
+              stopSound("audio/typing.mp3");
+              loopCount=1809;
+              textStart=[1,600,970,1490];
+            }
             spotlight(808,336,384,200);
-            if(loopCount==1460)(textStart.push(1460));
+            if(loopCount==1490)(textStart.push(1490));
             typeText("This area shows the CLDC's cumulative\nloans, loan repayments, and loan balance\n(the difference).",400,350,35,3,false,"white",loopCount);
-            if(loopCount==1650)(stopSound("audio/typing.mp3"));
-            if(loopCount==1745)(playSound("audio/typing.mp3"));
-          }else if(loopCount<2190){
+            if(loopCount==1680)(stopSound("audio/typing.mp3"));
+            if(loopCount==1775)(playSound("audio/typing.mp3"));
+          }
+          else if(loopCount<2280){
+            if (keyWentDown("BACKSPACE")) {
+              stopSound("audio/typing.mp3");
+              loopCount=1489;
+            }
+            if (keyWentDown("ENTER")) {
+              stopSound("audio/typing.mp3");
+              loopCount=2279;
+              textStart=[1,600,970,1490,1810];
+            }
             spotlight(808,546,384,240);
-            if(loopCount==1750)(textStart.push(1750));
+            if(loopCount==1810)(textStart.push(1810));
             typeText("This area shows your scores including\ndividends, ownership education points, and\ncommunity service points. These are helpful for\ncompleting objectives and reducing expenses.",400,350,35,4,false,"white",loopCount);
-            if(loopCount==2090)(stopSound("audio/typing.mp3"));
-            if(loopCount==2185)(playSound("audio/typing.mp3"));
-          }else if(loopCount<2450){
+            if(loopCount==2150)(stopSound("audio/typing.mp3"));
+            if(loopCount==2245)(playSound("audio/typing.mp3"));
+          }
+          else if(loopCount<2570){
+            if (keyWentDown("BACKSPACE")) {
+              stopSound("audio/typing.mp3");
+              loopCount=1809;
+            }
+            if (keyWentDown("ENTER")) {
+              stopSound("audio/typing.mp3");
+              loopCount=2569;
+              textStart=[1,600,970,1490,1810,2280];
+            }
             spotlight(1208,5,384,321);
-            if(loopCount==2190)(textStart.push(2190));
+            if(loopCount==2280)(textStart.push(2280));
             typeText("This area shows some current objectives\nto guide your progress renovating the city.",400,350,35,5,false,"white",loopCount);
-            if(loopCount==2350)(stopSound("audio/typing.mp3"));
-            if(loopCount==2445)(playSound("audio/typing.mp3"));
-          }else if(loopCount<2690){
+            if(loopCount==2440)(stopSound("audio/typing.mp3"));
+            if(loopCount==2535)(playSound("audio/typing.mp3"));
+          }
+          else if(loopCount<2960){
+            if (keyWentDown("BACKSPACE")) {
+              stopSound("audio/typing.mp3");
+              loopCount=2279;
+            }
+            if (keyWentDown("ENTER")) {
+              stopSound("audio/typing.mp3");
+              loopCount=2959;
+              textStart=[1,600,970,1490,1810,2280];
+            }
             spotlight(1208,336,384,450);
-            if(loopCount==2450)(textStart.push(2450));
-            typeText("This area shows the controls to play the game.\nReference this if you aren't sure how to play.",400,350,35,6,false,"white",loopCount);
-            if(loopCount==2630)(stopSound("audio/typing.mp3"));
-          }else if(loopCount==2690){
+            if(loopCount==2570)(textStart.push(2570));
+            typeText("This area shows the controls to play the game\nand a tips sheet that can be shown/hidden\nby pressing [T]. Reference this if you\naren't sure what to do.",400,350,35,6,false,"white",loopCount);
+            if(loopCount==2780)(stopSound("audio/typing.mp3"));
+          }
+          else if(loopCount==2960){
             stopLongSounds(false);
             introControl=2;
             loopCount=0;
@@ -5126,7 +5449,7 @@ window.preload = function () {
             textStart=[1];
           }
           textSize(30);fill("white");
-          text('[ENTER] Skip   |   [BACKSPACE] Menu   |   [P] Pause', 400, 754);
+          text('[ENTER] Skip   |   [BACKSPACE] Back   |   [P] Pause', 400, 754);
           if(loopCount>=600){
             fill(rgb(190,255,200));stroke(rgb(200,255,200));strokeWeight(0.25);textSize(30);
           text("Menu Explanation",400,30);
@@ -5162,7 +5485,7 @@ window.preload = function () {
           else if(introSelection == 1){
             if(loopCount==1)(playSound("audio/typing.mp3"));
             //explain sprint
-            typeText("Press [SHIFT] while moving to sprint. Watch the cooldown!",400,380,28,1,true,"white",loopCount);
+            typeText("Hold [SHIFT] while moving to sprint. Watch the cooldown!",400,380,28,1,true,"white",loopCount);
             if(loopCount==110)(stopSound("audio/typing.mp3"));
             //red circle over sprint cooldown
             if(loopCount>80){
@@ -5745,31 +6068,8 @@ window.preload = function () {
 
        
         
-        if(introControl==0&&loopCount!=0){
-          //skip the intro to the planning stage
-          textSize(30);fill("white");
-          text('[ENTER] Skip   |   [BACKSPACE] Menu   |   [P] Pause', 400, 754);
-          //skip to the plan development screen
-        if (keyWentDown("ENTER")) {
-          stopLongSounds(false);
-          stopMusic();
-          playSound("audio/app_interface_button_3.mp3");
-          introControl=1;
-          loopCount=0;
-          textStart=[];
-        }
-        }else if(keyWentDown("ENTER") && introControl==1){
-          playSound("audio/app_interface_button_3.mp3");
-          stopLongSounds(false);
-          stopMusic();
-          introControl=2;
-            loopCount=0;
-            introSelection = 0;
-            //open menu, place character
-            educationLevelLeft.visible = leftChar.visible = charHead.visible = music.visible = true;
-            textStart=[1];
-        }
-        else if(introControl>1){
+    
+      if(introControl>1){
            //skip tutorial to start the game
         if (keyWentDown("ENTER")) {
           stopLongSounds(false);
@@ -5777,6 +6077,10 @@ window.preload = function () {
           playSound("audio/app_interface_button_3.mp3");
           playSound("audio/bgTraffic.mp3",true);
           skipTutorial();
+        }
+        if (keyWentDown("BACKSPACE")) {
+          resetGame(true);
+          if(!muteMusic)(playSound("audio/TrackTribe - A Night Alone.mp3",true));
         }
         }
       }
@@ -6932,6 +7236,7 @@ window.preload = function () {
     }
     //resets game and returns to main menu
     function resetGame(data) {
+      charSelectCount = [-360,-360,-360,-360];
       cMoneyUpdateCount = -60;
       loansUpdateCount = -60;
       cUpdateCount = -60;
@@ -7002,6 +7307,7 @@ window.preload = function () {
         t1Land[7].visible = t1Land[8].visible = true;
       
        recycleSprites.setVisibleEach(false);
+       
 //tier 1 buildings
       t1Roofs.setVisibleEach(true);
       t1Roofs[12].visible = t1Roofs[13].visible = false;
