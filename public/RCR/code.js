@@ -2567,12 +2567,12 @@ window.preload = function () {
             var colorFactor = ((Math.abs(12 - (loopCount % 24))) * 3);
             g1Indicator.shapeColor = rgb(170 - colorFactor, 170 - colorFactor, 230 + colorFactor, 1);
             fill("black");noStroke();textSize(26);
-            text("Feasable",610,769);
+            text("Feasible",610,769);
             thumbUp.visible=true;
             thumbDown.visible=false;
           }else{
             fill("black");noStroke();textSize(26);
-            text("Not Feasable",610,769);
+            text("Not Feasible",610,769);
             g1Indicator.shapeColor = "red";
             thumbDown.visible=true;
             thumbUp.visible=false;
@@ -2649,12 +2649,12 @@ window.preload = function () {
             var colorFactor = ((Math.abs(12 - (loopCount % 24))) * 3);
             g1Indicator.shapeColor = rgb(170 - colorFactor, 170 - colorFactor, 230 + colorFactor, 1);
             fill("black");noStroke();textSize(26);
-            text("Feasable",610,769);
+            text("Feasible",610,769);
             thumbUp.visible=true;
             thumbDown.visible=false;
           }else{
             fill("black");noStroke();textSize(26);
-            text("Not Feasable",610,769);
+            text("Not Feasible",610,769);
             g1Indicator.shapeColor = "red";
             thumbDown.visible=true;
             thumbUp.visible=false;
@@ -3902,7 +3902,7 @@ window.preload = function () {
                 meetingControl=1;
               }
               textSize(30);
-              text("Meeting Outline", 400, 182);
+              text("Meeting Agenda", 400, 182);
               
               if (loopCopy>30) {
                 stroke("black");strokeWeight(2);
@@ -6595,12 +6595,12 @@ window.preload = function () {
         var colorFactor = ((Math.abs(12 - (loopCount % 24))) * 3);
         g1Indicator.shapeColor = rgb(170 - colorFactor, 170 - colorFactor, 230 + colorFactor, 1);
         fill("black");noStroke();textSize(26);
-        text("Feasable",610,769);
+        text("Feasible",610,769);
         thumbUp.visible=true;
         thumbDown.visible=false;
       }else{
         fill("black");noStroke();textSize(26);
-        text("Not Feasable",610,769);
+        text("Not Feasible",610,769);
         g1Indicator.shapeColor = "red";
         thumbDown.visible=true;
         thumbUp.visible=false;
@@ -6683,12 +6683,12 @@ window.preload = function () {
         var colorFactor = ((Math.abs(12 - (loopCount % 24))) * 3);
         g1Indicator.shapeColor = rgb(170 - colorFactor, 170 - colorFactor, 230 + colorFactor, 1);
         fill("black");noStroke();textSize(26);
-        text("Feasable",610,769);
+        text("Feasible",610,769);
         thumbUp.visible=true;
         thumbDown.visible=false;
       }else{
         fill("black");noStroke();textSize(26);
-        text("Not Feasable",610,769);
+        text("Not Feasible",610,769);
         g1Indicator.shapeColor = "red";
         thumbDown.visible=true;
         thumbUp.visible=false;
@@ -6774,12 +6774,12 @@ window.preload = function () {
             var colorFactor = ((Math.abs(12 - (loopCount % 24))) * 3);
             g1Indicator.shapeColor = rgb(170 - colorFactor, 170 - colorFactor, 230 + colorFactor, 1);
             fill("black");noStroke();textSize(26);
-            text("Feasable",610,769);
+            text("Feasible",610,769);
             thumbUp.visible=true;
             thumbDown.visible=false;
           }else{
             fill("black");noStroke();textSize(26);
-            text("Not Feasable",610,769);
+            text("Not Feasible",610,769);
             g1Indicator.shapeColor = "red";
             thumbDown.visible=true;
             thumbUp.visible=false;
