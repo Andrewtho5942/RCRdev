@@ -75,7 +75,7 @@ window.preload = function () {
       "32880dce-82b0-41cc-8154-6dbbcdca15d6","c4b57627-d0aa-4b3e-9e25-ee2bd86bab15","18879e75-30c4-4595-a693-6d9bff8a5bce",
       "155760e3-dd81-4e81-a491-ccb6bf1e1667","def110de-c1a9-4d72-ae0b-9fadd52df8ff","22fc5cc4-d558-4719-8eea-f7d1e909495c",
       "7d18a641-8a03-42e1-85c3-0260c2e70ae0","dba337a9-5ab1-4dff-9c20-59d224efa696","dc59f0e3-7d39-408c-86fd-67bab79d0425",
-      "954c2a2f-98f3-4a9c-a8e5-28a5d79d0eec","ea2d3ee0-4af8-41af-bca7-e8f5445f37bc","thumbUp","thumbDown"],
+      "954c2a2f-98f3-4a9c-a8e5-28a5d79d0eec","ea2d3ee0-4af8-41af-bca7-e8f5445f37bc","thumbUp","thumbDown","steamboat"],
       "propsByKey":{
         "afe271cc-d4d9-41b5-b5d6-667d3f9477c6":{"name":"leftUp","sourceUrl":null,"frameSize":{"x":240,"y":384},"frameCount":1,"looping":true,"frameDelay":12,"version":"fORYRd_8dtCMTf7zXK2kR98Kek6XUA_3","loadedFromSource":true,"saved":true,"sourceSize":{"x":240,"y":384},"rootRelativePath":"assets/afe271cc-d4d9-41b5-b5d6-667d3f9477c6.png"},
         "344bc444-0c43-45c0-93ef-915cb76ff02d":{"name":"leftSide","sourceUrl":null,"frameSize":{"x":384,"y":240},"frameCount":1,"looping":true,"frameDelay":12,"version":"sOHx7oXz2trTC1EE69Z5asHU6rJQYV.C","loadedFromSource":true,"saved":true,"sourceSize":{"x":384,"y":240},"rootRelativePath":"assets/344bc444-0c43-45c0-93ef-915cb76ff02d.png"},
@@ -284,7 +284,8 @@ window.preload = function () {
         "954c2a2f-98f3-4a9c-a8e5-28a5d79d0eec":{"sourceSize":{"x":315,"y":315},"frameSize":{"x":315,"y":315},"frameCount":1,"frameDelay":12,"name":"offer","sourceUrl":null,"size":7790,"version":"fAjr2vvAP4vTLC3idAeVmgLe44YeWPb9","categories":[""],"looping":true,"loadedFromSource":true,"saved":true,"rootRelativePath":"assets/954c2a2f-98f3-4a9c-a8e5-28a5d79d0eec.png"},
         "ea2d3ee0-4af8-41af-bca7-e8f5445f37bc":{"name":"offerSign","sourceUrl":null,"frameSize":{"x":188,"y":131},"frameCount":1,"looping":true,"frameDelay":12,"version":"1dc3sTPM65jYHZOEzXb8kyhnqvbCQ4Zo","loadedFromSource":true,"saved":true,"sourceSize":{"x":188,"y":131},"rootRelativePath":"assets/ea2d3ee0-4af8-41af-bca7-e8f5445f37bc.png"},
         "thumbUp":{"name":"thumbUp","sourceUrl":null,"frameSize":{"x":200,"y":200},"frameCount":1,"looping":true,"frameDelay":12,"version":"1dc3sTPM65jYHZOEzXb8kyhnqvbCQ4Zo","loadedFromSource":true,"saved":true,"sourceSize":{"x":200,"y":200},"rootRelativePath":"assets/thumbUp.png"},
-        "thumbDown":{"name":"thumbDown","sourceUrl":null,"frameSize":{"x":200,"y":200},"frameCount":1,"looping":true,"frameDelay":12,"version":"1dc3sTPM65jYHZOEzXb8kyhnqvbCQ4Zo","loadedFromSource":true,"saved":true,"sourceSize":{"x":200,"y":200},"rootRelativePath":"assets/thumbDown.png"}
+        "thumbDown":{"name":"thumbDown","sourceUrl":null,"frameSize":{"x":200,"y":200},"frameCount":1,"looping":true,"frameDelay":12,"version":"1dc3sTPM65jYHZOEzXb8kyhnqvbCQ4Zo","loadedFromSource":true,"saved":true,"sourceSize":{"x":200,"y":200},"rootRelativePath":"assets/thumbDown.png"},
+        "steamboat":{"name":"steamboat_willie","sourceUrl":null,"frameSize":{"x":402,"y":336},"frameCount":14,"looping":true,"frameDelay":2,"version":"1dc3sTPM65jYHZOEzXb8kyhnqvbCQ4Zo","loadedFromSource":true,"saved":true,"sourceSize":{"x":1206,"y":1680},"rootRelativePath":"assets/steamboat.png"}
       }};
   var orderedKeys = animationListJSON.orderedKeys;
   var allAnimationsSingleFrame = false;
@@ -703,11 +704,6 @@ window.preload = function () {
     var river = createSprite(400, 42);
     river.setAnimation("river");//river.scale=0.5; scale doubles to 1
 
-    //boat
-    var ship = createSprite(0, -100);
-    ship.setAnimation("cargoShip");
-    ship.scale = 0.2;
-
     //Land plots
     var t1Land = createGroup();
     for (var x = 0; x < 4; x++)(t1Land.add(createSprite(45, 119 + (x * 82), 70, 80)));
@@ -724,16 +720,24 @@ window.preload = function () {
     t1Land[0].visible = t1Land[3].visible = t1Land[6].visible =
       t2Land[0].visible = t2Land[2].visible = false;
 
+      var mainWalls = createGroup();
+    mainWalls.add(createSprite(400, 0, 800, 20));
+    
+    //boat
+    var ship = createSprite(0, -100);
+    ship.setAnimation("cargoShip");
+    ship.scale = 0.2;
+
     //Streets
     var streets = createGroup();
     //left vertical strip
-    streets.add(createSprite(120, 28)); streets[0].setAnimation("bridgeVert2");
+    streets[0]=createSprite(120, 28); streets[0].setAnimation("bridgeVert2");
     streets.add(createSprite(120, 120)); streets[1].setAnimation("streetVert2");
     streets.add(createSprite(120, 212)); streets[2].setAnimation("intersectionLeft2");
     streets.add(createSprite(120, 304)); streets[3].setAnimation("streetVert2");
     streets.add(createSprite(120, 396)); streets[4].setAnimation("streetVert2");
     //right vertical strip
-    streets.add(createSprite(680, 28)); streets[5].setAnimation("bridgeVert2");
+    streets[5]=createSprite(680, 28); streets[5].setAnimation("bridgeVert2");
     streets.add(createSprite(680, 120)); streets[6].setAnimation("streetVert2");
     streets.add(createSprite(680, 212)); streets[7].setAnimation("intersectionRight2");
     streets.add(createSprite(680, 304)); streets[8].setAnimation("streetVert2");
@@ -744,6 +748,7 @@ window.preload = function () {
       streets[x + 10].setAnimation("streetHoriz2");
     }
     streets.setScaleEach(0.483);
+
     //decorational park for lower city
     var lowPark = createSprite(400, 650);//635
     lowPark.visible = false;
@@ -882,6 +887,7 @@ window.preload = function () {
     trash.setScaleEach(0.06);
     trash[0].scale = trash[3].scale = trash[6].scale = 0.08;
 
+    
     //pedestrian sprites
     var pedestrians = createGroup();
     for (var j = 0; j < 8; j++) {
@@ -902,11 +908,11 @@ window.preload = function () {
           break;
       }
     }
-    var mainWalls = createGroup();
-    mainWalls.add(createSprite(0, 400, 20, 800)); mainWalls.add(createSprite(400, 0, 800, 20));
+    
+    
+    mainWalls.add(createSprite(0, 400, 20, 800)); 
     mainWalls.add(createSprite(800, 400, 20, 800)); mainWalls.add(createSprite(400, 800, 800, 20));
-
-
+    
     //}
 
     //job and offer sprites{    
@@ -1368,7 +1374,7 @@ window.preload = function () {
             carCooldown = 100;
             //start ship
             ship.x = -80;
-            ship.y = 30;
+            ship.y = 35;
             ship.velocityX = 1;
             //start birds
             birds[0].x = randomNumber(-800, -20);
@@ -1707,7 +1713,7 @@ window.preload = function () {
         leftChar.collide(hiddenWalls[10])
         
         //main walls
-        leftChar.collide(mainWalls[0]);//leftChar.collide(mainWalls[1]);
+        leftChar.collide(mainWalls[1]);
         leftChar.collide(mainWalls[2]); leftChar.collide(mainWalls[3]);
 
         //top of map
@@ -2117,7 +2123,7 @@ window.preload = function () {
 
         //character collisions{
         //main walls
-        leftChar.collide(mainWalls[0]);//leftChar.collide(mainWalls[1]);
+        leftChar.collide(mainWalls[1]);
         leftChar.collide(mainWalls[2]); leftChar.collide(mainWalls[3]);
 
         //top of map
@@ -7951,10 +7957,22 @@ window.preload = function () {
       }
       //}
 
+      
+
+      
+
       //boat movement on river
       if (ship.x > 880) {
-        ship.x = -40;
+        ship.x = -50;
         ship.y = randomNumber(20, 50);
+        if(randomNumber(1,10) == 1){
+          ship.setAnimation("steamboat_willie");
+          ship.scale = 0.3;
+          ship.y=35;
+        }else{
+          ship.setAnimation("cargoShip");
+          ship.scale = 0.2;
+        }
       }
       //boat horn
       if(level==2 && ship.x==250 && randomNumber(0,4)==0 && !pauseMainFunctions)(playSound("audio/boatHorn.mp3"));
