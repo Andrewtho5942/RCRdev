@@ -341,7 +341,7 @@ window.preload = function () {
     //update counts
     var cMoneyUpdateCount = -60;
     var loansUpdateCount = -60;
-    var cUpdateCount = -60;
+    var cUpdateCount = -3600;
     var loanCapCount = -60;
     var incomeUpdates = [-60, -60, -60, -60, -60, -60, -60, -60, -60, -60, -60, -60, -60];
     var roadCooldowns = [-360, -360, -360, -360, -360, -360, -360, -360, -360, -360, -360, -360, -360];
@@ -5204,12 +5204,12 @@ window.preload = function () {
           
         if(loopCount<380){
           //go back to main menu if backspace is pressed
-          if (keyWentDown("BACKSPACE")) {
+          if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             resetGame(true);
             if(!muteMusic)(playSound("audio/TrackTribe - A Night Alone.mp3",true));
           }
-          if (keyWentDown("ENTER")) {
+          if (keyWentDown("ENTER")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=379;
             textStart[0]=15;
@@ -5228,11 +5228,11 @@ window.preload = function () {
           if(loopCount==375)(playSound("audio/typing.mp3"));
         }
         else if(loopCount<760){
-          if (keyWentDown("BACKSPACE")) {
+          if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=0;
           }
-          if (keyWentDown("ENTER")) {
+          if (keyWentDown("ENTER")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=759;
             textStart=[15,380];
@@ -5243,11 +5243,11 @@ window.preload = function () {
           if(loopCount==620)(stopSound("audio/typing.mp3"));
         }
         else if(loopCount<1100){
-          if (keyWentDown("BACKSPACE")) {
+          if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=379;
           }
-          if (keyWentDown("ENTER")) {
+          if (keyWentDown("ENTER")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=1095;
             textStart=[15,380,770];
@@ -5259,11 +5259,11 @@ window.preload = function () {
           if(loopCount==970)(stopSound("audio/typing.mp3"));
         }
         else if(loopCount<1880){
-          if (keyWentDown("BACKSPACE")) {
+          if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=759;
           }
-          if (keyWentDown("ENTER")) {
+          if (keyWentDown("ENTER")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=1879;
             textStart=[1880];
@@ -5280,12 +5280,12 @@ window.preload = function () {
           }
         }
         else {
-          if (keyWentDown("BACKSPACE")) {
+          if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=1099;
             textStart=[15,380,770];
           }
-          if (keyWentDown("ENTER")) {
+          if (keyWentDown("ENTER")&&!pauseMainFunctions) {
             stopLongSounds(false);
             stopMusic();
             loopCount=0;
@@ -5318,12 +5318,12 @@ window.preload = function () {
         }
         else if(introControl==1){
           if(loopCount<600){
-            if (keyWentDown("BACKSPACE")) {
+            if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               introControl=0;
               loopCount=1879;
             }
-            if (keyWentDown("ENTER")) {
+            if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=599;
               textStart=[1];
@@ -5344,11 +5344,11 @@ window.preload = function () {
             if(loopCount==595)(playSound("audio/typing.mp3"));
           }
           else if(loopCount<970){
-            if (keyWentDown("BACKSPACE")) {
+            if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=0;
             }
-            if (keyWentDown("ENTER")) {
+            if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=969;
               textStart=[1,600];
@@ -5360,11 +5360,11 @@ window.preload = function () {
             if(loopCount==965)(playSound("audio/typing.mp3"));
           }
           else if(loopCount<1490){
-            if (keyWentDown("BACKSPACE")) {
+            if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=599;
             }
-            if (keyWentDown("ENTER")) {
+            if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=1489;
               textStart=[1,600,970];
@@ -5376,11 +5376,11 @@ window.preload = function () {
             if(loopCount==1455)(playSound("audio/typing.mp3"));
           }
           else if(loopCount<1810){
-            if (keyWentDown("BACKSPACE")) {
+            if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=969;
             }
-            if (keyWentDown("ENTER")) {
+            if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=1809;
               textStart=[1,600,970,1490];
@@ -5392,11 +5392,11 @@ window.preload = function () {
             if(loopCount==1775)(playSound("audio/typing.mp3"));
           }
           else if(loopCount<2280){
-            if (keyWentDown("BACKSPACE")) {
+            if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=1489;
             }
-            if (keyWentDown("ENTER")) {
+            if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=2279;
               textStart=[1,600,970,1490,1810];
@@ -5408,11 +5408,11 @@ window.preload = function () {
             if(loopCount==2245)(playSound("audio/typing.mp3"));
           }
           else if(loopCount<2570){
-            if (keyWentDown("BACKSPACE")) {
+            if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=1809;
             }
-            if (keyWentDown("ENTER")) {
+            if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=2569;
               textStart=[1,600,970,1490,1810,2280];
@@ -5424,11 +5424,11 @@ window.preload = function () {
             if(loopCount==2535)(playSound("audio/typing.mp3"));
           }
           else if(loopCount<2960){
-            if (keyWentDown("BACKSPACE")) {
+            if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=2279;
             }
-            if (keyWentDown("ENTER")) {
+            if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=2959;
               textStart=[1,600,970,1490,1810,2280];
@@ -5463,7 +5463,7 @@ window.preload = function () {
           text('[ENTER] Skip   |   [BACKSPACE] Back   |   [P] Pause', 400,32);
           //gameplay walkthrough
                if(introSelection == 0){
-                if (keyWentDown("BACKSPACE")) {
+                if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
                   stopSound("audio/typing.mp3");
                   introControl=1;
                   loopCount=2569;
@@ -5483,7 +5483,7 @@ window.preload = function () {
                   walkthroughLoops[0] = -1;
                 }
                 
-                if(keyWentDown("ENTER")){
+                if(keyWentDown("ENTER")&&!pauseMainFunctions){
                   stopSound("audio/typing.mp3");
                   introSelection=1;
                   loopCount=0;
@@ -5510,13 +5510,13 @@ window.preload = function () {
           }
           else if(introSelection == 1){
 
-            if (keyWentDown("BACKSPACE")) {
+            if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
                   stopSound("audio/typing.mp3");
                   introSelection = 0;
                   loopCount=0;
                   textStart=[1,1];
             }
-            if (keyWentDown("ENTER")) {
+            if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               introSelection=2;
               loopCount=0;
@@ -5543,14 +5543,14 @@ window.preload = function () {
             }
           }
           else if(introSelection == 2){
-            if (keyWentDown("BACKSPACE")) {
+            if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               introSelection = 1;
               loopCount=0;
               textStart=[1,1,1];
               leftChar.x=400;leftChar.y=200;
           }
-          if (keyWentDown("ENTER")) {
+          if (keyWentDown("ENTER")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
               leftChar.x=t1Land[4].x; leftChar.y=t1Land[4].y;
               introSelection=3;
@@ -5594,7 +5594,7 @@ window.preload = function () {
             typeText("Stand on the land and press [E] for the CLDC to develop\nthe land. Later, you can press [R] to switch between\npaying with profits and loans.",400,380,28,3,false,"white",loopCount);
               if(loopCount==330)(stopSound("audio/typing.mp3"));
 
-              if (keyWentDown("BACKSPACE")) {
+              if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
                 stopSound("audio/typing.mp3");
                 introSelection=2;
                 loopCount=0;
@@ -5602,7 +5602,7 @@ window.preload = function () {
                 leftChar.x=400;leftChar.y=200;
                 closeMenu();
               }
-              if (keyWentDown("ENTER")) {
+              if (keyWentDown("ENTER")&&!pauseMainFunctions) {
                 stopSound("audio/typing.mp3");
                 totIncome-=15000;
                 totProfits-=15000;
@@ -5630,8 +5630,8 @@ window.preload = function () {
             t1LandIsOpen[4] = true;
           }else if(roadCooldowns[4] + 150==loopCount){
             offerIncome[0] = (randomNumber(140, 180)) * 5;
-            if(esopChosen)(offerIncome[count]=Math.round(offerIncome[count]*1.1));
-            offer1.x=landLocations[4][0];offer1.y=landLocations[4][1];
+            if(esopChosen)(offerIncome[0]=Math.round(offerIncome[0]*1.1));
+            offer1.x=landLocations[4][0]; offer1.y=landLocations[4][1];
             textStart[4]=loopCount+1;
             
           }else if(roadCooldowns[4] + 150 < loopCount){
@@ -5658,10 +5658,10 @@ window.preload = function () {
               line(400,445,400,670);
               circle(400,750,800,150,"darkRed");
 
-              if(keyWentDown("BACKSPACE")){
+              if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
                 loopCount=roadCooldowns[4]+149;
               }
-              if (keyWentDown("ENTER")) {
+              if (keyWentDown("ENTER")&&!pauseMainFunctions) {
                 resetCleanUp();
                 voteData[0] = "support";
                 voteData[1] = 1 + "";
@@ -5672,7 +5672,7 @@ window.preload = function () {
               }
             }
             else if(loopCount<textStartCount){
-              if(keyWentDown("BACKSPACE")){
+              if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
                 totIncome+=15000;
                 totProfits+=15000;
                 t1PlotIsCompleted[4]=false;
@@ -5688,7 +5688,7 @@ window.preload = function () {
                 roadCooldowns[4] = -360;
                 offer1.x=offer1.y=-50;
               }
-              if(keyWentDown("ENTER")){
+              if(keyWentDown("ENTER")&&!pauseMainFunctions){
                 textStart[5]=textStartCount;
                 loopCount=textStartCount;
               }
@@ -5717,10 +5717,10 @@ window.preload = function () {
               textStart[5]=loopCount;
             }
             else if(loopCount>textStartCount){
-              if(keyWentDown("BACKSPACE")){
+              if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
                 loopCount=roadCooldowns[4]+149;
               }
-              if (keyWentDown("ENTER")) {
+              if (keyWentDown("ENTER")&&!pauseMainFunctions) {
                 resetCleanUp();
                 voteData[0] = "support";
                 voteData[1] = 1+"";
@@ -5728,6 +5728,7 @@ window.preload = function () {
                 voteLoop = loopCount;
                 //start spawning vote sprites
                 lJobCooldown = loopCount - 85;
+                textStart[6]=loopCount+1;
               }
 
               stroke("darkRed");strokeWeight(5);
@@ -5743,10 +5744,9 @@ window.preload = function () {
             else{   
           if(charBoxLeft.isTouching(offer1))(offerMenu(1,false));
           if(loopCount==voteLoop+1){
-            textStart.push(voteLoop+1);
+            textStart[6]=voteLoop+1;
             progressMessageLeft = "[E] Advocate";
             //place advocacy sprite
-            advocacyPlayer[0] = randomNumber(0, 3);
             jobSprites[0].setAnimation("no_" + advocacyPlayer[0]);
             jobSprites[0].visible = true;
             jobSprites[0].x = streets[15].x; jobSprites[0].y = streets[15].y;
@@ -5768,7 +5768,7 @@ window.preload = function () {
           text(progressMessageLeft, 200, 562);
         }
           }else if(jobSprites[0].x != -50){
-              if(loopCount==voteLoop+1 || (!typingActive && loopCount<voteLoop+225)){
+              if(loopCount==voteLoop+1 || (!typingActive && loopCount<voteLoop+225)) {
                 playSound("audio/typing.mp3");
                 typingActive=true;
               }
@@ -5888,24 +5888,41 @@ window.preload = function () {
               introSelection++;
               loopCount=0;
               textStart=[1];
+              cUpdateCount=-3600;
             }
           }
-          if(keyWentDown("BACKSPACE")){
+          if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
+            textStart=[1,1,1,1,roadCooldowns[4]+361,roadCooldowns[4]+511];
+            loopCount=roadCooldowns[4]+721;
             voteData = ["none", "0", 50];
             voteLoop = -3600;
+            votingLoop=-3600;
+            advocacyLoop=[-3600,-3600];
             lJobCooldown = -3600;
             jobSprites[0].x=-50;jobSprites[0].y=-50;
+            cUpdateCount=-3600;
+            votesComplete=[false,false];
+            pauseMainFunctions=false;
+            lTouchingJob=false;
+
           }
-          if(keyWentDown("ENTER")){
+          if(keyWentDown("ENTER")&&!pauseMainFunctions){
             offer1.setAnimation("construction");
             offerIsConstruction[0] = true;
             offerRatings[0]="";
             voteData = ["none", "0", 50];
-            introSelection++;
+            introSelection=4;
             loopCount=0;
             textStart=[1];
             jobSprites[0].x=-50;jobSprites[0].y=-50;
             offerSign.visible=false;
+            pauseMainFunctions=false;
+            voteLoop=-3600;
+            votingLoop=-3600;
+            advocacyLoop=[-3600,-3600];
+            cUpdateCount=-3600;
+            votesComplete=[false,false];
+            lTouchingJob=false;
           }
           }
           }
@@ -5931,9 +5948,9 @@ window.preload = function () {
               cIncome += offerIncome[0];
               offerIncome[0] = 0;
               offersAvailable[0] = true;
-          offer1.x = -50; offer1.y = -50; offer1.setAnimation("offer");
-          offerIsConstruction[0] = false;
-              textStart.push(loopCount);
+              offer1.x = -50; offer1.y = -50; offer1.setAnimation("offer");
+              offerIsConstruction[0] = false;
+              textStart[1]=loopCount;
             }
             
             if(t1BuildingPlaced[4]){
@@ -5943,18 +5960,64 @@ window.preload = function () {
               typeText("Your first building is complete! Leasing income\nwill be generated when the game begins, shown\nby the green numbers above each building.",400,380,30,1,false,"white",loopCount);
               if(loopCount==textStart[1]+260)(stopSound("audio/typing.mp3"));
             if(loopCount==textStart[1]+320){
-              introSelection++;
+              introSelection=5;
+              loopCount=0;
+              textStart=[10];
+            }
+
+            //building finished page control
+            if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
+              t1Land[4].visible=t1Buildings[4].visible=true;
+              t1Buildings[4].setAnimation("t1FenceGrass");
+              t1Roofs[4].visible=false;
+              t1LandIsOpen[4]=false;
+              t1BuildingPlaced[4]=false;
+              p1CompleteSharesOwned[0]-=3;
+              
+              incomeArr[4] = 0;
+              offerLocations[0] = 4;
+              cIncome -= offerIncome[0];
+              offerIncome[0] = (randomNumber(140, 180)) * 5;
+            if(esopChosen)(offerIncome[0]=Math.round(offerIncome[0]*1.1));
+              offer1.x=landLocations[4][0]; offer1.y=landLocations[4][1];
+              offersAvailable[0] = false;
+              offerIsConstruction[0] = true;
+              offer1.setAnimation("construction");
+              loopCount=0;
+              textStart[0]=1;
+              offerBuildCooldowns[0]=-3600;
+            }
+            
+            if (keyWentDown("ENTER")&&!pauseMainFunctions) {
+              introSelection=5;
               loopCount=0;
               textStart=[10];
             }
             }
             else{
               //construction page control
-              if(keyWentDown("BACKSPACE")){
-
+              if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
+                offer1.setAnimation("offerSign");
+                offerIsConstruction[0] = false;
+                introSelection=3;
+                progressMessageLeft = "[E] Advocate";
+                textStart=[1,1,1,1,roadCooldowns[4]+361,roadCooldowns[4]+511,roadCooldowns[4]+511];
+                resetCleanUp();
+                voteData[0] = "support";
+                voteData[1] = 1 + "";
+                voteData[2]=randomNumber(204,240)/4;
+                voteLoop = loopCount+361;
+                //start spawning vote sprites
+                lJobCooldown = loopCount - 85;
+                loopCount=roadCooldowns[4]+511;
+                //place advocacy sprite
+                jobSprites[0].setAnimation("no_" + advocacyPlayer[0]);
+                jobSprites[0].visible = true;
+                jobSprites[0].x = streets[15].x; jobSprites[0].y = streets[15].y;
               }
-              if(keyWentDown("ENTER")){
-
+              if(keyWentDown("ENTER")&&!pauseMainFunctions){
+                offerBuildCooldowns[0] = loopCount-89;
+                leftChar.x=680;leftChar.y=140;
               }
 
               if(loopCount==5){
@@ -5982,31 +6045,89 @@ window.preload = function () {
             }
               
             if(loopCount<450){
+            if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
+              introSelection=4;
+              offerBuildCooldowns[0]=-3600;
+              loopCount=0;
+              textStart=[1,1];
+            }
+            
               typeText("Now we will cover how to improve your score, starting with\ncommunity service points. These points reduce CLDC expenses,\neffectively increasing profit. They can be earned in many ways...",400,380,26,0,false,"white",loopCount);
               if(loopCount==5)(playSound("audio/typing.mp3"));
               if(loopCount==400)(stopSound("audio/typing.mp3"));
               if(loopCount==449)(textStart.push(460));
-            }else if(loopCount<950){
+
+              if(keyWentDown("ENTER")&&!pauseMainFunctions){
+              loopCount=460;
+              textStart=[10,460];
+            }
+            }
+            else if(loopCount<950){
+            if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
+              loopCount=10;
+              textStart=[10];
+            }
+            
               typeText("1) Stopping a fire before it destroys a building gives 1 point.\n2) Stopping a flood before it damages a building gives 1 point.\n- If not stopped, you will lose income and must pay a fee.",400,380,26,1,false,"white",loopCount);
               if(loopCount==455)(playSound("audio/typing.mp3"));
               if(loopCount==840)(stopSound("audio/typing.mp3"));
               if(loopCount==949)(textStart.push(960));
-            }else if(loopCount<1450){
+              if(keyWentDown("ENTER")&&!pauseMainFunctions){
+              loopCount=960;
+              textStart=[10,460,960];
+            }
+            }
+            else if(loopCount<1450){
+            if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
+              loopCount=459;
+              textStart=[10,460];
+            }
+            
               typeText("3) Parks can be developed faster by helping with the tasks\nthat appear. These tasks also give community service points.\nWhen developed, parks will reduce the risk of flooding.",400,380,26,2,false,"white",loopCount);
               if(loopCount==955)(playSound("audio/typing.mp3"));
               if(loopCount==1320)(stopSound("audio/typing.mp3"));
               if(loopCount == 1449)(textStart.push(1460));
-            }else if(loopCount<1840){
+              if(keyWentDown("ENTER")&&!pauseMainFunctions){
+              loopCount=1460;
+              textStart=[10,460,960,1460];
+            }
+            }
+            else if(loopCount<1840){
+            if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
+              loopCount=959;
+              textStart=[10,460,960];
+            }
+            
               typeText("4) Advocating for an investment offer during a vote\ngives 1 point each. This can be done more effectively after\nyou complete the ownership education quiz.",400,380,26,3,false,"white",loopCount);
               if(loopCount==1455)(playSound("audio/typing.mp3"));
               if(loopCount==1780)(stopSound("audio/typing.mp3"));
               if(loopCount==1839)(textStart.push(1850));
-            }else if(loopCount<2230){
+              if(keyWentDown("ENTER")&&!pauseMainFunctions){
+              loopCount=1850;
+              textStart=[10,460,960,1460,1850];
+            }
+            }
+            else if(loopCount<2230){
+            if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
+              loopCount=1459;
+              textStart=[10,460,960,1460];
+            }
+            
               typeText("5) Lastly, picking up litter gives 2-4 points, depending\non the object. Using the recycling center once it is developed\nwill double the points you earn.",400,380,26,4,false,"white",loopCount);
               if(loopCount==1845)(playSound("audio/typing.mp3"));
               if(loopCount==2160)(stopSound("audio/typing.mp3"));
               if(loopCount==2229)(textStart.push(2250));
-            }else if(loopCount<2830){
+              if(keyWentDown("ENTER")&&!pauseMainFunctions){
+              loopCount=2250;
+              textStart=[10,460,960,1460,1850,2250];
+            }
+            }
+            else if(loopCount<2830){
+            if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
+              loopCount=1849;
+              textStart=[10,460,960,1460,1850];
+            }
+            
               if(loopCount>2430){
                 fill(rgb(255,255,255,0.7));noStroke();
                 rect(316,87,166,64);
@@ -6022,7 +6143,13 @@ window.preload = function () {
                 //place trash sprite 
                 placeTrash(16,0);
               }
-            }else{
+              if(keyWentDown("ENTER")&&!pauseMainFunctions){
+              loopCount=2845;
+              textStart=[2845];
+              placeTrash(16,0);
+            }
+            }
+            else{
               noStroke();fill(rgb(0,0,0,0.6));
               rect(25,370,750,115);
               
@@ -6030,7 +6157,7 @@ window.preload = function () {
                 if (cleanUpActive&&trash[0].x==-50) {
                   playSound("audio/app_menu_button_2.mp3");
                   resetCleanUp();
-                  introControl++;
+                  introControl=3;
                   textStart=[loopCount+15];
                   stopLongSounds(false);
               } else if(!cleanUpActive){
@@ -6074,11 +6201,52 @@ window.preload = function () {
             openCULocations[trashPositions[0]] = true;
             trashPositions[0] = -1;
             jobProgressLeft = 0;
-            textStart.push(loopCount+15);
+            textStart=[2845,loopCount+15];
           }
               }    
+              if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
+                trashPositions[0]=-1;
+                trash[0].x=trash[0].y=-50;
+                loopCount=2250;
+                textStart=[10,460,960,1460,1850,2250];
+                openCULocations[16]=true;
+                cleanUpSprites.setVisibleEach(false);
+                cleanUpLoop=-3600;
+                cleanUpActive=false;
+              }
+              if(keyWentDown("ENTER")){
+                stopSound("audio/typing.mp3");
+                var pPoints = 3 - litterDebuff;
+                if (pPoints<1) (pPoints=1);
+                trashPoints += pPoints;
+                trashPickedUp++;
+                trash[0].x = -50; trash[0].y = -50;
+                openCULocations[trashPositions[0]] = true;
+                trashPositions[0] = -1;
+                jobProgressLeft = 0;
+                textStart=[2845,loopCount+15];
+                leftChar.x=360;leftChar.y=180;
+                cleanUpActive=true;
+                lTouchingJob=false;
+                cleanUpSprites.setVisibleEach(false)  ;
+                cleanUpLoop=-3600;
+              }
               }
               else{
+              if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
+                leftChar.x=420;leftChar.y=200;
+                placeTrash(16,0);
+                trashPickedUp--;
+                trashPoints=0;
+                cleanUpActive=false;
+              }
+              if(keyWentDown("ENTER")){
+                  playSound("audio/app_menu_button_2.mp3");
+                  resetCleanUp();
+                  introControl=3;
+                  textStart=[loopCount+15];
+                  stopLongSounds(false);
+              }
                 if(cleanUpActive){
                   if(loopCount==textStart[1]-5)(playSound("audio/typing.mp3"));
                   if(loopCount==textStart[1]+350)(stopSound("audio/typing.mp3"));
@@ -6133,9 +6301,8 @@ window.preload = function () {
             cleanUpSprites.setVisibleEach(false);
           }
         }
-            }
-                      
-          }
+      }                
+    }
 
           //sprite movement
           if (!pauseMainFunctions) {
@@ -6162,13 +6329,36 @@ window.preload = function () {
           noStroke();fill(rgb(0,0,0,0.6));
             rect(25,290,750,160);
           if(loopCount<textStart[0]+360){
+            if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
+              introControl=2;
+              loopCount=2845;
+              cleanUpActive=true;
+              jobProgressLeft=0;
+              cUpdateCount=-3600;
+              trashPoints=3;
+              trashPickedUp=1;
+              textStart=[2845,2845];
+              cPoints=0;
+            }
+
+            if (keyWentDown("ENTER")&&!pauseMainFunctions) {
+              loopCount=textStart[0]+360;
+              textStart[1]=loopCount;
+            }
+
             if(loopCount==textStart[0]-5)(playSound("audio/typing.mp3"));
             if(loopCount==textStart[0]+200)(stopSound("audio/typing.mp3"));
             typeText("At any point in the game, you can press [BACKSPACE]\nto return to the main menu and [P] to pause. Pressing\n[T] toggles the tip sheet on the right. ",400,370,30,0,false,"white",loopCount);
             if(loopCount==textStart[0]+359)(textStart.push(loopCount));
             if(loopCount==textStart[0]+235)(playSound("audio/typing.mp3"));
           }else if (loopCount<textStart[0]+840){
-          
+            if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
+              loopCount=textStart[0];
+              cUpdateCount=-3600;
+            }
+            if (keyWentDown("ENTER")&&!pauseMainFunctions) {
+              loopCount=textStart[0]+840;
+            }
             if(loopCount==textStart[0]+630)(stopSound("audio/typing.mp3"));
             typeText("Every year there's a CLDC meeting that distributes\ndividends and elects a leader for the next year. Your\ngoal is to maximize your dividends and complete\nas many objectives as you can! Good luck!",400,370,30,1,false,"white",loopCount);
           }else{
@@ -6240,8 +6430,11 @@ window.preload = function () {
       
       //mouse coords for graphics
       if(keyDown("q")){
-        fill(rgb(50,50,255));textSize(20);noStroke();textAlign(CENTER,CENTER);
-        text(World.mouseX+", "+World.mouseY+" :: "+loopCount,100,785);
+        fill(rgb(0,0,0,0.6));noStroke();
+        rect(0,760,800,40);
+        fill(rgb(255,50,50));textSize(20);noStroke();textAlign(CENTER,CENTER);
+        text(World.mouseX+", "+World.mouseY+" :: "+loopCount+" | "+textStart.toString(),400,780);
+        
       }
       if(level == 3 && introControl==0){
       spotlight(10,10,780,595);
@@ -7371,7 +7564,7 @@ window.preload = function () {
       charSelectCount = [-360,-360,-360,-360];
       cMoneyUpdateCount = -60;
       loansUpdateCount = -60;
-      cUpdateCount = -60;
+      cUpdateCount = -3600;
       loanCapCount = -60;
       offerSign.visible = false;
       gradScreen.visible = false;
