@@ -440,7 +440,7 @@ window.preload = function () {
     var esopChosen = false;
     var infrastructureChosen = false;
     var introSelection=0;
-    var walkthroughLoops = [0,0,0];
+    var walkthroughLoops = [-1,-1,-1];
     
     //fire data
     var fireLoops = [-3600, -3600, -3600, -3600, -3600];
@@ -5445,7 +5445,6 @@ window.preload = function () {
             introSelection = 0;
             //open menu, place character
             educationLevelLeft.visible = leftChar.visible = charHead.visible = music.visible=true;
-            
             textStart=[1];
           }
           textSize(30);fill("white");
@@ -5461,9 +5460,36 @@ window.preload = function () {
           noStroke();fill(rgb(0,0,0,0.6));
           rect(40,10,720,50);
           fill("white");textSize(30);
-          text('[ENTER] Skip   |   [BACKSPACE] Menu   |   [P] Pause', 400,32);
+          text('[ENTER] Skip   |   [BACKSPACE] Back   |   [P] Pause', 400,32);
           //gameplay walkthrough
                if(introSelection == 0){
+                if (keyWentDown("BACKSPACE")) {
+                  stopSound("audio/typing.mp3");
+                  introControl=1;
+                  loopCount=2569;
+                  introSelection = 0;
+                  textStart=[1,600,970,1490,1810,2280];
+                  educationLevelLeft.visible = leftChar.visible = charHead.visible = music.visible=false;
+                  leftChar.x=400;leftChar.y=200;
+                  if (charNum == 1) {
+                    leftChar.setAnimation("leftDown");
+                  } else if (charNum == 3) {
+                    leftChar.setAnimation("rightDown");
+                  } else if (charNum == 2) {
+                    leftChar.setAnimation("bDown");
+                  } else {
+                    leftChar.setAnimation("aDown");
+                  }
+                  walkthroughLoops[0] = -1;
+                }
+                
+                if(keyWentDown("ENTER")){
+                  stopSound("audio/typing.mp3");
+                  introSelection=1;
+                  loopCount=0;
+                  textStart.push(1);
+                }
+
                 if(loopCount==1)(playSound("audio/typing.mp3"));
             //Explain movement
             typeText("There you are! Use W-A-S-D or the arrow keys to move!",400,380,30,0,true,"white",loopCount);
@@ -5476,13 +5502,27 @@ window.preload = function () {
               keyWentDown("RIGHT_ARROW")||keyWentDown("DOWN_ARROW")))(walkthroughLoops[0]=loopCount+45);
 
               if(walkthroughLoops[0]==loopCount){
-                introSelection++;
+                introSelection=1;
                 loopCount=0;
                 textStart.push(1);
                 stopSound("audio/typing.mp3");
               }
           }
           else if(introSelection == 1){
+
+            if (keyWentDown("BACKSPACE")) {
+                  stopSound("audio/typing.mp3");
+                  introSelection = 0;
+                  loopCount=0;
+                  textStart=[1,1];
+            }
+            if (keyWentDown("ENTER")) {
+              stopSound("audio/typing.mp3");
+              introSelection=2;
+              loopCount=0;
+              textStart.push(1);
+            }
+
             if(loopCount==1)(playSound("audio/typing.mp3"));
             //explain sprint
             typeText("Hold [SHIFT] while moving to sprint. Watch the cooldown!",400,380,28,1,true,"white",loopCount);
@@ -5496,13 +5536,28 @@ window.preload = function () {
             if(keyWentDown("SHIFT"))(walkthroughLoops[1]=loopCount+45);
             
             if(walkthroughLoops[1]==loopCount){
-              introSelection++;
+              introSelection=2;
               loopCount=0;
               textStart.push(1);
               stopSound("audio/typing.mp3");
             }
           }
           else if(introSelection == 2){
+            if (keyWentDown("BACKSPACE")) {
+              stopSound("audio/typing.mp3");
+              introSelection = 1;
+              loopCount=0;
+              textStart=[1,1,1];
+              leftChar.x=400;leftChar.y=200;
+          }
+          if (keyWentDown("ENTER")) {
+            stopSound("audio/typing.mp3");
+              leftChar.x=t1Land[4].x; leftChar.y=t1Land[4].y;
+              introSelection=3;
+              loopCount=0;
+              textStart.push(1);
+          }
+
            //Move to top right land plot
             if(loopCount==1)(playSound("audio/typing.mp3"));
             typeText("Move to the top right land plot to develop it!",400,380,30,2,true,"white",loopCount);
@@ -5514,12 +5569,13 @@ window.preload = function () {
             }
             if(charBoxLeft.isTouching(t1Land[4])){
               stopSound("audio/typing.mp3");
-              introSelection++;
+              introSelection=3;
               loopCount=0;
               textStart.push(1);
             }
           }
           else if(introSelection == 3){
+          
             //Invest in land plot, place offer, and advocate in vote
             if(plotsCompletedLeft==0){
               if(loopCount==1){
@@ -5537,7 +5593,30 @@ window.preload = function () {
             rect(20,315,750,135);
             typeText("Stand on the land and press [E] for the CLDC to develop\nthe land. Later, you can press [R] to switch between\npaying with profits and loans.",400,380,28,3,false,"white",loopCount);
               if(loopCount==330)(stopSound("audio/typing.mp3"));
-          }
+
+              if (keyWentDown("BACKSPACE")) {
+                stopSound("audio/typing.mp3");
+                introSelection=2;
+                loopCount=0;
+                textStart=[1,1,1,1];
+                leftChar.x=400;leftChar.y=200;
+                closeMenu();
+              }
+              if (keyWentDown("ENTER")) {
+                stopSound("audio/typing.mp3");
+                totIncome-=15000;
+                totProfits-=15000;
+                t1PlotIsCompleted[4]=true;
+                plotsCompletedLeft++;
+                t1Land[4].shapeColor=rgb(20,100,20);
+                t1Buildings[4].setAnimation("t1FenceGrass");
+                buildRoads(1,4,false,false);
+                t1LandIsOpen[4]=true;
+                roadCooldowns[4] = loopCount-149;
+                t1Land[4].visible=true;
+                t1Roofs[4].visible=initOpent1[4]=t1BuildingPlaced[4]=false;
+              }
+            }
             else{
             //build roads, place offer
               if(loopCount==roadCooldowns[4]+1&&typingActive){
@@ -5553,7 +5632,7 @@ window.preload = function () {
             offerIncome[0] = (randomNumber(140, 180)) * 5;
             if(esopChosen)(offerIncome[count]=Math.round(offerIncome[count]*1.1));
             offer1.x=landLocations[4][0];offer1.y=landLocations[4][1];
-            textStart.push(loopCount+1);
+            textStart[4]=loopCount+1;
             
           }else if(roadCooldowns[4] + 150 < loopCount){
            if(offerOpen){
@@ -5578,15 +5657,48 @@ window.preload = function () {
               stroke("darkRed");strokeWeight(5);
               line(400,445,400,670);
               circle(400,750,800,150,"darkRed");
-              
+
+              if(keyWentDown("BACKSPACE")){
+                loopCount=roadCooldowns[4]+149;
+              }
+              if (keyWentDown("ENTER")) {
+                resetCleanUp();
+                voteData[0] = "support";
+                voteData[1] = 1 + "";
+                voteData[2]=randomNumber(204,240)/4
+                voteLoop = loopCount;
+                //start spawning vote sprites
+                lJobCooldown = loopCount - 85;
+              }
             }
             else if(loopCount<textStartCount){
-              
+              if(keyWentDown("BACKSPACE")){
+                totIncome+=15000;
+                totProfits+=15000;
+                t1PlotIsCompleted[4]=false;
+                plotsCompletedLeft=0;
+                t1Land[4].shapeColor=rgb(0,0,0,0.1);
+                t1Buildings[4].setAnimation("t1LandRuin");
+                
+                //reset street animations
+                streets[5].setAnimation("bridgeVert2");
+                streets[6].setAnimation("streetVert2");
+
+                t1LandIsOpen[4]=true;
+                roadCooldowns[4] = -360;
+                offer1.x=offer1.y=-50;
+              }
+              if(keyWentDown("ENTER")){
+                textStart[5]=textStartCount;
+                loopCount=textStartCount;
+              }
+
               if(loopCount==textStart[4]+2){
                 playSound("audio/typing.mp3");
                 typingActive=true;
               }
-              typeText("Congrats, this plot is now developed and someone\njust offered to move in and pay leasing fees!\nMove to the offer to see its potential income.", 400,380,30,4,false,"white",loopCount);
+              typeText("Congrats, this plot is now developed and someone\njust offered to move in and pay leasing fees!\nMove to the offer to see its potential income.",
+                         400,380,30,4,false,"white",loopCount);
               if(loopCount==textStartCount-80){
                 stopSound("audio/typing.mp3");
                  typingActive = false;
@@ -5605,6 +5717,19 @@ window.preload = function () {
               textStart[5]=loopCount;
             }
             else if(loopCount>textStartCount){
+              if(keyWentDown("BACKSPACE")){
+                loopCount=roadCooldowns[4]+149;
+              }
+              if (keyWentDown("ENTER")) {
+                resetCleanUp();
+                voteData[0] = "support";
+                voteData[1] = 1+"";
+                voteData[2]=randomNumber(204,240)/4
+                voteLoop = loopCount;
+                //start spawning vote sprites
+                lJobCooldown = loopCount - 85;
+              }
+
               stroke("darkRed");strokeWeight(5);
               line(leftChar.x+15,leftChar.y,landLocations[4][0]-30,landLocations[4][1]+30);
               circle(landLocations[4][0],landLocations[4][1],80,80,"darkRed");
@@ -5615,7 +5740,7 @@ window.preload = function () {
               typingActive = false;
             }
           }
-            else{
+            else{   
           if(charBoxLeft.isTouching(offer1))(offerMenu(1,false));
           if(loopCount==voteLoop+1){
             textStart.push(voteLoop+1);
@@ -5765,8 +5890,24 @@ window.preload = function () {
               textStart=[1];
             }
           }
+          if(keyWentDown("BACKSPACE")){
+            voteData = ["none", "0", 50];
+            voteLoop = -3600;
+            lJobCooldown = -3600;
+            jobSprites[0].x=-50;jobSprites[0].y=-50;
           }
-            
+          if(keyWentDown("ENTER")){
+            offer1.setAnimation("construction");
+            offerIsConstruction[0] = true;
+            offerRatings[0]="";
+            voteData = ["none", "0", 50];
+            introSelection++;
+            loopCount=0;
+            textStart=[1];
+            jobSprites[0].x=-50;jobSprites[0].y=-50;
+            offerSign.visible=false;
+          }
+          }
           }
           }
             //points text
@@ -5808,6 +5949,14 @@ window.preload = function () {
             }
             }
             else{
+              //construction page control
+              if(keyWentDown("BACKSPACE")){
+
+              }
+              if(keyWentDown("ENTER")){
+
+              }
+
               if(loopCount==5){
                 playSound("audio/typing.mp3");
                 typingActive=true;
@@ -6066,23 +6215,6 @@ window.preload = function () {
           text("GAME PAUSED: [P] UNPAUSE",210,102);
         }
 
-       
-        
-    
-      if(introControl>1){
-           //skip tutorial to start the game
-        if (keyWentDown("ENTER")) {
-          stopLongSounds(false);
-          stopMusic();
-          playSound("audio/app_interface_button_3.mp3");
-          playSound("audio/bgTraffic.mp3",true);
-          skipTutorial();
-        }
-        if (keyWentDown("BACKSPACE")) {
-          resetGame(true);
-          if(!muteMusic)(playSound("audio/TrackTribe - A Night Alone.mp3",true));
-        }
-        }
       }
       //Start screen graphics with play button
       else if(level == -1){
@@ -7376,7 +7508,7 @@ window.preload = function () {
         stopMusic();
         typingActive = false;
         introSelection = 0;
-        walkthroughLoops = [0,0,0];
+        walkthroughLoops = [-1,-1,-1];
         introControl = 0;
         esopChosen = false;
         infrastructureChosen = false;
