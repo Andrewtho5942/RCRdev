@@ -408,7 +408,7 @@ window.preload = function () {
     //menu and creds variables
     var muteMusic=false;
     var hintsOn=true;
-    var credsPage = false;
+    var menuPage = 0;
     var xSlide = 0;
     var credsCounter = 0;
 
@@ -1292,17 +1292,26 @@ window.preload = function () {
 
         if (loopCount > 90) {
           
-          if(!credsPage){
-          //credits screen movement
+          if(menuPage == 0){
+          //start sliding from menu to credits
           if (mousePressedOver(credsBtn) && zoomedIn) {
             playSound("audio/swoosh.mp3");
-            credsPage = true;
+            menuPage = 1;
             credsCounter = 24;
           }
+          //start sliding from menu to leaderboard
+          if (mousePressedOver(leaderBtn) && zoomedIn) {
+            playSound("audio/swoosh.mp3");
+            menuPage = 2;
+            credsCounter = -24;
+          }
+
+          //slide from credits to main menu
           if(xSlide<0){
             xSlide += credsCounter*3;
             credsCounter--;
           }
+          
           
           //char select movement
           if (charSelectCount[0] + 1 == loopCount) {
@@ -1335,21 +1344,11 @@ window.preload = function () {
             }
             charSelectCount[charNum-1]=loopCount;
           }
-        }else{
-            if(credsCounter>6){
-              xSlide -= credsCounter*3;
-              credsCounter--;
-            }
 
-          if(mousePressedOver(credsBackBtn)||keyWentDown("backspace")){
-            playSound("audio/swoosh.mp3");
-            credsPage=false;
-            credsCounter=24;
-          }
-        }
 
-          //start game/tutorial
-          if ((mousePressedOver(tutorialBtn) || mousePressedOver(startBtn) || keyWentDown('ENTER')) && zoomedIn && !credsPage) {
+          // ---- start game/tutorial -----
+
+          if ((mousePressedOver(tutorialBtn) || mousePressedOver(startBtn) || keyWentDown('ENTER')) && zoomedIn) {
             playSound("audio/app_interface_button_3.mp3");
             playSound("audio/bgTraffic.mp3",true);
             stopLongSounds(false);
@@ -1363,7 +1362,7 @@ window.preload = function () {
                 totIncome = randStart;
                 totProfits=randStart;
             
-            credsPage = false;
+            menuPage = 0;
             xSlide = 0;
             credsCounter = 0;
             //move main wall down for bottom menu and make bottom streets visible
@@ -1422,6 +1421,30 @@ window.preload = function () {
               skipTutorial();
             }
           }
+        }else if (menuPage == 1){
+          //slide from menu to credits
+            if(credsCounter>6){
+              console.log(credsCounter+", "+xSlide);
+              xSlide -= credsCounter*3;
+              credsCounter--;
+            }
+
+          if((mousePressedOver(credsBackBtn)||keyWentDown("backspace")) && (menuPage == 1)){
+            playSound("audio/swoosh.mp3");
+            menuPage=0;
+            credsCounter=24;
+          }
+        } else if (menuPage == 2) {
+          //slide from menu to leaderboard
+          if(credsCounter<-6){
+            console.log(credsCounter+", "+xSlide);
+            xSlide -= credsCounter*3;
+            credsCounter++;
+          }
+
+        }
+
+          
 
           
           //}
@@ -7576,7 +7599,7 @@ window.preload = function () {
       gradScreen.visible = false;
       confetti.visible=false;
       stopLongSounds(true);
-      credsPage = false;
+      menuPage = 0;
       xSlide = 0;
       credsCounter = 0;
       
