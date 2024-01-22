@@ -1037,13 +1037,15 @@ window.preload = function () {
     
     
     var credsBackBtn = createSprite(1255, 740, 160, 60);
+    var leaderBackBtn = createSprite(-455, 740, 160, 60);
     var hintsMenuBtn = createSprite(165,665,280,50);
     var musicMenuBtn = createSprite(165,750,280,50);
 
 
-    credsBackBtn.shapeColor = rgb(180, 200, 255);
+    credsBackBtn.shapeColor = leaderBackBtn.shapeColor = rgb(180, 200, 255);
+    
     hintsMenuBtn.visible=musicMenuBtn.visible=tutorialBtn.visible = startBtn.visible= leaderBtn.visible 
-    = credsBtn.visible = credsBackBtn.visible = false;
+    = credsBtn.visible = credsBackBtn.visible = leaderBackBtn.visible = false;
     
     var rChars = createGroup();
     rChars.add(createSprite(465, 760, 50, 50));
@@ -1311,7 +1313,11 @@ window.preload = function () {
             xSlide += credsCounter*3;
             credsCounter--;
           }
-          
+          //slide from credits to main menu
+          if(xSlide>0){
+            xSlide += credsCounter*3;
+            credsCounter++;
+          }
           
           //char select movement
           if (charSelectCount[0] + 1 == loopCount) {
@@ -1423,31 +1429,32 @@ window.preload = function () {
           }
         }else if (menuPage == 1){
           //slide from menu to credits
-            if(credsCounter>6){
+            if(credsCounter>5){
               console.log(credsCounter+", "+xSlide);
               xSlide -= credsCounter*3;
               credsCounter--;
             }
 
-          if((mousePressedOver(credsBackBtn)||keyWentDown("backspace")) && (menuPage == 1)){
+          if(mousePressedOver(credsBackBtn)||keyWentDown("backspace")){
             playSound("audio/swoosh.mp3");
             menuPage=0;
             credsCounter=24;
           }
         } else if (menuPage == 2) {
           //slide from menu to leaderboard
-          if(credsCounter<-6){
+          if(credsCounter<-5){
             console.log(credsCounter+", "+xSlide);
             xSlide -= credsCounter*3;
             credsCounter++;
           }
 
+          if(mousePressedOver(leaderBackBtn)||keyWentDown("backspace")) {
+            playSound("audio/swoosh.mp3");
+            menuPage=0;
+            credsCounter=-24;
+          }
         }
 
-          
-
-          
-          //}
         }
         
         if(zoomedIn){
@@ -1461,6 +1468,8 @@ window.preload = function () {
           tutorialBtn.x=400+xSlide;
           leaderBtn.x=315+xSlide;
           credsBackBtn.x=1255+xSlide;
+          leaderBackBtn.x=-455+xSlide;
+
           rChars[0].x=rChars[4].x=465+xSlide;
           rChars[1].x=rChars[5].x=555+xSlide;
           rChars[2].x=rChars[6].x=645+xSlide;
@@ -1505,16 +1514,25 @@ window.preload = function () {
           }
           rect(1175+xSlide,710,160,60);
           
+          if (mouseIsOver(leaderBackBtn)) {
+            fill(rgb(200, 170, 255));
+         } else {
+           fill(rgb(190, 155, 245));
+         }
+         rect(-535+xSlide,710,160,60);
+
           fill(rgb(200, 255, 210, 0.4)); 
           strokeWeight(1); stroke("black");
           rect(150+xSlide, 75, 500, 175);
           rect(1145+xSlide, 50, 220, 80);
+          rect(-650+xSlide, 50, 390, 80);
           
           textSize(65); fill('black');
           textAlign('center', 'center'); textFont("impact");
           text('River City Reborn', 400+xSlide, 120);
           strokeWeight(0.5); stroke("black");textSize(60);
           text('Credits',1255+xSlide,92);
+          text('Leaderboard',-455+xSlide,92);
           textSize(50); strokeWeight(2);textFont("georgia");
           strokeWeight(1);
           text('Start Game', 400+xSlide, 410);
@@ -1536,28 +1554,69 @@ window.preload = function () {
           
 
           //credits screen graphics (add 855 to the x value)
-          var creditColors = [rgb(255,230,220), rgb(212, 240, 255), rgb(220,255,230), rgb(220,230,255)];
-          for(var xg=0;xg<4;xg++){
-            fill(creditColors[xg]);stroke("black");strokeWeight(3);
-            rect(955+xSlide,140+(xg*70),600,50);
+          if (xSlide < 0) {
+            var creditColors = [rgb(255,230,220), rgb(212, 240, 255), rgb(220,255,230), rgb(220,230,255)];
+            for(var xg=0;xg<4;xg++){
+              fill(creditColors[xg]);stroke("black");strokeWeight(3);
+              rect(955+xSlide,140+(xg*70),600,50);
+            }
+            //music background
+            fill(rgb(240,245,255));stroke("Black");strokeWeight(3);
+            rect(955+xSlide,400,600,290);
+            
+            fill("black");textSize(30);noStroke();
+            text("Game Developer: Andrew Thompson",1255+xSlide,167);
+            text("Producer: CESJ",1255+xSlide,237);
+            text("Sprites: opengameart.org & pngarts.com",1255+xSlide,307);
+            textSize(28);
+            text("E's Jammy Jam - Forget Me Not\nE's Jammy Jam - Nighttime Stroll\nE's Jammy Jam - Soul & Mind\nKubbi - Formed by Glaciers\nTrackTribe - A Brand New Start\nTrackTribe - A Night Alone\nTrackTribe - Home For the Holidays\nSilent Partner - Bet On It",1255+xSlide,544);
+  
+            
+            textSize(40);
+            text("-- Music --",1255+xSlide,377);
+            
+            textSize(40); fill("black"); strokeWeight(1);
+            text("← Back",1255+xSlide,740);
           }
-          //music background
-          fill(rgb(240,245,255));stroke("Black");strokeWeight(3);
-          rect(955+xSlide,400,600,290);
-          
-          fill("black");textSize(30);noStroke();
-          text("Game Developer: Andrew Thompson",1255+xSlide,167);
-          text("Producer: CESJ",1255+xSlide,237);
-          text("Sprites: opengameart.org & pngarts.com",1255+xSlide,307);
-          textSize(28);
-          text("E's Jammy Jam - Forget Me Not\nE's Jammy Jam - Nighttime Stroll\nE's Jammy Jam - Soul & Mind\nKubbi - Formed by Glaciers\nTrackTribe - A Brand New Start\nTrackTribe - A Night Alone\nTrackTribe - Home For the Holidays\nSilent Partner - Bet On It",1255+xSlide,544);
 
+          //leaderboard screen graphics (subtract 855 from the x value)
+          if (xSlide > 0) {
+            strokeWeight(1); stroke("black");
+
+            fill(rgb(255,255,255,0.6));
+            rect(-770+xSlide,150,630,255);
+            
+            fill(rgb(255,200,200));
+            rect(-550+xSlide,165,190,40);
+
+            leaderColors=['gold','silver',rgb(176,141,87)];
+            for(var po=0;po<3;po++){
+              fill(leaderColors[po]);
+              rect(-755+xSlide,220+(po*55),600,40);
+            }
+            
+
+            strokeWeight(1); stroke("black");
+
+            fill(rgb(255,255,255,0.6));
+            rect(-770+xSlide,420,630,255);
+
+            fill(rgb(159, 197, 232));
+            rect(-550+xSlide,435,190,40);
+
+            for(var pu=0; pu<3; pu++){
+              fill(leaderColors[pu]);
+              rect(-755+xSlide, 490+(pu*55),600,40);
+            }
+            //blue: 
+            
+            textSize(40); fill("black"); strokeWeight(1);
+            text("Time", -455+xSlide, 187);
+            text("Score", -455+xSlide, 457);
+            text("Back →",leaderBackBtn.x,leaderBackBtn.y);
+
+          }
           
-          textSize(40);
-          text("-- Music --",1255+xSlide,377);
-          
-          textSize(40); fill("black"); strokeWeight(1);
-          text("← Back",1255+xSlide,740);
           
           //change the colors of the character selection boxes
 
