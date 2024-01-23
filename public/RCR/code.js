@@ -412,6 +412,11 @@ window.preload = function () {
     var xSlide = 0;
     var credsCounter = 0;
 
+    //leaderboard data
+    //format: [name, hours, minutes, seconds]
+    var topTimes = [["First name", 0, 4, 15],["Second name", 0, 5, 36],["Third name", 0, 5, 56]];
+    //format: [name, score]
+    var topScores = [["OOOOOOOOOOOOOOOOO", 1495],["The name above is", 1253],["18 characters long!", 1132]];
     
     //Annual meeting variables
     var meetingLoop = 7000;
@@ -1344,10 +1349,22 @@ window.preload = function () {
           //char selection
           if (keyWentDown("r")) {
             playSound("audio/app_menu_button_2.mp3");
+
+            if (charNum == 1) {
+              leftChar1.setAnimation("leftDown");
+            } else if (charNum == 3) {
+              rightChar1.setAnimation("rightDown");
+            } else if (charNum == 2) {
+              bChar1.setAnimation("bDown");
+            } else {
+              aChar1.setAnimation("aDown");
+            }
+
             charNum++;
             if (charNum == 5) {
               charNum = 1;
             }
+
             charSelectCount[charNum-1]=loopCount;
           }
 
@@ -1583,36 +1600,68 @@ window.preload = function () {
           if (xSlide > 0) {
             strokeWeight(1); stroke("black");
 
-            fill(rgb(255,255,255,0.6));
-            rect(-770+xSlide,150,630,255);
+            fill(rgb(255,255,255,0.7));
+            rect(-770+xSlide,205,630,200);
             
-            fill(rgb(255,200,200));
-            rect(-550+xSlide,165,190,40);
+            fill(rgb(255,190,190));
+            rect(-770+xSlide,160,630,45);
 
             leaderColors=['gold','silver',rgb(176,141,87)];
             for(var po=0;po<3;po++){
+              strokeWeight(1); stroke("black");
+              let yOffset = (po*55);
               fill(leaderColors[po]);
-              rect(-755+xSlide,220+(po*55),600,40);
+              rect(-755+xSlide,230+yOffset,600,40);
+              fill("white");
+              rect(-310+xSlide, 230+yOffset, 140, 40);
+              fill(rgb(255, 210, 200));
+              rect(-755+xSlide,230+yOffset,40,40);
+              
+              fill("black");noStroke();
+              text((po+1)+".",-735+xSlide,252+yOffset); //rank
+              textAlign("left","center");
+              text(topTimes[po][0], -705+xSlide, 252+yOffset); //name
+              textAlign("center","center");
+              let secondsString = (topTimes[po][3] < 10) ? "0"+topTimes[po][3] : topTimes[po][3];
+              let minutesString = (topTimes[po][2] < 10) ? "0"+topTimes[po][2] : topTimes[po][2];
+              let hoursString = (topTimes[po][1] < 10) ? "0"+topTimes[po][1] : topTimes[po][1];
+
+              text(hoursString+":"+minutesString+":"+secondsString, -240+xSlide, 252+yOffset); //Time in format hours:minutes:seconds
             }
             
 
             strokeWeight(1); stroke("black");
 
-            fill(rgb(255,255,255,0.6));
-            rect(-770+xSlide,420,630,255);
+            fill(rgb(255,255,255,0.7));
+            rect(-770+xSlide,475,630,200);
 
             fill(rgb(159, 197, 232));
-            rect(-550+xSlide,435,190,40);
+            rect(-770+xSlide,430,630,45);
 
             for(var pu=0; pu<3; pu++){
+              strokeWeight(1); stroke("black");
+              let yOffset = (pu*55);
               fill(leaderColors[pu]);
-              rect(-755+xSlide, 490+(pu*55),600,40);
+              rect(-755+xSlide, 500+yOffset,600,40);
+              fill('white');
+              rect(-310+xSlide, 500+yOffset, 140, 40);
+              fill(rgb(201, 218, 248));
+              rect(-755+xSlide,500+yOffset,40,40);
+
+              fill("black");noStroke();
+              text((pu+1)+".",-735+xSlide,522+yOffset); // rank
+
+              textAlign("left","center");
+              text(topScores[pu][0], -705+xSlide, 522+yOffset); //name
+              textAlign("center","center");
+              
+              text(addCommas(topScores[pu][1]), -240+xSlide, 522+yOffset); //Time in format hours:minutes:seconds
             }
             //blue: 
             
             textSize(40); fill("black"); strokeWeight(1);
-            text("Time", -455+xSlide, 187);
-            text("Score", -455+xSlide, 457);
+            text("Fastest Times", -455+xSlide, 183);
+            text("High Scores", -455+xSlide, 453);
             text("Back →",leaderBackBtn.x,leaderBackBtn.y);
 
           }
@@ -5402,7 +5451,7 @@ window.preload = function () {
                 }
           }
           textSize(30);fill("white");noStroke();
-          text('[ENTER] Skip   |   [BACKSPACE] Back   |   [P] Pause', 400, 754);
+          text('[BACKSPACE] Back   |   [ENTER] Skip   |   [P] Pause', 400, 754);
         }
         else if(introControl==1){
           if(loopCount<600){
@@ -5536,7 +5585,7 @@ window.preload = function () {
             textStart=[1];
           }
           textSize(30);fill("white");
-          text('[ENTER] Skip   |   [BACKSPACE] Back   |   [P] Pause', 400, 754);
+          text('[BACKSPACE] Back   |   [ENTER] Skip   |   [P] Pause', 400, 754);
           if(loopCount>=600){
             fill(rgb(190,255,200));stroke(rgb(200,255,200));strokeWeight(0.25);textSize(30);
           text("Menu Explanation",400,30);
@@ -5548,7 +5597,7 @@ window.preload = function () {
           noStroke();fill(rgb(0,0,0,0.6));
           rect(40,10,720,50);
           fill("white");textSize(30);
-          text('[ENTER] Skip   |   [BACKSPACE] Back   |   [P] Pause', 400,32);
+          text('[BACKSPACE] Back   |   [ENTER] Skip   |   [P] Pause', 400,32);
           //gameplay walkthrough
                if(introSelection == 0){
                 if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
