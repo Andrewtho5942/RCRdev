@@ -1572,10 +1572,10 @@ window.preload = function () {
           rect(1175+xSlide,710,160,60);
           
           if (mouseIsOver(leaderBackBtn)) {
-            fill(rgb(200, 170, 255));
-         } else {
-           fill(rgb(190, 155, 245));
-         }
+            fill(rgb(250, 200, 200));
+          } else {
+            fill(rgb(230, 180, 180));
+          }  
          rect(-535+xSlide,710,160,60);
 
           fill(rgb(200, 255, 210, 0.4)); 
@@ -1638,15 +1638,17 @@ window.preload = function () {
 
           //leaderboard screen graphics (subtract 855 from the x value)
           if (xSlide > 0) {
+            //FASTEST TIMES
             strokeWeight(1); stroke("black");
 
             fill(rgb(255,255,255,0.7));
             rect(-770+xSlide,205,630,200);
-            
-            fill(rgb(255,190,190));
+
+            fill(rgb(159, 197, 232));
             rect(-770+xSlide,160,630,45);
 
             var leaderColors=['gold','silver',rgb(176,141,87)];
+            
             for(var po=0;po<3;po++){
               strokeWeight(1); stroke("black");
               let yOffset = (po*55);
@@ -1654,7 +1656,7 @@ window.preload = function () {
               rect(-755+xSlide,230+yOffset,600,40);
               fill("white");
               rect(-310+xSlide, 230+yOffset, 140, 40);
-              fill(rgb(255, 210, 200));
+              fill(rgb(201, 218, 248));
               rect(-755+xSlide,230+yOffset,40,40);
               
               fill("black");noStroke();
@@ -1669,13 +1671,14 @@ window.preload = function () {
               text(hoursString+":"+minutesString+":"+secondsString, -240+xSlide, 252+yOffset); //Time in format hours:minutes:seconds
             }
             
-
+          //HIGH SCORES
             strokeWeight(1); stroke("black");
 
             fill(rgb(255,255,255,0.7));
             rect(-770+xSlide,475,630,200);
-
-            fill(rgb(159, 197, 232));
+            
+            
+            fill(rgb(190, 155, 245));
             rect(-770+xSlide,430,630,45);
 
             for(var pu=0; pu<3; pu++){
@@ -1685,7 +1688,7 @@ window.preload = function () {
               rect(-755+xSlide, 500+yOffset,600,40);
               fill('white');
               rect(-310+xSlide, 500+yOffset, 140, 40);
-              fill(rgb(201, 218, 248));
+              fill(rgb(200, 165, 255));
               rect(-755+xSlide,500+yOffset,40,40);
 
               fill("black");noStroke();
@@ -1695,9 +1698,8 @@ window.preload = function () {
               text(topScores[pu][0], -705+xSlide, 522+yOffset); //name
               textAlign("center","center");
               
-              text(addCommas(topScores[pu][1]), -240+xSlide, 522+yOffset); //Time in format hours:minutes:seconds
+              text(addCommas(topScores[pu][1]), -240+xSlide, 522+yOffset); //Score with commas
             }
-            //blue: 
             
             textSize(40); fill("black"); strokeWeight(1);
             text("Fastest Times", -455+xSlide, 183);
