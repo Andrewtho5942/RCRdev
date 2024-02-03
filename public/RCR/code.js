@@ -1,3 +1,31 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js'
+import { getFirestore, collection, doc, updateDoc, getDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js'
+import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+
+      const firebaseConfig = {
+      apiKey: "AIzaSyABuz5qmlW61lG4Xj0sG6Eqc161L9EAfQg",
+      authDomain: "rcr-db.firebaseapp.com",
+      projectId: "rcr-db",
+      storageBucket: "rcr-db.appspot.com",
+      messagingSenderId: "738872669722",
+      appId: "1:738872669722:web:04e6481f6111bc5cd603a3",
+      measurementId: "G-ZXLHXHGMR1"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      const db = getFirestore(app);
+      const auth = getAuth(app);
+
+      signInAnonymously(auth)
+      .then((userCredential) => {
+        console.log('User signed in:', userCredential.user);
+      })
+      .catch((error) => {
+        console.error('Error signing in:', error.message);
+      });
+     
 var p5Inst = new p5(null, 'sketch');
 
 window.preload = function () {
@@ -413,10 +441,24 @@ window.preload = function () {
     var credsCounter = 0;
 
     //leaderboard data
-    //format: [name, hours, minutes, seconds]
-    var topTimes = [["First name", 0, 4, 15],["Second name", 0, 5, 36],["Third name", 0, 5, 56]];
-    //format: [name, score]
+    //fetch initial data from the database
+    const timesDoc = doc(db, 'leaderboard', 'fastestTimes');
+    const scoresDoc = doc(db, 'leaderboard', 'highScores');
+    
+    var topTimes;
     var topScores = [["OOOOOOOOOOOOOOOOO", 1495],["The name above is", 1253],["18 characters long!", 1132]];
+    getDoc(timesDoc).then((docSnap) => {
+      if (docSnap.exists) {
+       const tData = docSnap.data();
+       topTimes = [[tData.name1, tData.hours1, tData.minutes1, tData.seconds1],
+       [tData.name2, tData.hours2, tData.minutes2, tData.seconds2],
+       [tData.name3, tData.hours3, tData.minutes3, tData.seconds3]];
+      } else {
+        console.log("fastestTimes document does not exist");
+      }
+    }).catch((error) => {
+      console.error("Error getting document: " + error.message);
+    });
     
     //Annual meeting variables
     var meetingLoop = 7000;
@@ -656,8 +698,8 @@ window.preload = function () {
     var t3QuizAnswers = [2, 3, 2, 4, 1, 2, 2, 4, 2, 2, 4, 2];
 
     //menu color data
-    introColor = rgb(190, 190, 190);
-    introScale = 0;
+    var introColor = rgb(190, 190, 190);
+    var introScale = 0;
     
     var menuColors = [
       rgb(244, 204, 204), rgb(180, 235, 190), rgb(180, 235, 190), rgb(244, 204, 204),
@@ -770,7 +812,7 @@ window.preload = function () {
 
 
     //Land locations array
-    landLocations = [[t1Land[0].x, t1Land[0].y], [t1Land[1].x, t1Land[1].y], [t1Land[2].x, t1Land[2].y],
+    var landLocations = [[t1Land[0].x, t1Land[0].y], [t1Land[1].x, t1Land[1].y], [t1Land[2].x, t1Land[2].y],
     [t1Land[3].x, t1Land[3].y], [t1Land[4].x, t1Land[4].y], [t1Land[5].x, t1Land[5].y],
     [t1Land[6].x, t1Land[6].y], [t1Land[7].x, t1Land[7].y], [t1Land[8].x, t1Land[8].y],
     [t2Land[1].x, t2Land[1].y], [t2Land[2].x, t2Land[2].y], [t3Land[0].x, t3Land[0].y],
@@ -1447,7 +1489,6 @@ window.preload = function () {
         }else if (menuPage == 1){
           //slide from menu to credits
             if(credsCounter>5){
-              console.log(credsCounter+", "+xSlide);
               xSlide -= credsCounter*3;
               credsCounter--;
             }
@@ -1460,7 +1501,6 @@ window.preload = function () {
         } else if (menuPage == 2) {
           //slide from menu to leaderboard
           if(credsCounter<-5){
-            console.log(credsCounter+", "+xSlide);
             xSlide -= credsCounter*3;
             credsCounter++;
           }
@@ -1606,7 +1646,7 @@ window.preload = function () {
             fill(rgb(255,190,190));
             rect(-770+xSlide,160,630,45);
 
-            leaderColors=['gold','silver',rgb(176,141,87)];
+            var leaderColors=['gold','silver',rgb(176,141,87)];
             for(var po=0;po<3;po++){
               strokeWeight(1); stroke("black");
               let yOffset = (po*55);
@@ -2082,7 +2122,6 @@ window.preload = function () {
             }
             totExpenses += cExpenses;
             totLoanPay += loanPay;
-            monthlyProfit = cIncome - cExpenses - loanPay;
             totProfits = (totIncome - totExpenses - totLoanPay);
 
             cLoans -= loanPay;
@@ -7902,7 +7941,6 @@ window.preload = function () {
       loopCopy = 0;
       advocacyLoop = [-3600, -3600];
       advocacyPlayer = [0, 0];
-      job = 1;
       quizStartLoop = -3600;
       pauseMainFunctions = false;
       gamePaused = false;
