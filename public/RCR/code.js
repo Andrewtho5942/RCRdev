@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js'
-import { getFirestore, collection, doc, updateDoc, getDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js'
+import { getFirestore, collection, doc, updateDoc, getDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js'
 import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 
       const firebaseConfig = {
@@ -383,7 +383,7 @@ window.preload = function () {
     var startPressed = false;
     var tutorialSkipped = false;
     var winLoop = -60;
-    var gameplayTime = 0;
+    var gameplayTime = [0,0,0];
     var gameLoop = -60;
     var songLoop = 0;
     var lastSong=0;
@@ -442,24 +442,19 @@ window.preload = function () {
 
     //leaderboard data
     //fetch initial data from the database
+    var topTimes = [["",0,0,0],["",0,0,0],["",0,0,0]];
+    var highScores = [["",0],["",0],["",0]];
     const timesDoc = doc(db, 'leaderboard', 'fastestTimes');
     const scoresDoc = doc(db, 'leaderboard', 'highScores');
-    
-    var topTimes;
-    var topScores = [["OOOOOOOOOOOOOOOOO", 1495],["The name above is", 1253],["18 characters long!", 1132]];
-    getDoc(timesDoc).then((docSnap) => {
-      if (docSnap.exists) {
-       const tData = docSnap.data();
-       topTimes = [[tData.name1, tData.hours1, tData.minutes1, tData.seconds1],
-       [tData.name2, tData.hours2, tData.minutes2, tData.seconds2],
-       [tData.name3, tData.hours3, tData.minutes3, tData.seconds3]];
-      } else {
-        console.log("fastestTimes document does not exist");
-      }
-    }).catch((error) => {
-      console.error("Error getting document: " + error.message);
+
+    //set up document listeners for live updates
+    onSnapshot(scoresDoc, () => {
+      updateScores();
     });
-    
+    onSnapshot(timesDoc, () => {
+      updateTimes();
+    });
+
     //Annual meeting variables
     var meetingLoop = 7000;
     var meetingControl = 0;
@@ -1648,14 +1643,14 @@ window.preload = function () {
             rect(-770+xSlide,160,630,45);
 
             var leaderColors=['gold','silver',rgb(176,141,87)];
-            
+            textSize(29);
             for(var po=0;po<3;po++){
               strokeWeight(1); stroke("black");
               let yOffset = (po*55);
               fill(leaderColors[po]);
               rect(-755+xSlide,230+yOffset,600,40);
               fill("white");
-              rect(-310+xSlide, 230+yOffset, 140, 40);
+              rect(-308+xSlide, 230+yOffset, 144, 40);
               fill(rgb(201, 218, 248));
               rect(-755+xSlide,230+yOffset,40,40);
               
@@ -1668,7 +1663,7 @@ window.preload = function () {
               let minutesString = (topTimes[po][2] < 10) ? "0"+topTimes[po][2] : topTimes[po][2];
               let hoursString = (topTimes[po][1] < 10) ? "0"+topTimes[po][1] : topTimes[po][1];
 
-              text(hoursString+":"+minutesString+":"+secondsString, -240+xSlide, 252+yOffset); //Time in format hours:minutes:seconds
+              text(hoursString+":"+minutesString+":"+secondsString, -236+xSlide, 252+yOffset); //Time in format hours:minutes:seconds
             }
             
           //HIGH SCORES
@@ -1687,7 +1682,7 @@ window.preload = function () {
               fill(leaderColors[pu]);
               rect(-755+xSlide, 500+yOffset,600,40);
               fill('white');
-              rect(-310+xSlide, 500+yOffset, 140, 40);
+              rect(-308+xSlide, 500+yOffset, 144, 40);
               fill(rgb(200, 165, 255));
               rect(-755+xSlide,500+yOffset,40,40);
 
@@ -1695,10 +1690,14 @@ window.preload = function () {
               text((pu+1)+".",-735+xSlide,522+yOffset); // rank
 
               textAlign("left","center");
-              text(topScores[pu][0], -705+xSlide, 522+yOffset); //name
+              text(highScores[pu][0], -705+xSlide, 522+yOffset); //name
               textAlign("center","center");
               
-              text(addCommas(topScores[pu][1]), -240+xSlide, 522+yOffset); //Score with commas
+              if (highScores[pu][1] >= 10000000) {
+                text(addCommas(highScores[pu][1] / 1000000)+"M", -236+xSlide, 522+yOffset); //Score with commas, 10M or more
+              }else {
+                text(addCommas(highScores[pu][1]), -236+xSlide, 522+yOffset); //Score with commas
+              }
             }
             
             textSize(40); fill("black"); strokeWeight(1);
@@ -2335,7 +2334,17 @@ window.preload = function () {
           blackout.visible = true;
         } else if (winLoop + 30 == loopCount) {
           level = 3;
-          gameplayTime = Math.round(gameLoop / 30);
+          //calculate game time
+            var gameTime = Math.round(gameLoop / 30);
+
+            var seconds = gameTime % 60;
+            gameTime -= seconds;
+            var minutes = Math.round(gameTime / 60);
+            gameTime /= 60;
+            var hours = Math.round(gameTime / 60);
+            gameplayTime = [hours, minutes, seconds];
+            console.log("Gameplay time: "+ gameplayTime);
+
           loopCount=0;
           resetGame(false);
           blackout.visible=true;
@@ -4969,8 +4978,10 @@ window.preload = function () {
         }
 
   
-        //--- TESTING CONTROL KEYS ----
-        
+        //--- DEBUG KEYS ----
+        if (keyWentDown("k")) {
+          dividends = prompt("Enter dividends for testing");
+        }
         //end game for testing        
         if(keyWentDown("v")){
           winLoop=loopCount;
@@ -5012,6 +5023,8 @@ window.preload = function () {
           meetingLoop=loopCount+150;
         }
       }
+
+
       //end game screen
       else if (level == 3) {
         background(rgb(175, 138, 103));
@@ -5071,24 +5084,161 @@ window.preload = function () {
         
         
         fill('white'); strokeWeight(4); stroke('black');
-        rect(60, 620, 680, 60);
+        rect(60, 563, 685, 62);
+        rect(60, 638, 685, 62);
         fill('black'); noStroke();
-        var minutes = Math.round(gameplayTime / 60);
-        var seconds = gameplayTime % 60;
-        var secondsPlural = "";
-        if(seconds!=1)(secondsPlural="s");
-        
-        if (minutes==1) {
-          text("Time Elapsed:\n 1 Minute and " + seconds + " Second"+secondsPlural, 400, 620);
-        } else if(minutes>1){
-          text('Time Elapsed:\n' + minutes + " Minutes and " + seconds + " Second"+secondsPlural, 400, 620);
-        }else{
-          text('Time Elapsed:\n' + seconds + " Second"+secondsPlural, 400, 620);
-        }
+      
+        let secondsString = (gameplayTime[0] < 10) ? "0"+gameplayTime[0] : gameplayTime[0];
+        let minutesString = (gameplayTime[1] < 10) ? "0"+gameplayTime[1] : gameplayTime[1];
+        let hoursString = (gameplayTime[2] < 10) ? "0"+gameplayTime[2] : gameplayTime[2];
+        let totalScore = Number(dividends) + Number(10 * (cPoints + ePoints));
+        text('Time Elapsed: ' + secondsString+":"+minutesString+":"+hoursString, 400, 595);
+        text('Total Score: ' + addCommas(totalScore) + " pts", 400, 670);
+
         textAlign('center', 'center'); textSize(30);stroke("black");strokeWeight(0.5);
-        text("Thanks to the CLDC, our city is prospering once again.\nThe population has increased, more tax revenue is\nbeing generated, and its citizens are now owners.\n\nAs a member of the CLDC, you have earned $"+addCommas(Math.round(dividends))+"\nin shareholder dividends and "+addCommas(cPoints+ePoints)+" points from\ncommunity service and ownership education.\n\nThe CLDC paid a total of $"+addCommas(Math.round(totalPayouts))+" in\ndividends to its members.", 400, 335);
+
+        text("Thanks to the CLDC, our city is prospering once again.\nThe population has increased,"+
+        " more tax revenue is\nbeing generated, and its citizens are now owners.\n\nAs a member of the"+
+        "CLDC, you have earned $"+addCommas(Math.round(dividends))+"\nin shareholder dividends and "+
+        addCommas(cPoints+ePoints)+" points from\ncommunity service and ownership education.\n\nThe CLDC"+
+        " paid a total of $"+addCommas(Math.round(totalPayouts))+" in\ndividends to its members.", 400, 335);
+
         if (mousePressedOver(tutorialSprites[5])) {
           playSound("audio/app_interface_button_3.mp3");
+
+          //prompt user to enter username for the leaderboard if they qualify
+          var timeIndex = -1;
+          var myTime = gameplayTime[0]*3600 + gameplayTime[1]*60 + gameplayTime[2];
+          var timesSeconds = [topTimes[0][1]*3600 + topTimes[0][2]*60 + topTimes[0][3],
+          topTimes[1][1]*3600 + topTimes[1][2]*60 + topTimes[1][3],
+          topTimes[2][1]*3600 + topTimes[2][2]*60 + topTimes[2][3]];
+          console.log("times: "+myTime + " vs. "+timesSeconds[0] + ", "+timesSeconds[1] + ", "+timesSeconds[2]);
+          if (myTime <= timesSeconds[0]) {
+            timeIndex = 0;
+          } else if (myTime <= timesSeconds[1]) {
+            timeIndex = 1;
+          } else if (myTime <= timesSeconds[2]) {
+            timeIndex = 2;
+          }
+          var scoreIndex = -1;
+          if (totalScore >= highScores[0][1]) {
+            scoreIndex = 0;
+          } else if (totalScore >= highScores[1][1]) {
+            scoreIndex = 1;
+          } else if (totalScore >= highScores[2][1]) {
+            scoreIndex = 2;
+          }
+          //prompt for username
+          var username = "";
+          if ((scoreIndex != -1) || (timeIndex != -1)) {
+            username = prompt("Congrats! You placed on the leaderboard!\nEnter a username below, or leave it empty to be unnamed.");
+            if ((!username) || (username == "")) {
+              username = "<Unnamed>"
+            }
+            var longName = false;
+            if (username.length > 17) {
+              longName = true;
+            }
+            username = username.substring(0, 17);
+            if (longName) {
+              username=username+"...";
+            }
+
+            //update the leaderboard and database
+            if(scoreIndex != -1){
+              var scoresData;
+              if (scoreIndex == 0) {
+                scoresData = {
+                  name1: username,
+                  name2: highScores[0][0],
+                  name3: highScores[1][0],
+                  score1: totalScore,
+                  score2: highScores[0][1],
+                  score3: highScores[1][1]
+                }
+              } else if (scoreIndex == 1) {
+                scoresData = {
+                  name1: highScores[0][0],
+                  name2: username,
+                  name3: highScores[1][0],
+                  score1: highScores[0][1],
+                  score2: totalScore,
+                  score3: highScores[1][1]
+                }
+              } else if (scoreIndex == 2){
+                scoresData = {
+                  name1: highScores[0][0],
+                  name2: highScores[1][0],
+                  name3: username,
+                  score1: highScores[0][1],
+                  score2: highScores[1][1],
+                  score3: totalScore
+                }
+              }
+  
+              updateDoc(scoresDoc, scoresData).then(() => {
+                console.log("scoresDoc updated successfully");
+              }).catch((error) => {
+                console.error("Error updating document: "+error.message);
+              });
+            }
+            if(timeIndex != -1){
+              var timesData;
+              if (timeIndex == 0) {
+                timesData = {
+                  name1: username,
+                  name2: topTimes[0][0],
+                  name3: topTimes[1][0],
+                  hours1: gameplayTime[0],
+                  minutes1: gameplayTime[1],
+                  seconds1: gameplayTime[2],
+                  hours2: topTimes[0][1],
+                  minutes2: topTimes[0][2],
+                  seconds2: topTimes[0][3],
+                  hours3: topTimes[1][1],
+                  minutes3: topTimes[1][2],
+                  seconds3: topTimes[1][3],
+                }
+              } else if (timeIndex == 1) {
+                  timesData = {
+                    name1: topTimes[0][0],
+                    name2: username,
+                    name3: topTimes[1][0],
+                    hours1: topTimes[0][1],
+                    minutes1: topTimes[0][2],
+                    seconds1: topTimes[0][3],
+                    hours2: gameplayTime[0],
+                    minutes2: gameplayTime[1],
+                    seconds2: gameplayTime[2],
+                    hours3: topTimes[1][1],
+                    minutes3: topTimes[1][2],
+                    seconds3: topTimes[1][3],
+                  }
+              } else if (timeIndex == 2){
+                timesData = {
+                  name1: topTimes[0][0],
+                  name2: topTimes[1][0],
+                  name3: username,
+                  hours1: topTimes[0][1],
+                  minutes1: topTimes[0][2],
+                  seconds1: topTimes[0][3],
+                  hours2: topTimes[1][1],
+                  minutes2: topTimes[1][2],
+                  seconds2: topTimes[1][3],
+                  hours3: gameplayTime[0],
+                  minutes3: gameplayTime[1],
+                  seconds3: gameplayTime[2],
+                }
+              }
+  
+              updateDoc(timesDoc, timesData).then(() => {
+                console.log("fastestTimes updated successfully");
+              }).catch((error) => {
+                console.error("Error updating document: "+error.message);
+              });
+            }
+            
+          }
           resetGame(true);
           if(!muteMusic)(playSound("audio/TrackTribe - A Night Alone.mp3",true));
         }
@@ -6629,6 +6779,38 @@ window.preload = function () {
 
     
     //functions{
+      function updateTimes () {
+        getDoc(timesDoc).then((docSnap) => {
+          if (docSnap.exists) {
+           const tData = docSnap.data();
+           console.log("times: ",tData);
+           topTimes = [[tData.name1, tData.hours1, tData.minutes1, tData.seconds1],
+           [tData.name2, tData.hours2, tData.minutes2, tData.seconds2],
+           [tData.name3, tData.hours3, tData.minutes3, tData.seconds3]];
+          } else {
+            console.log("fastestTimes document does not exist");
+          }
+        }).catch((error) => {
+          console.error("Error getting document: " + error.message);
+        });
+      }
+
+      function updateScores () {
+          getDoc(scoresDoc).then((docSnap) => {
+          if (docSnap.exists) {
+           const sData = docSnap.data();
+           console.log("scores: ",sData);
+           highScores = [[sData.name1, sData.score1],
+           [sData.name2, sData.score2],
+           [sData.name3, sData.score3]];
+          } else {
+            console.log("highScores document does not exist");
+          }
+        }).catch((error) => {
+          console.error("Error getting document: " + error.message);
+        });
+      }
+
     function skipTutorial() {
           level = 2;
           if(!muteMusic)(playSound("audio/TrackTribe - A Brand New Start.mp3"));
@@ -7936,7 +8118,7 @@ window.preload = function () {
       totLoanPay = 0;
       totLoans = 0;
       totProfits = 0;
-      winLoop = -60; gameplayTime = 0;
+      winLoop = -60; gameplayTime = [0,0,0];
       gameLoop = 0;songLoop = 0;
       tutorialSkipped = false;
       lastSong=0;
