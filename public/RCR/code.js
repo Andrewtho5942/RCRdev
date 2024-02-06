@@ -2,6 +2,7 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebas
 import { getFirestore, collection, doc, updateDoc, getDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js'
 import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 
+
       const firebaseConfig = {
       apiKey: "AIzaSyABuz5qmlW61lG4Xj0sG6Eqc161L9EAfQg",
       authDomain: "rcr-db.firebaseapp.com",
@@ -1650,14 +1651,14 @@ window.preload = function () {
               fill(leaderColors[po]);
               rect(-755+xSlide,230+yOffset,600,40);
               fill("white");
-              rect(-308+xSlide, 230+yOffset, 144, 40);
+              rect(-310+xSlide, 230+yOffset, 148, 40);
               fill(rgb(201, 218, 248));
               rect(-755+xSlide,230+yOffset,40,40);
               
               fill("black");noStroke();
               text((po+1)+".",-735+xSlide,252+yOffset); //rank
               textAlign("left","center");
-              text(topTimes[po][0], -705+xSlide, 252+yOffset); //name
+              text(truncateText(topTimes[po][0],390), -705+xSlide, 252+yOffset); //name
               textAlign("center","center");
               let secondsString = (topTimes[po][3] < 10) ? "0"+topTimes[po][3] : topTimes[po][3];
               let minutesString = (topTimes[po][2] < 10) ? "0"+topTimes[po][2] : topTimes[po][2];
@@ -1682,7 +1683,7 @@ window.preload = function () {
               fill(leaderColors[pu]);
               rect(-755+xSlide, 500+yOffset,600,40);
               fill('white');
-              rect(-308+xSlide, 500+yOffset, 144, 40);
+              rect(-310+xSlide, 500+yOffset, 148, 40);
               fill(rgb(200, 165, 255));
               rect(-755+xSlide,500+yOffset,40,40);
 
@@ -1690,11 +1691,12 @@ window.preload = function () {
               text((pu+1)+".",-735+xSlide,522+yOffset); // rank
 
               textAlign("left","center");
-              text(highScores[pu][0], -705+xSlide, 522+yOffset); //name
+              fill("black");
+              text(truncateText(highScores[pu][0], 390), -705+xSlide, 522+yOffset); //name
               textAlign("center","center");
               
               if (highScores[pu][1] >= 10000000) {
-                text(addCommas(highScores[pu][1] / 1000000)+"M", -236+xSlide, 522+yOffset); //Score with commas, 10M or more
+                text(addCommas(Math.round(highScores[pu][1] / 1000000))+"M", -236+xSlide, 522+yOffset); //Score with commas, 10M or more
               }else {
                 text(addCommas(highScores[pu][1]), -236+xSlide, 522+yOffset); //Score with commas
               }
@@ -5135,14 +5137,8 @@ window.preload = function () {
             if ((!username) || (username == "")) {
               username = "<Unnamed>"
             }
-            var longName = false;
-            if (username.length > 17) {
-              longName = true;
-            }
-            username = username.substring(0, 17);
-            if (longName) {
-              username=username+"...";
-            }
+            //truncate strings that are too long and wont show anyways
+            username = username.substring(0, 50);
 
             //update the leaderboard and database
             if(scoreIndex != -1){
@@ -6779,6 +6775,25 @@ window.preload = function () {
 
     
     //functions{
+      // Function to truncate text to fit a given width
+      function truncateText(text, maxWidth) {
+        let truncatedText = "";
+        let currentWidth = 0;
+
+        for (let i = 0; i < text.length; i++) {
+          let charWidth = textWidth(text.charAt(i));
+          if (currentWidth + charWidth <= maxWidth) {
+            truncatedText += text.charAt(i);
+            currentWidth += charWidth;
+          } else {
+            // Break out of the loop if the width is exceeded
+            break;
+          }
+        }
+
+        return truncatedText;
+      }
+
       function updateTimes () {
         getDoc(timesDoc).then((docSnap) => {
           if (docSnap.exists) {
