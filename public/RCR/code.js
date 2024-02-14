@@ -1365,22 +1365,34 @@ window.preload = function () {
           //char select movement
           if (charSelectCount[0] + 1 == loopCount) {
             leftChar1.setAnimation("leftWalkDown");
-          }else if (charSelectCount[0] + 45 == loopCount){
+            rightChar1.setAnimation("rightDown");
+            bChar1.setAnimation("bDown");
+            aChar1.setAnimation("aDown");
+          }else if (charSelectCount[0] + 30 == loopCount){
             leftChar1.setAnimation("leftDown");
           }
           if (charSelectCount[2] + 1 == loopCount) {
             rightChar1.setAnimation("rightWalkDown");
-          }else if (charSelectCount[2] + 45 == loopCount){
+            leftChar1.setAnimation("leftDown");
+            bChar1.setAnimation("bDown");
+            aChar1.setAnimation("aDown");
+          }else if (charSelectCount[2] + 30 == loopCount){
             rightChar1.setAnimation("rightDown");
           }
           if (charSelectCount[1] + 1 == loopCount) {
             bChar1.setAnimation("bWalkDown");
-          }else if (charSelectCount[1] + 45 == loopCount){
+            aChar1.setAnimation("aDown");
+            rightChar1.setAnimation("rightDown");
+            leftChar1.setAnimation("leftDown");
+          }else if (charSelectCount[1] + 30 == loopCount){
             bChar1.setAnimation("bDown");
           }
           if (charSelectCount[3] + 1 == loopCount) {
             aChar1.setAnimation("aWalkDown");
-          }else if (charSelectCount[3] + 45 == loopCount){
+            leftChar1.setAnimation("leftDown");
+            rightChar1.setAnimation("rightDown");
+            bChar1.setAnimation("bDown");
+          }else if (charSelectCount[3] + 30 == loopCount){
             aChar1.setAnimation("aDown");
           }
 
