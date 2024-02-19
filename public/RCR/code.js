@@ -2,7 +2,6 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebas
 import { getFirestore, collection, doc, updateDoc, getDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js'
 import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 
-
       const firebaseConfig = {
       apiKey: "AIzaSyABuz5qmlW61lG4Xj0sG6Eqc161L9EAfQg",
       authDomain: "rcr-db.firebaseapp.com",
@@ -1670,7 +1669,7 @@ window.preload = function () {
               fill("black");noStroke();
               text((po+1)+".",-735+xSlide,252+yOffset); //rank
               textAlign("left","center");
-              text(truncateText(topTimes[po][0],390), -705+xSlide, 252+yOffset); //name
+              text(topTimes[po][0], -705+xSlide, 252+yOffset); //name
               textAlign("center","center");
               let secondsString = (topTimes[po][3] < 10) ? "0"+topTimes[po][3] : topTimes[po][3];
               let minutesString = (topTimes[po][2] < 10) ? "0"+topTimes[po][2] : topTimes[po][2];
@@ -1704,7 +1703,7 @@ window.preload = function () {
 
               textAlign("left","center");
               fill("black");
-              text(truncateText(highScores[pu][0], 390), -705+xSlide, 522+yOffset); //name
+              text(highScores[pu][0], -705+xSlide, 522+yOffset); //name
               textAlign("center","center");
               
               if (highScores[pu][1] >= 10000000) {
@@ -5126,7 +5125,7 @@ window.preload = function () {
           var timesSeconds = [topTimes[0][1]*3600 + topTimes[0][2]*60 + topTimes[0][3],
           topTimes[1][1]*3600 + topTimes[1][2]*60 + topTimes[1][3],
           topTimes[2][1]*3600 + topTimes[2][2]*60 + topTimes[2][3]];
-          console.log("times: "+myTime + " vs. "+timesSeconds[0] + ", "+timesSeconds[1] + ", "+timesSeconds[2]);
+          //console.log("times: "+myTime + " vs. "+timesSeconds[0] + ", "+timesSeconds[1] + ", "+timesSeconds[2]);
           if (myTime <= timesSeconds[0]) {
             timeIndex = 0;
           } else if (myTime <= timesSeconds[1]) {
@@ -5149,8 +5148,13 @@ window.preload = function () {
             if ((!username) || (username == "")) {
               username = "<Unnamed>"
             }
-            //truncate strings that are too long and wont show anyways
-            username = username.substring(0, 50);
+
+            //censor the username
+            username = censor(username);
+
+            //truncate strings that are longer than 390 pixels
+            username = truncateText(username, 390);
+            
 
             //update the leaderboard and database
             if(scoreIndex != -1){
@@ -6787,6 +6791,25 @@ window.preload = function () {
 
     
     //functions{
+      //Censors swear words in the list
+      function censor(text) {
+        // Define a list of swear words to censor
+        const swearWords = ['arse', 'ass', 'asshole','arsehole', 'bastard', 
+      'bitch','bullshit','cock','cocksucker','crap','cunt','damn','dick','dickhead',
+      'fuck','goddamn','hell','holy shit','motherfucker','nigga','nigger','pussy','shit',
+      'slut','wanker','whore','kill'];
+        
+        // Iterate through the swear words list
+        for (let i = 0; i < swearWords.length; i++) {
+            const regex = new RegExp(swearWords[i], 'gi');
+            text = text.replace(regex, function(match) {
+                // Replace each character in the swear word with asterisks
+                return '#'.repeat(match.length);
+            });
+        } 
+        return text;
+    }
+
       // Function to truncate text to fit a given width
       function truncateText(text, maxWidth) {
         let truncatedText = "";
