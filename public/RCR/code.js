@@ -476,7 +476,7 @@ window.preload = function () {
     var proposalDone = false;
     var proposalSelected = 0;
 
-    var scorecardColors = [rgb(110, 185, 110), rgb(255, 229, 153), rgb(255, 229, 153), rgb(110, 185, 110), rgb(255, 229, 153)];
+    var scorecardColors = [rgb(110, 185, 110), rgb(255, 229, 153), rgb(255, 229, 153), rgb(201, 218, 248)];
 
   //intro variables
     var introControl = 0;
@@ -523,7 +523,7 @@ window.preload = function () {
 
     //Objective data
     var objListCLDC = [
-      ["Construct the University Hall", -300, false,false],
+      ["Construct Justice University", -300, false,false],
       ["Construct the Recycling Center", -300, false,false],
       ["Rebuild All City Roads", -300, false,false],
       ["Develop Both Parks", -300, false,false],
@@ -535,12 +535,12 @@ window.preload = function () {
     var curObjListCLDC = ["", "", ""];
 
     var objListP = [
-      ["Do Community Service (20 Points)", -300, false,false],
+      ["Do Community Service: 200 Points", -300, false,false],
       ["Advocate For a Land Plot Vote", -300, false,false],
       ["Help Renovate a Park", -300, false,false],
-      ["Earn 50 Community Service Points", -300, false,false],
+      ["Do Community Service: 500 Points", -300, false,false],
       ["Complete the Ownership Quiz", -300, false,false],
-      ["Earn 100 Community Service Points", -300, false,false],
+      ["Do Community Service: 1000 Pts", -300, false,false],
       ["Receive $5k in Dividends", -300, false,false],
       ["Put Out a Fire", -300, false,false],
       ["Stop a Flood", -300, false,false]
@@ -699,7 +699,7 @@ window.preload = function () {
     var menuColors = [
       rgb(244, 204, 204), rgb(180, 235, 190), rgb(180, 235, 190), rgb(244, 204, 204),
       rgb(180, 235, 190), rgb(244, 204, 204), rgb(180, 235, 190),
-      rgb(244, 204, 204), rgb(244, 204, 204), rgb(244, 204, 204), rgb(244, 204, 204)
+      rgb(244, 204, 204), rgb(244, 204, 204), rgb(244, 204, 204), "white"
     ];
     var objColors = [
       'white', 'white', "white",
@@ -2379,21 +2379,21 @@ window.preload = function () {
           }else if(objListP[5][3] && !hintList[5]){
             //gold medal
             var hintLoop = loopCount-objListP[5][1];
-            showHint("Congrats! You've earned a gold medal\nfor reaching 100 community service points!",hintLoop,30);
+            showHint("Congrats! You've earned a gold medal\nfor reaching 1000 community service points!",hintLoop,30);
             if(!menuOpen && !offerOpen && hintLoop>=30)(circle(cMedals[2].x,cMedals[2].y,45,60,"darkRed"));
             if(hintLoop==280)(hintList[5]=true);
             
           }else if(objListP[3][3] && !hintList[4]){
             //silver medal
             var hintLoop = loopCount-objListP[3][1];
-            showHint("Congrats! You've earned a silver medal\nfor reaching 50 community service points!",hintLoop,30);
+            showHint("Congrats! You've earned a silver medal\nfor reaching 500 community service points!",hintLoop,30);
             if(!menuOpen && !offerOpen && hintLoop>=30)(circle(cMedals[1].x,cMedals[1].y,45,60,"darkRed"));
             if(hintLoop==280)(hintList[4]=true);
             
           }else if(objListP[0][3] && !hintList[3]){
             //bronze medal
             var hintLoop = loopCount-objListP[0][1];
-            showHint("Congrats! You've earned a bronze medal\nfor reaching 20 community service points!",hintLoop,30);
+            showHint("Congrats! You've earned a bronze medal\nfor reaching 200 community service points!",hintLoop,30);
             if(!menuOpen && !offerOpen && hintLoop>=30)(circle(cMedals[0].x,cMedals[0].y,45,60,"darkRed"));
             if(hintLoop==280)(hintList[3]=true);
             
@@ -2472,9 +2472,9 @@ window.preload = function () {
             closeMenu();
             shareHeader.visible = offerOpen = offerSign.visible = false;
             educationLevelLeft.visible = charHead.visible = music.visible = true;
-            if(cPoints>=20)(cMedals[0].visible=true);
-            if(cPoints>=50)(cMedals[1].visible=true);
-            if(cPoints>=100)(cMedals[2].visible=true);
+            if(cPoints>=200)(cMedals[0].visible=true);
+            if(cPoints>=500)(cMedals[1].visible=true);
+            if(cPoints>=1000)(cMedals[2].visible=true);
           }
           if (!lTouchingJob) {
             jobProgressLeft += 0.01;
@@ -2501,8 +2501,8 @@ window.preload = function () {
               stopSound("audio/fire.mp3");
             }
             cExpenses -= 1;
-            recentPoints = 1;
-            cPoints += 1;
+            recentPoints = 10;
+            cPoints += 10;
             
             cUpdateCount = loopCount;
             jobProgressLeft = 0;
@@ -2611,12 +2611,12 @@ window.preload = function () {
             cUpdateCount = loopCount;
             var parkPoints = 0;
             if (parkCollisionNum == 0) {
-              parkPoints = 4;
+              parkPoints = 40;
             }
             else {
-              parkPoints = 2;
+              parkPoints = 20;
             }
-            cExpenses -= parkPoints;
+            cExpenses -= parkPoints/10;
             recentPoints = parkPoints;
             cPoints += parkPoints;
             //complete the park if the timer is out
@@ -2711,9 +2711,9 @@ window.preload = function () {
             offerOpen=false;
             shareHeader.visible=offerSign.visible=false;
             educationLevelLeft.visible = charHead.visible = music.visible = true;
-            if(cPoints>=20)(cMedals[0].visible=true);
-            if(cPoints>=50)(cMedals[1].visible=true);
-            if(cPoints>=100)(cMedals[2].visible=true);
+            if(cPoints>=200)(cMedals[0].visible=true);
+            if(cPoints>=500)(cMedals[1].visible=true);
+            if(cPoints>=1000)(cMedals[2].visible=true);
           }
           //char is contacting a trash sprite and clean up is active
           if (!lTouchingJob) {
@@ -2730,19 +2730,19 @@ window.preload = function () {
             if (trashCollisionNum == 1 || trashCollisionNum == 4 || trashCollisionNum == 7 || trashCollisionNum == 9) {
               //grocery bag
               playSound("audio/litter_bag.mp3");
-              var pPoints = 2 - litterDebuff;
+              var pPoints = 20 - litterDebuff;
               if (pPoints<1) (pPoints=1);
               trashPoints += pPoints;
             } else if (trashCollisionNum == 2 || trashCollisionNum == 5 || trashCollisionNum == 8) {
               //soda can
               playSound("audio/litter_sodaCan.mp3");
-              var pPoints = 4 - litterDebuff;
+              var pPoints = 40 - litterDebuff;
               if (pPoints<1) (pPoints=1);
               trashPoints += pPoints;
             } else {
               //soup can
               playSound("audio/litter_soupCan.mp3");
-              var pPoints = 3 - litterDebuff;
+              var pPoints = 30 - litterDebuff;
               if (pPoints<1) (pPoints=1);
               trashPoints += pPoints;
             }
@@ -2981,9 +2981,9 @@ window.preload = function () {
           } else if (offerOpen) {
             shareHeader.visible = offerSign.visible = false;
             educationLevelLeft.visible = charHead.visible = music.visible = true;
-            if(cPoints>=20)(cMedals[0].visible=true);
-            if(cPoints>=50)(cMedals[1].visible=true);
-            if(cPoints>=100)(cMedals[2].visible=true);
+            if(cPoints>=200)(cMedals[0].visible=true);
+            if(cPoints>=500)(cMedals[1].visible=true);
+            if(cPoints>=1000)(cMedals[2].visible=true);
             offerOpen = false;
             if (lTouchingJob) { lTouchingJob = false; jobProgressLeft = 0; }
           }else if (lTouchingJob) {
@@ -3119,11 +3119,11 @@ window.preload = function () {
                 quizColorsLeft[quizHoverLeft - 1] = 'lightGreen';
                 educationLevelLeft.setAnimation("book");
                 educationLevelLeft.scale = 0.18;
-                ePoints += 5;
+                ePoints += 50;
                 //Ownership education colors
                 if (ePoints > 0) (menuColors[8] = rgb(180, 235, 190));
                 else (menuColors[8] = rgb(244, 204, 204));
-                recentPoints = 5;
+                recentPoints = 50;
                 //if answer is incorrect
               } else {
                 playSound("audio/incorrect.mp3");
@@ -3184,11 +3184,11 @@ window.preload = function () {
                 quizColorsLeft[quizHoverLeft - 1] = 'lightGreen';
                 educationLevelLeft.setAnimation("book");
                 educationLevelLeft.scale = 0.18;
-                ePoints += 10;
+                ePoints += 100;
                 //Ownership education colors
                 if (ePoints > 0) (menuColors[8] = rgb(180, 235, 190));
                 else (menuColors[8] = rgb(244, 204, 204));
-                recentPoints = 10;
+                recentPoints = 100;
                 //if answer is incorrect
               } else {
                 playSound("audio/incorrect.mp3");
@@ -3241,11 +3241,11 @@ window.preload = function () {
                 quizColorsLeft[quizHoverLeft - 1] = 'lightGreen';
                 educationLevelLeft.setAnimation("book");
                 educationLevelLeft.scale = 0.18;
-                ePoints += 20;
+                ePoints += 200;
                 //Ownership education colors
                 if (ePoints > 0) (menuColors[8] = rgb(180, 235, 190));
                 else (menuColors[8] = rgb(244, 204, 204));
-                recentPoints = 20;
+                recentPoints = 200;
                 
                 //if answer is incorrect
               } else {
@@ -3419,7 +3419,7 @@ window.preload = function () {
               rect(8,195,784,392);
               fill("black");stroke("black");strokeWeight(1);
               textAlign(CENTER, CENTER);textSize(38);
-              text("You must develop the university\nhall first to finish the quiz!",400,360);
+              text("You must develop Justice\nUniversity to finish the quiz!",400,360);
             }
           } 
           
@@ -3941,19 +3941,19 @@ window.preload = function () {
           fill("gold"); stroke("gold");
           if (cUpdateCount + 20 > loopCount) {
             //check for objectives
-            if(cPoints>=20 && !objListP[0][3]){
+            if(cPoints>=200 && !objListP[0][3]){
               objListP[0][3]=true;
               objListP[0][1]=loopCount;
               objCount++;
               if(!menuOpen&&!offerOpen)(cMedals[0].visible=true);
             }
-            if(cPoints>=50 && !objListP[3][3]){
+            if(cPoints>=500 && !objListP[3][3]){
               objListP[3][3]=true;
               objListP[3][1]=loopCount;
               objCount++;
               if(!menuOpen&&!offerOpen)(cMedals[1].visible=true);
             }    
-            if(cPoints>=100 && !objListP[5][3]){
+            if(cPoints>=1000 && !objListP[5][3]){
               objListP[5][3]=true;
               objListP[5][1]=loopCount;
               objCount++;
@@ -4602,7 +4602,7 @@ window.preload = function () {
                             playSound("audio/app_interface_button_3.mp3");
                             proposalDone=true;
                             cMult += 0.5;       
-                            litterDebuff += 1;
+                            litterDebuff += 10;
                             hintList[2]=true;
                           }
                           break;
@@ -5104,9 +5104,9 @@ window.preload = function () {
         let secondsString = (gameplayTime[0] < 10) ? "0"+gameplayTime[0] : gameplayTime[0];
         let minutesString = (gameplayTime[1] < 10) ? "0"+gameplayTime[1] : gameplayTime[1];
         let hoursString = (gameplayTime[2] < 10) ? "0"+gameplayTime[2] : gameplayTime[2];
-        let totalScore = Number(dividends) + Number(10 * (cPoints + ePoints));
+        let totalScore = Number(dividends) + Number(cPoints + ePoints);
         text('Time Elapsed: ' + secondsString+":"+minutesString+":"+hoursString, 400, 595);
-        text('Total Score: ' + addCommas(totalScore) + " pts", 400, 670);
+        text('Total Score: ' + addCommas(Math.round(totalScore)) + " pts", 400, 670);
 
         textAlign('center', 'center'); textSize(30);stroke("black");strokeWeight(0.5);
 
@@ -5389,19 +5389,12 @@ window.preload = function () {
         }
 
         //blue "Your CLDC Scorecard:"
-        for (var z = 0; z < 3; z++) {
+        for (var z = 0; z < 4; z++) {
           fill(scorecardColors[z]);
           rect(818, 605 + (z * 46), 194, 34);
           fill(menuColors[z + 7]);
           rect(1012, 605 + (z * 46), 165, 34);
         }
-        //"scores" lowest scorecard box
-        fill("white");
-        rect(818, 605 + (z * 46), 80, 34);
-        fill(scorecardColors[3]);
-        rect(898, 605 + (z * 46), 155, 34);
-        fill(scorecardColors[4]);
-        rect(1053, 605 + (z * 46), 125, 34);
       
       //CLDC objective boxes
       for (var za = 0; za < 3; za++) {
@@ -5491,7 +5484,7 @@ window.preload = function () {
         textSize(21);
         text("Community Service", 825, 717);
         textSize(22);
-        text("Scores", 825, 763);
+        text("Total Score", 825, 763);
       
       
       textSize(22);
@@ -5525,8 +5518,7 @@ window.preload = function () {
         text(addCommas(ePoints), 1020, 671);
         if (cUpdateCount + 2 > loopCount) (text(addCommas(cPoints), 1020, 712));
         else (text(addCommas(cPoints), 1020, 717));
-        text("$"+addCommas(Math.round(dividends)), 905, 763);
-        text(addCommas(ePoints + cPoints), 1060, 763);
+        text(addCommas(Math.round(ePoints + cPoints + dividends)), 1020, 763);
       
       
       textAlign(CENTER, CENTER);
@@ -6408,7 +6400,7 @@ window.preload = function () {
               textStart=[10];
             }
             
-              typeText("1) Stopping a fire before it destroys a building gives 1 point.\n2) Stopping a flood before it damages a building gives 1 point.\n- If not stopped, you will lose income and must pay a fee.",400,380,26,1,false,"white",loopCount);
+              typeText("1) Stopping a fire before it destroys a building gives 1 point.\n2) Stopping a flood before it damages a building gives 10 points.\n- If not stopped, you will lose income and must pay a fee.",400,380,26,1,false,"white",loopCount);
               if(loopCount==455)(playSound("audio/typing.mp3"));
               if(loopCount==840)(stopSound("audio/typing.mp3"));
               if(loopCount==949)(textStart.push(960));
@@ -6438,7 +6430,7 @@ window.preload = function () {
               textStart=[10,460,960];
             }
             
-              typeText("4) Advocating for an investment offer during a vote\ngives 1 point each. This can be done more effectively after\nyou complete the ownership education quiz.",400,380,26,3,false,"white",loopCount);
+              typeText("4) Advocating for an investment offer during a vote\ngives 10 points each. This can be done more effectively after\nyou complete the ownership education quiz.",400,380,26,3,false,"white",loopCount);
               if(loopCount==1455)(playSound("audio/typing.mp3"));
               if(loopCount==1780)(stopSound("audio/typing.mp3"));
               if(loopCount==1839)(textStart.push(1850));
@@ -6453,7 +6445,7 @@ window.preload = function () {
               textStart=[10,460,960,1460];
             }
             
-              typeText("5) Lastly, picking up litter gives 2-4 points, depending\non the object. Using the recycling center once it is developed\nwill double the points you earn.",400,380,26,4,false,"white",loopCount);
+              typeText("5) Lastly, picking up litter gives 20-40 points, depending\non the object. Using the recycling center once it is developed\nwill double the points you earn.",400,380,26,4,false,"white",loopCount);
               if(loopCount==1845)(playSound("audio/typing.mp3"));
               if(loopCount==2160)(stopSound("audio/typing.mp3"));
               if(loopCount==2229)(textStart.push(2250));
@@ -6475,7 +6467,7 @@ window.preload = function () {
                 fill(rgb(0,0,200)); textSize(21); noStroke();
                 text("Site for\nJustice University",t2Land[1].x, t2Land[1].y);
               }
-              typeText("The ownership quiz is opened with [G], and taking it gives\nownership education points. Developing the university hall \n(top center) unlocks the advanced questions, which when\ncompleted will make advocating more effective.",400,380,26,5,false,"white",loopCount);
+              typeText("The ownership quiz is opened with [G], and taking it gives\nownership education points. Developing Justice University \n(top center) unlocks the advanced questions, which when\ncompleted will make advocating more effective.",400,380,26,5,false,"white",loopCount);
               if(loopCount==2245)(playSound("audio/typing.mp3"));
               if(loopCount==2700)(stopSound("audio/typing.mp3"));
               if(loopCount==2829){
@@ -6533,7 +6525,7 @@ window.preload = function () {
           //if the task is done
           if ((jobProgressLeft >= 1)) {
             stopSound("audio/typing.mp3");
-            var pPoints = 3 - litterDebuff;
+            var pPoints = 30 - litterDebuff;
             if (pPoints<1) (pPoints=1);
             trashPoints += pPoints;
             trashPickedUp++;
@@ -6556,7 +6548,7 @@ window.preload = function () {
               }
               if(keyWentDown("ENTER")){
                 stopSound("audio/typing.mp3");
-                var pPoints = 3 - litterDebuff;
+                var pPoints = 30 - litterDebuff;
                 if (pPoints<1) (pPoints=1);
                 trashPoints += pPoints;
                 trashPickedUp++;
@@ -6675,7 +6667,7 @@ window.preload = function () {
               cleanUpActive=true;
               jobProgressLeft=0;
               cUpdateCount=-3600;
-              trashPoints=3;
+              trashPoints=30;
               trashPickedUp=1;
               textStart=[2845,2845];
               cPoints=0;
@@ -7435,7 +7427,7 @@ window.preload = function () {
       shareHeader.shapeColor = rgb(110, 220, 115);
 
       if (plot == 1) {
-        text("[E]\tJustice University Hall\n[R] " + paymentText[payMethod], 215, 750);
+        text("[E]\tJustice University\n[R] " + paymentText[payMethod], 215, 750);
       } else if (plot == 2) {
         text("[E]\tRecycling Plant\n[R] " + paymentText[payMethod], 215, 750);
       }
@@ -7724,9 +7716,9 @@ window.preload = function () {
       //visibility statements
       recycleSprites.setVisibleEach(false);
       educationLevelLeft.visible = charHead.visible = music.visible = true;
-      if(cPoints>=20)(cMedals[0].visible=true);
-      if(cPoints>=50)(cMedals[1].visible=true);
-      if(cPoints>=100)(cMedals[2].visible=true);
+      if(cPoints>=200)(cMedals[0].visible=true);
+      if(cPoints>=500)(cMedals[1].visible=true);
+      if(cPoints>=1000)(cMedals[2].visible=true);
       
       leftBackground.visible = paymentBgr.visible = shareHeader.visible = false;
       g1Indicator.visible = false;
@@ -8215,7 +8207,7 @@ window.preload = function () {
       cPoints = 0;
       //reset objectives 
       objListCLDC = [
-       ["Construct the University Hall", -300, false,false],
+       ["Construct Justice University", -300, false,false],
       ["Construct the Recycling Center", -300, false,false],
       ["Rebuild All City Roads", -300, false,false],
       ["Develop Both Parks", -300, false,false],
@@ -8227,12 +8219,12 @@ window.preload = function () {
       curObjListCLDC = ["", "", ""];
 
       objListP = [
-      ["Earn 20 Community Service Points", -300, false,false],
+      ["Do Community Service: 200 Points", -300, false,false],
       ["Advocate For a Land Plot Vote", -300, false,false],
       ["Help Renovate a Park", -300, false,false],
-      ["Earn 50 Community Service Points", -300, false,false],
+      ["Do Community Service: 500 Points", -300, false,false],
       ["Complete the Ownership Quiz", -300, false,false],
-      ["Earn 100 Community Service Points", -300, false,false],
+      ["Do Community Service: 1000 Pts", -300, false,false],
       ["Receive $5k in Dividends", -300, false,false],
       ["Put Out a Fire", -300, false,false],
       ["Stop a Flood", -300, false,false]
@@ -8368,7 +8360,7 @@ window.preload = function () {
       if (ship.x > 880) {
         ship.x = -50;
         ship.y = randomNumber(20, 50);
-        if(randomNumber(1,10) == 1){
+        if(randomNumber(1,25) == 1){
           ship.setAnimation("steamboat_willie");
           ship.scale = 0.3;
           ship.y=35;
@@ -8562,7 +8554,7 @@ window.preload = function () {
         }
         votesComplete[number] = true;
         advocacyLoop[number] = loopCount;
-        cPoints++;
+        cPoints+=10;
         cExpenses--;
         if (cExpenses < 0) {
           cExpenses = 0;
@@ -8954,7 +8946,7 @@ window.preload = function () {
       cleanUpSprites.setVisibleEach(false);
       jobProgressLeft = 0;
       cPoints += trashPoints;
-      cExpenses -= (trashPoints*cMult);
+      cExpenses -= ((trashPoints/10)*cMult);
       if (cExpenses < 0) {
         cExpenses = 0;
       }
@@ -9023,9 +9015,9 @@ window.preload = function () {
         closeMenu();
         shareHeader.visible = offerOpen = false;
         educationLevelLeft.visible = charHead.visible = music.visible = true;
-        if(cPoints>=20)(cMedals[0].visible=true);
-        if(cPoints>=50)(cMedals[1].visible=true);
-        if(cPoints>=100)(cMedals[2].visible=true);
+        if(cPoints>=200)(cMedals[0].visible=true);
+        if(cPoints>=500)(cMedals[1].visible=true);
+        if(cPoints>=1000)(cMedals[2].visible=true);
       }
       if (!lTouchingJob) {
         jobProgressLeft += 0.01;
@@ -9062,7 +9054,7 @@ window.preload = function () {
         }
         cExpenses -= 1;
         recentPoints = 1;
-        cPoints += 1;
+        cPoints += 10;
         cUpdateCount = loopCount;
         jobProgressLeft = 0;
 
