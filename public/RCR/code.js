@@ -457,6 +457,61 @@ window.preload = function () {
     var highScores = [["",0],["",0],["",0]];
     const timesDoc = doc(db, 'leaderboard', 'fastestTimes');
     const scoresDoc = doc(db, 'leaderboard', 'highScores');
+    const resetDoc = doc(db, 'leaderboard', 'lastReset');
+
+    getDoc(resetDoc).then((docSnap) => {
+      if (docSnap.exists) {
+       const sData = docSnap.data();
+       if ((month() > sData.month) || (year() > sData.year)) {
+          console.log("Resetting leaderboard for the month of "+month()+"/"+year());
+          let resetData = {
+            month: month(),
+            year: year()
+          }
+          let scoresData = {
+            name1: "",
+            name2: "",
+            name3: "",
+            score1: 0,
+            score2: 0,
+            score3: 0
+          }
+          let timesData = {
+            name1: "",
+            name2: "",
+            name3: "",
+            hours1: 99,
+            minutes1: 0,
+            seconds1: 0,
+            hours2: 99,
+            minutes2: 0,
+            seconds2: 0,
+            hours3: 99,
+            minutes3: 0,
+            seconds3: 0,
+          }
+          updateDoc(resetDoc, resetData).then(() => {
+            console.log("lastReset updated successfully");
+          }).catch((error) => {
+            console.error("Error updating document: "+error.message);
+          });
+          updateDoc(timesDoc, timesData).then(() => {
+            console.log("times reset successfully");
+          }).catch((error) => {
+            console.error("Error updating document: "+error.message);
+          });
+          updateDoc(scoresDoc, scoresData).then(() => {
+            console.log("scores reset successfully");
+          }).catch((error) => {
+            console.error("Error updating document: "+error.message);
+          });
+       }
+      } else {
+        console.log("lastReset document does not exist!");
+      }
+    }).catch((error) => {
+      console.error("Error getting document: " + error.message);
+    });
 
     //set up document listeners for live updates
     onSnapshot(scoresDoc, () => {
@@ -1600,14 +1655,14 @@ window.preload = function () {
           strokeWeight(1); stroke("black");
           rect(150+xSlide, 75, 500, 175);
           rect(1145+xSlide, 50, 220, 80);
-          rect(-650+xSlide, 50, 390, 80);
+          rect(-750+xSlide, 50, 590, 80);
           
           textSize(65); fill('black');
           textAlign('center', 'center'); textFont("impact");
           text('River City Reborn', 400+xSlide, 120);
           strokeWeight(0.5); stroke("black");textSize(60);
           text('Credits',1255+xSlide,92);
-          text('Leaderboard',-455+xSlide,92);
+          text('Monthly Leaderboard',-455+xSlide,92);
           textSize(50); strokeWeight(2);textFont("georgia");
           strokeWeight(1);
           text('Start Game', 400+xSlide, 410);
@@ -1656,14 +1711,42 @@ window.preload = function () {
 
           //leaderboard screen graphics (subtract 855 from the x value)
           if (xSlide > 0) {
-            //FASTEST TIMES
-            strokeWeight(1); stroke("black");
+            strokeWeight(1); stroke("black"); textStyle(BOLD);
+            fill(rgb(255,255,255,0.4)); 
+            rect(-750+xSlide,130,590,40);
+            textSize(27); fill("black");noStroke();
 
-            fill(rgb(255,255,255,0.7));
-            rect(-770+xSlide,205,630,200);
+            //calculate time until next reset
+            let today = new Date();
+            
+            let nextMonthYear = year();
+            if (month() == 12) (nextMonthYear++); 
+            let nextMonth = new Date(nextMonthYear, month(), 1);
+            //diff is the time in seconds until the month changes
+            let diff = Math.floor((nextMonth - today) / 1000);
+            let days = Math.floor(diff/(24*60*60));
+            let hours = Math.floor((diff % (24*60*60)) / (60 * 60));
+            let minutes = Math.floor((diff % (60 * 60)) / 60);
+            let seconds = diff % 60;
+            let formattedTime = "";
+            if (days>0) {
+              formattedTime += days + " days, ";
+            }
+            formattedTime += ('0'+hours).slice(-2)+':'+
+            ('0'+minutes).slice(-2)+':'+
+            ('0'+seconds).slice(-2);
+            textAlign(LEFT,CENTER);
+            text("Next Reset In: ", -685+xSlide, 152);
+            fill(rgb(0,120,0));
+            text(formattedTime, -480+xSlide, 152);
+            textStyle(NORMAL);
+
+            //FASTEST TIMES
+            fill(rgb(255,255,255,0.7));strokeWeight(1);stroke("black");
+            rect(-770+xSlide,215,630,200);
 
             fill(rgb(159, 197, 232));
-            rect(-770+xSlide,160,630,45);
+            rect(-770+xSlide,170,630,45);
 
             var leaderColors=['gold','silver',rgb(176,141,87)];
             textSize(29);
@@ -1671,62 +1754,62 @@ window.preload = function () {
               strokeWeight(1); stroke("black");
               let yOffset = (po*55);
               fill(leaderColors[po]);
-              rect(-755+xSlide,230+yOffset,600,40);
+              rect(-755+xSlide,240+yOffset,600,40);
               fill("white");
-              rect(-310+xSlide, 230+yOffset, 148, 40);
+              rect(-310+xSlide, 240+yOffset, 148, 40);
               fill(rgb(201, 218, 248));
-              rect(-755+xSlide,230+yOffset,40,40);
+              rect(-755+xSlide,240+yOffset,40,40);
               
-              fill("black");noStroke();
-              text((po+1)+".",-735+xSlide,252+yOffset); //rank
-              textAlign("left","center");
-              text(topTimes[po][0], -705+xSlide, 252+yOffset); //name
-              textAlign("center","center");
+              fill("black"); noStroke(); textAlign(CENTER,CENTER);
+              text((po+1)+".",-735+xSlide,262+yOffset); //rank
+              textAlign(LEFT,CENTER);
+              text(topTimes[po][0], -705+xSlide, 262+yOffset); //name
+              textAlign(CENTER,CENTER);
               let secondsString = (topTimes[po][3] < 10) ? "0"+topTimes[po][3] : topTimes[po][3];
               let minutesString = (topTimes[po][2] < 10) ? "0"+topTimes[po][2] : topTimes[po][2];
               let hoursString = (topTimes[po][1] < 10) ? "0"+topTimes[po][1] : topTimes[po][1];
 
-              text(hoursString+":"+minutesString+":"+secondsString, -236+xSlide, 252+yOffset); //Time in format hours:minutes:seconds
+              text(hoursString+":"+minutesString+":"+secondsString, -236+xSlide, 262+yOffset); //Time in format hours:minutes:seconds
             }
             
           //HIGH SCORES
             strokeWeight(1); stroke("black");
 
             fill(rgb(255,255,255,0.7));
-            rect(-770+xSlide,475,630,200);
+            rect(-770+xSlide,485,630,200);
             
             
             fill(rgb(190, 155, 245));
-            rect(-770+xSlide,430,630,45);
+            rect(-770+xSlide,440,630,45);
 
             for(var pu=0; pu<3; pu++){
               strokeWeight(1); stroke("black");
               let yOffset = (pu*55);
               fill(leaderColors[pu]);
-              rect(-755+xSlide, 500+yOffset,600,40);
+              rect(-755+xSlide, 510+yOffset,600,40);
               fill('white');
-              rect(-310+xSlide, 500+yOffset, 148, 40);
+              rect(-310+xSlide, 510+yOffset, 148, 40);
               fill(rgb(200, 165, 255));
-              rect(-755+xSlide,500+yOffset,40,40);
+              rect(-755+xSlide,510+yOffset,40,40);
 
               fill("black");noStroke();
-              text((pu+1)+".",-735+xSlide,522+yOffset); // rank
+              text((pu+1)+".",-735+xSlide,532+yOffset); // rank
 
               textAlign("left","center");
               fill("black");
-              text(highScores[pu][0], -705+xSlide, 522+yOffset); //name
+              text(highScores[pu][0], -705+xSlide, 532+yOffset); //name
               textAlign("center","center");
               
               if (highScores[pu][1] >= 10000000) {
-                text(addCommas(Math.round(highScores[pu][1] / 1000000))+"M", -236+xSlide, 522+yOffset); //Score with commas, 10M or more
+                text(addCommas(Math.round(highScores[pu][1] / 1000000))+"M", -236+xSlide, 532+yOffset); //Score with commas, 10M or more
               }else {
-                text(addCommas(highScores[pu][1]), -236+xSlide, 522+yOffset); //Score with commas
+                text(addCommas(highScores[pu][1]), -236+xSlide, 532+yOffset); //Score with commas
               }
             }
             
             textSize(40); fill("black"); strokeWeight(1);
-            text("Fastest Times", -455+xSlide, 183);
-            text("High Scores", -455+xSlide, 453);
+            text("Fastest Times", -455+xSlide, 193);
+            text("High Scores", -455+xSlide, 463);
             text("Back →",leaderBackBtn.x,leaderBackBtn.y);
 
           }
@@ -6784,13 +6867,12 @@ window.preload = function () {
       }
 
       
-      //mouse coords for graphics
+      //debug / mouse coords for graphics
       if(keyDown("q")){
         fill(rgb(0,0,0,0.6));noStroke();
         rect(0,760,800,40);
         fill(rgb(255,50,50));textSize(20);noStroke();textAlign(CENTER,CENTER);
-        text(World.mouseX+", "+World.mouseY+" :: "+loopCount+" | "+textStart.toString(),400,780);
-        
+        text(World.mouseX+", "+World.mouseY+" :: "+loopCount+" | "+day()+"/"+month(),400,780);
       }
       if(level == 3 && introControl==0){
       spotlight(10,10,780,595);
