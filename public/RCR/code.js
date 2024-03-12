@@ -103,7 +103,8 @@ window.preload = function () {
       "32880dce-82b0-41cc-8154-6dbbcdca15d6","c4b57627-d0aa-4b3e-9e25-ee2bd86bab15","18879e75-30c4-4595-a693-6d9bff8a5bce",
       "155760e3-dd81-4e81-a491-ccb6bf1e1667","def110de-c1a9-4d72-ae0b-9fadd52df8ff","22fc5cc4-d558-4719-8eea-f7d1e909495c",
       "7d18a641-8a03-42e1-85c3-0260c2e70ae0","dba337a9-5ab1-4dff-9c20-59d224efa696","dc59f0e3-7d39-408c-86fd-67bab79d0425",
-      "954c2a2f-98f3-4a9c-a8e5-28a5d79d0eec","ea2d3ee0-4af8-41af-bca7-e8f5445f37bc","thumbUp","thumbDown","steamboat"],
+      "954c2a2f-98f3-4a9c-a8e5-28a5d79d0eec","ea2d3ee0-4af8-41af-bca7-e8f5445f37bc","thumbUp","thumbDown","steamboat",
+      "blank_0","blank_1","blank_2","blank_3","blank_4","blank_5","blank_6","blank_7","blank_8","blank_9"],
       "propsByKey":{
         "afe271cc-d4d9-41b5-b5d6-667d3f9477c6":{"name":"leftUp","sourceUrl":null,"frameSize":{"x":240,"y":384},"frameCount":1,"looping":true,"frameDelay":12,"version":"fORYRd_8dtCMTf7zXK2kR98Kek6XUA_3","loadedFromSource":true,"saved":true,"sourceSize":{"x":240,"y":384},"rootRelativePath":"assets/afe271cc-d4d9-41b5-b5d6-667d3f9477c6.png"},
         "344bc444-0c43-45c0-93ef-915cb76ff02d":{"name":"leftSide","sourceUrl":null,"frameSize":{"x":384,"y":240},"frameCount":1,"looping":true,"frameDelay":12,"version":"sOHx7oXz2trTC1EE69Z5asHU6rJQYV.C","loadedFromSource":true,"saved":true,"sourceSize":{"x":384,"y":240},"rootRelativePath":"assets/344bc444-0c43-45c0-93ef-915cb76ff02d.png"},
@@ -313,7 +314,17 @@ window.preload = function () {
         "ea2d3ee0-4af8-41af-bca7-e8f5445f37bc":{"name":"offerSign","sourceUrl":null,"frameSize":{"x":188,"y":131},"frameCount":1,"looping":true,"frameDelay":12,"version":"1dc3sTPM65jYHZOEzXb8kyhnqvbCQ4Zo","loadedFromSource":true,"saved":true,"sourceSize":{"x":188,"y":131},"rootRelativePath":"assets/ea2d3ee0-4af8-41af-bca7-e8f5445f37bc.png"},
         "thumbUp":{"name":"thumbUp","sourceUrl":null,"frameSize":{"x":200,"y":200},"frameCount":1,"looping":true,"frameDelay":12,"version":"1dc3sTPM65jYHZOEzXb8kyhnqvbCQ4Zo","loadedFromSource":true,"saved":true,"sourceSize":{"x":200,"y":200},"rootRelativePath":"assets/thumbUp.png"},
         "thumbDown":{"name":"thumbDown","sourceUrl":null,"frameSize":{"x":200,"y":200},"frameCount":1,"looping":true,"frameDelay":12,"version":"1dc3sTPM65jYHZOEzXb8kyhnqvbCQ4Zo","loadedFromSource":true,"saved":true,"sourceSize":{"x":200,"y":200},"rootRelativePath":"assets/thumbDown.png"},
-        "steamboat":{"name":"steamboat_willie","sourceUrl":null,"frameSize":{"x":402,"y":336},"frameCount":14,"looping":true,"frameDelay":2,"version":"1dc3sTPM65jYHZOEzXb8kyhnqvbCQ4Zo","loadedFromSource":true,"saved":true,"sourceSize":{"x":1206,"y":1680},"rootRelativePath":"assets/steamboat.png"}
+        "steamboat":{"name":"steamboat_willie","sourceUrl":null,"frameSize":{"x":402,"y":336},"frameCount":14,"looping":true,"frameDelay":2,"version":"1dc3sTPM65jYHZOEzXb8kyhnqvbCQ4Zo","loadedFromSource":true,"saved":true,"sourceSize":{"x":1206,"y":1680},"rootRelativePath":"assets/steamboat.png"},
+        "blank_0":{"name":"blank_0","sourceUrl":null,"frameSize":{"x":120,"y":120},"frameCount":1,"looping":true,"frameDelay":12,"version":"M4OLgCvRc8OdGFv2rdwTJyYtLMUMcm5d","loadedFromSource":true,"saved":true,"sourceSize":{"x":120,"y":120},"rootRelativePath":"assets/blank_0.png"},
+        "blank_1":{"name":"blank_1","sourceUrl":null,"frameSize":{"x":120,"y":120},"frameCount":1,"looping":true,"frameDelay":12,"version":"M4OLgCvRc8OdGFv2rdwTJyYtLMUMcm5d","loadedFromSource":true,"saved":true,"sourceSize":{"x":120,"y":120},"rootRelativePath":"assets/blank_1.png"},
+        "blank_2":{"name":"blank_2","sourceUrl":null,"frameSize":{"x":120,"y":120},"frameCount":1,"looping":true,"frameDelay":12,"version":"M4OLgCvRc8OdGFv2rdwTJyYtLMUMcm5d","loadedFromSource":true,"saved":true,"sourceSize":{"x":120,"y":120},"rootRelativePath":"assets/blank_2.png"},
+        "blank_3":{"name":"blank_3","sourceUrl":null,"frameSize":{"x":120,"y":120},"frameCount":1,"looping":true,"frameDelay":12,"version":"M4OLgCvRc8OdGFv2rdwTJyYtLMUMcm5d","loadedFromSource":true,"saved":true,"sourceSize":{"x":120,"y":120},"rootRelativePath":"assets/blank_3.png"},
+        "blank_4":{"name":"blank_4","sourceUrl":null,"frameSize":{"x":120,"y":120},"frameCount":1,"looping":true,"frameDelay":12,"version":"M4OLgCvRc8OdGFv2rdwTJyYtLMUMcm5d","loadedFromSource":true,"saved":true,"sourceSize":{"x":120,"y":120},"rootRelativePath":"assets/blank_4.png"},
+        "blank_5":{"name":"blank_5","sourceUrl":null,"frameSize":{"x":120,"y":120},"frameCount":1,"looping":true,"frameDelay":12,"version":"M4OLgCvRc8OdGFv2rdwTJyYtLMUMcm5d","loadedFromSource":true,"saved":true,"sourceSize":{"x":120,"y":120},"rootRelativePath":"assets/blank_5.png"},
+        "blank_6":{"name":"blank_6","sourceUrl":null,"frameSize":{"x":120,"y":120},"frameCount":1,"looping":true,"frameDelay":12,"version":"M4OLgCvRc8OdGFv2rdwTJyYtLMUMcm5d","loadedFromSource":true,"saved":true,"sourceSize":{"x":120,"y":120},"rootRelativePath":"assets/blank_6.png"},
+        "blank_7":{"name":"blank_7","sourceUrl":null,"frameSize":{"x":120,"y":120},"frameCount":1,"looping":true,"frameDelay":12,"version":"M4OLgCvRc8OdGFv2rdwTJyYtLMUMcm5d","loadedFromSource":true,"saved":true,"sourceSize":{"x":120,"y":120},"rootRelativePath":"assets/blank_7.png"},
+        "blank_8":{"name":"blank_8","sourceUrl":null,"frameSize":{"x":120,"y":120},"frameCount":1,"looping":true,"frameDelay":12,"version":"M4OLgCvRc8OdGFv2rdwTJyYtLMUMcm5d","loadedFromSource":true,"saved":true,"sourceSize":{"x":120,"y":120},"rootRelativePath":"assets/blank_8.png"},
+        "blank_9":{"name":"blank_9","sourceUrl":null,"frameSize":{"x":120,"y":120},"frameCount":1,"looping":true,"frameDelay":12,"version":"M4OLgCvRc8OdGFv2rdwTJyYtLMUMcm5d","loadedFromSource":true,"saved":true,"sourceSize":{"x":120,"y":120},"rootRelativePath":"assets/blank_9.png"}
       }};
   var orderedKeys = animationListJSON.orderedKeys;
   var allAnimationsSingleFrame = false;
@@ -400,7 +411,7 @@ window.preload = function () {
     var quizHoverLeft = 1;
     var quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
     var quizStartLoop = -3600;
-    var educationProgressLeft = 3;
+    var educationProgressLeft = -1;
     var loopAtAnswerLeft = -200;
     var totalQuestionsLeft = 0;
     var rRollLeft;
@@ -1430,7 +1441,7 @@ window.preload = function () {
               bChar1.setAnimation("bDown");
               aChar1.setAnimation("aDown");
                 //set starting funds
-                var randStart=randomNumber(4000,6000)*5;//1000000;
+                var randStart=1000000;//randomNumber(4000,6000)*5;
                 totIncome = randStart;
                 totProfits=randStart;
             
@@ -2454,7 +2465,7 @@ window.preload = function () {
           }else if((t2BuildingPlaced[1] && !initOpent2[1]) && !hintList[10]){
             //university hall hint
             var hintLoop = loopCount - univHallLoop;
-            showHint("You've just unlocked the advanced questions for\nthe ownership quiz! Press [G] to get started!",hintLoop,26);
+            showHint("You've just unlocked the questions for\nthe ownership quiz! Press [G] to get started!", hintLoop,26);
             if(keyWentDown('g') || hintLoop==280)(hintList[10]=true);
           }
         }
@@ -3082,223 +3093,221 @@ window.preload = function () {
         //Ownership quiz logic
         if(educationOpen){
           loopCopy++;
-          if (educationProgressLeft < 0) {
-            if (keyWentDown('R') && loopAtAnswerLeft + 16 < loopCopy) {
-              playSound("audio/app_menu_button_2.mp3");
-              if (quizHoverLeft == 3) {
-                quizHoverLeft = 1;
-                quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
-              } else if (quizHoverLeft == 2) {
-                quizHoverLeft = 3;
-                quizColorsLeft = ['lightGray', 'lightGray', 'white', 'lightGray'];
-              } else {
-                quizHoverLeft = 2;
-                quizColorsLeft = ['lightGray', 'white', 'lightGray', 'lightGray'];
+          //university hall must be placed
+          if (t2BuildingPlaced[1] && !initOpent2[1]) {
+            if (educationProgressLeft < 0) {
+              if (keyWentDown('R') && loopAtAnswerLeft + 16 < loopCopy) {
+                playSound("audio/app_menu_button_2.mp3");
+                if (quizHoverLeft == 3) {
+                  quizHoverLeft = 1;
+                  quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
+                } else if (quizHoverLeft == 2) {
+                  quizHoverLeft = 3;
+                  quizColorsLeft = ['lightGray', 'lightGray', 'white', 'lightGray'];
+                } else {
+                  quizHoverLeft = 2;
+                  quizColorsLeft = ['lightGray', 'white', 'lightGray', 'lightGray'];
+                }
               }
-            }
-            if (keyWentDown("e") && quizStartLoop<0) {
-              playSound("audio/app_interface_button_3.mp3");
-                quizStartLoop = loopCopy;
+              if (keyWentDown("e") && quizStartLoop<0) {
+                playSound("audio/app_interface_button_3.mp3");
+                  quizStartLoop = loopCopy;
+                }
+              else if ((keyWentDown("E")||keyWentDown("Enter")) && loopAtAnswerLeft + 16 < loopCopy) {
+                loopAtAnswerLeft = loopCopy;
+                totalQuestionsLeft++;
+                if (totalQuestionsLeft == 19) {
+                  vocabQuestionsAnsweredLeft = [
+                    false, false, false, false,
+                    false, false, false, false,
+                    false, false, false, false,
+                    false, false, false, false,
+                    false, false, false, false
+                  ];
+                  totalQuestionsLeft = 1;
+                }
+                //if answer is correct
+                if (quizHoverLeft == vocabQuizAnswers[randomQuestionLeft]) {
+                  playSound("audio/correct2.mp3");
+                  quizColorsLeft[quizHoverLeft - 1] = 'lightGreen';
+                  educationLevelLeft.setAnimation("book");
+                  educationLevelLeft.scale = 0.18;
+                  ePoints += 50;
+                  //Ownership education colors
+                  if (ePoints > 0) (menuColors[8] = rgb(180, 235, 190));
+                  else (menuColors[8] = rgb(244, 204, 204));
+                  recentPoints = 50;
+                  //if answer is incorrect
+                } else {
+                  playSound("audio/incorrect.mp3");
+                  quizColorsLeft[quizHoverLeft - 1] = rgb(255, 200, 200);
+                }
               }
-            else if ((keyWentDown("E")||keyWentDown("Enter")) && loopAtAnswerLeft + 16 < loopCopy) {
-              loopAtAnswerLeft = loopCopy;
-              totalQuestionsLeft++;
-              if (totalQuestionsLeft == 19) {
-                vocabQuestionsAnsweredLeft = [
-                  false, false, false, false,
-                  false, false, false, false,
-                  false, false, false, false,
-                  false, false, false, false,
-                  false, false, false, false
-                ];
-                totalQuestionsLeft = 1;
-              }
-              //if answer is correct
-              if (quizHoverLeft == vocabQuizAnswers[randomQuestionLeft]) {
-                playSound("audio/correct2.mp3");
-                quizColorsLeft[quizHoverLeft - 1] = 'lightGreen';
-                educationLevelLeft.setAnimation("book");
-                educationLevelLeft.scale = 0.18;
-                ePoints += 50;
-                //Ownership education colors
-                if (ePoints > 0) (menuColors[8] = rgb(180, 235, 190));
-                else (menuColors[8] = rgb(244, 204, 204));
-                recentPoints = 50;
-                //if answer is incorrect
-              } else {
-                playSound("audio/incorrect.mp3");
-                quizColorsLeft[quizHoverLeft - 1] = rgb(255, 200, 200);
-              }
-            }
-            //wait half a second to show result, then switch to next question
-            if (loopAtAnswerLeft + 15 == loopCopy) {
-              if (quizHoverLeft == vocabQuizAnswers[randomQuestionLeft]) (educationProgressLeft += 0.201);
-              quizColorsLeft[quizHoverLeft - 1] = 'white';
-              vocabQuestionsAnsweredLeft[randomQuestionLeft] = true;
-              //find new random question
-              randomQuestionLeft = randomNumber(0, 19);
-              while (vocabQuestionsAnsweredLeft[randomQuestionLeft]) {
+              //wait half a second to show result, then switch to next question
+              if (loopAtAnswerLeft + 15 == loopCopy) {
+                if (quizHoverLeft == vocabQuizAnswers[randomQuestionLeft]) (educationProgressLeft += 0.201);
+                quizColorsLeft[quizHoverLeft - 1] = 'white';
+                vocabQuestionsAnsweredLeft[randomQuestionLeft] = true;
+                //find new random question
                 randomQuestionLeft = randomNumber(0, 19);
-              }
-              if (educationProgressLeft > 0) {
-                quizHoverLeft = 1;
-                quizColorsLeft = quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
-                randomQuestionLeft = randomNumber(0, 10);
                 while (vocabQuestionsAnsweredLeft[randomQuestionLeft]) {
+                  randomQuestionLeft = randomNumber(0, 19);
+                }
+                if (educationProgressLeft > 0) {
+                  quizHoverLeft = 1;
+                  quizColorsLeft = quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
+                  randomQuestionLeft = randomNumber(0, 10);
+                  while (vocabQuestionsAnsweredLeft[randomQuestionLeft]) {
+                    randomQuestionLeft = randomNumber(0, 10);
+                  }
+                }
+              }
+            }
+            else if (educationProgressLeft < 1) {
+              if (keyWentDown('R') && loopAtAnswerLeft + 16 < loopCopy) {
+                playSound("audio/app_menu_button_2.mp3");
+                if (quizHoverLeft == 4) {
+                  quizHoverLeft = 1;
+                  quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
+                } else if (quizHoverLeft == 3) {
+                  quizHoverLeft = 4;
+                  quizColorsLeft = ['lightGray', 'lightGray', 'lightGray', 'white'];
+                } else if (quizHoverLeft == 2) {
+                  quizHoverLeft = 3;
+                  quizColorsLeft = ['lightGray', 'lightGray', 'white', 'lightGray'];
+                } else {
+                  quizHoverLeft = 2;
+                  quizColorsLeft = ['lightGray', 'white', 'lightGray', 'lightGray'];
+                }
+              }
+              if ((keyWentDown("E")||keyWentDown("Enter")) && loopAtAnswerLeft + 16 < loopCopy) {
+                loopAtAnswerLeft = loopCopy;
+                totalQuestionsLeft++;
+                if (totalQuestionsLeft == 11) {
+                  questionsAnsweredLeft = [
+                    false, false, false, false,
+                    false, false, false, false,
+                    false, false, false
+                  ];
+                  totalQuestionsLeft = 1;
+                }
+                //if answer is correct
+                if (quizHoverLeft == quizAnswers[randomQuestionLeft]) {
+                  playSound("audio/correct2.mp3");
+                  quizColorsLeft[quizHoverLeft - 1] = 'lightGreen';
+                  educationLevelLeft.setAnimation("book");
+                  educationLevelLeft.scale = 0.18;
+                  ePoints += 100;
+                  //Ownership education colors
+                  if (ePoints > 0) (menuColors[8] = rgb(180, 235, 190));
+                  else (menuColors[8] = rgb(244, 204, 204));
+                  recentPoints = 100;
+                  //if answer is incorrect
+                } else {
+                  playSound("audio/incorrect.mp3");
+                  quizColorsLeft[quizHoverLeft - 1] = rgb(255, 200, 200);
+                }
+              }
+              //wait half a second to show result, then switch to next question
+              if (loopAtAnswerLeft + 15 == loopCopy) {
+                if (quizHoverLeft == quizAnswers[randomQuestionLeft]) (educationProgressLeft += 0.201);
+                quizColorsLeft[quizHoverLeft - 1] = 'white';
+                questionsAnsweredLeft[randomQuestionLeft] = true;
+                //find new random question
+                randomQuestionLeft = randomNumber(0, 10);
+                while (questionsAnsweredLeft[randomQuestionLeft]) {
                   randomQuestionLeft = randomNumber(0, 10);
                 }
               }
             }
-          }
-          else if (educationProgressLeft < 1) {
-            if (keyWentDown('R') && loopAtAnswerLeft + 16 < loopCopy) {
-              playSound("audio/app_menu_button_2.mp3");
-              if (quizHoverLeft == 4) {
-                quizHoverLeft = 1;
-                quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
-              } else if (quizHoverLeft == 3) {
-                quizHoverLeft = 4;
-                quizColorsLeft = ['lightGray', 'lightGray', 'lightGray', 'white'];
-              } else if (quizHoverLeft == 2) {
-                quizHoverLeft = 3;
-                quizColorsLeft = ['lightGray', 'lightGray', 'white', 'lightGray'];
-              } else {
-                quizHoverLeft = 2;
-                quizColorsLeft = ['lightGray', 'white', 'lightGray', 'lightGray'];
+            else if (educationProgressLeft < 2) {
+                 if (keyWentDown('R') && loopAtAnswerLeft + 16 < loopCopy) {
+                   playSound("audio/app_menu_button_2.mp3");
+                if (quizHoverLeft == 4) {
+                  quizHoverLeft = 1;
+                  quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
+                } else if (quizHoverLeft == 3) {
+                  quizHoverLeft = 4;
+                  quizColorsLeft = ['lightGray', 'lightGray', 'lightGray', 'white'];
+                } else if (quizHoverLeft == 2) {
+                  quizHoverLeft = 3;
+                  quizColorsLeft = ['lightGray', 'lightGray', 'white', 'lightGray'];
+                } else {
+                  quizHoverLeft = 2;
+                  quizColorsLeft = ['lightGray', 'white', 'lightGray', 'lightGray'];
+                }
               }
-            }
-            if ((keyWentDown("E")||keyWentDown("Enter")) && loopAtAnswerLeft + 16 < loopCopy) {
-              loopAtAnswerLeft = loopCopy;
-              totalQuestionsLeft++;
-              if (totalQuestionsLeft == 11) {
-                questionsAnsweredLeft = [
-                  false, false, false, false,
-                  false, false, false, false,
-                  false, false, false
-                ];
-                totalQuestionsLeft = 1;
+              if ((keyWentDown("E")||keyWentDown("Enter")) && loopAtAnswerLeft + 16 < loopCopy) {
+                loopAtAnswerLeft = loopCopy;
+                totalQuestionsLeft++;
+                if (totalQuestionsLeft == 12) {
+                  t3QuestionsAnsweredLeft = [
+                    false, false, false, false,
+                    false, false, false, false,
+                    false, false, false, false
+                  ];
+                  totalQuestionsLeft = 1;
+                }
+                //if answer is correct
+                if (quizHoverLeft == t3QuizAnswers[randomQuestionLeft]) {
+                  playSound("audio/correct2.mp3");
+                  quizColorsLeft[quizHoverLeft - 1] = 'lightGreen';
+                  educationLevelLeft.setAnimation("book");
+                  educationLevelLeft.scale = 0.18;
+                  ePoints += 200;
+                  //Ownership education colors
+                  if (ePoints > 0) (menuColors[8] = rgb(180, 235, 190));
+                  else (menuColors[8] = rgb(244, 204, 204));
+                  recentPoints = 200;
+                  
+                  //if answer is incorrect
+                } else {
+                  playSound("audio/incorrect.mp3");
+                  quizColorsLeft[quizHoverLeft - 1] = rgb(255, 200, 200);
+                }
               }
-              //if answer is correct
-              if (quizHoverLeft == quizAnswers[randomQuestionLeft]) {
-                playSound("audio/correct2.mp3");
-                quizColorsLeft[quizHoverLeft - 1] = 'lightGreen';
-                educationLevelLeft.setAnimation("book");
-                educationLevelLeft.scale = 0.18;
-                ePoints += 100;
-                //Ownership education colors
-                if (ePoints > 0) (menuColors[8] = rgb(180, 235, 190));
-                else (menuColors[8] = rgb(244, 204, 204));
-                recentPoints = 100;
-                //if answer is incorrect
-              } else {
-                playSound("audio/incorrect.mp3");
-                quizColorsLeft[quizHoverLeft - 1] = rgb(255, 200, 200);
-              }
-            }
-            //wait half a second to show result, then switch to next question
-            if (loopAtAnswerLeft + 15 == loopCopy) {
-              if (quizHoverLeft == quizAnswers[randomQuestionLeft]) (educationProgressLeft += 0.201);
-              quizColorsLeft[quizHoverLeft - 1] = 'white';
-              questionsAnsweredLeft[randomQuestionLeft] = true;
-              //find new random question
-              randomQuestionLeft = randomNumber(0, 10);
-              while (questionsAnsweredLeft[randomQuestionLeft]) {
-                randomQuestionLeft = randomNumber(0, 10);
-              }
-            }
-          }
-          else if (educationProgressLeft < 2 && t2BuildingPlaced[1] && !initOpent2[1]) {
-               if (keyWentDown('R') && loopAtAnswerLeft + 16 < loopCopy) {
-                 playSound("audio/app_menu_button_2.mp3");
-              if (quizHoverLeft == 4) {
-                quizHoverLeft = 1;
-                quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
-              } else if (quizHoverLeft == 3) {
-                quizHoverLeft = 4;
-                quizColorsLeft = ['lightGray', 'lightGray', 'lightGray', 'white'];
-              } else if (quizHoverLeft == 2) {
-                quizHoverLeft = 3;
-                quizColorsLeft = ['lightGray', 'lightGray', 'white', 'lightGray'];
-              } else {
-                quizHoverLeft = 2;
-                quizColorsLeft = ['lightGray', 'white', 'lightGray', 'lightGray'];
-              }
-            }
-            if ((keyWentDown("E")||keyWentDown("Enter")) && loopAtAnswerLeft + 16 < loopCopy) {
-              loopAtAnswerLeft = loopCopy;
-              totalQuestionsLeft++;
-              if (totalQuestionsLeft == 12) {
-                t3QuestionsAnsweredLeft = [
-                  false, false, false, false,
-                  false, false, false, false,
-                  false, false, false, false
-                ];
-                totalQuestionsLeft = 1;
-              }
-              //if answer is correct
-              if (quizHoverLeft == t3QuizAnswers[randomQuestionLeft]) {
-                playSound("audio/correct2.mp3");
-                quizColorsLeft[quizHoverLeft - 1] = 'lightGreen';
-                educationLevelLeft.setAnimation("book");
-                educationLevelLeft.scale = 0.18;
-                ePoints += 200;
-                //Ownership education colors
-                if (ePoints > 0) (menuColors[8] = rgb(180, 235, 190));
-                else (menuColors[8] = rgb(244, 204, 204));
-                recentPoints = 200;
-                
-                //if answer is incorrect
-              } else {
-                playSound("audio/incorrect.mp3");
-                quizColorsLeft[quizHoverLeft - 1] = rgb(255, 200, 200);
-              }
-            }
-            //wait half a second to show result, then switch to next question
-            if (loopAtAnswerLeft + 15 == loopCopy) {
-              if (quizHoverLeft == t3QuizAnswers[randomQuestionLeft]) (educationProgressLeft += 0.201);
-              quizColorsLeft[quizHoverLeft - 1] = 'white';
-              t3QuestionsAnsweredLeft[randomQuestionLeft] = true;
-              //find new random question
-              randomQuestionLeft = randomNumber(0, 11);
-              while (t3QuestionsAnsweredLeft[randomQuestionLeft]) {
+              //wait half a second to show result, then switch to next question
+              if (loopAtAnswerLeft + 15 == loopCopy) {
+                if (quizHoverLeft == t3QuizAnswers[randomQuestionLeft]) (educationProgressLeft += 0.201);
+                quizColorsLeft[quizHoverLeft - 1] = 'white';
+                t3QuestionsAnsweredLeft[randomQuestionLeft] = true;
+                //find new random question
                 randomQuestionLeft = randomNumber(0, 11);
+                while (t3QuestionsAnsweredLeft[randomQuestionLeft]) {
+                  randomQuestionLeft = randomNumber(0, 11);
+                }
+              }
+              
+            } 
+            else if(educationProgressLeft >= 2){
+              educationLevelLeft.setAnimation("gradHat");
+              educationLevelLeft.scale = 0.07;
+              gradScreen.visible=true;
+              if (lTouchingJob) { lTouchingJob = false; jobProgressLeft = 0; }
+              if(!objListP[4][3]){
+                playSound("audio/confetti.mp3");
+                confetti.visible = true;
+                confetti.setAnimation("confetti");
+                objListP[4][1]=loopCount;
+                objListP[4][3]=true;
+                objCount++;
               }
             }
-            
-          } 
-          else if(educationProgressLeft >= 2){
-            educationLevelLeft.setAnimation("gradHat");
-            educationLevelLeft.scale = 0.07;
-            gradScreen.visible=true;
-            if (lTouchingJob) { lTouchingJob = false; jobProgressLeft = 0; }
-            if(!objListP[4][3]){
-              playSound("audio/confetti.mp3");
-              confetti.visible = true;
-              confetti.setAnimation("confetti");
-              objListP[4][1]=loopCount;
-              objListP[4][3]=true;
-              objCount++;
-            }
           }
-
-
           
-        }
         
         //Ownership quiz visuals
-        if (educationOpen) {
           fill(rgb(0,0,0,0.7));
-          //rect(8,135,784,450);
           if(educationProgressLeft<2){
             if(menuOpen||offerOpen)(rect(8,8,784,784));
             else(rect(8,8,784,690));
           }else{
             rect(8,8,784,112);
             if(menuOpen||offerOpen){
-              rect(8,580,784,215);
+                rect(8,580,784,215);
               }
               else{
-              rect(8,580,784,115);
+                rect(8,580,784,115);
               }
             }
           
@@ -3318,7 +3327,7 @@ window.preload = function () {
           text("[E] Select Answer", 20, 155);
           text("[R] Change Selection", 20, 180);
           }
-          
+            
           if (educationProgressLeft < 0) {
             text("Level: 1/3", 630, 155);
             text("+5 Pts/Question", 630, 180);
@@ -3340,11 +3349,19 @@ window.preload = function () {
             if (quizStartLoop < 0) {
               fill(rgb(240, 240, 240));
               rect(8, 265, 784, 330);
-              fill("black"); noStroke(); textSize(30);
-              text("[E] Start the Quiz", 400, 232);
+              noStroke();fill("black");
               textSize(26); textAlign(LEFT, CENTER);
               text("- Test your knowledge by taking an Ownership Quiz!\n- All answers can be found on the cesj website.\n- When you finish, you will be more effective at advocating.", 24, 325);
-              
+              //advanced questions are locked until university hall is developed
+              if(!t2BuildingPlaced[1]||initOpent2[1]) {
+                fill(200,50,50); textAlign(CENTER,CENTER);
+                text("You must develop Justice University\nfirst to start the quiz!\n\nIt is the top center plot\nabove the central park.",400,470);
+                fill("black");  textSize(30);
+                text("Develop Justice University First!", 400, 232);
+              }else{
+                textAlign(CENTER,CENTER); fill("black"); textSize(30);
+                text("[E] Start the Quiz", 400, 232);
+              }
             } else {
               //quiz started
               //LEVEL 1
@@ -3412,15 +3429,15 @@ window.preload = function () {
               noStroke(); fill('black');
               text(t3QuizText[randomQuestionLeft][fz + 1], 16, 355 + ((fz - 1) * 68));
             }
-            
-            if(!t2BuildingPlaced[1]||initOpent2[1]){
-              //advanced questions are locked until university hall is developed
+
+            //advanced questions are locked until university hall is developed
+            /*if(!t2BuildingPlaced[1]||initOpent2[1]){
               fill(rgb(240,240,240,0.9));noStroke();
               rect(8,195,784,392);
               fill("black");stroke("black");strokeWeight(1);
               textAlign(CENTER, CENTER);textSize(38);
               text("You must develop Justice\nUniversity to finish the quiz!",400,360);
-            }
+            }*/
           } 
           
         }
@@ -3930,7 +3947,9 @@ window.preload = function () {
               fill(rgb(0, 220, 0)); stroke(rgb(0, 220, 0));
               moneyText = "+$";
             }
+            stroke("black"); strokeWeight(2); textStyle(BOLD);
             text(moneyText + addCommas(Math.round(incomeArr[za])), landLocations[za][0], landLocations[za][1] + (incomeUpdates[za] - loopCount));
+            noStroke();textStyle(NORMAL);
             if ((incomeArr[za] < 0) && (incomeUpdates[za] + 19 == loopCount)) {
               incomeArr[za] = 0;
             }
@@ -3959,9 +3978,10 @@ window.preload = function () {
               objCount++;
               if(!menuOpen&&!offerOpen)(cMedals[2].visible=true);
             }    
-            
+            stroke("black"); strokeWeight(2); textStyle(BOLD);
             if (recentPoints == 1) (text("+" + recentPoints + " Pt", leftChar.x, leftChar.y - 30 - (loopCount - cUpdateCount)));
             else (text("+" + recentPoints + " Pts", leftChar.x, leftChar.y - 30 - (loopCount - cUpdateCount)));
+            noStroke();textStyle(NORMAL);
           }
           
         }
@@ -5457,9 +5477,9 @@ window.preload = function () {
         text("SHIFT", 1275, 581); text("Sprint", 1485, 581);
 
         //Interaction text
-        text("E", 1275, 655); text("Select / Buy", 1485, 655);
+        text("E", 1275, 655); text("Select", 1485, 655);
         text("ENTER", 1275, 691); text("Skip", 1485, 691);
-        text("F", 1275, 727); text("Clear Litter", 1485, 727);
+        text("F", 1275, 727); text("Toggle Clean-up", 1485, 727);
         text("R", 1275, 763); text("Change Selection", 1485, 763);
       }
         
@@ -6079,7 +6099,11 @@ window.preload = function () {
             textStart[6]=voteLoop+1;
             progressMessageLeft = "[E] Advocate";
             //place advocacy sprite
-            jobSprites[0].setAnimation("no_" + advocacyPlayer[0]);
+            advocacyPlayer[0] = randomNumber(0, 9);
+          while(advocacyPlayer[0]==(charNum-1)){
+            advocacyPlayer[0] = randomNumber(0, 9);
+          }
+            jobSprites[0].setAnimation("blank_" + advocacyPlayer[0]);
             jobSprites[0].visible = true;
             jobSprites[0].x = streets[15].x; jobSprites[0].y = streets[15].y;
           }
@@ -8515,11 +8539,8 @@ window.preload = function () {
       while(advocacyPlayer[number]==(charNum-1)){
         advocacyPlayer[number] = randomNumber(0, 9);
       }
-      if (voteData[0] == "support") {
-        jobSprites[number].setAnimation("no_" + advocacyPlayer[number]);
-      } else {
-        jobSprites[number].setAnimation("yes_" + advocacyPlayer[number]);
-      }
+
+      jobSprites[number].setAnimation("blank_" + advocacyPlayer[number]);
       
       //move vote sprite to chosen location
       jobLocations[number] = randomJobLocationsLeft[number];
@@ -8562,7 +8583,7 @@ window.preload = function () {
         //Community service colors
         if (cPoints > 0) (menuColors[9] = rgb(180, 235, 190));
         else (menuColors[9] = rgb(244, 204, 204));
-        recentPoints = 1;
+        recentPoints = 10;
         cUpdateCount = loopCount;
         if (lJobCooldown + 120 <= loopCount) {
           lJobCooldown = loopCount;
@@ -8886,7 +8907,7 @@ window.preload = function () {
 
     //determines if the flood progress bar should be open or not
     function checkFloodCollisions() {
-      for (fo = 0; fo < 9; fo++) {
+      for (var fo = 0; fo < 9; fo++) {
         if (floods[fo].visible && (charBoxLeft.isTouching(t1Land[fo]) || charBoxLeft.isTouching(floods[fo]))) {
           floodCollisionPlot = fo;
           return true;
