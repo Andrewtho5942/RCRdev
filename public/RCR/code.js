@@ -1317,7 +1317,7 @@ window.preload = function () {
         }
         if (mousePressedOver(introBtn) || keyWentDown('enter')) {
           startPressed = true;
-
+          loopCount = 0;
           cesjLogo.visible = true;
           level = 0;
           playSound("audio/app_interface_button_3.mp3");
@@ -1611,7 +1611,16 @@ window.preload = function () {
         }
         
         drawSprites();
-        
+
+        if (loopCount < 90) {
+          noStroke();
+          //draw loading bar (3 secs)
+          fill(rgb(220,220,220));
+          rect(200,515,400,20);
+          fill("green");
+          rect(200,515,loopCount*4.44,20);
+        }
+
         if (zoomedIn) {
           stroke("black");strokeWeight(3);
           if (mouseIsOver(tutorialBtn)) {
