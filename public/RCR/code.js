@@ -5520,7 +5520,7 @@ window.preload = function () {
         
         textSize(20);fill(rgb(220,25,50));
         stroke(rgb(220,25,50));strokeWeight(0.5);
-        text("[T] Show Tips",1515,365);
+        text("[T] Show Tips",1515,362);
         noStroke();
         textSize(24);fill("black");
         text("Movement", 1400, 401);
@@ -5530,7 +5530,7 @@ window.preload = function () {
         text("Tips", 1380, 360);
         stroke(rgb(220,25,50));strokeWeight(0.5);
         textSize(20);fill(rgb(220,25,50));
-        text("[T] Show Controls",1502,365);
+        text("[T] Show Controls",1502,362);
         noStroke();
         textSize(24);fill("black");
         text("Land Development Process", 1400, 401);
