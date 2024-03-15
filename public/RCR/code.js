@@ -377,6 +377,7 @@ window.preload = function () {
     var incomeArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     var tipsSheetOpen = false;
     var canAfford = true;
+    let formattedTime = "";
 
     //update counts
     var cMoneyUpdateCount = -60;
@@ -1414,6 +1415,7 @@ window.preload = function () {
             playSound("audio/swoosh.mp3");
             menuPage = 2;
             credsCounter = -24;
+            formatTime();
           }
 
           //slide from credits to main menu
@@ -1717,24 +1719,9 @@ window.preload = function () {
             textSize(27); fill("black");noStroke();
 
             //calculate time until next reset
-            let today = new Date();
-            
-            let nextMonthYear = year();
-            if (month() == 12) (nextMonthYear++); 
-            let nextMonth = new Date(nextMonthYear, month(), 1);
-            //diff is the time in seconds until the month changes
-            let diff = Math.floor((nextMonth - today) / 1000);
-            let days = Math.floor(diff/(24*60*60));
-            let hours = Math.floor((diff % (24*60*60)) / (60 * 60));
-            let minutes = Math.floor((diff % (60 * 60)) / 60);
-            let seconds = diff % 60;
-            let formattedTime = "";
-            if (days>0) {
-              formattedTime += days + " days, ";
+            if (loopCount % 30 == 0) {
+              formatTime();
             }
-            formattedTime += ('0'+hours).slice(-2)+':'+
-            ('0'+minutes).slice(-2)+':'+
-            ('0'+seconds).slice(-2);
             textAlign(LEFT,CENTER);
             text("Next Reset In: ", -685+xSlide, 152);
             fill(rgb(0,120,0));
@@ -1762,14 +1749,22 @@ window.preload = function () {
               
               fill("black"); noStroke(); textAlign(CENTER,CENTER);
               text((po+1)+".",-735+xSlide,262+yOffset); //rank
-              textAlign(LEFT,CENTER);
-              text(topTimes[po][0], -705+xSlide, 262+yOffset); //name
-              textAlign(CENTER,CENTER);
-              let secondsString = (topTimes[po][3] < 10) ? "0"+topTimes[po][3] : topTimes[po][3];
-              let minutesString = (topTimes[po][2] < 10) ? "0"+topTimes[po][2] : topTimes[po][2];
-              let hoursString = (topTimes[po][1] < 10) ? "0"+topTimes[po][1] : topTimes[po][1];
+              if ((topTimes[po][1] == 99) && (topTimes[po][2]==0) &&
+               (topTimes[po][3] == 0) && (topTimes[po][0].length == 0)) {
+                //The time is empty
+                textAlign(LEFT,CENTER);
+                text("<Empty>", -705+xSlide, 262+yOffset);
+                textAlign(CENTER,CENTER);
+              } else {
+                textAlign(LEFT,CENTER);
+                text(topTimes[po][0], -705+xSlide, 262+yOffset);
+                textAlign(CENTER,CENTER);
+                let secondsString = (topTimes[po][3] < 10) ? "0"+topTimes[po][3] : topTimes[po][3];
+                let minutesString = (topTimes[po][2] < 10) ? "0"+topTimes[po][2] : topTimes[po][2];
+                let hoursString = (topTimes[po][1] < 10) ? "0"+topTimes[po][1] : topTimes[po][1];
 
-              text(hoursString+":"+minutesString+":"+secondsString, -236+xSlide, 262+yOffset); //Time in format hours:minutes:seconds
+                text(hoursString+":"+minutesString+":"+secondsString, -236+xSlide, 262+yOffset);
+              }
             }
             
           //HIGH SCORES
@@ -1794,16 +1789,21 @@ window.preload = function () {
 
               fill("black");noStroke();
               text((pu+1)+".",-735+xSlide,532+yOffset); // rank
-
-              textAlign("left","center");
-              fill("black");
-              text(highScores[pu][0], -705+xSlide, 532+yOffset); //name
-              textAlign("center","center");
-              
-              if (highScores[pu][1] >= 10000000) {
-                text(addCommas(Math.round(highScores[pu][1] / 1000000))+"M", -236+xSlide, 532+yOffset); //Score with commas, 10M or more
-              }else {
-                text(addCommas(highScores[pu][1]), -236+xSlide, 532+yOffset); //Score with commas
+              if ((highScores[pu][1] == 0) && (highScores[pu][0].length == 0)) {
+               //The score is empty
+               textAlign(LEFT,CENTER);
+               text("<Empty>", -705+xSlide, 532+yOffset);
+               textAlign(CENTER,CENTER);
+              } else {
+                textAlign("left","center");
+                text(highScores[pu][0], -705+xSlide, 532+yOffset); //name
+                textAlign("center","center");
+             
+                if (highScores[pu][1] >= 10000000) {
+                  text(addCommas(Math.round(highScores[pu][1] / 1000000))+"M", -236+xSlide, 532+yOffset); //Score with commas, 10M or more
+                }else {
+                  text(addCommas(highScores[pu][1]), -236+xSlide, 532+yOffset); //Score with commas
+                }
               }
             }
             
@@ -6889,24 +6889,28 @@ window.preload = function () {
 
     
     //functions{
-      //Censors swear words in the list
-      function censor(text) {
-        // Define a list of swear words to censor
-        const swearWords = ['arse', 'ass', 'asshole','arsehole', 'bastard', 
-      'bitch','bullshit','cock','cocksucker','crap','cunt','damn','dick','dickhead',
-      'fuck','goddamn','hell','holy shit','motherfucker','nigga','nigger','pussy','shit',
-      'slut','wanker','whore','kill'];
-        
-        // Iterate through the swear words list
-        for (let i = 0; i < swearWords.length; i++) {
-            const regex = new RegExp(swearWords[i], 'gi');
-            text = text.replace(regex, function(match) {
-                // Replace each character in the swear word with asterisks
-                return '#'.repeat(match.length);
-            });
-        } 
-        return text;
-    }
+      function formatTime(){
+        let today = new Date();
+            
+            let nextMonthYear = year();
+            if (month() == 12) (nextMonthYear++); 
+            let nextMonth = new Date(nextMonthYear, month(), 1);
+            //diff is the time in seconds until the month changes
+            let diff = Math.floor((nextMonth - today) / 1000);
+            let days = Math.floor(diff/(24*60*60));
+            let hours = Math.floor((diff % (24*60*60)) / (60 * 60));
+            let minutes = Math.floor((diff % (60 * 60)) / 60);
+            let seconds = diff % 60;
+            formattedTime = "";
+            if (days>0) {
+              formattedTime += days + " days, ";
+            }
+            formattedTime += ('0'+hours).slice(-2)+':'+
+            ('0'+minutes).slice(-2)+':'+
+            ('0'+seconds).slice(-2);
+      }
+
+      
 
       // Function to truncate text to fit a given width
       function truncateText(text, maxWidth) {
@@ -9066,7 +9070,24 @@ window.preload = function () {
       trashPickedUp=0;
     }
     //}
-
+  //Censors swear words in the list
+  function censor(text) {
+  // Define a list of swear words to censor
+    const swearWords = ['arse', 'ass', 'asshole','arsehole', 'bastard', 
+    'bitch','bullshit','cock','cocksucker','crap','cunt','damn','dick','dickhead',
+    'fuck','goddamn','hell','holy shit','motherfucker','nigga','nigger','pussy','shit',
+    'slut','wanker','whore','kill'];
+  
+    // Iterate through the swear words list
+    for (let i = 0; i < swearWords.length; i++) {
+      const regex = new RegExp(swearWords[i], 'gi');
+      text = text.replace(regex, function(match) {
+          // Replace each character in the swear word with asterisks
+          return '#'.repeat(match.length);
+      });
+    } 
+    return text;
+  }
     function addCommas(num) {
       if (num == 0) {
         return 0;

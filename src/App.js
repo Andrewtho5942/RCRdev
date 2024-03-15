@@ -6,6 +6,7 @@ export default function App() {
 
 useEffect(() => {
   const handleResize = () => {
+    console.log("resized");
     const newScaleFactor = window.innerWidth / 1600;
     setScaleFactor(newScaleFactor);
   };
@@ -14,6 +15,20 @@ useEffect(() => {
 
   return () => {
     window.removeEventListener('resize', handleResize);
+  };
+}, []);
+
+useEffect(() => {
+  const handleOnLoad = () => {
+    console.log("init scale resized");
+    const newScaleFactor = window.innerWidth / 1600;
+    setScaleFactor(newScaleFactor);
+  };
+
+  window.addEventListener('load', handleOnLoad);
+
+  return () => {
+    window.removeEventListener('load', handleOnLoad);
   };
 }, []);
 
