@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js'
-import { getFirestore, collection, doc, updateDoc, getDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js'
+import { getFirestore, doc, updateDoc, getDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js'
 import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 
       const firebaseConfig = {
@@ -415,6 +415,7 @@ window.preload = function () {
     var educationProgressLeft = -1;
     var loopAtAnswerLeft = -200;
     var totalQuestionsLeft = 0;
+    var quizStateControl = 0;
     var rRollLeft;
     var charNum = 1;
     var voteData = ["none", "0", 50];
@@ -644,7 +645,7 @@ window.preload = function () {
     var t3PlotIsCompleted = [false, false];
     var t1BuildingPlaced = [true, false, false, true,
       false, false, true, false, false];
-    var t2BuildingPlaced = [false, false, true];
+    var t2BuildingPlaced = [false, true, true];//[false, false, true]
     var t3BuildingPlaced = [false, false];
     var t1LandIsOpen = [true, true, true, true, true, true, true, true, true];
     var t2LandIsOpen = [true, true, true];
@@ -1149,12 +1150,17 @@ window.preload = function () {
     var leaderBackBtn = createSprite(-455, 740, 160, 60);
     var hintsMenuBtn = createSprite(165,665,280,50);
     var musicMenuBtn = createSprite(165,750,280,50);
-
+    var quizContBtn = createSprite(400,615,180,40);
+    let quizBtns = createGroup();
+    for (let fl = 0; fl < 4; fl++) {
+      quizBtns.add(createSprite(400,310+(fl*79),784,79));
+    }
+    quizBtns.setVisibleEach(false);
 
     credsBackBtn.shapeColor = leaderBackBtn.shapeColor = rgb(180, 200, 255);
     
     hintsMenuBtn.visible=musicMenuBtn.visible=tutorialBtn.visible = startBtn.visible= leaderBtn.visible 
-    = credsBtn.visible = credsBackBtn.visible = leaderBackBtn.visible = false;
+    = credsBtn.visible = credsBackBtn.visible = leaderBackBtn.visible = quizContBtn.visible = false;
     
     var rChars = createGroup();
     rChars.add(createSprite(465, 760, 50, 50));
@@ -1514,7 +1520,7 @@ window.preload = function () {
             //start ship
             ship.x = -80;
             ship.y = 35;
-            ship.velocityX = 1;
+            ship.velocityX = 0.5;
             //start birds
             birds[0].x = randomNumber(-800, -20);
             birds[0].y = randomNumber(20, 680);
@@ -3188,24 +3194,40 @@ window.preload = function () {
           //university hall must be placed
           if (t2BuildingPlaced[1] && !initOpent2[1]) {
             if (educationProgressLeft < 0) {
-              if (keyWentDown('R') && loopAtAnswerLeft + 16 < loopCopy) {
-                playSound("audio/app_menu_button_2.mp3");
-                if (quizHoverLeft == 3) {
-                  quizHoverLeft = 1;
-                  quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
-                } else if (quizHoverLeft == 2) {
-                  quizHoverLeft = 3;
-                  quizColorsLeft = ['lightGray', 'lightGray', 'white', 'lightGray'];
-                } else {
-                  quizHoverLeft = 2;
-                  quizColorsLeft = ['lightGray', 'white', 'lightGray', 'lightGray'];
-                }
-              }
               if (keyWentDown("e") && quizStartLoop<0) {
                 playSound("audio/app_interface_button_3.mp3");
                   quizStartLoop = loopCopy;
+                } else if (quizStateControl == 0) {
+                if (keyWentDown('e') || mousePressedOver(quizContBtn)) {
+                  quizStateControl = 1;
                 }
-              else if ((keyWentDown("E")||keyWentDown("Enter")) && loopAtAnswerLeft + 16 < loopCopy) {
+              } else if (quizStateControl == 1) {
+              if (loopAtAnswerLeft + 16 < loopCopy) {
+                if (keyWentDown('R')) {
+                  playSound("audio/app_menu_button_2.mp3");
+                  if (quizHoverLeft == 3) {
+                    quizHoverLeft = 1;
+                    quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
+                  } else if (quizHoverLeft == 2) {
+                    quizHoverLeft = 3;
+                    quizColorsLeft = ['lightGray', 'lightGray', 'white', 'lightGray'];
+                  } else {
+                    quizHoverLeft = 2;
+                    quizColorsLeft = ['lightGray', 'white', 'lightGray', 'lightGray'];
+                  }
+                }
+                for (let btnNum = 0; btnNum < 3; btnNum++) {
+                  if(mouseIsOver(quizBtns[btnNum])){
+                    quizHoverLeft = btnNum+1;
+                    quizColorsLeft = ['lightGray','lightGray','lightGray','lightGray'];
+                    quizColorsLeft[btnNum] = 'white';
+                    break;
+                  }
+                }
+              
+              //select the choice
+              if ((keyWentDown("E")||keyWentDown("Enter")||mousePressedOver(quizBtns[0])
+              ||mousePressedOver(quizBtns[1])||mousePressedOver(quizBtns[2]))) {
                 loopAtAnswerLeft = loopCopy;
                 totalQuestionsLeft++;
                 if (totalQuestionsLeft == 19) {
@@ -3235,6 +3257,7 @@ window.preload = function () {
                   quizColorsLeft[quizHoverLeft - 1] = rgb(255, 200, 200);
                 }
               }
+            }
               //wait half a second to show result, then switch to next question
               if (loopAtAnswerLeft + 15 == loopCopy) {
                 if (quizHoverLeft == vocabQuizAnswers[randomQuestionLeft]) (educationProgressLeft += 0.201);
@@ -3255,24 +3278,43 @@ window.preload = function () {
                 }
               }
             }
+            }
             else if (educationProgressLeft < 1) {
-              if (keyWentDown('R') && loopAtAnswerLeft + 16 < loopCopy) {
-                playSound("audio/app_menu_button_2.mp3");
-                if (quizHoverLeft == 4) {
-                  quizHoverLeft = 1;
-                  quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
-                } else if (quizHoverLeft == 3) {
-                  quizHoverLeft = 4;
-                  quizColorsLeft = ['lightGray', 'lightGray', 'lightGray', 'white'];
-                } else if (quizHoverLeft == 2) {
-                  quizHoverLeft = 3;
-                  quizColorsLeft = ['lightGray', 'lightGray', 'white', 'lightGray'];
-                } else {
-                  quizHoverLeft = 2;
-                  quizColorsLeft = ['lightGray', 'white', 'lightGray', 'lightGray'];
+              if (quizStateControl == 1) {
+                if (keyWentDown('e') || mousePressedOver(quizContBtn)) {
+                  quizStateControl = 2;
                 }
-              }
-              if ((keyWentDown("E")||keyWentDown("Enter")) && loopAtAnswerLeft + 16 < loopCopy) {
+              } else if (quizStateControl == 2){
+              if (loopAtAnswerLeft + 16 < loopCopy) {
+                if(keyWentDown('R')){
+                  playSound("audio/app_menu_button_2.mp3");
+                  if (quizHoverLeft == 4) {
+                    quizHoverLeft = 1;
+                    quizColorsLeft = ['white', 'lightGray', 'lightGray', 'lightGray'];
+                  } else if (quizHoverLeft == 3) {
+                    quizHoverLeft = 4;
+                    quizColorsLeft = ['lightGray', 'lightGray', 'lightGray', 'white'];
+                  } else if (quizHoverLeft == 2) {
+                    quizHoverLeft = 3;
+                    quizColorsLeft = ['lightGray', 'lightGray', 'white', 'lightGray'];
+                  } else {
+                    quizHoverLeft = 2;
+                    quizColorsLeft = ['lightGray', 'white', 'lightGray', 'lightGray'];
+                  }
+                }
+                
+                for (let btnNum = 0; btnNum < 4; btnNum++) {
+                  if(mouseIsOver(quizBtns[btnNum])){
+                    quizHoverLeft = btnNum+1;
+                    quizColorsLeft = ['lightGray','lightGray','lightGray','lightGray'];
+                    quizColorsLeft[btnNum] = 'white';
+                    break;
+                  }
+                }
+              
+              if ((keyWentDown("E")||keyWentDown("Enter"))
+              || mousePressedOver(quizBtns[0])|| mousePressedOver(quizBtns[1])||
+               mousePressedOver(quizBtns[2])|| mousePressedOver(quizBtns[3])) {
                 loopAtAnswerLeft = loopCopy;
                 totalQuestionsLeft++;
                 if (totalQuestionsLeft == 11) {
@@ -3300,6 +3342,7 @@ window.preload = function () {
                   quizColorsLeft[quizHoverLeft - 1] = rgb(255, 200, 200);
                 }
               }
+            }
               //wait half a second to show result, then switch to next question
               if (loopAtAnswerLeft + 15 == loopCopy) {
                 if (quizHoverLeft == quizAnswers[randomQuestionLeft]) (educationProgressLeft += 0.201);
@@ -3312,8 +3355,15 @@ window.preload = function () {
                 }
               }
             }
+            }
             else if (educationProgressLeft < 2) {
-                 if (keyWentDown('R') && loopAtAnswerLeft + 16 < loopCopy) {
+              if (quizStateControl == 2) {
+                if (keyWentDown('e') || mousePressedOver(quizContBtn)) {
+                  quizStateControl = 3;
+                }
+              } else if (quizStateControl == 3){
+              if (loopAtAnswerLeft + 16 < loopCopy) {
+                 if (keyWentDown('R')) {
                    playSound("audio/app_menu_button_2.mp3");
                 if (quizHoverLeft == 4) {
                   quizHoverLeft = 1;
@@ -3329,7 +3379,7 @@ window.preload = function () {
                   quizColorsLeft = ['lightGray', 'white', 'lightGray', 'lightGray'];
                 }
               }
-              if ((keyWentDown("E")||keyWentDown("Enter")) && loopAtAnswerLeft + 16 < loopCopy) {
+              if ((keyWentDown("E")||keyWentDown("Enter"))) {
                 loopAtAnswerLeft = loopCopy;
                 totalQuestionsLeft++;
                 if (totalQuestionsLeft == 12) {
@@ -3358,6 +3408,7 @@ window.preload = function () {
                   quizColorsLeft[quizHoverLeft - 1] = rgb(255, 200, 200);
                 }
               }
+            }
               //wait half a second to show result, then switch to next question
               if (loopAtAnswerLeft + 15 == loopCopy) {
                 if (quizHoverLeft == t3QuizAnswers[randomQuestionLeft]) (educationProgressLeft += 0.201);
@@ -3369,8 +3420,9 @@ window.preload = function () {
                   randomQuestionLeft = randomNumber(0, 11);
                 }
               }
-              
+            
             } 
+          }
             else if(educationProgressLeft >= 2){
               educationLevelLeft.setAnimation("gradHat");
               educationLevelLeft.scale = 0.07;
@@ -3450,11 +3502,24 @@ window.preload = function () {
                 text("You must develop Justice University\nfirst to start the quiz!\n\nIt is the top center plot\nabove the central park.",400,470);
                 fill("black");  textSize(30);
                 text("Develop Justice University First!", 400, 232);
-              }else{
+              } else {
                 textAlign(CENTER,CENTER); fill("black"); textSize(30);
                 text("[E] Start the Quiz", 400, 232);
               }
             } else {
+              if (quizStateControl == 0) {
+                fill(rgb(240,240,240));
+                rect(8,275,784,320);
+                if (mouseIsOver(quizContBtn)) {
+                  fill(rgb(210, 180, 255));
+                } else {
+                  fill(rgb(190, 155, 245));
+                }
+                stroke("black");strokeWeight(2);
+                rect(310,595,180,40);
+                noStroke(); fill("black"); textAlign(CENTER,CENTER);textSize(28);
+                text("[E] Continue", 400,616);
+              } else {
               //quiz started
               //LEVEL 1
               textAlign(LEFT, CENTER);
@@ -3468,17 +3533,34 @@ window.preload = function () {
               textSize(24); noStroke();
               for (var fg = 1; fg < 5; fg++) {
                 stroke('black'); strokeWeight(2);
-                fill(quizColorsLeft[fg - 1]);
-                rect(8, 273 + ((fg - 1) * 79), 784, 75);
                 if (fg != 4) {
+                  fill(quizColorsLeft[fg - 1]);
+                  rect(8, 273 + ((fg - 1) * 79), 784, 75);
                   //text for each answer choice
                   noStroke(); fill('black');
                   text(vocabQuizText[randomQuestionLeft][fg], 16, 313 + ((fg - 1) * 79));
+                } else {
+                  fill(rgb(220,220,220,0.4));
+                  rect(8, 273 + ((fg - 1) * 79), 784, 75);
                 }
               }
             }
+          }
           } 
           else if (educationProgressLeft < 1) {
+            if (quizStateControl == 1) {
+              fill(rgb(240,240,240));
+              rect(8,275,784,320);
+              if (mouseIsOver(quizContBtn)) {
+                fill(rgb(210, 180, 255));
+              } else {
+                fill(rgb(190, 155, 245));
+              }
+              stroke("black");strokeWeight(2);
+              rect(310,595,180,40);
+              noStroke(); fill("black"); textAlign(CENTER,CENTER);textSize(28);
+              text("[E] Continue", 400,616);
+            } else {
             //LEVEL 2
             textAlign(LEFT, CENTER);
             //Darker blue progress bar
@@ -3497,8 +3579,22 @@ window.preload = function () {
               noStroke(); fill('black');
               text(quizText[randomQuestionLeft][f], 16, 313 + ((f - 1) * 79));
             }
+          }
           } 
           else if (educationProgressLeft < 2) {
+            if (quizStateControl == 2) {
+              fill(rgb(240,240,240));
+              rect(8,275,784,320);
+              if (mouseIsOver(quizContBtn)) {
+                fill(rgb(210, 180, 255));
+              } else {
+                fill(rgb(190, 155, 245));
+              }
+              stroke("black");strokeWeight(2);
+              rect(310,595,180,40);
+              noStroke(); fill("black"); textAlign(CENTER,CENTER);textSize(28);
+              text("[E] Continue", 400,616);
+            } else {
             //LEVEL 3
             textAlign(LEFT, CENTER);
             //Darker blue progress bar
@@ -3521,17 +3617,8 @@ window.preload = function () {
               noStroke(); fill('black');
               text(t3QuizText[randomQuestionLeft][fz + 1], 16, 355 + ((fz - 1) * 68));
             }
-
-            //advanced questions are locked until university hall is developed
-            /*if(!t2BuildingPlaced[1]||initOpent2[1]){
-              fill(rgb(240,240,240,0.9));noStroke();
-              rect(8,195,784,392);
-              fill("black");stroke("black");strokeWeight(1);
-              textAlign(CENTER, CENTER);textSize(38);
-              text("You must develop Justice\nUniversity to finish the quiz!",400,360);
-            }*/
+          }
           } 
-          
         }
         
         //fire cooldown checks
@@ -5021,7 +5108,7 @@ window.preload = function () {
                 strokeWeight(0.8);
                 text("CLDC Members\nin Favor:\n" + voteData[2] + "%", 640, 280);
                 fill("darkRed"); stroke('darkred');
-                text("CLDC Members\nin Opposition:\n" + (100 - voteData[2]) + "%", 160, 280);
+                text("CLDC Members\nOpposed:\n" + (100 - voteData[2]) + "%", 160, 280);
 
                   if (voteData[2] > 50) {
                     typeText("A majority voted in favor of the offer.\nConstruction will begin shortly.", 400, 430,32,0,false,"forestGreen",loopCopy);
@@ -6311,7 +6398,7 @@ window.preload = function () {
                 strokeWeight(0.8);
                 text("CLDC Members\nin Favor:\n" + voteData[2] + "%", 640, 280);
                 fill("darkRed"); stroke('darkred');
-                text("CLDC Members\nin Opposition:\n" + (100 - voteData[2]) + "%", 160, 280);
+                text("CLDC Members\nOpposed:\n" + (100 - voteData[2]) + "%", 160, 280);
                 
                   if (voteData[2] > 50) {
                     typeText("A majority voted in favor of the offer.\nConstruction will begin shortly.", 400, 430,32,0,false,"forestGreen",loopCopy);
@@ -6881,7 +6968,7 @@ window.preload = function () {
         fill(rgb(0,0,0,0.6));noStroke();
         rect(0,760,800,40);
         fill(rgb(255,50,50));textSize(20);noStroke();textAlign(CENTER,CENTER);
-        text(World.mouseX+", "+World.mouseY+" :: "+loopCount+" | "+day()+"/"+month(),400,780);
+        text(World.mouseX+", "+World.mouseY+" :: "+loopCount+" | "+quizStateControl+", "+educationProgressLeft,400,780);
       }
       if(level == 3 && introControl==0){
       spotlight(10,10,780,595);
@@ -8082,6 +8169,7 @@ window.preload = function () {
     }
     //resets game and returns to main menu
     function resetGame(data) {
+      quizStateControl = 0;
       charSelectCount = [-360,-360,-360,-360];
       cMoneyUpdateCount = -60;
       loansUpdateCount = -60;
