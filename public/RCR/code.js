@@ -722,18 +722,18 @@ window.preload = function () {
         'D. Rising land values will force the original residents to move from their\nhomes'],
     ];
     var t3QuizText = [
-      ["Why is a government of the people, by the people, and for\nthe people impossible under conventional capitalism?", "(see the CESJ.org graphic comparison of capitalism, socialism, and JTW)", "A. Because diffused wealth/power undermines a democracy", "B. Because concentrated wealth/power undermines a democracy", "C. Because concentrated wealth dilutes power", "D. Because we the people prefer an oligarchy"],
+      ["Why is a government of the people, by the people, and for\nthe people impossible under conventional capitalism?", "(see the CESJ.org graphic comparison of capitalism, socialism, and JTW)", "A. Because diffused wealth/power undermines a democracy", "B. Because concentrated wealth/power undermines a\ndemocracy", "C. Because concentrated wealth dilutes power", "D. Because we the people prefer an oligarchy"],
       ["What is the 'fundamental issue' being addressed by the\nCenter for Economic and Social Justice?", "(CESJ.ORG) (see the basic presentation of Just Third Way)", "A. Inflation", "B. Deflation", "C. Power", "D. Education"],
       ["How does the ownership of property (capital assets) affect\nindividual power?", "(see the basic presentation of the Just Third Way)", "A. Property ownership reduces power", "B. Power follows property", "C. Property ownership and power are unrelated", "D. Property ownership mocks power"],
       ["Who or what owns the land (property) in the HOA CLDC?", "(see CESJ on Citizens Land Development Coop)", "A. Local, individual residents", "B. City fathers", "C. Private investors", "D. The HOA CLDC trust"],
-      ["Where does all the money required to purchase and\nredevelop the land in the HOA CLDC project come from?", "(see CESJ on Citizens Land Development Coop)", "A. From local banks with support from the St. Louis Federal Reserve", "B. From private investors", "C. From the state government", "D. From the federal government"],
-      ["What kinds of properties will the HOA CLDC expect to\npurchase?", "(see CESJ on Citizens Land Development Coop)", "A. Farmland", "B. Blighted land and properties north of the Delmar Divide in St. Louis", "C. Wetlands", "D. Forested Land"],
-      ["Who owns one voting share of the HOA CLDC and receives\ndividends when profits are generated?", "(see CESJ on Citizens Land Development Coop)", "A. Local politicians", "B. All permanent residents who live in neighborhoods north of the\nDelmar Divide", "C. All males who live in the neighborhoods north of the Delmar Divide", "D. All females who live in the neighborhoods north of the Delmar Divide "],
+      ["Where does all the money required to purchase and\nredevelop the land in the HOA CLDC project come from?", "(see CESJ on Citizens Land Development Coop)", "A. From local banks with support from the St. Louis Federal\nReserve", "B. From private investors", "C. From the state government", "D. From the federal government"],
+      ["What kinds of properties will the HOA CLDC expect to\npurchase?", "(see CESJ on Citizens Land Development Coop)", "A. Farmland", "B. Blighted land and properties north of the Delmar Divide\nin St. Louis", "C. Wetlands", "D. Forested Land"],
+      ["Who owns one voting share of the HOA CLDC and receives\ndividends when profits are generated?", "(see CESJ on Citizens Land Development Coop)", "A. Local politicians", "B. All permanent residents who live in neighborhoods north of\nthe Delmar Divide", "C. All males who live in the neighborhoods north of the\nDelmar Divide", "D. All females who live in the neighborhoods north of the\nDelmar Divide"],
       ["What role does capital credit insurance play in\nguaranteeing loan repayments?", "(see CESJ on Citizens Land Development Coop)", "A. It plays no role in guaranteeing loan repayments", "B. It guarantees nothing", "C. It benefits only the insurance companies", "D. It guarantees loan repayment"],
       ["How much INTEREST will be charged on the HOA CLDC loan?", "(see CESJ on Citizens Land Development Coop)", "A. 10%", "B. 0%", "C. 5%", "D. 2.5%"],
       ["How much tax is collected PRIOR TO loan repayment?", "(see CESJ on Citizens Land Development Coop)", "A. 10%", "B. None", "C. 5%", "D. 2.5%"],
       ["Who pays taxes in the HOA CLDC project?", "(see CESJ on Citizens Land Development Coop)", "A. The HOA CLDC trust", "B. The state government", "C. The local government", "D. Individual HOA members pay taxes on dividends received"],
-      ["How does Ownership Power impact freedom, dignity, and\nself-respect of the individual?", "(see the CESJ Website)", "A. Ownership power reduces residents to wage slavery", "B. Ownership power counteracts stress and mental illness", "C. Ownership power rightfully belongs only to the rich", "D. Ownership power should never be shared with average people"]
+      ["How does Ownership Power impact freedom, dignity, and\nself-respect of the individual?", "(see the CESJ Website)", "A. Ownership power reduces residents to wage slavery", "B. Ownership power counteracts stress and mental illness", "C. Ownership power rightfully belongs only to the rich", "D. Ownership power should never be shared with average\npeople"]
     ];
 
     //Data of quiz questions that have been answered already to prevent repeats
@@ -764,6 +764,8 @@ window.preload = function () {
     var introColor = rgb(190, 190, 190);
     var introScale = 0;
     
+    var dropDownsOpen = [ false, false, false, false, false, false ];
+
     var menuColors = [
       rgb(244, 204, 204), rgb(180, 235, 190), rgb(180, 235, 190), rgb(244, 204, 204),
       rgb(180, 235, 190), rgb(244, 204, 204), rgb(180, 235, 190),
@@ -1156,7 +1158,18 @@ window.preload = function () {
       quizBtns.add(createSprite(400,310+(fl*79),784,79));
     }
     quizBtns.setVisibleEach(false);
+    
+    let dropDownBtns = createGroup();
+    dropDownBtns.add(createSprite(830,90,30,30));
+    dropDownBtns.add(createSprite(830,360,30,30));
+    dropDownBtns.add(createSprite(830,570,30,30));
+    dropDownBtns.add(createSprite(1230,25,30,30));
+    dropDownBtns.add(createSprite(1230,210,30,30));
+    dropDownBtns.add(createSprite(1230,358,30,30));
 
+    dropDownBtns.setVisibleEach(false);
+
+    
     credsBackBtn.shapeColor = leaderBackBtn.shapeColor = rgb(180, 200, 255);
     
     hintsMenuBtn.visible=musicMenuBtn.visible=tutorialBtn.visible = startBtn.visible= leaderBtn.visible 
@@ -2489,34 +2502,34 @@ window.preload = function () {
             //gold medal
             var hintLoop = loopCount-objListP[5][1];
             showHint("Congrats! You've earned a gold medal\nfor reaching 1000 community service points!",hintLoop,30);
-            if(!menuOpen && !offerOpen && hintLoop>=30)(circle(cMedals[2].x,cMedals[2].y,45,60,"darkRed"));
+            if(!menuOpen && !offerOpen && hintLoop>=30)(encircle(cMedals[2].x,cMedals[2].y,45,60,"darkRed"));
             if(hintLoop==280)(hintList[5]=true);
             
           }else if(objListP[3][3] && !hintList[4]){
             //silver medal
             var hintLoop = loopCount-objListP[3][1];
             showHint("Congrats! You've earned a silver medal\nfor reaching 500 community service points!",hintLoop,30);
-            if(!menuOpen && !offerOpen && hintLoop>=30)(circle(cMedals[1].x,cMedals[1].y,45,60,"darkRed"));
+            if(!menuOpen && !offerOpen && hintLoop>=30)(encircle(cMedals[1].x,cMedals[1].y,45,60,"darkRed"));
             if(hintLoop==280)(hintList[4]=true);
             
           }else if(objListP[0][3] && !hintList[3]){
             //bronze medal
             var hintLoop = loopCount-objListP[0][1];
             showHint("Congrats! You've earned a bronze medal\nfor reaching 200 community service points!",hintLoop,30);
-            if(!menuOpen && !offerOpen && hintLoop>=30)(circle(cMedals[0].x,cMedals[0].y,45,60,"darkRed"));
+            if(!menuOpen && !offerOpen && hintLoop>=30)(encircle(cMedals[0].x,cMedals[0].y,45,60,"darkRed"));
             if(hintLoop==280)(hintList[3]=true);
             
           }else if(fires[0].x!=-50 && !hintList[7]){
             //fire hint
             var hintLoop = loopCount-fireLoops[0];
             showHint("A fire has started! Put it out quickly\nor the CLDC will lose profit!",hintLoop,30);
-            if(hintLoop>=30 && !charBoxLeft.isTouching(fires[0]))(circle(fires[0].x,fires[0].y,45,60,"darkRed"));
+            if(hintLoop>=30 && !charBoxLeft.isTouching(fires[0]))(encircle(fires[0].x,fires[0].y,45,60,"darkRed"));
             if(hintLoop==280)(hintList[7]=true);
           }else if(((floodNum=findFlood()) >= 0) && !hintList[8]){
             //flood hint
             var hintLoop = loopCount - (floodLoops[floodNum]-900);
             showHint("A flood has started! Stop it quickly\nor the CLDC will lose profit!",hintLoop,30);
-            if(hintLoop>=30 && !charBoxLeft.isTouching(floods[floodNum]))(circle(floods[floodNum].x,floods[floodNum].y,60,60,"darkRed"));
+            if(hintLoop>=30 && !charBoxLeft.isTouching(floods[floodNum]))(encircle(floods[floodNum].x,floods[floodNum].y,60,60,"darkRed"));
             if(hintLoop>=280)(hintList[8]=true);          
           
           }else if((northParkSprites[0].visible || northParkSprites[1].visible || northParkSprites[2].visible ||centralParkSprites[0].visible||centralParkSprites[1].visible||centralParkSprites[2].visible||centralParkSprites[3].visible||centralParkSprites[4].visible) && !hintList[9]){
@@ -2541,7 +2554,7 @@ window.preload = function () {
               if(hintLoop>=15){
                 for(var spriteNum = 0;spriteNum<northParkSprites.length;spriteNum++){
                   if(northParkSprites[spriteNum].visible && !charBoxLeft.isTouching(northParkSprites[spriteNum])){
-                    circle(northParkSprites[spriteNum].x,northParkSprites[spriteNum].y,45,60,"darkRed");
+                    encircle(northParkSprites[spriteNum].x,northParkSprites[spriteNum].y,45,60,"darkRed");
                   }
                 }
               }
@@ -2553,7 +2566,7 @@ window.preload = function () {
               if(hintLoop>=30){
                 for(var spriteNum = 0;spriteNum<centralParkSprites.length;spriteNum++){
                   if(centralParkSprites[spriteNum].visible && !charBoxLeft.isTouching(centralParkSprites[spriteNum])){
-                    circle(centralParkSprites[spriteNum].x,centralParkSprites[spriteNum].y,45,60,"darkRed");
+                    encircle(centralParkSprites[spriteNum].x,centralParkSprites[spriteNum].y,45,60,"darkRed");
                   }
                 }
               }
@@ -2777,14 +2790,13 @@ window.preload = function () {
             cUpdateCount = loopCount;
             var parkPoints = 0;
             if (parkCollisionNum == 0) {
-              parkPoints = 4;
-              
+              parkPoints = 40;
             }
             else {
-              parkPoints = 2;
+              parkPoints = 20;
               
             }
-            cExpenses -= parkPoints;
+            cExpenses -= parkPoints/10;
             recentPoints = parkPoints;
             cPoints += parkPoints;
             //complete the park if the timer is out
@@ -3202,7 +3214,7 @@ window.preload = function () {
                   quizStateControl = 1;
                 }
               } else if (quizStateControl == 1) {
-              if (loopAtAnswerLeft + 16 < loopCopy) {
+              if (loopAtAnswerLeft + 20 < loopCopy) {
                 if (keyWentDown('R')) {
                   playSound("audio/app_menu_button_2.mp3");
                   if (quizHoverLeft == 3) {
@@ -3258,8 +3270,8 @@ window.preload = function () {
                 }
               }
             }
-              //wait half a second to show result, then switch to next question
-              if (loopAtAnswerLeft + 15 == loopCopy) {
+              //wait three-fourths a second to show result, then switch to next question
+              if (loopAtAnswerLeft + 23 == loopCopy) {
                 if (quizHoverLeft == vocabQuizAnswers[randomQuestionLeft]) (educationProgressLeft += 0.201);
                 quizColorsLeft[quizHoverLeft - 1] = 'white';
                 vocabQuestionsAnsweredLeft[randomQuestionLeft] = true;
@@ -3285,7 +3297,7 @@ window.preload = function () {
                   quizStateControl = 2;
                 }
               } else if (quizStateControl == 2){
-              if (loopAtAnswerLeft + 16 < loopCopy) {
+              if (loopAtAnswerLeft + 20 < loopCopy) {
                 if(keyWentDown('R')){
                   playSound("audio/app_menu_button_2.mp3");
                   if (quizHoverLeft == 4) {
@@ -3343,8 +3355,8 @@ window.preload = function () {
                 }
               }
             }
-              //wait half a second to show result, then switch to next question
-              if (loopAtAnswerLeft + 15 == loopCopy) {
+              //wait three-fourths a second to show result, then switch to next question
+              if (loopAtAnswerLeft + 23 == loopCopy) {
                 if (quizHoverLeft == quizAnswers[randomQuestionLeft]) (educationProgressLeft += 0.201);
                 quizColorsLeft[quizHoverLeft - 1] = 'white';
                 questionsAnsweredLeft[randomQuestionLeft] = true;
@@ -3362,7 +3374,7 @@ window.preload = function () {
                   quizStateControl = 3;
                 }
               } else if (quizStateControl == 3){
-              if (loopAtAnswerLeft + 16 < loopCopy) {
+              if (loopAtAnswerLeft + 20 < loopCopy) {
                  if (keyWentDown('R')) {
                    playSound("audio/app_menu_button_2.mp3");
                 if (quizHoverLeft == 4) {
@@ -3379,7 +3391,18 @@ window.preload = function () {
                   quizColorsLeft = ['lightGray', 'white', 'lightGray', 'lightGray'];
                 }
               }
-              if ((keyWentDown("E")||keyWentDown("Enter"))) {
+              for (let btnNum = 0; btnNum < 4; btnNum++) {
+                if (mouseIsOver(quizBtns[btnNum])) {
+                    quizHoverLeft = btnNum+1;
+                    quizColorsLeft = ['lightGray','lightGray','lightGray','lightGray'];
+                    quizColorsLeft[btnNum] = 'white';
+                    break;
+                }
+              }
+              
+              if ((keyWentDown("E")||keyWentDown("Enter"))
+              || mousePressedOver(quizBtns[0]) || mousePressedOver(quizBtns[1]) 
+              || mousePressedOver(quizBtns[2]) || mousePressedOver(quizBtns[3])) {
                 loopAtAnswerLeft = loopCopy;
                 totalQuestionsLeft++;
                 if (totalQuestionsLeft == 12) {
@@ -3409,8 +3432,8 @@ window.preload = function () {
                 }
               }
             }
-              //wait half a second to show result, then switch to next question
-              if (loopAtAnswerLeft + 15 == loopCopy) {
+              //wait three-fourths a second to show result, then switch to next question
+              if (loopAtAnswerLeft + 23 == loopCopy) {
                 if (quizHoverLeft == t3QuizAnswers[randomQuestionLeft]) (educationProgressLeft += 0.201);
                 quizColorsLeft[quizHoverLeft - 1] = 'white';
                 t3QuestionsAnsweredLeft[randomQuestionLeft] = true;
@@ -3604,18 +3627,19 @@ window.preload = function () {
             //text for the question 
             textSize(28);
             text(t3QuizText[randomQuestionLeft][0], 20, 238);
-            fill(rgb(220, 225, 255)); strokeWeight(2);
+            /*fill(rgb(220, 225, 255)); strokeWeight(2);
             rect(8, 275, 784, 50);
             textSize(24); noStroke();
             fill('black');
             text(t3QuizText[randomQuestionLeft][1], 20, 300); // move up?
+            */
             for (var fz = 1; fz < 5; fz++) {
               stroke('black'); strokeWeight(2);
               fill(quizColorsLeft[fz - 1]);
-              rect(8, 320 + ((fz - 1) * 68), 784, 64);
+              rect(8, 273 + ((fz - 1) * 79), 784, 75);
               //text for each answer choice
               noStroke(); fill('black');
-              text(t3QuizText[randomQuestionLeft][fz + 1], 16, 355 + ((fz - 1) * 68));
+              text(t3QuizText[randomQuestionLeft][fz + 1], 16, 313 + ((fz - 1) * 79));
             }
           }
           } 
@@ -4270,7 +4294,6 @@ window.preload = function () {
             }
         }
         
-
         //cutscreens
         //annual meeting cutscreen
         if (meetingControl > 0) {
@@ -5235,8 +5258,6 @@ window.preload = function () {
           meetingLoop=loopCount+150;
         }
       }
-
-
       //end game screen
       else if (level == 3) {
         background(rgb(175, 138, 103));
@@ -5477,21 +5498,31 @@ window.preload = function () {
       rect(808, 5, 384, 60);
       //yellow background
       fill(rgb(255, 242, 204));
-      rect(808, 66, 384, 260);
+      if (dropDownsOpen[0]){
+        rect(808, 66, 384, 260);
+      } else {
+        rect(808, 66, 384, 105);
+      }
       //yellow header
       fill(rgb(255, 229, 153));
       rect(808, 65, 384, 50);
     
         //light blue background
         fill(rgb(225, 252, 255));
-        rect(808, 336, 384, 200);
+        if (dropDownsOpen[1]) {
+          rect(808, 336, 384, 200);
+        }
         //light blue header
         fill(rgb(176, 247, 255));
         rect(808, 335, 384, 50);
 
         //blue background
         fill(rgb(207, 226, 243));
-        rect(808, 546, 384, 240);
+        if (dropDownsOpen[2]) {
+          rect(808, 546, 384, 240);
+        } else {
+          rect(808, 546, 384, 105);
+        }
         //blue header
         fill(rgb(159, 197, 232));
         rect(808, 545, 384, 50);
@@ -5502,17 +5533,26 @@ window.preload = function () {
       rect(1208, 5, 384, 40);
       //green background
       fill(rgb(217, 234, 211));
-      rect(1208, 45, 384, 281);
+      if (dropDownsOpen[3]) {
+        rect(1208, 45, 384, 160);
+      }
+      if (dropDownsOpen[4]) {
+        rect(1208, 230, 384, 96);
+      }
+
       //Objective subheader
       fill(rgb(110, 185, 110));
       rect(1208, 190, 384, 40);
     
         //controls background
         fill(rgb(72, 72, 72));
-        rect(1208, 336, 384, 450);
+        if (dropDownsOpen[5]) {
+          rect(1208, 336, 384, 450);
+        }
         //controls header
         fill(rgb(200, 200, 200));
         rect(1208, 335, 384, 45);
+        if (dropDownsOpen[5]) {
         if(!tipsSheetOpen){
           //movement header
           fill(rgb(200, 200, 200));
@@ -5562,11 +5602,13 @@ window.preload = function () {
           rect(1218, 610, 364, 30);
           
         }
-        
+      }
       
       //financials boxes
       //yellow "CLDC Financials"
+      
       stroke(rgb(50, 50, 50)); strokeWeight(4);
+      if (dropDownsOpen[0]) {
       for (var i = 0; i < 3; i++) {
         fill('white');
         rect(818, 126 + (i * 46), 194, 34);
@@ -5578,39 +5620,58 @@ window.preload = function () {
       rect(818, 280, 194, 34);
       fill(menuColors[3]);
       rect(1012, 280, 165, 34);
-
+      }else {
+        fill(rgb(201, 218, 248));
+        rect(818, 126, 194, 34);
+        fill(menuColors[3]);
+        rect(1012, 126, 165, 34);
+      }
         //Light blue "CLDC Loans"
+        if (dropDownsOpen[1]) {
         for (var y = 0; y < 3; y++) {
           fill('white');
           rect(818, 396 + (y * 46), 194, 34);
           fill(menuColors[y + 4]);
           rect(1012, 396 + (y * 46), 165, 34);
         }
-
+      }
         //blue "Your CLDC Scorecard:"
+        if (dropDownsOpen[2]) {
         for (var z = 0; z < 4; z++) {
           fill(scorecardColors[z]);
           rect(818, 605 + (z * 46), 194, 34);
           fill(menuColors[z + 7]);
           rect(1012, 605 + (z * 46), 165, 34);
         }
-      
+        } else {
+          fill(scorecardColors[3]);
+          rect(818, 605, 194, 34);
+          fill(menuColors[10]);
+          rect(1012, 605, 165, 34);
+        }
       //CLDC objective boxes
-      for (var za = 0; za < 3; za++) {
-        fill(objColors[za]);
-        rect(1223, 56 + (za * 42), 355, 32);
+      if (dropDownsOpen[3]) {
+        for (var za = 0; za < 3; za++) {
+          fill(objColors[za]);
+          rect(1223, 56 + (za * 42), 355, 32);
+        }
       }
+      
       //Player objective boxes
+      if (dropDownsOpen[4]) {
       for (var za = 0; za < 2; za++) {
         fill(objColors[za + 3]);
         rect(1223, 241 + (za * 42), 355, 32);
       }
-
+    }
       //Menu text
       textSize(34); strokeWeight(1); stroke('black');
       textAlign(CENTER, CENTER); fill('black');
-      text("Player Scorecard", 1000, 38);
-    
+      textStyle(BOLD);
+      text("Game Stats", 1000, 38);
+      textStyle(NORMAL);
+
+      
       if(!tipsSheetOpen){
         text("Controls", 1380, 360);
         
@@ -5619,8 +5680,10 @@ window.preload = function () {
         text("[T] Show Tips",1515,362);
         noStroke();
         textSize(24);fill("black");
+        if (dropDownsOpen[5]) {
         text("Movement", 1400, 401);
         text("Interaction", 1400, 618);
+        }
       }
       else{
         text("Tips", 1380, 360);
@@ -5629,25 +5692,26 @@ window.preload = function () {
         text("[T] Show Controls",1502,362);
         noStroke();
         textSize(24);fill("black");
+        if (dropDownsOpen[5]) {
         text("Land Development Process", 1400, 401);
         text("Other Information", 1400, 626);
         textSize(18);textAlign(LEFT, CENTER);
         text("1. Develop a land plot: stand on the plot\n    and press [E] to invest in it.\n2. Begin the vote: When an offer appears\n    (sign w/ arrows), press [E] or [R].\n3. Advocate: Make the vote pass or fail\n    by holding [E] on citizens that appear.\n4. Finish construction: If the vote passes,\n    press [E] on the construction site.",1230,510);
         text("• Use the recycling center for double points\n   by bringing litter to it and pressing [E].\n• A clean-up event must be active to pick\n   up litter - press [F] to start one.\n• To complete the game, develop the city\n   and do 10 objectives from the list above.",1230,710);
+        }
       }
-      
+    
       textAlign(CENTER, CENTER);
       noStroke();
       textSize(28);
       text("CLDC Objectives", 1400, 27);
-      text("Citizen-Owner Objectives", 1400, 212);
-      text("Annual CLDC Financials:", 1000, 94);
+      text("Citizen-Owner Objectives", 1410, 212);
+      text("Annual CLDC Financials", 1000, 94);
+      text("CLDC Loans", 1000, 364);
+      text("Your CLDC Scorecard", 1000, 574);
 
-        text("CLDC Loans:", 1000, 364);
-        text("Your CLDC Scorecard:", 1000, 574);
-
-        textSize(24);
-      if(!tipsSheetOpen){
+      textSize(24);
+      if(!tipsSheetOpen && dropDownsOpen[5]){
         //Movement text
         text("W or ↑", 1275, 438); text("Move Up", 1485, 437);
         text("S or ↓", 1275, 473); text("Move Down", 1485, 473);
@@ -5665,62 +5729,118 @@ window.preload = function () {
       
       //Yellow ""CLDC Financials" text
       textSize(22); textAlign(LEFT, CENTER);
-      text("Revenue", 825, 145);
-      text("Loan Repayments", 825, 191);
-      text("Other Expenses", 825, 237);
-      text("Profits", 825, 299);
+      if (dropDownsOpen[0]) {
+        text("Revenue", 825, 145);
+        text("Loan Repayments", 825, 191);
+        text("Other Expenses", 825, 237);
+        text("Profits", 825, 299);
+      } else {
+        text("Profits", 825, 145);
+      }
 
         //light blue "CLDC Loans" text
+        if (dropDownsOpen[1]) {
         text("Total Loans", 825, 415);
         text("Loan Repayments", 825, 461);
         text("Loan Balance", 825, 507);
+        }
         textSize(22);
 
         //blue "Your CLDC Scorecard" text
-        text("Dividends Earned", 825, 625);
-        textSize(19);
-        text("Ownership Education", 825, 671);
-        textSize(21);
-        text("Community Service", 825, 717);
-        textSize(22);
-        text("Total Score", 825, 763);
-      
-      
+        if (dropDownsOpen[2]) {
+          text("Dividends Earned", 825, 625);
+          textSize(19);
+          text("Ownership Education", 825, 671);
+          textSize(21);
+          text("Community Service", 825, 717);
+          textSize(22);
+          text("Total Score", 825, 763);
+        }else {
+          textSize(22);
+          text("Total Score", 825, 625);
+        }
+        
       textSize(22);
       //Objective list text
-      text(curObjListCLDC[0], 1228, 74);
-      text(curObjListCLDC[1], 1228, 116);
-      text(curObjListCLDC[2], 1228, 158);
+      if (dropDownsOpen[3]) {
+        text(curObjListCLDC[0], 1228, 74);
+        text(curObjListCLDC[1], 1228, 116);
+        text(curObjListCLDC[2], 1228, 158);
+      }
       
-      text(curObjListP[0], 1228, 259);
-      text(curObjListP[1], 1228, 301);
+      if (dropDownsOpen[4]) {
+        text(curObjListP[0], 1228, 259);
+        text(curObjListP[1], 1228, 301);
+      }
+      
       
       //Financials number text
+      if (dropDownsOpen[0]) {
       text("$" + addCommas(Math.round(totIncome)), 1020, 145);
       text("$" + addCommas(Math.round(totLoanPay)), 1020, 191);
       text("$" + addCommas(Math.round(totExpenses)), 1020, 237);
 
-      //move money counter after updating it
-      var negSign = '';
-      if(totProfits<0)(negSign='-');
-      if (cMoneyUpdateCount + 2 > loopCount) (text(negSign+"$" + addCommas(Math.round(totProfits)), 1020, 297));
-      else (text(negSign+"$" + addCommas(Math.round(totProfits)), 1020, 301));
+        //move money counter after updating it
+        let negSign = '';
+        if(totProfits<0)(negSign='-');
+        if (cMoneyUpdateCount + 2 > loopCount) (text(negSign+"$" + addCommas(Math.round(totProfits)), 1020, 297));
+        else (text(negSign+"$" + addCommas(Math.round(totProfits)), 1020, 301));
+      } else {
+        //move money counter after updating it
+        let negSign = '';
+        if(totProfits<0)(negSign='-');
+        if (cMoneyUpdateCount + 2 > loopCount) (text(negSign+"$" + addCommas(Math.round(totProfits)), 1020, 141));
+        else (text(negSign+"$" + addCommas(Math.round(totProfits)), 1020, 145));
+      }
 
         //loans number text
+        if (dropDownsOpen[1]) {
         if (loansUpdateCount + 2 > loopCount) (text("$" + addCommas(Math.round(totLoans)), 1020, 410));
         else (text("$" + addCommas(Math.round(totLoans)), 1020, 415));
         text("$" + addCommas(Math.round(totLoanPay)), 1020, 461);
         text("$" + addCommas(Math.round(totLoans - totLoanPay)), 1020, 507);
-
+        }
         //scorecard number text
-        text("$" + addCommas(Math.round(dividends)), 1020, 625);
-        text(addCommas(ePoints), 1020, 671);
-        if (cUpdateCount + 2 > loopCount) (text(addCommas(cPoints), 1020, 712));
-        else (text(addCommas(cPoints), 1020, 717));
-        text(addCommas(Math.round(ePoints + cPoints + dividends)), 1020, 763);
-      
-      
+        if (dropDownsOpen[2]) {
+          text("$" + addCommas(Math.round(dividends)), 1020, 625);
+          text(addCommas(ePoints), 1020, 671);
+          if (cUpdateCount + 2 > loopCount) (text(addCommas(cPoints), 1020, 712));
+          else (text(addCommas(cPoints), 1020, 717));
+          text(addCommas(Math.round(ePoints + cPoints + dividends)), 1020, 763);
+        }else{
+          text(addCommas(Math.round(ePoints + cPoints + dividends)), 1020, 625);
+        }
       textAlign(CENTER, CENTER);
+
+      //dropdown menu buttons
+      for (let dropBtn = 0; dropBtn < 6; dropBtn++) {
+        if (mousePressedOver(dropDownBtns[dropBtn]) && mouseWentDown("leftButton")) {
+          dropDownsOpen[dropBtn] = !dropDownsOpen[dropBtn];
+        }
+      }
+      if (mouseIsOver(dropDownBtns[0])) {
+        cursor(HAND);
+      } else if (mouseIsOver(dropDownBtns[1])) {
+        cursor(HAND);
+      } else if (mouseIsOver(dropDownBtns[2])) {
+        cursor(HAND);
+      } else if (mouseIsOver(dropDownBtns[3])) {
+        cursor(HAND);
+      } else if (mouseIsOver(dropDownBtns[4])) {
+        cursor(HAND);
+      } else if (mouseIsOver(dropDownBtns[5])) {
+        cursor(HAND);
+      } else {
+        cursor(ARROW);
+      }
+
+      dropDownCircle(830, 90, dropDownsOpen[0]);
+      dropDownCircle(830, 360, dropDownsOpen[1]);
+      dropDownCircle(830, 570, dropDownsOpen[2]);
+      dropDownCircle(1230, 25, dropDownsOpen[3]);
+      dropDownCircle(1230, 210, dropDownsOpen[4]);
+      dropDownCircle(1230, 358, dropDownsOpen[5]);
+
       //end right side menu
 
       //hide menu during annual meeting
@@ -6027,7 +6147,7 @@ window.preload = function () {
             if(loopCount==110)(stopSound("audio/typing.mp3"));
             stroke("darkRed");strokeWeight(5);
             line(400,360,leftChar.x,leftChar.y+40);
-            circle(leftChar.x,leftChar.y,50,80,"darkRed");
+            encircle(leftChar.x,leftChar.y,50,80,"darkRed");
             if((keyWentDown("w")||keyWentDown("a")||keyWentDown("s")||keyWentDown("d")||
               keyWentDown("UP_ARROW")||keyWentDown("LEFT_ARROW")||
               keyWentDown("RIGHT_ARROW")||keyWentDown("DOWN_ARROW")))(walkthroughLoops[0]=loopCount+45);
@@ -6062,7 +6182,7 @@ window.preload = function () {
             if(loopCount>80){
               stroke("darkRed");strokeWeight(5);
               line(400,400,400,740);
-              circle(400,760,210,80,"darkRed");
+              encircle(400,760,210,80,"darkRed");
             }
             if(keyWentDown("SHIFT"))(walkthroughLoops[1]=loopCount+45);
             
@@ -6096,7 +6216,7 @@ window.preload = function () {
             if(loopCount>80){
               stroke("darkRed");strokeWeight(5);
               line(leftChar.x+15,leftChar.y,landLocations[4][0]-35,landLocations[4][1]+35);
-              circle(landLocations[4][0],landLocations[4][1],100,100,"darkRed");
+              encircle(landLocations[4][0],landLocations[4][1],100,100,"darkRed");
             }
             if(charBoxLeft.isTouching(t1Land[4])){
               stopSound("audio/typing.mp3");
@@ -6187,7 +6307,7 @@ window.preload = function () {
               offerMenu(1,false);
               stroke("darkRed");strokeWeight(5);
               line(400,445,400,670);
-              circle(400,750,800,150,"darkRed");
+              encircle(400,750,800,150,"darkRed");
 
               if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
                 loopCount=roadCooldowns[4]+149;
@@ -6264,7 +6384,7 @@ window.preload = function () {
 
               stroke("darkRed");strokeWeight(5);
               line(leftChar.x+15,leftChar.y,landLocations[4][0]-30,landLocations[4][1]+30);
-              circle(landLocations[4][0],landLocations[4][1],80,80,"darkRed");
+              encircle(landLocations[4][0],landLocations[4][1],80,80,"darkRed");
               noStroke();
               fill("white");
               text("Move to the investment offer to continue.",400,380);
@@ -6311,7 +6431,7 @@ window.preload = function () {
             if(loopCount==voteLoop+225)(stopSound("audio/typing.mp3"));
             stroke("darkRed");strokeWeight(5);
             line(leftChar.x-15,leftChar.y,streets[15].x+40,streets[15].y);
-            circle(streets[15].x,streets[15].y,70,70,"darkRed");  
+            encircle(streets[15].x,streets[15].y,70,70,"darkRed");  
           }
 
 
@@ -6463,10 +6583,11 @@ window.preload = function () {
           }
           }
             //points text
-          fill("gold"); stroke("gold");strokeWeight(2); 
+          fill("gold"); stroke("black");strokeWeight(2); textStyle(BOLD);
           if (cUpdateCount + 20 > loopCount) {
-            text("+" + recentPoints + " Pt", leftChar.x, leftChar.y - 30 - (loopCount - cUpdateCount));
+            text("+" + recentPoints + " Pts", leftChar.x, leftChar.y - 30 - (loopCount - cUpdateCount));
             }
+            textStyle(NORMAL);
           }
           else if(introSelection == 4){
             //complete construction, explain how buildings provide income to CLDC
@@ -6567,7 +6688,7 @@ window.preload = function () {
               if((offer1.x!=-50)&&(!leftChar.isTouching(offer1))){
                 stroke("darkRed");strokeWeight(5);
             line(leftChar.x+15,leftChar.y,landLocations[4][0]-35,landLocations[4][1]+35);
-            circle(landLocations[4][0],landLocations[4][1],100,100,"darkRed");
+            encircle(landLocations[4][0],landLocations[4][1],100,100,"darkRed");
               }
             }
           }
@@ -6666,7 +6787,7 @@ window.preload = function () {
               if(loopCount>2430){
                 fill(rgb(255,255,255,0.7));noStroke();
                 rect(316,87,166,64);
-                circle(landLocations[9][0],landLocations[9][1],190,120,"darkRed");
+                encircle(landLocations[9][0],landLocations[9][1],190,120,"darkRed");
                 fill(rgb(0,0,200)); textSize(21); noStroke();
                 text("Site for\nJustice University",t2Land[1].x, t2Land[1].y);
               }
@@ -6710,7 +6831,7 @@ window.preload = function () {
               if(!(charBoxLeft.isTouching(trash[0]))){
                 stroke("darkRed");strokeWeight(5);
                 line(leftChar.x-15,leftChar.y,trash[0].x+30,trash[0].y);
-                circle(trash[0].x,trash[0].y,60,60,"darkRed");
+                encircle(trash[0].x,trash[0].y,60,60,"darkRed");
                 jobProgressLeft=0;
                 lTouchingJob=false;
               }else if(cleanUpActive){
@@ -6788,17 +6909,18 @@ window.preload = function () {
                   fill(rgb(255,255,255,0.7));noStroke();
                   rect(478,87,166,64);
                   
-                  circle(landLocations[10][0],landLocations[10][1],190,120,"darkRed");
+                  encircle(landLocations[10][0],landLocations[10][1],190,120,"darkRed");
                   fill(rgb(0,0,200)); textSize(21);noStroke();
                   text("Site for\nRecycling Center",t2Land[2].x, t2Land[2].y);
 
                   typeText("You picked up the litter! Now press [F] once again to collect\nyour community service points. Once the recycling center is\ndeveloped, press [E] next to it to earn double the points.",400,430,26,1,false,"white",loopCount);
                 }
                 
-                fill("gold"); stroke("gold");strokeWeight(2); 
+                fill("gold"); stroke("black");strokeWeight(2); textStyle(BOLD);
           if (cUpdateCount + 20 > loopCount) {
             text("+" + recentPoints + " Pts", leftChar.x, leftChar.y - 30 - (loopCount - cUpdateCount));
             }
+            textStyle(NORMAL);
             }
 
               if (jobProgressLeft != 0 && !pauseMainFunctions) {
@@ -6924,10 +7046,11 @@ window.preload = function () {
 
           
           //points text
-          fill("gold"); stroke("gold");strokeWeight(2); 
+          fill("gold"); stroke("black");strokeWeight(2);textStyle(BOLD);
           if (cUpdateCount + 20 > loopCount) {
             text("+" + recentPoints + " Pts", leftChar.x, leftChar.y - 30 - (loopCount - cUpdateCount));
             }
+            textStyle(NORMAL);
         }
         
         if (gamePaused) {
@@ -6956,7 +7079,8 @@ window.preload = function () {
         text("Reborn",800,325);
         textFont("georgia");
       }
-      else if (tutorialSkipped && (level == 2) && loopCount < 15) {
+      //fade into main game
+      else if (tutorialSkipped && (level == 2) && (loopCount < 15) && !pauseMainFunctions) {
         fill(rgb(255, 255, 255, 0.6 - (loopCount / 25)));
         noStroke();
         rect(0,0,800,800);
@@ -6985,6 +7109,20 @@ window.preload = function () {
 
     
     //functions{
+      function dropDownCircle(x, y, isOpen) {
+          fill(rgb(235, 220, 185)); stroke("black"); strokeWeight(2);
+          arc(x, y, 30, 30, 0, 360);
+          //text
+          fill("black");noStroke();textSize(18);
+          if (isOpen) {
+            text("V", x, y+2);
+          } else {
+            textStyle(BOLD);
+            text(">", x, y);
+            textStyle(NORMAL);
+          }
+      }
+
       function formatTime(){
         let today = new Date();
             
@@ -7243,7 +7381,7 @@ window.preload = function () {
       }
     }
     
-    function circle(x,y,width,height,color){
+    function encircle(x,y,width,height,color){
       fill(0,0,0,0);stroke(color);strokeWeight(6);
       arc(x,y,width,height,0,360);
     }
@@ -9274,7 +9412,7 @@ window.preload = function () {
           t3LandIsOpen[plot - 11] = true;
         }
         cExpenses -= 1;
-        recentPoints = 1;
+        recentPoints = 10;
         cPoints += 10;
         cUpdateCount = loopCount;
         jobProgressLeft = 0;
