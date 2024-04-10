@@ -5497,10 +5497,13 @@ window.preload = function () {
       fill(rgb(200, 200, 200));
       rect(808, 5, 384, 60);
       //yellow background
-      fill(rgb(255, 242, 204));
       if (dropDownsOpen[0]){
+        fill(rgb(255, 242, 204));
         rect(808, 66, 384, 260);
       } else {
+        fill(rgb(27, 35, 48));
+        rect(808, 66, 384, 260);
+        fill(rgb(255, 242, 204));
         rect(808, 66, 384, 105);
       }
       //yellow header
@@ -5508,8 +5511,11 @@ window.preload = function () {
       rect(808, 65, 384, 50);
     
         //light blue background
-        fill(rgb(225, 252, 255));
         if (dropDownsOpen[1]) {
+          fill(rgb(225, 252, 255));
+          rect(808, 336, 384, 200);
+        }else {
+          fill(rgb(27, 35, 48));
           rect(808, 336, 384, 200);
         }
         //light blue header
@@ -5517,10 +5523,13 @@ window.preload = function () {
         rect(808, 335, 384, 50);
 
         //blue background
-        fill(rgb(207, 226, 243));
         if (dropDownsOpen[2]) {
-          rect(808, 546, 384, 240);
+        fill(rgb(207, 226, 243));
+        rect(808, 546, 384, 240);
         } else {
+          fill(rgb(27, 35, 48));
+          rect(808, 546, 384, 240);
+          fill(rgb(207, 226, 243));
           rect(808, 546, 384, 105);
         }
         //blue header
@@ -5532,11 +5541,18 @@ window.preload = function () {
       fill(rgb(110, 185, 110));
       rect(1208, 5, 384, 40);
       //green background
-      fill(rgb(217, 234, 211));
       if (dropDownsOpen[3]) {
+        fill(rgb(217, 234, 211));
+        rect(1208, 45, 384, 160);
+      }else {
+        fill(rgb(27, 35, 48));
         rect(1208, 45, 384, 160);
       }
       if (dropDownsOpen[4]) {
+        fill(rgb(217, 234, 211));
+        rect(1208, 230, 384, 96);
+      } else {
+        fill(rgb(27, 35, 48));
         rect(1208, 230, 384, 96);
       }
 
@@ -5545,8 +5561,12 @@ window.preload = function () {
       rect(1208, 190, 384, 40);
     
         //controls background
-        fill(rgb(72, 72, 72));
+        
         if (dropDownsOpen[5]) {
+          fill(rgb(72, 72, 72));
+          rect(1208, 336, 384, 450);
+        }else {
+          fill(rgb(27, 35, 48));
           rect(1208, 336, 384, 450);
         }
         //controls header
@@ -6011,6 +6031,7 @@ window.preload = function () {
             if(loopCount==965)(playSound("audio/typing.mp3"));
           }
           else if(loopCount<1490){
+            dropDownsOpen=[true,false,false,false,false,false];
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=599;
@@ -6027,6 +6048,7 @@ window.preload = function () {
             if(loopCount==1455)(playSound("audio/typing.mp3"));
           }
           else if(loopCount<1810){
+            dropDownsOpen=[false,true,false,false,false,false];
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=969;
@@ -6043,6 +6065,7 @@ window.preload = function () {
             if(loopCount==1775)(playSound("audio/typing.mp3"));
           }
           else if(loopCount<2280){
+            dropDownsOpen=[false,false,true,false,false,false];
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=1489;
@@ -6059,6 +6082,7 @@ window.preload = function () {
             if(loopCount==2245)(playSound("audio/typing.mp3"));
           }
           else if(loopCount<2570){
+            dropDownsOpen=[false,false,false,true,true,false];
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=1809;
@@ -6075,6 +6099,7 @@ window.preload = function () {
             if(loopCount==2535)(playSound("audio/typing.mp3"));
           }
           else if(loopCount<2960){
+            dropDownsOpen=[false,false,false,false,false,true];
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=2279;
@@ -6090,6 +6115,7 @@ window.preload = function () {
             if(loopCount==2780)(stopSound("audio/typing.mp3"));
           }
           else if(loopCount==2960){
+            dropDownsOpen=[false,false,false,false,false,false];
             stopLongSounds(false);
             introControl=2;
             loopCount=0;
@@ -7115,10 +7141,12 @@ window.preload = function () {
           //text
           fill("black");noStroke();textSize(18);
           if (isOpen) {
-            text("V", x, y+2);
+            textStyle(BOLD);
+            text("∧", x, y-1);
+            textStyle(NORMAL);
           } else {
             textStyle(BOLD);
-            text(">", x, y);
+            text("∨", x, y+1);
             textStyle(NORMAL);
           }
       }
@@ -8218,7 +8246,7 @@ window.preload = function () {
           text("Building will be completed a\nfew seconds after [E] is pressed.",610,750);
         }else{
           textSize(24);
-          text("Construction will finish shortly...",610,750);
+          text("Construction will finish in "+Math.round((100-(loopCount-offerBuildCooldowns[offerNum-1]))/30)+"...",610,750);
         }
         if (keyWentDown("e") && !pauseMainFunctions) {
           playSound("audio/hammer6x.mp3");
