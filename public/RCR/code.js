@@ -764,6 +764,7 @@ window.preload = function () {
     var introScale = 0;
     
     var dropDownsOpen = [ false, false, false, false, false, false ];
+    var tempDropDownsOpen = [ false, false, false, false, false, false ];
 
     var menuColors = [
       rgb(244, 204, 204), rgb(180, 235, 190), rgb(180, 235, 190), rgb(244, 204, 204),
@@ -6038,16 +6039,19 @@ window.preload = function () {
               loopCount=969;
               textStart=[1,600];
               introStateControl=7;
+              tempDropDownsOpen=dropDownsOpen;
             }
             spotlight(800,0,800,800);
             if(loopCount==600)(textStart.push(600));
-            typeText("The right half of the screen is where important\ninformation is located, like financials, statistics,\nobjectives, and controls.",400,350,35,1,false,"white",loopCount);
+            typeText("The right half of the screen is where important\ninformation is located, like financials, statistics,\nobjectives, and controls."+ 
+            " Each section can be\nopened and closed by clicking the button\nat the top left.",400,350,35,1,false,"white",loopCount);
             if(loopCount==850)(stopSound("audio/typing.mp3"));
             if(loopCount==965)(playSound("audio/typing.mp3"));
           }
           else if(introStateControl==7){//loopCount<1490
             dropDownsOpen=[true,false,false,false,false,false];
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
+              dropDownsOpen=tempDropDownsOpen;
               stopSound("audio/typing.mp3");
               loopCount=599;
               introStateControl=6;
@@ -6108,7 +6112,7 @@ window.preload = function () {
               stopSound("audio/typing.mp3");
               loopCount=1809;
               introStateControl=9;
-            }
+            }dropDownsOpen
             if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=2569;
@@ -6140,7 +6144,7 @@ window.preload = function () {
             if(loopCount==2780)(stopSound("audio/typing.mp3"));
           }
           else if(introStateControl==12){//loopCount==2960
-            dropDownsOpen=[false,false,false,false,false,false];
+            dropDownsOpen=tempDropDownsOpen;
             stopLongSounds(false);
             introControl=2;
             loopCount=0;
