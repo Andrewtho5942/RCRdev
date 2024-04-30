@@ -416,6 +416,7 @@ window.preload = function () {
     var loopAtAnswerLeft = -200;
     var totalQuestionsLeft = 0;
     var quizStateControl = 0;
+    var introStateControl = 0;
     var rRollLeft;
     var charNum = 1;
     var voteData = ["none", "0", 50];
@@ -632,13 +633,11 @@ window.preload = function () {
     var offerRatings = ["", "", ""];
     var ratingColors = ["white", "white", "white"];
 
-
     var payMethod = 0;
     var paymentText = ["Pay with CLDC Profits", "Add to CLDC Loans"];
     var pauseMainFunctions = false;
     var gamePaused = false;
   
-
     //Land data
     var t1PlotIsCompleted = [false, false, false, false, false, false, false, false, false];
     var t2PlotIsCompleted = [false, false, false];
@@ -5985,7 +5984,9 @@ window.preload = function () {
                 }
           }
           textSize(30);fill("white");noStroke();
-          text('[BACKSPACE] Back   |   [ENTER] Skip   |   [P] Pause', 400, 754);
+          text('[BACKSPACE] Back |                             | [P] Pause', 400, 754);
+          fill(rgb(180,250,180));
+          text("[ENTER] Continue", 460,754);
         }
         else if(introControl==1){
           if(loopCount<600){
@@ -6124,8 +6125,11 @@ window.preload = function () {
             educationLevelLeft.visible = leftChar.visible = charHead.visible = music.visible=true;
             textStart=[1];
           }
-          textSize(30);fill("white");
-          text('[BACKSPACE] Back   |   [ENTER] Skip   |   [P] Pause', 400, 754);
+          textSize(30);fill("white");noStroke();
+          text('[BACKSPACE] Back |                             | [P] Pause', 400, 754);
+          fill(rgb(180,250,180));
+          text("[ENTER] Continue", 460,754);
+
           if(loopCount>=600){
             fill(rgb(190,255,200));stroke(rgb(200,255,200));strokeWeight(0.25);textSize(30);
           text("Menu Explanation",400,30);
@@ -6137,7 +6141,10 @@ window.preload = function () {
           noStroke();fill(rgb(0,0,0,0.6));
           rect(40,10,720,50);
           fill("white");textSize(30);
-          text('[BACKSPACE] Back   |   [ENTER] Skip   |   [P] Pause', 400,32);
+          text('[BACKSPACE] Back   |                        |   [P] Pause', 400,32);
+          fill(rgb(180,250,180));
+          text("[ENTER] Skip", 465,32);
+          
           //gameplay walkthrough
                if(introSelection == 0){
                 if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
