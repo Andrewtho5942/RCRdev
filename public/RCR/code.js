@@ -5872,7 +5872,7 @@ window.preload = function () {
         textAlign(CENTER,CENTER);
         if(introControl==0){
           
-        if(loopCount<380){
+        if(introStateControl==0){//loopCount<380
           //go back to main menu if backspace is pressed
           if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
@@ -5883,6 +5883,7 @@ window.preload = function () {
             stopSound("audio/typing.mp3");
             loopCount=379;
             textStart[0]=15;
+            introStateControl=1;
           }
 
           spotlight(0,0,0,0);
@@ -5897,30 +5898,34 @@ window.preload = function () {
           }
           if(loopCount==375)(playSound("audio/typing.mp3"));
         }
-        else if(loopCount<760){
+        else if(introStateControl==1){//loopCount<760
           if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=0;
+            introStateControl=0;
           }
           if (keyWentDown("ENTER")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=759;
             textStart=[15,380];
+            introStateControl=2;
           }
           spotlight(10,10,780,460);
           if(loopCount==380)(textStart.push(380));
           typeText("The north side, your home, has fallen\ninto a state of disrepair and poverty.\nCrime is rampant, and the land is empty.",400,570,40,1,false,"white",loopCount);
           if(loopCount==620)(stopSound("audio/typing.mp3"));
         }
-        else if(loopCount<1100){
+        else if(introStateControl==2){//loopCount<1100
           if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=379;
+            introStateControl=1;
           }
           if (keyWentDown("ENTER")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=1095;
             textStart=[15,380,770];
+            introStateControl=3;
           }
           spotlight(10,500,780,190);
           if(loopCount==765)(playSound("audio/typing.mp3"));
@@ -5928,15 +5933,17 @@ window.preload = function () {
           typeText("Meanwhile, the south side has only\ngotten richer and has become a regional\nhub for economic activity." ,400,330,40,2,false,"white",loopCount);
           if(loopCount==970)(stopSound("audio/typing.mp3"));
         }
-        else if(loopCount<1880){
+        else if(introStateControl==3){//loopCount<1880
           if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=759;
+            introStateControl=2;
           }
           if (keyWentDown("ENTER")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=1879;
             textStart=[1880];
+            introStateControl=4;
           }
           
           spotlight(0,0,0,0);
@@ -5949,11 +5956,12 @@ window.preload = function () {
             textStart=[1880];
           }
         }
-        else {
+        else if(introStateControl==4){
           if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
             loopCount=1099;
             textStart=[15,380,770];
+            introStateControl=3;
           }
           if (keyWentDown("ENTER")&&!pauseMainFunctions) {
             stopLongSounds(false);
@@ -5961,6 +5969,7 @@ window.preload = function () {
             loopCount=0;
             introControl=1;
             textStart=[];
+            introStateControl=5;
           }
 
           spotlight(0,0,0,0);
@@ -5989,16 +5998,19 @@ window.preload = function () {
           text("[ENTER] Continue", 460,754);
         }
         else if(introControl==1){
-          if(loopCount<600){
+          if(introStateControl==5){ // loopCount<600
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               introControl=0;
               loopCount=1879;
+              textStart=[1880];
+              introStateControl=4;
             }
             if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=599;
               textStart=[1];
+              introStateControl=6;
             }
             spotlight(0,0,0,0);
             fill(rgb(190,200,255));stroke(rgb(190,200,255));strokeWeight(0.25);textSize(30);
@@ -6015,15 +6027,17 @@ window.preload = function () {
             if(loopCount==455)(stopSound("audio/typing.mp3"));
             if(loopCount==595)(playSound("audio/typing.mp3"));
           }
-          else if(loopCount<970){
+          else if(introStateControl==6){//loopCount<970
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=0;
+              introStateControl=5;
             }
             if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=969;
               textStart=[1,600];
+              introStateControl=7;
             }
             spotlight(800,0,800,800);
             if(loopCount==600)(textStart.push(600));
@@ -6031,16 +6045,18 @@ window.preload = function () {
             if(loopCount==850)(stopSound("audio/typing.mp3"));
             if(loopCount==965)(playSound("audio/typing.mp3"));
           }
-          else if(loopCount<1490){
+          else if(introStateControl==7){//loopCount<1490
             dropDownsOpen=[true,false,false,false,false,false];
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=599;
+              introStateControl=6;
             }
             if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=1489;
               textStart=[1,600,970];
+              introStateControl=8;
             }
             spotlight(808,66,384,260);
             if(loopCount==970)(textStart.push(970));
@@ -6048,16 +6064,18 @@ window.preload = function () {
             if(loopCount==1360)(stopSound("audio/typing.mp3"));
             if(loopCount==1455)(playSound("audio/typing.mp3"));
           }
-          else if(loopCount<1810){
+          else if(introStateControl==8){//loopCount<1810
             dropDownsOpen=[false,true,false,false,false,false];
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=969;
+              introStateControl=7;
             }
             if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=1809;
               textStart=[1,600,970,1490];
+              introStateControl=9;
             }
             spotlight(808,336,384,200);
             if(loopCount==1490)(textStart.push(1490));
@@ -6065,16 +6083,18 @@ window.preload = function () {
             if(loopCount==1680)(stopSound("audio/typing.mp3"));
             if(loopCount==1775)(playSound("audio/typing.mp3"));
           }
-          else if(loopCount<2280){
+          else if(introStateControl==9){//loopCount<2280
             dropDownsOpen=[false,false,true,false,false,false];
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=1489;
+              introStateControl=8;
             }
             if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=2279;
               textStart=[1,600,970,1490,1810];
+              introStateControl=10;
             }
             spotlight(808,546,384,240);
             if(loopCount==1810)(textStart.push(1810));
@@ -6082,16 +6102,18 @@ window.preload = function () {
             if(loopCount==2150)(stopSound("audio/typing.mp3"));
             if(loopCount==2245)(playSound("audio/typing.mp3"));
           }
-          else if(loopCount<2570){
+          else if(introStateControl==10){//loopCount<2570
             dropDownsOpen=[false,false,false,true,true,false];
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=1809;
+              introStateControl=9;
             }
             if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=2569;
               textStart=[1,600,970,1490,1810,2280];
+              introStateControl=11;
             }
             spotlight(1208,5,384,321);
             if(loopCount==2280)(textStart.push(2280));
@@ -6099,23 +6121,25 @@ window.preload = function () {
             if(loopCount==2440)(stopSound("audio/typing.mp3"));
             if(loopCount==2535)(playSound("audio/typing.mp3"));
           }
-          else if(loopCount<2960){
+          else if(introStateControl==11){//loopCount<2960
             dropDownsOpen=[false,false,false,false,false,true];
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=2279;
+              introStateControl=10;
             }
             if (keyWentDown("ENTER")&&!pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount=2959;
               textStart=[1,600,970,1490,1810,2280];
+              introStateControl=12;
             }
             spotlight(1208,336,384,450);
             if(loopCount==2570)(textStart.push(2570));
             typeText("This area shows the controls to play the game\nand a tips sheet that can be shown/hidden\nby pressing [T]. Reference this if you\naren't sure what to do.",400,350,35,6,false,"white",loopCount);
             if(loopCount==2780)(stopSound("audio/typing.mp3"));
           }
-          else if(loopCount==2960){
+          else if(introStateControl==12){//loopCount==2960
             dropDownsOpen=[false,false,false,false,false,false];
             stopLongSounds(false);
             introControl=2;
@@ -6151,6 +6175,7 @@ window.preload = function () {
                   stopSound("audio/typing.mp3");
                   introControl=1;
                   loopCount=2569;
+                  introStateControl=11;
                   introSelection = 0;
                   textStart=[1,600,970,1490,1810,2280];
                   educationLevelLeft.visible = leftChar.visible = charHead.visible = music.visible=false;
@@ -6233,6 +6258,7 @@ window.preload = function () {
               loopCount=0;
               textStart=[1,1,1];
               leftChar.x=400;leftChar.y=200;
+              walkthroughLoops[1]=-1;
           }
           if (keyWentDown("ENTER")&&!pauseMainFunctions) {
             stopSound("audio/typing.mp3");
@@ -8342,6 +8368,7 @@ window.preload = function () {
     }
     //resets game and returns to main menu
     function resetGame(data) {
+      introStateControl = 0;
       quizStateControl = 0;
       charSelectCount = [-360,-360,-360,-360];
       cMoneyUpdateCount = -60;
