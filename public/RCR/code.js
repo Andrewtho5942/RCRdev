@@ -1428,6 +1428,12 @@ window.preload = function () {
             playSound("audio/swoosh.mp3");
             menuPage = 1;
             credsCounter = 24;
+
+            //reset char select movement
+            leftChar1.setAnimation("leftDown");
+            rightChar1.setAnimation("rightDown");
+            bChar1.setAnimation("bDown");
+            aChar1.setAnimation("aDown");
           }
           //start sliding from menu to leaderboard
           if (mousePressedOver(leaderBtn) && zoomedIn) {
@@ -1435,6 +1441,12 @@ window.preload = function () {
             menuPage = 2;
             credsCounter = -24;
             formatTime();
+
+            //reset char select movement
+            leftChar1.setAnimation("leftDown");
+            rightChar1.setAnimation("rightDown");
+            bChar1.setAnimation("bDown");
+            aChar1.setAnimation("aDown");
           }
 
           //slide from credits to main menu
@@ -1830,7 +1842,7 @@ window.preload = function () {
                 if (highScores[pu][1] >= 10000000) {
                   text(addCommas(Math.round(highScores[pu][1] / 1000000))+"M", -236+xSlide, 532+yOffset); //Score with commas, 10M or more
                 }else {
-                  text(addCommas(highScores[pu][1]), -236+xSlide, 532+yOffset); //Score with commas
+                  text(addCommas(Math.round(highScores[pu][1])), -236+xSlide, 532+yOffset); //Score with commas
                 }
               }
             }
@@ -1980,35 +1992,35 @@ window.preload = function () {
           rect(316, 753, sprint, 11);
         }
         //pause button 
-        if(keyWentDown('p')){
-          if(gamePaused){
-            playSound('audio/correct2.mp3');
-            gamePaused=false;
-            pauseMainFunctions=false;
-            if(isRaining)(playSound("audio/rain.mp3",true));
-            else(playSound("audio/bgTraffic.mp3",true));
-            if(fireActive)(playSound("audio/fire.mp3"));
-            if(floodActive)(playSound("audio/flood.mp3"));
-          } else if(!pauseMainFunctions){
-              stopLongSounds(true);
-              stopMusic();
-              playSound('audio/pause.mp3');
-              pauseMainFunctions=true;              
-              gamePaused=true;
-              loopCopy=loopCount+600;
-              leftChar.setVelocity(0,0);
-              lightning.x = lightning.y = -100;
-              if (charNum == 1) {
-              leftChar.setAnimation("leftDown");
-            } else if (charNum == 3) {
-              leftChar.setAnimation("rightDown");
-            } else if (charNum == 2) {
-              leftChar.setAnimation("bDown");
-            } else {
-              leftChar.setAnimation("aDown");
-            }
-          }
-        }
+        // if(keyWentDown('p')){
+        //   if(gamePaused){
+        //     playSound('audio/correct2.mp3');
+        //     gamePaused=false;
+        //     pauseMainFunctions=false;
+        //     if(isRaining)(playSound("audio/rain.mp3",true));
+        //     else(playSound("audio/bgTraffic.mp3",true));
+        //     if(fireActive)(playSound("audio/fire.mp3"));
+        //     if(floodActive)(playSound("audio/flood.mp3"));
+        //   } else if(!pauseMainFunctions){
+        //       stopLongSounds(true);
+        //       stopMusic();
+        //       playSound('audio/pause.mp3');
+        //       pauseMainFunctions=true;              
+        //       gamePaused=true;
+        //       loopCopy=loopCount+600;
+        //       leftChar.setVelocity(0,0);
+        //       lightning.x = lightning.y = -100;
+        //       if (charNum == 1) {
+        //       leftChar.setAnimation("leftDown");
+        //     } else if (charNum == 3) {
+        //       leftChar.setAnimation("rightDown");
+        //     } else if (charNum == 2) {
+        //       leftChar.setAnimation("bDown");
+        //     } else {
+        //       leftChar.setAnimation("aDown");
+        //     }
+        //   }
+        // }
         
         //character movement collisions
          charBoxLeft.x = leftChar.x; charBoxLeft.y = leftChar.y + 20;
@@ -5501,7 +5513,7 @@ window.preload = function () {
         fill(rgb(255, 242, 204));
         rect(808, 66, 384, 260);
       } else {
-        fill(rgb(27, 35, 48));
+        fill(rgb(110, 110, 110));//rgb(27, 35, 48)
         rect(808, 66, 384, 260);
         fill(rgb(255, 242, 204));
         rect(808, 66, 384, 105);
@@ -5515,7 +5527,7 @@ window.preload = function () {
           fill(rgb(225, 252, 255));
           rect(808, 336, 384, 200);
         }else {
-          fill(rgb(27, 35, 48));
+          fill(rgb(110, 110, 110));
           rect(808, 336, 384, 200);
         }
         //light blue header
@@ -5527,7 +5539,7 @@ window.preload = function () {
         fill(rgb(207, 226, 243));
         rect(808, 546, 384, 240);
         } else {
-          fill(rgb(27, 35, 48));
+          fill(rgb(110, 110, 110));
           rect(808, 546, 384, 240);
           fill(rgb(207, 226, 243));
           rect(808, 546, 384, 105);
@@ -5545,14 +5557,14 @@ window.preload = function () {
         fill(rgb(217, 234, 211));
         rect(1208, 45, 384, 160);
       }else {
-        fill(rgb(27, 35, 48));
+        fill(rgb(110, 110, 110));
         rect(1208, 45, 384, 160);
       }
       if (dropDownsOpen[4]) {
         fill(rgb(217, 234, 211));
         rect(1208, 230, 384, 96);
       } else {
-        fill(rgb(27, 35, 48));
+        fill(rgb(110, 110, 110));
         rect(1208, 230, 384, 96);
       }
 
@@ -5566,7 +5578,7 @@ window.preload = function () {
           fill(rgb(72, 72, 72));
           rect(1208, 336, 384, 450);
         }else {
-          fill(rgb(27, 35, 48));
+          fill(rgb(110, 110, 110));
           rect(1208, 336, 384, 450);
         }
         //controls header
@@ -5885,6 +5897,7 @@ window.preload = function () {
             loopCount=379;
             textStart[0]=15;
             introStateControl=1;
+            playSound("audio/typing.mp3");
           }
 
           spotlight(0,0,0,0);
@@ -5897,7 +5910,6 @@ window.preload = function () {
             stopSound("audio/typing.mp3");
             stopMusic();
           }
-          if(loopCount==375)(playSound("audio/typing.mp3"));
         }
         else if(introStateControl==1){//loopCount<760
           if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
@@ -5952,10 +5964,10 @@ window.preload = function () {
           if(loopCount==1110)(textStart.push(1110));
           typeText("Fortunately, there is a way to redevelop\nand breathe new life into our city!\n   \nBy forming an organizational tool known as\na Citizen's Land Development Coop (CLDC),\nthe north side can be economically REBORN\nwithout creating government debt!\n   \nThe CLDC works in eight phases...",400,320,35,3,false,"white",loopCount);
           if(loopCount==1680)(stopSound("audio/typing.mp3"));
-          if(loopCount==1875){
-            playSound("audio/typing.mp3");
-            textStart=[1880];
-          }
+          // if(loopCount==1875){
+          //   playSound("audio/typing.mp3");
+          //   textStart=[1880];
+          // }
         }
         else if(introStateControl==4){
           if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
@@ -5985,18 +5997,18 @@ window.preload = function () {
               if(loopCount == 2560){
                 stopSound("audio/typing.mp3");
               }
-              if(loopCount==2820){
-                  stopLongSounds(false);
-                  stopMusic();
-                  loopCount=0;
-                  introControl=1;
-                  textStart=[];
-                }
+              // if(loopCount==2820){
+              //     stopLongSounds(false);
+              //     stopMusic();
+              //     loopCount=0;
+              //     introControl=1;
+              //     textStart=[];
+              //   }
           }
           textSize(30);fill("white");noStroke();
-          text('[BACKSPACE] Back |                             | [P] Pause', 400, 754);
+          text('[BACKSPACE] Back  |                             ', 400, 754);
           fill(rgb(180,250,180));
-          text("[ENTER] Continue", 460,754);
+          text("[ENTER] Continue", 540,754);
         }
         else if(introControl==1){
           if(introStateControl==5){ // loopCount<600
@@ -6012,6 +6024,7 @@ window.preload = function () {
               loopCount=599;
               textStart=[1];
               introStateControl=6;
+              playSound("audio/typing.mp3");
             }
             spotlight(0,0,0,0);
             fill(rgb(190,200,255));stroke(rgb(190,200,255));strokeWeight(0.25);textSize(30);
@@ -6026,7 +6039,7 @@ window.preload = function () {
           typeText("That leaves us with the last two phases!\n  \n7) Develop the land & properties\n\n8) Lease the properties to repay the loans\nand generate dividends for the owners\n\nThese goals are for you to complete --\nLet's get started!",40,350,35,0,false,"white",loopCount);
             textAlign(CENTER,CENTER);
             if(loopCount==455)(stopSound("audio/typing.mp3"));
-            if(loopCount==595)(playSound("audio/typing.mp3"));
+            
           }
           else if(introStateControl==6){//loopCount<970
             if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
@@ -6040,13 +6053,13 @@ window.preload = function () {
               textStart=[1,600];
               introStateControl=7;
               tempDropDownsOpen=dropDownsOpen;
+              playSound("audio/typing.mp3");
             }
             spotlight(800,0,800,800);
             if(loopCount==600)(textStart.push(600));
             typeText("The right half of the screen is where important\ninformation is located, like financials, statistics,\nobjectives, and controls."+ 
             " Each section can be\nopened and closed by clicking the button\nat the top left.",400,350,35,1,false,"white",loopCount);
             if(loopCount==850)(stopSound("audio/typing.mp3"));
-            if(loopCount==965)(playSound("audio/typing.mp3"));
           }
           else if(introStateControl==7){//loopCount<1490
             dropDownsOpen=[true,false,false,false,false,false];
@@ -6061,12 +6074,12 @@ window.preload = function () {
               loopCount=1489;
               textStart=[1,600,970];
               introStateControl=8;
+              playSound("audio/typing.mp3");
             }
             spotlight(808,66,384,260);
             if(loopCount==970)(textStart.push(970));
             typeText("This area shows the CLDC's cumulative annual\nrevenue, expenses, and profit. Any profits\nexceeding the reserve minimum are distributed\nas dividends to CLDC members\nat the annual shareholder meeting.",400,350,35,2,false,"white",loopCount);
             if(loopCount==1360)(stopSound("audio/typing.mp3"));
-            if(loopCount==1455)(playSound("audio/typing.mp3"));
           }
           else if(introStateControl==8){//loopCount<1810
             dropDownsOpen=[false,true,false,false,false,false];
@@ -6080,12 +6093,12 @@ window.preload = function () {
               loopCount=1809;
               textStart=[1,600,970,1490];
               introStateControl=9;
+              playSound("audio/typing.mp3");
             }
             spotlight(808,336,384,200);
             if(loopCount==1490)(textStart.push(1490));
             typeText("This area shows the CLDC's cumulative\nloans, loan repayments, and loan balance\n(the difference).",400,350,35,3,false,"white",loopCount);
             if(loopCount==1680)(stopSound("audio/typing.mp3"));
-            if(loopCount==1775)(playSound("audio/typing.mp3"));
           }
           else if(introStateControl==9){//loopCount<2280
             dropDownsOpen=[false,false,true,false,false,false];
@@ -6099,12 +6112,13 @@ window.preload = function () {
               loopCount=2279;
               textStart=[1,600,970,1490,1810];
               introStateControl=10;
+              playSound("audio/typing.mp3");
             }
             spotlight(808,546,384,240);
             if(loopCount==1810)(textStart.push(1810));
             typeText("This area shows your scores including\ndividends, ownership education points, and\ncommunity service points. These are helpful for\ncompleting objectives and reducing expenses.",400,350,35,4,false,"white",loopCount);
             if(loopCount==2150)(stopSound("audio/typing.mp3"));
-            if(loopCount==2245)(playSound("audio/typing.mp3"));
+            
           }
           else if(introStateControl==10){//loopCount<2570
             dropDownsOpen=[false,false,false,true,true,false];
@@ -6118,12 +6132,12 @@ window.preload = function () {
               loopCount=2569;
               textStart=[1,600,970,1490,1810,2280];
               introStateControl=11;
+              playSound("audio/typing.mp3");
             }
             spotlight(1208,5,384,321);
             if(loopCount==2280)(textStart.push(2280));
             typeText("This area shows some current objectives\nto guide your progress renovating the city.",400,350,35,5,false,"white",loopCount);
             if(loopCount==2440)(stopSound("audio/typing.mp3"));
-            if(loopCount==2535)(playSound("audio/typing.mp3"));
           }
           else if(introStateControl==11){//loopCount<2960
             dropDownsOpen=[false,false,false,false,false,true];
@@ -6154,11 +6168,11 @@ window.preload = function () {
             textStart=[1];
           }
           textSize(30);fill("white");noStroke();
-          text('[BACKSPACE] Back |                             | [P] Pause', 400, 754);
+          text('[BACKSPACE] Back  |                             ', 400, 754);
           fill(rgb(180,250,180));
-          text("[ENTER] Continue", 460,754);
+          text("[ENTER] Continue", 540, 754);
 
-          if(loopCount>=600){
+          if(introStateControl>=6){//loopCount>=600
             fill(rgb(190,255,200));stroke(rgb(200,255,200));strokeWeight(0.25);textSize(30);
           text("Menu Explanation",400,30);
           strokeWeight(3);
@@ -6169,9 +6183,9 @@ window.preload = function () {
           noStroke();fill(rgb(0,0,0,0.6));
           rect(40,10,720,50);
           fill("white");textSize(30);
-          text('[BACKSPACE] Back   |                        |   [P] Pause', 400,32);
-          fill(rgb(180,250,180));
-          text("[ENTER] Skip", 465,32);
+          text('[BACKSPACE] Back   |                            ', 400,32);
+          fill(rgb(180,250,180)); 
+          text("[ENTER] Continue", 565,32);
           
           //gameplay walkthrough
                if(introSelection == 0){
