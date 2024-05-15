@@ -785,55 +785,55 @@ window.preload = function () {
     //hidden walls for collisions{
     var hiddenWalls = createGroup();
     //left t1 plots
-    for (var x = 0; x < 4; x++)(hiddenWalls.add(createSprite(45, 106 + (x * 82), 60, 20)));
+    for (var x = 0; x < 4; x++)(hiddenWalls.add(createSprite(445, 106 + (x * 82), 60, 20)));
     //right t1 plots
-    for (var x = 0; x < 4; x++)(hiddenWalls.add(createSprite(755, 106 + (x * 82), 60, 20)));
+    for (var x = 0; x < 4; x++)(hiddenWalls.add(createSprite(1155, 106 + (x * 82), 60, 20)));
     //plot 8 (top left tier 1)
-    hiddenWalls.add(createSprite(196, 101, 64, 20));
+    hiddenWalls.add(createSprite(596, 101, 64, 20));
     //top row tier 2 buildings
-    for (var x = 1; x < 3; x++)(hiddenWalls.add(createSprite(239.4 + (x * 160.4), 96, 148, 34)));
+    for (var x = 1; x < 3; x++)(hiddenWalls.add(createSprite(639.4 + (x * 160.4), 96, 148, 34)));
     //t3 buildings
-    hiddenWalls.add(createSprite(269, 270, 212, 35));
-    hiddenWalls.add(createSprite(531, 270, 212, 35));
+    hiddenWalls.add(createSprite(669, 270, 212, 35));
+    hiddenWalls.add(createSprite(931, 270, 212, 35));
     //river and highway walls
-    hiddenWalls.add(createSprite(40, 12, 80, 32));//left river
-    hiddenWalls.add(createSprite(400, 12, 484, 32));//middle river
-    hiddenWalls.add(createSprite(760, 12, 80, 32));//right river
-    hiddenWalls.add(createSprite(400, 470, 800, 20));//highway
+    hiddenWalls.add(createSprite(440, 12, 80, 32));//left river
+    hiddenWalls.add(createSprite(800, 12, 484, 32));//middle river
+    hiddenWalls.add(createSprite(1160, 12, 80, 32));//right river
+    hiddenWalls.add(createSprite(800, 470, 800, 20));//highway
 
     //top of map
-    hiddenWalls.add(createSprite(400, -20, 810, 4));
+    hiddenWalls.add(createSprite(800, -20, 810, 4));
 
     hiddenWalls.setVisibleEach(false);
 
-    var csHBox = createSprite(641,727,298,40);
-    var oeHBox = createSprite(159,727,298,40);
+    var csHBox = createSprite(1041,727,298,40);
+    var oeHBox = createSprite(559,727,298,40);
     csHBox.visible=oeHBox.visible=false;
     //}
 
     //Land, assets, and buildings{
     //river
-    var river = createSprite(400, 42);
+    var river = createSprite(800, 42);
     river.setAnimation("river");//river.scale=0.5; scale doubles to 1
 
     //Land plots
     var t1Land = createGroup();
-    for (var x = 0; x < 4; x++)(t1Land.add(createSprite(45, 119 + (x * 82), 70, 80)));
-    for (var x = 0; x < 4; x++)(t1Land.add(createSprite(755, 119 + (x * 82), 70, 80)));
-    t1Land.add(createSprite(196, 119, 70, 80));
+    for (var x = 0; x < 4; x++)(t1Land.add(createSprite(445, 119 + (x * 82), 70, 80)));
+    for (var x = 0; x < 4; x++)(t1Land.add(createSprite(1155, 119 + (x * 82), 70, 80)));
+    t1Land.add(createSprite(596, 119, 70, 80));
     t1Land.setColorEach(rgb(0, 0, 0, 0.1));
     var t2Land = createGroup();
-    for (var x = 0; x < 3; x++)(t2Land.add(createSprite(239.4 + (x * 160.4), 119, 160, 80)));
+    for (var x = 0; x < 3; x++)(t2Land.add(createSprite(639.4 + (x * 160.4), 119, 160, 80)));
     t2Land.setColorEach(rgb(0, 0, 0, 0.1));
     var t3Land = createGroup();
-    t3Land.add(createSprite(269, 294, 216, 84));
-    t3Land.add(createSprite(531, 294, 216, 84));
+    t3Land.add(createSprite(669, 294, 216, 84));
+    t3Land.add(createSprite(931, 294, 216, 84));
     t3Land.setColorEach(rgb(0, 0, 0, 0.1));
     t1Land[0].visible = t1Land[3].visible = t1Land[6].visible =
       t2Land[0].visible = t2Land[2].visible = false;
 
       var mainWalls = createGroup();
-    mainWalls.add(createSprite(400, 0, 800, 20));
+    mainWalls.add(createSprite(800, 0, 800, 20));
     
     //boat
     var ship = createSprite(0, -100);
@@ -843,36 +843,36 @@ window.preload = function () {
     //Streets
     var streets = createGroup();
     //left vertical strip
-    streets[0]=createSprite(120, 28); streets[0].setAnimation("bridgeVert2");
-    streets.add(createSprite(120, 120)); streets[1].setAnimation("streetVert2");
-    streets.add(createSprite(120, 212)); streets[2].setAnimation("intersectionLeft2");
-    streets.add(createSprite(120, 304)); streets[3].setAnimation("streetVert2");
-    streets.add(createSprite(120, 396)); streets[4].setAnimation("streetVert2");
+    streets[0]=createSprite(520, 28); streets[0].setAnimation("bridgeVert2");
+    streets.add(createSprite(520, 120)); streets[1].setAnimation("streetVert2");
+    streets.add(createSprite(520, 212)); streets[2].setAnimation("intersectionLeft2");
+    streets.add(createSprite(520, 304)); streets[3].setAnimation("streetVert2");
+    streets.add(createSprite(520, 396)); streets[4].setAnimation("streetVert2");
     //right vertical strip
-    streets[5]=createSprite(680, 28); streets[5].setAnimation("bridgeVert2");
-    streets.add(createSprite(680, 120)); streets[6].setAnimation("streetVert2");
-    streets.add(createSprite(680, 212)); streets[7].setAnimation("intersectionRight2");
-    streets.add(createSprite(680, 304)); streets[8].setAnimation("streetVert2");
-    streets.add(createSprite(680, 396)); streets[9].setAnimation("streetVert2");
+    streets[5]=createSprite(1080, 28); streets[5].setAnimation("bridgeVert2");
+    streets.add(createSprite(1080, 120)); streets[6].setAnimation("streetVert2");
+    streets.add(createSprite(1080, 212)); streets[7].setAnimation("intersectionRight2");
+    streets.add(createSprite(1080, 304)); streets[8].setAnimation("streetVert2");
+    streets.add(createSprite(1080, 396)); streets[9].setAnimation("streetVert2");
     //center horiz. strip
     for (var x = 0; x < 6; x++) {
-      streets.add(createSprite(200 + (x * 80), 212));
+      streets.add(createSprite(600 + (x * 80), 212));
       streets[x + 10].setAnimation("streetHoriz2");
     }
     streets.setScaleEach(0.483);
 
     //decorational park for lower city
-    var lowPark = createSprite(400, 650);//635
+    var lowPark = createSprite(800, 650);//635
     lowPark.visible = false;
     lowPark.setAnimation("lowerPark");
     lowPark.scale = 0.95;
 
     //decorational streets with low priority
     var streetsDec = createGroup();
-    streetsDec.add(createSprite(120, 560)); streetsDec[0].setAnimation("streetVert1");
-    streetsDec.add(createSprite(680, 560)); streetsDec[1].setAnimation("streetVert1");
-    streetsDec.add(createSprite(120, 652)); streetsDec[2].setAnimation("streetVert1");
-    streetsDec.add(createSprite(680, 652)); streetsDec[3].setAnimation("streetVert1");
+    streetsDec.add(createSprite(520, 560)); streetsDec[0].setAnimation("streetVert1");
+    streetsDec.add(createSprite(1080, 560)); streetsDec[1].setAnimation("streetVert1");
+    streetsDec.add(createSprite(520, 652)); streetsDec[2].setAnimation("streetVert1");
+    streetsDec.add(createSprite(1080, 652)); streetsDec[3].setAnimation("streetVert1");
     streetsDec[2].visible = streetsDec[3].visible = false;
 
 
@@ -885,33 +885,33 @@ window.preload = function () {
 
     //Buildings
     var t1Buildings = createGroup();
-    for (var x = 0; x < 4; x++)(t1Buildings.add(createSprite(45, 121 + (x * 82), 70, 80)));
+    for (var x = 0; x < 4; x++)(t1Buildings.add(createSprite(445, 121 + (x * 82), 70, 80)));
 
 
-    for (var x = 0; x < 4; x++)(t1Buildings.add(createSprite(755, 121 + (x * 82), 70, 80)));
+    for (var x = 0; x < 4; x++)(t1Buildings.add(createSprite(1155, 121 + (x * 82), 70, 80)));
 
-    t1Buildings.add(createSprite(194, 123, 70, 80));
+    t1Buildings.add(createSprite(594, 123, 70, 80));
     var t2Buildings = createGroup();
-    for (var x = 0; x < 3; x++)(t2Buildings.add(createSprite(239.4 + (x * 160.4), 120, 160, 80)));
+    for (var x = 0; x < 3; x++)(t2Buildings.add(createSprite(639.4 + (x * 160.4), 120, 160, 80)));
     t2Buildings[0].visible = false;
     var t3Buildings = createGroup();
-    t3Buildings.add(createSprite(269, 294, 216, 84));
-    t3Buildings.add(createSprite(531, 294, 216, 84));
+    t3Buildings.add(createSprite(669, 294, 216, 84));
+    t3Buildings.add(createSprite(931, 294, 216, 84));
 
     //green spaces
-    var green1 = createSprite(274, 119, 92, 87);
-    var green2 = createSprite(526, 560);
+    var green1 = createSprite(674, 119, 92, 87);
+    var green2 = createSprite(926, 560);
     green1.setAnimation("park2");
     green1.scale = 0.92;
     green2.setAnimation("park1");
     green2.scale = 0.92;
-    var green3 = createSprite(400, 310, 30, 64);
-    var green4 = createSprite(400, 390);
+    var green3 = createSprite(800, 310, 30, 64);
+    var green4 = createSprite(800, 390);
     green4.setAnimation("t3Park2");
     green3.setAnimation("t3Alleyway2");
     green3.scale = green4.scale = 1;
-    var green5 = createSprite(38, 426);
-    var green6 = createSprite(762, 426);
+    var green5 = createSprite(438, 426);
+    var green6 = createSprite(1162, 426);
     green5.setAnimation("t1Park2"); green6.setAnimation("t1Park2");
 
     //flood sprites
@@ -933,17 +933,17 @@ window.preload = function () {
     //Park sprites
     var northParkSprites = createGroup();
     //north park
-    northParkSprites.add(createSprite(260, 150)); northParkSprites[0].setAnimation("hammer");
-    northParkSprites.add(createSprite(240, 90)); northParkSprites[1].setAnimation("sapling");
-    northParkSprites.add(createSprite(310, 75)); northParkSprites[2].setAnimation("sapling");
+    northParkSprites.add(createSprite(660, 150)); northParkSprites[0].setAnimation("hammer");
+    northParkSprites.add(createSprite(640, 90)); northParkSprites[1].setAnimation("sapling");
+    northParkSprites.add(createSprite(710, 75)); northParkSprites[2].setAnimation("sapling");
 
     //central park
     var centralParkSprites = createGroup();
-    centralParkSprites.add(createSprite(300, 390)); centralParkSprites[0].setAnimation("hammer");
-    centralParkSprites.add(createSprite(450, 340)); centralParkSprites[1].setAnimation("sapling");
-    centralParkSprites.add(createSprite(580, 410)); centralParkSprites[2].setAnimation("sapling");
-    centralParkSprites.add(createSprite(250, 350)); centralParkSprites[3].setAnimation("sapling");
-    centralParkSprites.add(createSprite(385, 280)); centralParkSprites[4].setAnimation("sapling");
+    centralParkSprites.add(createSprite(700, 390)); centralParkSprites[0].setAnimation("hammer");
+    centralParkSprites.add(createSprite(850, 340)); centralParkSprites[1].setAnimation("sapling");
+    centralParkSprites.add(createSprite(980, 410)); centralParkSprites[2].setAnimation("sapling");
+    centralParkSprites.add(createSprite(650, 350)); centralParkSprites[3].setAnimation("sapling");
+    centralParkSprites.add(createSprite(785, 280)); centralParkSprites[4].setAnimation("sapling");
 
     northParkSprites[0].scale = centralParkSprites[0].scale = 0.03;
     northParkSprites[1].scale = northParkSprites[2].scale = centralParkSprites[1].scale = centralParkSprites[2].scale = centralParkSprites[3].scale = centralParkSprites[4].scale = 0.4;
@@ -958,25 +958,25 @@ window.preload = function () {
     //}
 
     //Share sprites{
-    var leftBackground = createSprite(610, 768, 360, 44);
+    var leftBackground = createSprite(1010, 768, 360, 44);
     leftBackground.visible = false; leftBackground.shapeColor = 'black';
 
     //share indicators
-    var shareHeader = createSprite(219, 727, 416, 40);
-    var offerSign = createSprite(45,727);
+    var shareHeader = createSprite(619, 727, 416, 40);
+    var offerSign = createSprite(445,727);
     offerSign.visible=false; offerSign.setAnimation("offerSign");
     offerSign.scale = 0.30;
-    var paymentBgr = createSprite(219,769,416,42);
+    var paymentBgr = createSprite(619,769,416,42);
     paymentBgr.shapeColor = rgb(255, 242, 204);
     shareHeader.visible = paymentBgr.visible = false;
-    var g1Indicator = createSprite(611, 768, 345, 32);
+    var g1Indicator = createSprite(1011, 768, 345, 32);
     g1Indicator.visible = false;
 
-    var thumbUp = createSprite(538,768);
+    var thumbUp = createSprite(938,768);
     thumbUp.setAnimation("thumbUp");
     thumbUp.scale = 0.12;
 
-    var thumbDown = createSprite(515,768);
+    var thumbDown = createSprite(915,768);
     thumbDown.setAnimation("thumbDown");
     thumbDown.scale = 0.12;
 
@@ -1022,8 +1022,8 @@ window.preload = function () {
     }
     
     
-    mainWalls.add(createSprite(0, 400, 20, 800)); 
-    mainWalls.add(createSprite(800, 400, 20, 800)); mainWalls.add(createSprite(400, 800, 800, 20));
+    mainWalls.add(createSprite(400, 400, 20, 800)); 
+    mainWalls.add(createSprite(1200, 400, 20, 800)); mainWalls.add(createSprite(800, 800, 800, 20));
     
     //}
 
@@ -1047,8 +1047,8 @@ window.preload = function () {
     //}
 
     //character sprites
-    var charBoxLeft = createSprite(200, 380, 30, 20);
-    var leftChar = createSprite(400, 200);
+    var charBoxLeft = createSprite(600, 380, 30, 20);
+    var leftChar = createSprite(800, 200);
     leftChar.scale = 0.15; leftChar.setAnimation("leftDown");
     leftChar.visible = charBoxLeft.visible = false;
     var shockChar = createSprite(-50,-50);
@@ -1056,17 +1056,17 @@ window.preload = function () {
 
     //building roofs {
     var t1Roofs = createGroup();
-    for (var x = 0; x < 4; x++)(t1Roofs.add(createSprite(45, 96 + (x * 82), 68, 34)));
-    for (var x = 0; x < 4; x++)(t1Roofs.add(createSprite(755, 96 + (x * 82), 68, 34)));
+    for (var x = 0; x < 4; x++)(t1Roofs.add(createSprite(445, 96 + (x * 82), 68, 34)));
+    for (var x = 0; x < 4; x++)(t1Roofs.add(createSprite(1155, 96 + (x * 82), 68, 34)));
     t1Roofs[0].setAnimation("t1RuinRoof");
     t1Roofs[3].setAnimation("t1RuinRoof");
     t1Roofs[6].setAnimation("t1RuinRoof");
-    t1Roofs.add(createSprite(194, 97, 68, 36)); //top left
+    t1Roofs.add(createSprite(594, 97, 68, 36)); //top left
 
     var t3Roofs = createGroup();
     //t3Roofs.add(createSprite(199,210,54,28)); t3Roofs.add(createSprite(461,210,54,28));
-    t3Roofs.add(createSprite(306.8, 262, 139, 40)); t3Roofs.add(createSprite(568.8, 262, 139, 40));
-    t3Roofs.add(createSprite(199, 226)); t3Roofs.add(createSprite(461, 226));
+    t3Roofs.add(createSprite(706.8, 262, 139, 40)); t3Roofs.add(createSprite(968.8, 262, 139, 40));
+    t3Roofs.add(createSprite(599, 226)); t3Roofs.add(createSprite(861, 226));
     t3Roofs[2].scale = t3Roofs[3].scale = 0.89;
     t3Roofs.setVisibleEach(false); t3Roofs.setColorEach(rgb(220, 220, 220));
     t3Roofs[2].setAnimation("t3BuildingSide1"); t3Roofs[3].setAnimation("t3BuildingSide1");
@@ -1074,7 +1074,7 @@ window.preload = function () {
 
     //Decorational streets making the delmar divide
     for (var x = 0; x < 10; x++) {
-      streetsDec.add(createSprite(40 + (x * 80), 476));
+      streetsDec.add(createSprite(440 + (x * 80), 476));
       streetsDec[x + 4].setAnimation("streetHWay");
     }
     streetsDec.setScaleEach(1.45);
@@ -1083,7 +1083,7 @@ window.preload = function () {
     //car sprites
     var cars = createGroup();
     for (var zy = 0; zy < 6; zy++) {
-      cars.add(createSprite(0, -50));
+      cars.add(createSprite(400, -50));
     }
     cars.setScaleEach(0.2);
 
@@ -1091,11 +1091,11 @@ window.preload = function () {
     //decorational buildings and roofs
 
     //t1
-    t1Buildings.add(createSprite(45, 560, 70, 80));//top left
-    t1Buildings.add(createSprite(755, 560, 70, 80));//top right
-    t1Buildings.add(createSprite(605, 560, 70, 80));//middle
-    t1Buildings.add(createSprite(45, 642, 70, 80));//bot left
-    t1Buildings.add(createSprite(755, 642, 70, 80));//bot right
+    t1Buildings.add(createSprite(445, 560, 70, 80));//top left
+    t1Buildings.add(createSprite(1155, 560, 70, 80));//top right
+    t1Buildings.add(createSprite(1005, 560, 70, 80));//middle
+    t1Buildings.add(createSprite(445, 642, 70, 80));//bot left
+    t1Buildings.add(createSprite(1155, 642, 70, 80));//bot right
 
     t1Buildings[9].setAnimation("t1BuildingSide1");
     t1Buildings[10].setAnimation("t1BuildingSide0");
@@ -1103,11 +1103,11 @@ window.preload = function () {
     t1Buildings[12].setAnimation("t1BuildingSide0_low");
     t1Buildings[13].setAnimation("t1BuildingSide2_low");
 
-    t1Roofs.add(createSprite(45, 535, 68, 34));//top left
-    t1Roofs.add(createSprite(755, 535, 68, 34));//top right
-    t1Roofs.add(createSprite(605, 535, 68, 34));//middle
-    t1Roofs.add(createSprite(45, 617, 68, 34));//bot left
-    t1Roofs.add(createSprite(755, 617, 68, 34));//bot right
+    t1Roofs.add(createSprite(445, 535, 68, 34));//top left
+    t1Roofs.add(createSprite(1155, 535, 68, 34));//top right
+    t1Roofs.add(createSprite(1005, 535, 68, 34));//middle
+    t1Roofs.add(createSprite(445, 617, 68, 34));//bot left
+    t1Roofs.add(createSprite(1155, 617, 68, 34));//bot right
 
     t1Roofs[9].setAnimation("t1Roof1");
     t1Roofs[10].setAnimation("t1Roof0");
@@ -1119,9 +1119,9 @@ window.preload = function () {
     t1Buildings[12].visible = t1Buildings[13].visible = t1Roofs[12].visible = t1Roofs[13].visible = false;
 
     //t2    
-    for (var x = 0; x < 3; x++)(t2Buildings.add(createSprite(239.4 + (x * 160.4), 558, 160, 80)));
+    for (var x = 0; x < 3; x++)(t2Buildings.add(createSprite(639.4 + (x * 160.4), 558, 160, 80)));
     t2Buildings[5].visible = false;
-    mainWalls.add(createSprite(400, 605, 800, 14)); mainWalls.setColorEach(rgb(50, 50, 50));
+    mainWalls.add(createSprite(800, 605, 800, 14)); mainWalls.setColorEach(rgb(50, 50, 50));
 
     //birb
     var birds = createGroup();
@@ -1131,41 +1131,41 @@ window.preload = function () {
     //}
 
     //intro sprites{
-    var whiteBackground = createSprite(400, 400, 804, 804);
+    var whiteBackground = createSprite(800, 400, 804, 804);
     whiteBackground.shapeColor = rgb(240, 240, 240, 0.85);
-    var leftChar1 = createSprite(465, 695);
+    var leftChar1 = createSprite(865, 695);
     leftChar1.scale = 0.18; leftChar1.setAnimation("leftDown");
-    var rightChar1 = createSprite(645, 695);
+    var rightChar1 = createSprite(1045, 695);
     rightChar1.scale = 0.18; rightChar1.setAnimation("rightDown");
-    var bChar1 = createSprite(555, 695);
+    var bChar1 = createSprite(955, 695);
     bChar1.scale = 0.58; bChar1.setAnimation("bDown");
-    var aChar1 = createSprite(735, 695);
+    var aChar1 = createSprite(1135, 695);
     aChar1.scale = 0.5; aChar1.setAnimation("aDown");
 
-    var tutorialBtn = createSprite(400, 340, 160, 50);
-    var startBtn = createSprite(400, 410, 280, 60);
-    var leaderBtn = createSprite(290, 480, 210, 50);
-    var credsBtn = createSprite(510, 480, 140, 50);
+    var tutorialBtn = createSprite(800, 340, 160, 50);
+    var startBtn = createSprite(800, 410, 280, 60);
+    var leaderBtn = createSprite(690, 480, 210, 50);
+    var credsBtn = createSprite(910, 480, 140, 50);
     
     
-    var credsBackBtn = createSprite(1255, 740, 160, 60);
-    var leaderBackBtn = createSprite(-455, 740, 160, 60);
-    var hintsMenuBtn = createSprite(165,665,280,50);
-    var musicMenuBtn = createSprite(165,750,280,50);
-    var quizContBtn = createSprite(400,615,180,40);
+    var credsBackBtn = createSprite(1655, 740, 160, 60);
+    var leaderBackBtn = createSprite(-55, 740, 160, 60);
+    var hintsMenuBtn = createSprite(565,665,280,50);
+    var musicMenuBtn = createSprite(565,750,280,50);
+    var quizContBtn = createSprite(800,615,180,40);
     let quizBtns = createGroup();
     for (let fl = 0; fl < 4; fl++) {
-      quizBtns.add(createSprite(400,310+(fl*79),784,79));
+      quizBtns.add(createSprite(800,310+(fl*79),784,79));
     }
     quizBtns.setVisibleEach(false);
     
     let dropDownBtns = createGroup();
-    dropDownBtns.add(createSprite(830,90,30,30));
-    dropDownBtns.add(createSprite(830,360,30,30));
-    dropDownBtns.add(createSprite(830,570,30,30));
-    dropDownBtns.add(createSprite(1230,25,30,30));
-    dropDownBtns.add(createSprite(1230,210,30,30));
-    dropDownBtns.add(createSprite(1230,358,30,30));
+    dropDownBtns.add(createSprite(1230,90,30,30));
+    dropDownBtns.add(createSprite(1230,360,30,30));
+    dropDownBtns.add(createSprite(1230,570,30,30));
+    dropDownBtns.add(createSprite(30,25,30,30));
+    dropDownBtns.add(createSprite(30,210,30,30));
+    dropDownBtns.add(createSprite(30,358,30,30));
 
     dropDownBtns.setVisibleEach(false);
 
@@ -1176,15 +1176,15 @@ window.preload = function () {
     = credsBtn.visible = credsBackBtn.visible = leaderBackBtn.visible = quizContBtn.visible = false;
     
     var rChars = createGroup();
-    rChars.add(createSprite(465, 760, 50, 50));
-    rChars.add(createSprite(555, 760, 50, 50));
-    rChars.add(createSprite(645, 760, 50, 50));
-    rChars.add(createSprite(735, 760, 50, 50));
+    rChars.add(createSprite(865, 760, 50, 50));
+    rChars.add(createSprite(955, 760, 50, 50));
+    rChars.add(createSprite(1045, 760, 50, 50));
+    rChars.add(createSprite(1135, 760, 50, 50));
     
-    rChars.add(createSprite(465, 760, 40, 40));
-    rChars.add(createSprite(555, 760, 40, 40));
-    rChars.add(createSprite(645, 760, 40, 40));
-    rChars.add(createSprite(735, 760, 40, 40));
+    rChars.add(createSprite(865, 760, 40, 40));
+    rChars.add(createSprite(955, 760, 40, 40));
+    rChars.add(createSprite(1045, 760, 40, 40));
+    rChars.add(createSprite(1135, 760, 40, 40));
 
     rChars[0].shapeColor = rChars[1].shapeColor =
       rChars[2].shapeColor = rChars[3].shapeColor = "black";
@@ -1192,50 +1192,50 @@ window.preload = function () {
     rChars[5].shapeColor = rChars[6].shapeColor = rChars[7].shapeColor = "white";
     rChars[4].shapeColor = "lightGreen";
     
-    rChars.add(createSprite(350,655)); rChars[8].setAnimation("hint"); rChars[8].scale = 0.6;
-    rChars.add(createSprite(350,745)); rChars[9].setAnimation("music"); rChars[9].scale = 0.6;
+    rChars.add(createSprite(450,655)); rChars[8].setAnimation("hint"); rChars[8].scale = 0.6;
+    rChars.add(createSprite(450,745)); rChars[9].setAnimation("music"); rChars[9].scale = 0.6;
     
     rChars.setVisibleEach(false);
 
     var tutorialSprites = createGroup();
-    tutorialSprites.add(createSprite(120, 670, 136, 76));
-    tutorialSprites.add(createSprite(260, 670, 136, 76));
-    tutorialSprites.add(createSprite(400, 670, 136, 76));
-    tutorialSprites.add(createSprite(540, 670, 136, 76));
-    tutorialSprites.add(createSprite(680, 670, 136, 76));
-    tutorialSprites.add(createSprite(400, 750, 296, 76));
+    tutorialSprites.add(createSprite(520, 670, 136, 76));
+    tutorialSprites.add(createSprite(660, 670, 136, 76));
+    tutorialSprites.add(createSprite(800, 670, 136, 76));
+    tutorialSprites.add(createSprite(940, 670, 136, 76));
+    tutorialSprites.add(createSprite(1080, 670, 136, 76));
+    tutorialSprites.add(createSprite(800, 750, 296, 76));
     tutorialSprites.setVisibleEach(false);
 
     //Menu sprites
-    var educationLevelLeft = createSprite(265, 768);
+    var educationLevelLeft = createSprite(665, 768);
     educationLevelLeft.setAnimation('noSign'); educationLevelLeft.scale = 0.09;
-    var charHead = createSprite(340, 730);
+    var charHead = createSprite(740, 730);
     charHead.setAnimation("leftHead"); charHead.scale = 0.22;
     charHead.visible = false;
     var recycleSprites = createGroup();
-    recycleSprites.add(createSprite(65, 750, 10, 10));
-    recycleSprites.add(createSprite(735, 750, 10, 10));
+    recycleSprites.add(createSprite(465, 750, 10, 10));
+    recycleSprites.add(createSprite(1135, 750, 10, 10));
     recycleSprites.setAnimationEach("recycle"); recycleSprites.setScaleEach(0.8);
     recycleSprites.setVisibleEach(false);
     educationLevelLeft.visible = false;
 
   var cMedals = createGroup();
     for(var count = 0;count<3;count++){
-      cMedals.add(createSprite(690+(count*40),769));
+      cMedals.add(createSprite(1090+(count*40),769));
       cMedals[count].setAnimation("medal"+count);
     }
     cMedals.setScaleEach(0.4);
     cMedals.setVisibleEach(false);
 
-    var music = createSprite(466,729);
+    var music = createSprite(866,729);
     music.setAnimation('music'); music.scale=0.4;
     music.visible=false;
     
     //zoom-in sprites
-    var greenIntro = createSprite(400, 304, 780, 590);
-    var mapSprite2 = createSprite(400,304);
-    var mapSprite1 = createSprite(400,304);  
-    var mapSprite = createSprite(400, 304);
+    var greenIntro = createSprite(800, 304, 780, 590);
+    var mapSprite2 = createSprite(800,304);
+    var mapSprite1 = createSprite(800,304);  
+    var mapSprite = createSprite(800, 304);
     mapSprite.setAnimation("mapSC"); mapSprite1.setAnimation("mapSC1"); mapSprite2.setAnimation("mapSC2");
     mapSprite.scale=mapSprite1.scale=mapSprite2.scale=1.08;
     greenIntro.shapeColor = rgb(77, 153, 62);
@@ -1244,24 +1244,24 @@ window.preload = function () {
     //clouds
     var clouds = new Group();
     for (var xc = 0; xc < 4; xc++) {
-      clouds.add(createSprite(400, 295));
+      clouds.add(createSprite(800, 295));
     }
     clouds[0].setAnimation("cloudsTopLeft");
     clouds[1].setAnimation("cloudsTopRight");
     clouds[2].setAnimation("cloudsBotRight");
     clouds[3].setAnimation("cloudsBotLeft");
     clouds.setVisibleEach(false);
-    var whiteForeground = createSprite(400, 400, 804, 804);
+    var whiteForeground = createSprite(800, 400, 804, 804);
     whiteForeground.shapeColor = rgb(255, 255, 255, 0.5);
 
-    var blackout = createSprite(400, 400, 804, 804);
+    var blackout = createSprite(800, 400, 804, 804);
     blackout.shapeColor = rgb(0, 0, 0);
     var introBtn = createSprite(800, 520, 200, 80);
     introBtn.shapeColor = rgb(220, 220, 220);
     introBtn.visible=false;
-    var cesjLogo = createSprite(400, 400);
+    var cesjLogo = createSprite(800, 400);
     cesjLogo.setAnimation("CESJ"); cesjLogo.visible = false; cesjLogo.scale = 0.5;
-    var rain = createSprite(400, 350); rain.visible = false; rain.scale = 0.5; rain.setAnimation("bg_rain");
+    var rain = createSprite(800, 350); rain.visible = false; rain.scale = 0.5; rain.setAnimation("bg_rain");
     var lightning = createSprite(-100, -100);
     lightning.setAnimation("lightning"); lightning.scale = 0.75;
 
@@ -1270,53 +1270,53 @@ window.preload = function () {
 
     //trash cutscreen sprites
     var cleanUpSprites = createGroup();
-    cleanUpSprites.add(createSprite(400, 314, 640, 100));
+    cleanUpSprites.add(createSprite(800, 314, 640, 100));
     cleanUpSprites[0].shapeColor = rgb(255, 255, 255, 0.8);
-    cleanUpSprites.add(createSprite(400, 240, 640, 48));
+    cleanUpSprites.add(createSprite(800, 240, 640, 48));
     cleanUpSprites[1].shapeColor = rgb(180, 255, 180, 0.8);
-    cleanUpSprites.add(createSprite(160, 316));
+    cleanUpSprites.add(createSprite(560, 316));
     cleanUpSprites[2].setAnimation("groupIcon"); cleanUpSprites[2].scale = 0.12;
     cleanUpSprites.setVisibleEach(false);
 
     //Annual meeting sprites
     var meetingSprites = createGroup();
-    meetingSprites.add(createSprite(400, 350, 780, 680)); meetingSprites[0].shapeColor = rgb(240, 240, 255, 0.85);
-    meetingSprites.add(createSprite(200, 535)); meetingSprites[1].setAnimation("groupIcon");
-    meetingSprites.add(createSprite(400, 535)); meetingSprites[2].setAnimation("groupIcon");
-    meetingSprites.add(createSprite(600, 535)); meetingSprites[3].setAnimation("groupIcon");
+    meetingSprites.add(createSprite(800, 350, 780, 680)); meetingSprites[0].shapeColor = rgb(240, 240, 255, 0.85);
+    meetingSprites.add(createSprite(600, 535)); meetingSprites[1].setAnimation("groupIcon");
+    meetingSprites.add(createSprite(800, 535)); meetingSprites[2].setAnimation("groupIcon");
+    meetingSprites.add(createSprite(1000, 535)); meetingSprites[3].setAnimation("groupIcon");
     meetingSprites[1].scale = meetingSprites[2].scale = meetingSprites[3].scale = 0.2;
 
-    meetingSprites.add(createSprite(225, 300)); meetingSprites.add(createSprite(575, 300));
+    meetingSprites.add(createSprite(625, 300)); meetingSprites.add(createSprite(975, 300));
     meetingSprites[4].setAnimation("leader" + leaderNum);
     meetingSprites[5].setAnimation("leader" + oppositionNum);
     meetingSprites[4].scale = meetingSprites[5].scale = 1.75;
 
-    meetingSprites.add(createSprite(400, 408)); meetingSprites[6].setAnimation("Election Background");
+    meetingSprites.add(createSprite(800, 408)); meetingSprites[6].setAnimation("Election Background");
     meetingSprites[6].scale = 1.041;
-    meetingSprites.add(createSprite(400, 650));
-    meetingSprites.add(createSprite(400, 505, 780, 250)); meetingSprites[8].shapeColor = rgb(0, 0, 0, 0.4);
-    meetingSprites.add(createSprite(200, 280));
+    meetingSprites.add(createSprite(800, 650));
+    meetingSprites.add(createSprite(800, 505, 780, 250)); meetingSprites[8].shapeColor = rgb(0, 0, 0, 0.4);
     meetingSprites.add(createSprite(600, 280));
+    meetingSprites.add(createSprite(1000, 280));
 
     meetingSprites.setVisibleEach(false);
 
     //meeting buttons
     var meetingBtns = createGroup();
-    meetingBtns.add(createSprite(250,335,140,50));
-    meetingBtns.add(createSprite(550,335,140,50));
-    meetingBtns.add(createSprite(250,370,140,50));
-    meetingBtns.add(createSprite(550,370,140,50));
-    meetingBtns.add(createSprite(225,568,120,36));
-    meetingBtns.add(createSprite(575,568,120,36));
+    meetingBtns.add(createSprite(650,335,140,50));
+    meetingBtns.add(createSprite(950,335,140,50));
+    meetingBtns.add(createSprite(650,370,140,50));
+    meetingBtns.add(createSprite(950,370,140,50));
+    meetingBtns.add(createSprite(625,568,120,36));
+    meetingBtns.add(createSprite(975,568,120,36));
     meetingBtns.setVisibleEach(false);
 
     //grad screen sprites
-    var gradScreen = createSprite(400,350);
+    var gradScreen = createSprite(800,350);
     gradScreen.setAnimation("gradScreen");
     gradScreen.scale=1.09;
     gradScreen.visible = false;
     
-    var confetti = createSprite(400,300);
+    var confetti = createSprite(800,300);
     confetti.visible = false; confetti.scale=1.4;
    
     
@@ -1330,6 +1330,7 @@ window.preload = function () {
         if (mouseIsOver(introBtn)) {
           introColor = rgb(220, 220, 220);
           introScale=2;
+          
         } else {
           introColor = rgb(190, 190, 190);
           introScale=0;
@@ -1416,7 +1417,7 @@ window.preload = function () {
 
         background(rgb(175, 138, 103));
         fill("lightGray");
-        rect(10, 600, 780, 200);
+        rect(410, 600, 780, 200);
         stroke(rgb(50, 50, 50));
         fill(rgb(50, 50, 50)); stroke('black'); strokeWeight(6);
 
@@ -1622,23 +1623,23 @@ window.preload = function () {
         
         if(zoomedIn){
           //update sprite xValues to slide over
-          leftChar1.x=465+xSlide;
-          rightChar1.x=645+xSlide;
-          bChar1.x=555+xSlide;
-          aChar1.x=735+xSlide;
-          startBtn.x=400+xSlide;
-          credsBtn.x=520+xSlide;
-          tutorialBtn.x=400+xSlide;
-          leaderBtn.x=315+xSlide;
-          credsBackBtn.x=1255+xSlide;
-          leaderBackBtn.x=-455+xSlide;
+          leftChar1.x=865+xSlide;
+          rightChar1.x=1045+xSlide;
+          bChar1.x=955+xSlide;
+          aChar1.x=1135+xSlide;
+          startBtn.x=800+xSlide;
+          credsBtn.x=920+xSlide;
+          tutorialBtn.x=800+xSlide;
+          leaderBtn.x=715+xSlide;
+          credsBackBtn.x=1655+xSlide;
+          leaderBackBtn.x=-55+xSlide;
 
-          rChars[0].x=rChars[4].x=465+xSlide;
-          rChars[1].x=rChars[5].x=555+xSlide;
-          rChars[2].x=rChars[6].x=645+xSlide;
-          rChars[3].x=rChars[7].x=735+xSlide;
-          rChars[8].x=rChars[9].x=350+xSlide;
-          musicMenuBtn.x=hintsMenuBtn.x = 165 + xSlide;
+          rChars[0].x=rChars[4].x=865+xSlide;
+          rChars[1].x=rChars[5].x=955+xSlide;
+          rChars[2].x=rChars[6].x=1045+xSlide;
+          rChars[3].x=rChars[7].x=1135+xSlide;
+          rChars[8].x=rChars[9].x=750+xSlide;
+          musicMenuBtn.x=hintsMenuBtn.x = 565 + xSlide;
         }
         
         drawSprites();
@@ -1647,9 +1648,9 @@ window.preload = function () {
           noStroke();
           //draw loading bar (3 secs)
           fill(rgb(220,220,220));
-          rect(200,515,400,20);
+          rect(600,515,400,20);
           fill("green");
-          rect(200,515,loopCount*4.44,20);
+          rect(600,515,loopCount*4.44,20);
         }
 
         if (zoomedIn) {
@@ -1659,103 +1660,104 @@ window.preload = function () {
           } else {
             fill(rgb(200, 215, 255));
           }
-          rect(320+xSlide,315,160,50);
+          rect(720+xSlide,315,160,50);
           if (mouseIsOver(startBtn)) {
               fill(rgb(180, 255, 200));
           } else {
               fill(rgb(150, 230, 180));
           }
-          rect(260+xSlide,380,280,60);
+          rect(660+xSlide,380,280,60);
           if (mouseIsOver(leaderBtn)) {
             fill(rgb(250, 200, 200));
           } else {
             fill(rgb(230, 180, 180));
           }  
-          rect(210+xSlide,455,210,50);
+          rect(610+xSlide,455,210,50);
           if (mouseIsOver(credsBtn)) {
             fill(rgb(210, 180, 255));
           } else {
             fill(rgb(190, 155, 245));
           }
-          rect(450+xSlide,455,140,50);
+          rect(850+xSlide,455,140,50);
           
           if (mouseIsOver(credsBackBtn)) {
              fill(rgb(200, 170, 255));
           } else {
             fill(rgb(190, 155, 245));
           }
-          rect(1175+xSlide,710,160,60);
+          rect(1575+xSlide,710,160,60);
           
           if (mouseIsOver(leaderBackBtn)) {
             fill(rgb(250, 200, 200));
           } else {
             fill(rgb(230, 180, 180));
           }  
-         rect(-535+xSlide,710,160,60);
+         rect(-135+xSlide,710,160,60);
 
           fill(rgb(200, 255, 210, 0.4)); 
           strokeWeight(1); stroke("black");
-          rect(150+xSlide, 75, 500, 175);
-          rect(1145+xSlide, 50, 220, 80);
-          rect(-750+xSlide, 50, 590, 80);
+          rect(550+xSlide, 75, 500, 175);
+          rect(1545+xSlide, 50, 220, 80);
+          rect(-350+xSlide, 50, 590, 80);
           
           textSize(65); fill('black');
           textAlign('center', 'center'); textFont("impact");
-          text('River City Reborn', 400+xSlide, 120);
+          text('River City Reborn', 800+xSlide, 120);
           strokeWeight(0.5); stroke("black");textSize(60);
-          text('Credits',1255+xSlide,92);
-          text('Monthly Leaderboard',-455+xSlide,92);
+          text('Credits',1655+xSlide,92);
+          text('Monthly Leaderboard',-55+xSlide,92);
           textSize(50); strokeWeight(2);textFont("georgia");
           strokeWeight(1);
-          text('Start Game', 400+xSlide, 410);
+          text('Start Game', 800+xSlide, 410);
           textSize(34);noStroke();
-          text('Tutorial', 400+xSlide, 340);
-          text("Leaderboard", 315+xSlide, 480);
-          text("Credits", 520+xSlide, 480);
+          text('Tutorial', 800+xSlide, 340);
+          text("Leaderboard", 715+xSlide, 480);
+          text("Credits", 920+xSlide, 480);
 
           stroke('black');
           textSize(26); strokeWeight(0.5);
-          text("--- [R] Switch Character ---", 600+xSlide, 634);
+          text("--- [R] Switch Character ---", 1000+xSlide, 634);
 
           strokeWeight(3); 
-          line(400+xSlide, 612, 400+xSlide, 788);
-          line(13+xSlide, 700, 400+xSlide, 700);
+          line(800+xSlide, 612, 800+xSlide, 788);
+          line(413+xSlide, 700, 800+xSlide, 700);
           
           textSize(30); strokeWeight(0.5);
-          text('By the Center for Economic\nand Social Justice', 400+xSlide, 200);
+          text('By the Center for Economic\nand Social Justice', 800+xSlide, 200);
           
 
-          //credits screen graphics (add 855 to the x value)
+          //credits screen graphics (add 1255 to the x value)
           if (xSlide < 0) {
             var creditColors = [rgb(255,230,220), rgb(212, 240, 255), rgb(220,255,230), rgb(220,230,255)];
             for(var xg=0;xg<4;xg++){
               fill(creditColors[xg]);stroke("black");strokeWeight(3);
-              rect(955+xSlide,140+(xg*70),600,50);
+              rect(1355+xSlide,140+(xg*70),600,50);
             }
             //music background
             fill(rgb(240,245,255));stroke("Black");strokeWeight(3);
-            rect(955+xSlide,400,600,290);
+            rect(1355+xSlide,400,600,290);
             
             fill("black");textSize(30);noStroke();
-            text("Game Developer: Andrew Thompson",1255+xSlide,167);
-            text("Producer: CESJ",1255+xSlide,237);
-            text("Sprites: opengameart.org & pngarts.com",1255+xSlide,307);
+            text("Game Developer: Andrew Thompson",1655+xSlide,167);
+            text("Producer: CESJ",1655+xSlide,237);
+            text("Sprites: opengameart.org & pngarts.com",1655+xSlide,307);
             textSize(28);
-            text("E's Jammy Jam - Forget Me Not\nE's Jammy Jam - Nighttime Stroll\nE's Jammy Jam - Soul & Mind\nKubbi - Formed by Glaciers\nTrackTribe - A Brand New Start\nTrackTribe - A Night Alone\nTrackTribe - Home For the Holidays\nSilent Partner - Bet On It",1255+xSlide,544);
+            text("E's Jammy Jam - Forget Me Not\nE's Jammy Jam - Nighttime Stroll\nE's Jammy Jam - Soul & Mind\nKubbi - Formed by Glaciers\n"+
+            "TrackTribe - A Brand New Start\nTrackTribe - A Night Alone\nTrackTribe - Home For the Holidays\nSilent Partner - Bet On It",1655+xSlide,544);
   
             
             textSize(40);
-            text("-- Music --",1255+xSlide,377);
+            text("-- Music --",1655+xSlide,377);
             
             textSize(40); fill("black"); strokeWeight(1);
-            text("← Back",1255+xSlide,740);
+            text("← Back",1655+xSlide,740);
           }
 
-          //leaderboard screen graphics (subtract 855 from the x value)
+          //leaderboard screen graphics (subtract 455 from the x value)
           if (xSlide > 0) {
             strokeWeight(1); stroke("black"); textStyle(BOLD);
             fill(rgb(255,255,255,0.4)); 
-            rect(-750+xSlide,130,590,40);
+            rect(-350+xSlide,130,590,40);
             textSize(27); fill("black");noStroke();
 
             //calculate time until next reset
@@ -1763,17 +1765,17 @@ window.preload = function () {
               formatTime();
             }
             textAlign(LEFT,CENTER);
-            text("Next Reset In: ", -685+xSlide, 152);
+            text("Next Reset In: ", -285+xSlide, 152);
             fill(rgb(0,120,0));
-            text(formattedTime, -480+xSlide, 152);
+            text(formattedTime, -80+xSlide, 152);
             textStyle(NORMAL);
 
             //FASTEST TIMES
             fill(rgb(255,255,255,0.7));strokeWeight(1);stroke("black");
-            rect(-770+xSlide,215,630,200);
+            rect(-370+xSlide,215,630,200);
 
             fill(rgb(159, 197, 232));
-            rect(-770+xSlide,170,630,45);
+            rect(-370+xSlide,170,630,45);
 
             var leaderColors=['gold','silver',rgb(176,141,87)];
             textSize(29);
@@ -1781,29 +1783,29 @@ window.preload = function () {
               strokeWeight(1); stroke("black");
               let yOffset = (po*55);
               fill(leaderColors[po]);
-              rect(-755+xSlide,240+yOffset,600,40);
+              rect(-355+xSlide,240+yOffset,600,40);
               fill("white");
-              rect(-310+xSlide, 240+yOffset, 148, 40);
+              rect(90+xSlide, 240+yOffset, 148, 40);
               fill(rgb(201, 218, 248));
-              rect(-755+xSlide,240+yOffset,40,40);
+              rect(-355+xSlide,240+yOffset,40,40);
               
               fill("black"); noStroke(); textAlign(CENTER,CENTER);
-              text((po+1)+".",-735+xSlide,262+yOffset); //rank
+              text((po+1)+".",-335+xSlide,262+yOffset); //rank
               if ((topTimes[po][1] == 99) && (topTimes[po][2]==0) &&
                (topTimes[po][3] == 0) && (topTimes[po][0].length == 0)) {
                 //The time is empty
                 textAlign(LEFT,CENTER);
-                text("<Empty>", -705+xSlide, 262+yOffset);
+                text("<Empty>", -305+xSlide, 262+yOffset);
                 textAlign(CENTER,CENTER);
               } else {
                 textAlign(LEFT,CENTER);
-                text(topTimes[po][0], -705+xSlide, 262+yOffset);
+                text(topTimes[po][0], -305+xSlide, 262+yOffset);
                 textAlign(CENTER,CENTER);
                 let secondsString = (topTimes[po][3] < 10) ? "0"+topTimes[po][3] : topTimes[po][3];
                 let minutesString = (topTimes[po][2] < 10) ? "0"+topTimes[po][2] : topTimes[po][2];
                 let hoursString = (topTimes[po][1] < 10) ? "0"+topTimes[po][1] : topTimes[po][1];
 
-                text(hoursString+":"+minutesString+":"+secondsString, -236+xSlide, 262+yOffset);
+                text(hoursString+":"+minutesString+":"+secondsString, 164+xSlide, 262+yOffset);
               }
             }
             
@@ -1811,45 +1813,45 @@ window.preload = function () {
             strokeWeight(1); stroke("black");
 
             fill(rgb(255,255,255,0.7));
-            rect(-770+xSlide,485,630,200);
+            rect(-370+xSlide,485,630,200);
             
             
             fill(rgb(190, 155, 245));
-            rect(-770+xSlide,440,630,45);
+            rect(-370+xSlide,440,630,45);
 
             for(var pu=0; pu<3; pu++){
               strokeWeight(1); stroke("black");
               let yOffset = (pu*55);
               fill(leaderColors[pu]);
-              rect(-755+xSlide, 510+yOffset,600,40);
+              rect(-355+xSlide, 510+yOffset,600,40);
               fill('white');
-              rect(-310+xSlide, 510+yOffset, 148, 40);
+              rect(90+xSlide, 510+yOffset, 148, 40);
               fill(rgb(200, 165, 255));
-              rect(-755+xSlide,510+yOffset,40,40);
+              rect(-355+xSlide,510+yOffset,40,40);
 
               fill("black");noStroke();
-              text((pu+1)+".",-735+xSlide,532+yOffset); // rank
+              text((pu+1)+".",-335+xSlide,532+yOffset); // rank
               if ((highScores[pu][1] == 0) && (highScores[pu][0].length == 0)) {
                //The score is empty
                textAlign(LEFT,CENTER);
-               text("<Empty>", -705+xSlide, 532+yOffset);
+               text("<Empty>", -305+xSlide, 532+yOffset);
                textAlign(CENTER,CENTER);
               } else {
                 textAlign("left","center");
-                text(highScores[pu][0], -705+xSlide, 532+yOffset); //name
+                text(highScores[pu][0], -305+xSlide, 532+yOffset); //name
                 textAlign("center","center");
              
                 if (highScores[pu][1] >= 10000000) {
-                  text(addCommas(Math.round(highScores[pu][1] / 1000000))+"M", -236+xSlide, 532+yOffset); //Score with commas, 10M or more
+                  text(addCommas(Math.round(highScores[pu][1] / 1000000))+"M", 164+xSlide, 532+yOffset); //Score with commas, 10M or more
                 }else {
-                  text(addCommas(Math.round(highScores[pu][1])), -236+xSlide, 532+yOffset); //Score with commas
+                  text(addCommas(Math.round(highScores[pu][1])), 164+xSlide, 532+yOffset); //Score with commas
                 }
               }
             }
             
             textSize(40); fill("black"); strokeWeight(1);
-            text("Fastest Times", -455+xSlide, 193);
-            text("High Scores", -455+xSlide, 463);
+            text("Fastest Times", -55+xSlide, 193);
+            text("High Scores", -55+xSlide, 463);
             text("Back →",leaderBackBtn.x,leaderBackBtn.y);
 
           }
@@ -1880,11 +1882,11 @@ window.preload = function () {
           musicColor="_red";
           fill(rgb(180, 255, 210, 0.4));
           strokeWeight(3); stroke("black");
-          rect(25+xSlide,725,280,50);
+          rect(425+xSlide,725,280,50);
         }else {
           fill(rgb(150, 230, 180,0.5));
           strokeWeight(3); stroke("black");
-          rect(25+xSlide,725,280,50);
+          rect(425+xSlide,725,280,50);
         }
 
         var hintColor = ""; 
@@ -1893,21 +1895,21 @@ window.preload = function () {
 
           fill(rgb(220, 235, 255,0.4));
           strokeWeight(3); stroke("black");
-          rect(25+xSlide,640,280,50);
+          rect(425+xSlide,640,280,50);
         } else {
           fill(rgb(200, 215, 255,0.5));
           strokeWeight(3); stroke("black");
-          rect(25+xSlide,640,280,50);
+          rect(425+xSlide,640,280,50);
         }
 
         
         textSize(35);fill("black");noStroke();textAlign(CENTER,CENTER);
         
-        if(hintsOn)(text("Hints are on!",165+xSlide,665));
-        else(text("Hints are off!",165+xSlide,665));
+        if(hintsOn)(text("Hints are on!",565+xSlide,665));
+        else(text("Hints are off!",565+xSlide,665));
         
-        if(muteMusic)(text("Music is muted!",165+xSlide,750));
-        else(text("Music is playing!",165+xSlide,750));
+        if(muteMusic)(text("Music is muted!",565+xSlide,750));
+        else(text("Music is playing!",565+xSlide,750));
         textAlign(LEFT,CENTER);
 
         //Music hover and mute 
@@ -1952,18 +1954,18 @@ window.preload = function () {
         stroke(rgb(50, 50, 50));
         fill(rgb(50, 50, 50)); stroke('black'); strokeWeight(6);
         fill("lightGray");
-        rect(10, 700, 780, 100);
+        rect(410, 700, 780, 100);
         //LOWER MENU GRAPHICS
         if (!menuOpen && !offerOpen && introControl>1) {
           textAlign(LEFT, CENTER); textFont("tahoma");
           stroke(rgb(50, 50, 50));
           strokeWeight(3);
           fill(rgb(240, 240, 240));
-          rect(10, 700, 300, 100);
-          rect(490, 700, 300, 100);
+          rect(410, 700, 300, 100);
+          rect(890, 700, 300, 100);
           var lowMenuColors = [rgb(159, 197, 232),rgb(100, 120, 200)];
           fill(lowMenuColors[0]);
-          rect(10, 700, 300, 45);
+          rect(410, 700, 300, 45);
           if(cleanUpActive){
             if(mouseIsOver(csHBox))(fill(lowMenuColors[0]));
             else(fill(lowMenuColors[1]));
@@ -1971,25 +1973,25 @@ window.preload = function () {
             if(mouseIsOver(csHBox))(fill(lowMenuColors[1]));
             else(fill(lowMenuColors[0]));
           }
-          rect(490, 700, 300, 45);
+          rect(890, 700, 300, 45);
           fill('black'); textSize(28); strokeWeight(1);
       
-          text("[G] Ownership Quiz", 20, 726);
-          text("Points: " + ePoints, 20, 765);
+          text("[G] Ownership Quiz", 420, 726);
+          text("Points: " + ePoints, 420, 765);
 
-          text("[F] Community Service", 500, 726);
-          if (cUpdateCount + 2 > loopCount) (text("Points: " + cPoints, 500, 765));
-          else (text("Points: " + cPoints, 500, 770));
+          text("[F] Community Service", 900, 726);
+          if (cUpdateCount + 2 > loopCount) (text("Points: " + cPoints, 900, 765));
+          else (text("Points: " + cPoints, 900, 770));
 
           //Sprint text & cooldown bar
           noStroke(); textSize(22);
-          text("[Sprint Cooldown]", 313, 778);
+          text("[Sprint Cooldown]", 713, 778);
           textSize(17);
-          text("[P] Pause", 368,725);
+          text("[P] Pause", 768,725);
           fill("white"); stroke("black"); strokeWeight(3);
-          rect(315, 751, 171, 14);
+          rect(715, 751, 171, 14);
           fill(sprintCooldownColors[charNum - 1]); noStroke();
-          rect(316, 753, sprint, 11);
+          rect(716, 753, sprint, 11);
         }
         //pause button 
         // if(keyWentDown('p')){
@@ -2110,7 +2112,7 @@ window.preload = function () {
             //start a fire rarely if a plot has a building
             var fireChance = 0;
             if(infrastructureChosen)(fireChance = randomNumber(1,110));
-            else(fireChance = randomNumber(1, 90));
+            else(fireChance = randomNumber(1, 85));
             if ((fireChance == 1) && !fireActive && !isRaining && !pauseMainFunctions) {
               var plotNum = -1;
               for (var f1 = 0; f1 < 2; f1++) {
@@ -2172,7 +2174,7 @@ window.preload = function () {
                   if (fireLocation != 3 && fireLocation != 7 && fireLocation != 8) {
                     //fire has a plot below it
                     if (t1BuildingPlaced[fireLocation + 1] && t1LandIsOpen[fireLocation + 1] &&
-                      randomNumber(1, 6) == 1) {
+                      randomNumber(1, 4) == 1) {
                       var newFireNum = findOpenFire();
                       if (newFireNum != -1) {
                         //spread fire below
@@ -2187,7 +2189,7 @@ window.preload = function () {
                   if (fireLocation != 0 && fireLocation != 4 && fireLocation != 8) {
                     //fire has a plot above it
                     if (t1BuildingPlaced[fireLocation - 1] && t1LandIsOpen[fireLocation - 1] &&
-                      randomNumber(1, 6) == 1) {
+                      randomNumber(1, 4) == 1) {
                       var newFireNum = findOpenFire();
                       if (newFireNum != -1) {
                         //spread fire above
@@ -2214,7 +2216,7 @@ window.preload = function () {
                     }
                   }
                   else if (fireLocation == 10 && t2BuildingPlaced[1] && t2LandIsOpen[1] &&
-                    randomNumber(1, 6) == 1) {
+                    randomNumber(1, 4) == 1) {
                     var newFireNum = findOpenFire();
                     if (newFireNum != -1) {
                       //spread to plot 9
@@ -2369,7 +2371,7 @@ window.preload = function () {
             }
           }
           //win condition check
-          if(plotsCompletedLeft>=24 && objCount >= 10 && objListCLDC[5][3] && objListP[6][3] && winLoop < 0){
+          if(plotsCompletedLeft >= 24 && objCount >= 10 && objListCLDC[5][3] && objListP[6][3] && winLoop < 0){
             winLoop = loopCount;
           }
 
@@ -2390,15 +2392,15 @@ window.preload = function () {
 
         //display lower background{
         fill("lightGray");
-        rect(10, 700, 780, 100);
+        rect(410, 700, 780, 100);
         if (!menuOpen && !offerOpen) {
           textAlign(LEFT, CENTER); textFont("tahoma");
           stroke(rgb(50, 50, 50));
           strokeWeight(3);
           fill(rgb(240, 240, 240));
-          rect(10, 700, 300, 100);
-          rect(490, 700, 300, 100);
-          var lowMenuColors = [rgb(159, 197, 232),rgb(100, 120, 200)];
+          rect(410, 700, 300, 100);
+          rect(890, 700, 300, 100);
+          var lowMenuColors = [rgb(159, 197, 232), rgb(100, 120, 200)];
           if(educationOpen){
             if(mouseIsOver(oeHBox))(fill(lowMenuColors[0]));
             else(fill(lowMenuColors[1]));
@@ -2406,7 +2408,7 @@ window.preload = function () {
             if(mouseIsOver(oeHBox))(fill(lowMenuColors[1]));
             else(fill(lowMenuColors[0]));
           }
-          rect(10, 700, 300, 45);
+          rect(410, 700, 300, 45);
           if(cleanUpActive){
             if(mouseIsOver(csHBox))(fill(lowMenuColors[0]));
             else(fill(lowMenuColors[1]));
@@ -2414,25 +2416,25 @@ window.preload = function () {
             if(mouseIsOver(csHBox))(fill(lowMenuColors[1]));
             else(fill(lowMenuColors[0]));
           }
-          rect(490, 700, 300, 45);
+          rect(890, 700, 300, 45);
           fill('black'); textSize(28); strokeWeight(1);
 
-          text("[G] Ownership Quiz", 20, 726);
-          text("Points: " + ePoints, 20, 765);
+          text("[G] Ownership Quiz", 420, 726);
+          text("Points: " + ePoints, 420, 765);
 
-          text("[F] Community Service", 500, 726);
-          if (cUpdateCount + 2 > loopCount) (text("Points: " + cPoints, 500, 765));
-          else (text("Points: " + cPoints, 500, 770));
+          text("[F] Community Service", 900, 726);
+          if (cUpdateCount + 2 > loopCount) (text("Points: " + cPoints, 900, 765));
+          else (text("Points: " + cPoints, 900, 770));
 
           //Sprint text & cooldown bar
           noStroke(); textSize(22);
-          text("[Sprint Cooldown]", 313, 778);
+          text("[Sprint Cooldown]", 713, 778);
           textSize(17);
-          text("[P] Pause", 368,725);
+          text("[P] Pause", 768,725);
           fill("white"); stroke("black"); strokeWeight(3);
-          rect(315, 751, 171, 14);
+          rect(715, 751, 171, 14);
           fill(sprintCooldownColors[charNum - 1]); noStroke();
-          rect(316, 753, sprint, 11);
+          rect(716, 753, sprint, 11);
         }
         //}
 
@@ -2554,12 +2556,12 @@ window.preload = function () {
                 if(hintLoop==1)(playSound("audio/correct.mp3"));
             //rectangle background drops down
             fill(rgb(220,220,220)); stroke(rgb(220,25,50)); strokeWeight(4);
-            rect(12,12,776,hintLoop*2.2);
+            rect(412,12,776,hintLoop*2.2);
           }else{
             fill(rgb(220,220,220)); stroke(rgb(220,25,50)); strokeWeight(4);
-            rect(12,12,776,33);
+            rect(412,12,776,33);
             fill("black"); noStroke(); textSize(26);
-            text("Press [E] next to these tasks to renovate the park faster!",400,29);
+            text("Press [E] next to these tasks to renovate the park faster!",800,29);
         }
               
               //north park
@@ -2667,17 +2669,18 @@ window.preload = function () {
             menuOpen = true;
             oldPosition = [2, 2];
           }
+          
           fill(rgb(235, 235, 235)); stroke('black'); strokeWeight(4);
-          rect(125, 705, 550, 88);
+          rect(525, 705, 550, 88);
           fill(rgb(180, 235, 190)); strokeWeight(2);
-          rect(225, 705, 350, 45);
+          rect(625, 705, 350, 45);
           fill("black"); noStroke(); textSize(34);
-          text("-- Recycling Plant --", 400, 726);
+          text("-- Recycling Plant --", 800, 726);
           textSize(24);
           if (cleanUpActive && trashPoints > 0) {
-            text("Press [E] to recycle your trash! (" + trashPoints * 2 + " pts)", 400, 768);
+            text("Press [E] to recycle your trash! (" + trashPoints * 2 + " pts)", 800, 768);
           } else {
-            text("Recycle your trash for 2x the reward!", 400, 768);
+            text("Recycle your trash for 2x the reward!", 800, 768);
           }
           if (keyWentDown('e') && !pauseMainFunctions) {
             playSound("audio/app_interface_button_3.mp3");
@@ -2919,14 +2922,14 @@ window.preload = function () {
           //set header to color
           shareHeader.shapeColor = rgb(110, 220, 115);
 
-          text("[E]\tNorth Park\n[R] " + paymentText[payMethod], 215, 750);
+          text("[E]\tNorth Park\n[R] " + paymentText[payMethod], 615, 750);
           textSize(28);
           text("Development Cost: $20,000", 610, 727);
           stroke(rgb(50, 50, 50));
           strokeWeight(6);
-          line(430, 700, 430, 800);
+          line(830, 700, 830, 800);
           strokeWeight(3);
-          line(10,748,430,748);
+          line(410,748,830,748);
           noStroke();
 
           //check to invest in park
@@ -2982,12 +2985,12 @@ window.preload = function () {
             var colorFactor = ((Math.abs(12 - (loopCount % 24))) * 3);
             g1Indicator.shapeColor = rgb(170 - colorFactor, 170 - colorFactor, 230 + colorFactor, 1);
             fill("black");noStroke();textSize(26);
-            text("Feasible",610,769);
+            text("Feasible",1010,769);
             thumbUp.visible=true;
             thumbDown.visible=false;
           }else{
             fill("black");noStroke();textSize(26);
-            text("Not Feasible",610,769);
+            text("Not Feasible",1010,769);
             g1Indicator.shapeColor = "red";
             thumbDown.visible=true;
             thumbUp.visible=false;
@@ -3000,14 +3003,14 @@ window.preload = function () {
           //set header to color
           shareHeader.shapeColor = rgb(110, 220, 115);
 
-          text("[E]\tCentral Park\n[R] " + paymentText[payMethod], 215, 750);
+          text("[E]\tCentral Park\n[R] " + paymentText[payMethod], 615, 750);
           textSize(27);
-          text("Development Cost: $100,000", 610, 727);
+          text("Development Cost: $100,000", 1010, 727);
           stroke(rgb(50, 50, 50));
           strokeWeight(6);
-          line(430, 700, 430, 800);
+          line(830, 700, 830, 800);
           strokeWeight(3);
-          line(10,748,430,748);
+          line(410,748,830,748);
           noStroke();
 
           //check to invest in park
@@ -3134,12 +3137,12 @@ window.preload = function () {
           }
           stroke('black');
           strokeWeight(4);
-          rect(130, 360, 540, 80);
+          rect(530, 360, 540, 80);
           fill('black');
           noStroke();
           textAlign(CENTER, CENTER);
           textSize(28);
-          text("Weekly CLDC profit cannot be negative!\n→ Reduce expenses or increase revenue!", 400, 400);
+          text("Weekly CLDC profit cannot be negative!\n→ Reduce expenses or increase revenue!", 800, 400);
         }
         //controls all baackground aesthetic sprites including boats, birds, pedestrians, and highway traffic
         backgroundMovement();
@@ -3151,13 +3154,13 @@ window.preload = function () {
         stroke("Black"); strokeWeight(1);
         //Job progress bar{
         if (jobProgressLeft != 0 && !pauseMainFunctions) {
-          rect(50, 536, 300, 50);
+          rect(450, 536, 300, 50);
           fill('white');
-          rect(56, 542, 288, 38);
+          rect(456, 542, 288, 38);
           fill('lightGreen');
-          rect(56, 542, 288 * jobProgressLeft, 38);
+          rect(456, 542, 288 * jobProgressLeft, 38);
           fill('black'); textSize(30);
-          text(progressMessageLeft, 200, 562);
+          text(progressMessageLeft, 600, 562);
         }
         
         if((parkLoop[0] + 660 == loopCount)||(parkLoop[1] + 990 == loopCount)){
@@ -3190,25 +3193,27 @@ window.preload = function () {
           textSize(30);
           strokeWeight(1);
           fill("black");
-          rect(400, 536, 380, 50);
+          rect(800, 536, 380, 50);
           fill("white");
-          rect(406, 542, 190, 38);
+          rect(806, 542, 190, 38);
           fill(rgb(180, 255, 180));
-          rect(604, 542, 170, 38);
+          rect(1004, 542, 170, 38);
           fill("black");
-          text("[F]: " + trashPickedUp, 474, 562);
-          text("-->", 570, 562);
-          text(addCommas(trashPoints) + " PTS", 690, 562);
+          text("[F]: " + trashPickedUp, 874, 562);
+          text("-->", 970, 562);
+          text(addCommas(trashPoints) + " PTS", 1090, 562);
+          /*
           //clean up message
           if (cleanUpLoop == loopCount - 1) {
             cleanUpSprites.setVisibleEach(true);
           } else if (cleanUpLoop + 60 > loopCount && !pauseMainFunctions) {
             fill("black"); textSize(32);
-            text("You Organize a Community Clean-Up Event!", 400, 240);
-            text("You can now clear the trash\nlittering your community!", 440, 310);
+            text("You Organize a Community Clean-Up Event!", 800, 240);
+            text("You can now clear the trash\nlittering your community!", 840, 310);
           } else if (cleanUpLoop + 60 == loopCount) {
             cleanUpSprites.setVisibleEach(false);
           }
+          */
         }
         //}
 
@@ -3226,7 +3231,7 @@ window.preload = function () {
                   quizStateControl = 1;
                 }
               } else if (quizStateControl == 1) {
-              if (loopAtAnswerLeft + 20 < loopCopy) {
+              if (loopAtAnswerLeft + 24 < loopCopy) {
                 if (keyWentDown('R')) {
                   playSound("audio/app_menu_button_2.mp3");
                   if (quizHoverLeft == 3) {
@@ -3289,8 +3294,20 @@ window.preload = function () {
                 vocabQuestionsAnsweredLeft[randomQuestionLeft] = true;
                 //find new random question
                 randomQuestionLeft = randomNumber(0, 19);
+                let loopNum = 0;
                 while (vocabQuestionsAnsweredLeft[randomQuestionLeft]) {
                   randomQuestionLeft = randomNumber(0, 19);
+                  loopNum++;
+                  if (loopNum == 50) {
+                    vocabQuestionsAnsweredLeft = [
+                      false, false, false, false,
+                      false, false, false, false,
+                      false, false, false, false,
+                      false, false, false, false,
+                      false, false, false, false
+                    ];
+                    totalQuestionsLeft = 1;
+                  }
                 }
                 if (educationProgressLeft > 0) {
                   quizHoverLeft = 1;
@@ -3309,7 +3326,7 @@ window.preload = function () {
                   quizStateControl = 2;
                 }
               } else if (quizStateControl == 2){
-              if (loopAtAnswerLeft + 20 < loopCopy) {
+              if (loopAtAnswerLeft + 24 < loopCopy) {
                 if(keyWentDown('R')){
                   playSound("audio/app_menu_button_2.mp3");
                   if (quizHoverLeft == 4) {
@@ -3374,8 +3391,18 @@ window.preload = function () {
                 questionsAnsweredLeft[randomQuestionLeft] = true;
                 //find new random question
                 randomQuestionLeft = randomNumber(0, 10);
+                let loopNum = 0;
                 while (questionsAnsweredLeft[randomQuestionLeft]) {
                   randomQuestionLeft = randomNumber(0, 10);
+                  loopNum++;
+                  if (loopNum == 50) {
+                    questionsAnsweredLeft = [
+                      false, false, false, false,
+                      false, false, false, false,
+                      false, false, false
+                    ];
+                    totalQuestionsLeft = 1;
+                  }
                 }
               }
             }
@@ -3386,7 +3413,7 @@ window.preload = function () {
                   quizStateControl = 3;
                 }
               } else if (quizStateControl == 3){
-              if (loopAtAnswerLeft + 20 < loopCopy) {
+              if (loopAtAnswerLeft + 24 < loopCopy) {
                  if (keyWentDown('R')) {
                    playSound("audio/app_menu_button_2.mp3");
                 if (quizHoverLeft == 4) {
@@ -3451,11 +3478,20 @@ window.preload = function () {
                 t3QuestionsAnsweredLeft[randomQuestionLeft] = true;
                 //find new random question
                 randomQuestionLeft = randomNumber(0, 11);
+                let loopNum = 0;
                 while (t3QuestionsAnsweredLeft[randomQuestionLeft]) {
                   randomQuestionLeft = randomNumber(0, 11);
+                  loopNum++;
+                  if (loopNum == 50) {
+                    t3QuestionsAnsweredLeft = [
+                      false, false, false, false,
+                      false, false, false, false,
+                      false, false, false, false
+                    ];
+                    totalQuestionsLeft = 1;
+                  }
                 }
               }
-            
             } 
           }
             else if(educationProgressLeft >= 2){
@@ -3478,15 +3514,15 @@ window.preload = function () {
         //Ownership quiz visuals
           fill(rgb(0,0,0,0.7));
           if(educationProgressLeft<2){
-            if(menuOpen||offerOpen)(rect(8,8,784,784));
-            else(rect(8,8,784,690));
+            if(menuOpen||offerOpen)(rect(408,8,784,784));
+            else(rect(408,8,784,690));
           }else{
-            rect(8,8,784,112);
+            rect(408,8,784,112);
             if(menuOpen||offerOpen){
-                rect(8,580,784,215);
+                rect(408,580,784,215);
               }
               else{
-                rect(8,580,784,115);
+                rect(408,580,784,115);
               }
             }
           
@@ -3495,88 +3531,89 @@ window.preload = function () {
           
           //return text
           fill("white");stroke("white");strokeWeight(0.8);textSize(34);
-          text("Game Paused -- [G] Return to game",400,70);
+          text("Game Paused -- [G] Return to game",800,70);
           if(educationProgressLeft<2){
             //quiz header
           fill(rgb(176, 247, 255)); strokeWeight(2); stroke('black');
-          rect(8, 135, 784, 60);
+          rect(408, 135, 784, 60);
           strokeWeight(1); fill('black');
-          text("Ownership Quiz Menu:", 400, 170);
+          text("Ownership Quiz Menu:", 800, 170);
           textSize(20); textAlign(LEFT, CENTER); strokeWeight(0);
-          text("[E] Select Answer", 20, 155);
-          text("[R] Change Selection", 20, 180);
+          text("[E] Select Answer", 420, 155);
+          text("[R] Change Selection", 420, 180);
           }
             
           if (educationProgressLeft < 0) {
-            text("Level: 1/3", 630, 155);
-            text("+5 Pts/Question", 630, 180);
+            text("Level: 1/3", 1030, 155);
+            text("+5 Pts/Question", 1030, 180);
           } else if (educationProgressLeft < 1) {
-            text("Level: 2/3", 630, 155);
-            text("+10 Pts/Question", 630, 180);
+            text("Level: 2/3", 1030, 155);
+            text("+10 Pts/Question", 1030, 180);
           } else if (educationProgressLeft < 2) {
-            text("Level: 3/3", 630, 155);
-            text("+20 Pts/Question", 630, 180);
+            text("Level: 3/3", 1030, 155);
+            text("+20 Pts/Question", 1030, 180);
           }
           if(educationProgressLeft<2){
             strokeWeight(2); textAlign(CENTER, CENTER);
             //Light blue background to the header
             fill(rgb(159, 197, 232));
-            rect(8, 195, 784, 80);
+            rect(408, 195, 784, 80);
           }
           
           if (educationProgressLeft < 0) {
             if (quizStartLoop < 0) {
               fill(rgb(240, 240, 240));
-              rect(8, 265, 784, 330);
+              rect(408, 265, 784, 330);
               noStroke();fill("black");
               textSize(26); textAlign(LEFT, CENTER);
-              text("- Test your knowledge by taking an Ownership Quiz!\n- All answers can be found on the cesj website.\n- When you finish, you will be more effective at advocating.", 24, 325);
+              text("- Test your knowledge by taking an Ownership Quiz!\n- All answers can"+
+              " be found on the cesj website.\n- When you finish, you will be more effective at advocating.", 424, 325);
               //advanced questions are locked until university hall is developed
               if(!t2BuildingPlaced[1]||initOpent2[1]) {
                 fill(200,50,50); textAlign(CENTER,CENTER);
-                text("You must develop Justice University\nfirst to start the quiz!\n\nIt is the top center plot\nabove the central park.",400,470);
+                text("You must develop Justice University\nfirst to start the quiz!\n\nIt is the top center plot\nabove the central park.",800,470);
                 fill("black");  textSize(30);
-                text("Develop Justice University First!", 400, 232);
+                text("Develop Justice University First!", 800, 232);
               } else {
                 textAlign(CENTER,CENTER); fill("black"); textSize(30);
-                text("[E] Start the Quiz", 400, 232);
+                text("[E] Start the Quiz", 800, 232);
               }
             } else {
               if (quizStateControl == 0) {
                 fill(rgb(240,240,240));
-                rect(8,275,784,320);
+                rect(408,275,784,320);
                 if (mouseIsOver(quizContBtn)) {
                   fill(rgb(210, 180, 255));
                 } else {
                   fill(rgb(190, 155, 245));
                 }
                 stroke("black");strokeWeight(2);
-                rect(310,595,180,40);
+                rect(710,595,180,40);
                 noStroke(); fill("black"); textAlign(CENTER,CENTER);textSize(28);
-                text("[E] Continue", 400,616);
+                text("[E] Continue", 800,616);
               } else {
               //quiz started
               //LEVEL 1
               textAlign(LEFT, CENTER);
               //Darker blue progress bar
               fill(111, 168, 220); noStroke();
-              rect(10, 197, 780 * (educationProgressLeft + 1), 76);
+              rect(410, 197, 780 * (educationProgressLeft + 1), 76);
               fill('black'); strokeWeight(1); stroke('black');
               //text for the question 
               textSize(28);
-              text(vocabQuizText[randomQuestionLeft][0], 20, 240);
+              text(vocabQuizText[randomQuestionLeft][0], 420, 240);
               textSize(24); noStroke();
               for (var fg = 1; fg < 5; fg++) {
                 stroke('black'); strokeWeight(2);
                 if (fg != 4) {
                   fill(quizColorsLeft[fg - 1]);
-                  rect(8, 273 + ((fg - 1) * 79), 784, 75);
+                  rect(408, 273 + ((fg - 1) * 79), 784, 75);
                   //text for each answer choice
                   noStroke(); fill('black');
-                  text(vocabQuizText[randomQuestionLeft][fg], 16, 313 + ((fg - 1) * 79));
+                  text(vocabQuizText[randomQuestionLeft][fg], 416, 313 + ((fg - 1) * 79));
                 } else {
                   fill(rgb(220,220,220,0.4));
-                  rect(8, 273 + ((fg - 1) * 79), 784, 75);
+                  rect(408, 273 + ((fg - 1) * 79), 784, 75);
                 }
               }
             }
@@ -3585,60 +3622,60 @@ window.preload = function () {
           else if (educationProgressLeft < 1) {
             if (quizStateControl == 1) {
               fill(rgb(240,240,240));
-              rect(8,275,784,320);
+              rect(408,275,784,320);
               if (mouseIsOver(quizContBtn)) {
                 fill(rgb(210, 180, 255));
               } else {
                 fill(rgb(190, 155, 245));
               }
               stroke("black");strokeWeight(2);
-              rect(310,595,180,40);
+              rect(710,595,180,40);
               noStroke(); fill("black"); textAlign(CENTER,CENTER);textSize(28);
-              text("[E] Continue", 400,616);
+              text("[E] Continue", 800,616);
             } else {
             //LEVEL 2
             textAlign(LEFT, CENTER);
             //Darker blue progress bar
             fill(111, 168, 220); noStroke();
-            rect(10, 197, 780 * (educationProgressLeft), 76);
+            rect(410, 197, 780 * (educationProgressLeft), 76);
             fill('black'); strokeWeight(1); stroke('black');
             //text for the question 
             textSize(28);
-            text(quizText[randomQuestionLeft][0], 20, 238);
+            text(quizText[randomQuestionLeft][0], 420, 238);
             textSize(24); noStroke();
             for (var f = 1; f < 5; f++) {
               stroke('black'); strokeWeight(2);
               fill(quizColorsLeft[f - 1]);
-              rect(8, 273 + ((f - 1) * 79), 784, 75);
+              rect(408, 273 + ((f - 1) * 79), 784, 75);
               //text for each answer choice
               noStroke(); fill('black');
-              text(quizText[randomQuestionLeft][f], 16, 313 + ((f - 1) * 79));
+              text(quizText[randomQuestionLeft][f], 416, 313 + ((f - 1) * 79));
             }
           }
           } 
           else if (educationProgressLeft < 2) {
             if (quizStateControl == 2) {
               fill(rgb(240,240,240));
-              rect(8,275,784,320);
+              rect(408,275,784,320);
               if (mouseIsOver(quizContBtn)) {
                 fill(rgb(210, 180, 255));
               } else {
                 fill(rgb(190, 155, 245));
               }
               stroke("black");strokeWeight(2);
-              rect(310,595,180,40);
+              rect(710,595,180,40);
               noStroke(); fill("black"); textAlign(CENTER,CENTER);textSize(28);
-              text("[E] Continue", 400,616);
+              text("[E] Continue", 800,616);
             } else {
             //LEVEL 3
             textAlign(LEFT, CENTER);
             //Darker blue progress bar
             fill(111, 168, 220); noStroke();
-            rect(10, 197, 780 * (educationProgressLeft - 1), 76);
+            rect(410, 197, 780 * (educationProgressLeft - 1), 76);
             fill('black'); strokeWeight(1); stroke('black');
             //text for the question 
             textSize(28);
-            text(t3QuizText[randomQuestionLeft][0], 20, 238);
+            text(t3QuizText[randomQuestionLeft][0], 420, 238);
             /*fill(rgb(220, 225, 255)); strokeWeight(2);
             rect(8, 275, 784, 50);
             textSize(24); noStroke();
@@ -3648,10 +3685,10 @@ window.preload = function () {
             for (var fz = 1; fz < 5; fz++) {
               stroke('black'); strokeWeight(2);
               fill(quizColorsLeft[fz - 1]);
-              rect(8, 273 + ((fz - 1) * 79), 784, 75);
+              rect(408, 273 + ((fz - 1) * 79), 784, 75);
               //text for each answer choice
               noStroke(); fill('black');
-              text(t3QuizText[randomQuestionLeft][fz + 1], 16, 313 + ((fz - 1) * 79));
+              text(t3QuizText[randomQuestionLeft][fz + 1], 416, 313 + ((fz - 1) * 79));
             }
           }
           } 
@@ -3660,7 +3697,7 @@ window.preload = function () {
         //fire cooldown checks
         if (fireActive) {
           for (var fireCount = 0; fireCount < 5; fireCount++) {
-            if (fireLoops[fireCount] + 900 == loopCount) {
+            if (fireLoops[fireCount] + 750 == loopCount) {
               playSound("audio/buildingCollapse.mp3");
               //building burns down
               var fireLocation = fireLocations[fireCount];
@@ -3895,7 +3932,7 @@ window.preload = function () {
             }
           }
         }
-
+/*
         //Annual meeting warning and initialization
         var meetingCount = meetingLoop - loopCount;
         if (meetingCount < 115 && meetingControl == 0) {
@@ -3904,8 +3941,8 @@ window.preload = function () {
             fill("white");
             stroke("black");
             strokeWeight(8);
-            rect(340, 300, 40, 100);
-            rect(420, 300, 40, 100);
+            rect(740, 300, 40, 100);
+            rect(820, 300, 40, 100);
             //audio warning
             if(meetingCount%16==0)(playSound("audio/snap.mp3"));
           }
@@ -3914,8 +3951,8 @@ window.preload = function () {
           if (meetingCount < 75) {
             fill("black"); noStroke();
             var countUp = (75 - meetingCount) * 5;
-            rect(10, 10, 780, countUp);
-            rect(10, 700 - countUp, 780, countUp);
+            rect(410, 10, 780, countUp);
+            rect(410, 700 - countUp, 780, countUp);
           }
           if (meetingCount == 0) {
             //start the meeting cutscreen
@@ -3950,7 +3987,7 @@ window.preload = function () {
             pauseMainFunctions = true;
           }
         }
-
+*/
         //Vote info bar & clean up initialization{
         if (voteData[0] != "none") {
           //wait one second after finishing to reset sprite
@@ -3977,15 +4014,15 @@ window.preload = function () {
           if (!pauseMainFunctions) {
             //graphics
             strokeWeight(1); fill("black"); stroke("black");
-            rect(420, 536, 360, 50);
+            rect(820, 536, 360, 50);
             fill(rgb(255, 170, 170));
-            rect(426, 542, 268, 38);
+            rect(826, 542, 268, 38);
             fill(rgb(170, 255, 170));
-            rect(426, 542, 268 * (voteData[2] / 100), 38);
+            rect(826, 542, 268 * (voteData[2] / 100), 38);
             fill('black'); textSize(30);
-            text("For           Against", 560, 562);
+            text("For           Against", 960, 562);
             fill("white");
-            rect(702, 542, 70, 38);
+            rect(1102, 542, 70, 38);
             fill("black");
             var timeLeft = 30 - Math.round((loopCount - voteLoop) / 30);
             if((loopCount-voteLoop)%30==15)(playSound("audio/app_menu_button_2.mp3"));
@@ -3994,10 +4031,10 @@ window.preload = function () {
               playSound("audio/app_interface_button_3.mp3");
               timeLeft = 0;
             }
-            text(timeLeft, 736, 562);
+            text(timeLeft, 1136, 562);
             stroke("black"); strokeWeight(6);
-            line(560, 542, 560, 547);
-            line(560, 580, 560, 574);
+            line(960, 542, 960, 547);
+            line(960, 580, 960, 574);
           }
           //start the voting cutscreen
           if (timeLeft == 0) {
@@ -4171,6 +4208,20 @@ window.preload = function () {
           }
         }
         //}
+
+        //clean up message
+        if (cleanUpActive && !pauseMainFunctions) {
+        if (cleanUpLoop == loopCount - 1) {
+          cleanUpSprites.setVisibleEach(true);
+        } else if (cleanUpLoop + 60 > loopCount && !pauseMainFunctions) {
+          fill("black"); textSize(32);stroke("black");strokeWeight(1);
+          text("A Community Clean-Up Event Has Started!", 800, 240);
+          text("You can now clear the trash\nlittering your community!", 840, 310);
+        } else if (cleanUpLoop + 60 == loopCount) {
+          cleanUpSprites.setVisibleEach(false);
+        }
+      }
+
         if (!pauseMainFunctions) {
           fill("gold"); stroke("gold");
           if (cUpdateCount + 20 > loopCount) {
@@ -4200,6 +4251,62 @@ window.preload = function () {
           }
           
         }
+
+        //Annual meeting warning and initialization
+        var meetingCount = meetingLoop - loopCount;
+        if (meetingCount < 115 && meetingControl == 0) {
+          //warn the player that the game will pause soon
+          if (meetingCount>30 && meetingCount % 16 < 8 && !pauseMainFunctions) {
+            fill("white");
+            stroke("black");
+            strokeWeight(8);
+            rect(740, 300, 40, 100);
+            rect(820, 300, 40, 100);
+            //audio warning
+            if(meetingCount%16==0)(playSound("audio/snap.mp3"));
+          }
+          
+          //top and bot black bars
+          if (meetingCount < 75) {
+            fill("black"); noStroke();
+            var countUp = (75 - meetingCount) * 5;
+            rect(410, 10, 780, countUp);
+            rect(410, 700 - countUp, 780, countUp);
+          }
+          if (meetingCount == 0) {
+            //start the meeting cutscreen
+            meetingYear++;
+            stopLongSounds(true);
+            //update profitHistory and maxProfit
+            profitHistory.push(totProfits);
+    
+            if (profitHistory.length < 11) {
+              if (maxProfit < totProfits) (maxProfit = totProfits);
+            } else {
+              maxProfit = profitHistory[profitHistory.length - 10];
+              for (var woop = profitHistory.length - 10; woop < profitHistory.length; woop++) {
+                if (maxProfit < profitHistory[woop]) (maxProfit = profitHistory[woop]);
+              }
+            }
+            if(totProfits>(reserveRate*100000))(totalPayouts += totProfits * (1 - reserveRate));
+            
+            meetingControl = 6;
+            loopCopy = 0;
+            lightning.x = lightning.y = -100;
+            if (charNum == 1) {
+              leftChar.setAnimation("leftDown");
+            } else if (charNum == 3) {
+              leftChar.setAnimation("rightDown");
+            } else if (charNum == 2) {
+              leftChar.setAnimation("bDown");
+            } else {
+              leftChar.setAnimation("aDown");
+            }
+            leftChar.setVelocity(0, 0);
+            pauseMainFunctions = true;
+          }
+        }
+
         //finish construction after 3 sec cooldown
         for (var op = 0; op < 3; op++) {
           if (offerBuildCooldowns[op] + 90 == loopCount) {
@@ -4310,20 +4417,20 @@ window.preload = function () {
         //annual meeting cutscreen
         if (meetingControl > 0) {
           fill("black"); noStroke();
-          rect(10, 10, 780, 90);
-          rect(10, 610, 780, 90);
+          rect(410, 10, 780, 90);
+          rect(410, 610, 780, 90);
           //skip text
           var skipFactor = ((Math.abs(15 - (loopCopy % 30))) * 3);
           textSize(25); fill(rgb(230 - skipFactor, 230 - skipFactor, 230 - skipFactor)); noStroke();
-          text("Press [ENTER] To Continue", 400, 640);
+          text("Press [ENTER] To Continue", 800, 640);
 
           //header
           fill(rgb(200, 220, 255)); stroke(rgb(20, 20, 20)); strokeWeight(6);
-          rect(25, 100, 750, 60);
+          rect(425, 100, 750, 60);
           fill(rgb(220, 220, 220)); strokeWeight(3);
-          rect(75, 160, 650, 40);
+          rect(475, 160, 650, 40);
           fill("black"); textSize(42); noStroke();
-          text(meetingYear + wordifyNum(meetingYear) + " Annual CLDC Shareholder Meeting", 400, 134);
+          text(meetingYear + wordifyNum(meetingYear) + " Annual CLDC Shareholder Meeting", 800, 134);
 
           switch (meetingControl) {
             //meeting outline
@@ -4336,83 +4443,86 @@ window.preload = function () {
                 meetingControl=1;
               }
               textSize(30);
-              text("Meeting Agenda", 400, 182);
+              text("Meeting Agenda", 800, 182);
               
               if (loopCopy>30) {
                 stroke("black");strokeWeight(2);
                 var t1 = (loopCopy-30)/15;
                 fill(rgb(237, 254, 231, t1));
-                rect(150, 240, 500, 40);
+                rect(550, 240, 500, 40);
                 fill(rgb(0,0,0, t1));noStroke();
-                text("Item 1: Distributing Profits",400,262);
+                text("Item 1: Distributing Profits", 800,262);
                 if(loopCopy>90) {
-                  fill("black");textSize(20);
-                  text("↓",400,295);textSize(30);
-
+                  fill("black");textSize(20);textStyle(BOLD);
+                  text("↓", 800, 295); textSize(30);
+                  textStyle(NORMAL);
                   stroke("black");strokeWeight(2);
                   var t2 = (loopCopy-90)/15;
                   fill(rgb(217, 234, 211, t2));
-                  rect(150, 310, 500, 40);
+                  rect(550, 310, 500, 40);
                   fill(rgb(0,0,0, t2)); noStroke();
-                  text("Item 2: Profit History & Statistics",400,332);
+                  text("Item 2: Profit History & Statistics", 800, 332);
                   if(meetingYear==1){
                     if(loopCopy>150){
-                      fill("black");textSize(20);
-                      text("↓",400,365);textSize(30);
-
+                      fill("black"); textSize(20);textStyle(BOLD);
+                      text("↓", 800, 365);
+                      textSize(30);textStyle(NORMAL);
                       stroke("black");strokeWeight(2);
                       var t3 = (loopCopy-150)/15;
                       fill(rgb(197, 214, 191, t3));
-                      rect(150, 380, 500, 40);
+                      rect(550, 380, 500, 40);
                       fill(rgb(0,0,0, t3)); noStroke();
-                      text("Item 3: Create Development Plan",400,402);
+                      text("Item 3: Create Development Plan",800,402);
                       
                       if (loopCopy>210) {
-                        fill("black");textSize(20);
-                        text("↓",400,435);textSize(30);
+                        fill("black");textSize(20);textStyle(BOLD);
+                        text("↓",800,435);
+                        textSize(30);textStyle(NORMAL);
 
                       stroke("black");strokeWeight(2);
                       var t4 = (loopCopy-210)/15;
                       fill(rgb(177, 194, 171, t4));
-                      rect(150, 450, 500, 40);
+                      rect(550, 450, 500, 40);
                       fill(rgb(0,0,0, t4)); noStroke();
-                      text("Item 4: Vote for a CLDC Leader",400,472);
+                      text("Item 4: Vote for a CLDC Leader",800,472);
                       if (loopCopy>270) {
-                        fill("black");textSize(20);
-                        text("↓",400,505);textSize(30);
+                        fill("black");textSize(20);textStyle(BOLD);
+                        text("↓",800,505);
+                        textSize(30);textStyle(NORMAL);
 
                       stroke("black");strokeWeight(2);
                       var t5 = (loopCopy-270)/15;
                       fill(rgb(157, 174, 151, t5));
-                      rect(150, 520, 500, 40);
+                      rect(550, 520, 500, 40);
                       fill(rgb(0,0,0, t5)); noStroke();
-                      text("Item 5: CLDC Leader Election",400,542);
+                      text("Item 5: CLDC Leader Election",800,542);
                       }
                       }
                     }
 
                   }else{
                     if(loopCopy>150){
-                      fill("black");textSize(20);
-                      text("↓",400,365);textSize(30);
+                      fill("black");textSize(20);textStyle(BOLD);
+                      text("↓",800,365);
+                      textSize(30);textStyle(NORMAL);
 
                       stroke("black");strokeWeight(2);
                       var t3 = (loopCopy-150)/15;
                       fill(rgb(197, 214, 191, t3));
-                      rect(150, 380, 500, 40);
+                      rect(550, 380, 500, 40);
                       fill(rgb(0,0,0, t3)); noStroke();
-                      text("Item 3: Vote for a CLDC Leader",400,402);
+                      text("Item 3: Vote for a CLDC Leader",800,402);
                       
                       if (loopCopy>210) {
                         fill("black");textSize(20);
-                        text("↓",400,435);textSize(30);
+                        text("↓",800,435);textSize(30);
 
                       stroke("black");strokeWeight(2);
                       var t4 = (loopCopy-210)/15;
                       fill(rgb(177, 194, 171, t4));
-                      rect(150, 450, 500, 40);
+                      rect(550, 450, 500, 40);
                       fill(rgb(0,0,0, t4)); noStroke();
-                      text("Item 4: CLDC Leader Election",400,472);
+                      text("Item 4: CLDC Leader Election",800,472);
 
                       }
                     }
@@ -4431,17 +4541,17 @@ window.preload = function () {
                 profitRemaining = 1 - reserveRate;
               }
               textSize(30);
-              text("Item 1: Distributing Profits", 400, 180);
+              text("Item 1: Distributing Profits", 800, 180);
 
               //main animation
               fill("white"); strokeWeight(3); stroke("black");
-              rect(50, 240, 250, 45); rect(500, 240, 250, 45);
-              rect(200, 345, 400, 50);
+              rect(450, 240, 250, 45); rect(900, 240, 250, 45);
+              rect(600, 345, 400, 50);
 
               fill("black"); noStroke();
-              text("Reserve Funds", 175, 223);
-              text("Your Dividends", 625, 223);
-              text("Remaining Profits", 400, 325);
+              text("Reserve Funds", 575, 223);
+              text("Your Dividends", 1025, 223);
+              text("Remaining Profits", 800, 325);
               
               var reserveFunds = Math.round(totProfits * reserveRate);
               if(reserveFunds<reserveRate*100000)(reserveFunds=reserveRate*100000);
@@ -4450,33 +4560,33 @@ window.preload = function () {
               if(totProfits>(reserveRate*100000)){
               fill("forestGreen");
               if (loopCopy < 61) {
-                text(Math.round(reserveRate*100) + "% of Profits", 175, 265);
-                text("0.5% of Profits", 625, 265);
+                text(Math.round(reserveRate*100) + "% of Profits", 575, 265);
+                text("0.5% of Profits", 1025, 265);
                 textSize(40);
-                text("$" + addCommas(Math.round(totProfits)), 400, 375);
+                text("$" + addCommas(Math.round(totProfits)), 800, 375);
               } 
               else if (loopCopy < 91) {
                 var loopDiff = loopCopy - 60;
                 
                 //distribute funds to reserve and taxes
-                text("$" + addCommas(Math.round(reserveFunds)), 400 - (7.5 * loopDiff), 375 - (3.66 * loopDiff));
-                text("$" + addCommas(Math.round(divProfits / 200)), 400 + (7.5 * loopDiff), 375 - (3.66 * loopDiff));
+                text("$" + addCommas(Math.round(reserveFunds)), 800 - (7.5 * loopDiff), 375 - (3.66 * loopDiff));
+                text("$" + addCommas(Math.round(divProfits / 200)), 800 + (7.5 * loopDiff), 375 - (3.66 * loopDiff));
                 textSize(40);
-                text("$" + addCommas(Math.round(divProfits * 0.995)), 400, 375);
+                text("$" + addCommas(Math.round(divProfits * 0.995)), 800, 375);
               } 
               else if (loopCopy < 121) {
                 
                 //wait one second
-                text("$" + addCommas(Math.round(reserveFunds)), 175, 265);
-                text("$" + addCommas(Math.round(divProfits / 200)), 625, 265);
+                text("$" + addCommas(Math.round(reserveFunds)), 575, 265);
+                text("$" + addCommas(Math.round(divProfits / 200)), 1025, 265);
                 textSize(40);
-                text("$" + addCommas(Math.round(divProfits * 0.995)), 400, 375);
+                text("$" + addCommas(Math.round(divProfits * 0.995)), 800, 375);
               } 
               else if (loopCopy < 229) {
                
                 //distribute funds to CLDC members as dividends
-                text("$" + addCommas(Math.round(reserveFunds)), 175, 265);
-                text("$" + addCommas(Math.round(divProfits / 200)), 625, 265);
+                text("$" + addCommas(Math.round(reserveFunds)), 575, 265);
+                text("$" + addCommas(Math.round(divProfits / 200)), 1025, 265);
 
                 var loopDiff = (loopCopy % 10) - 1;
                 if (loopDiff == 0) {
@@ -4485,21 +4595,21 @@ window.preload = function () {
                 }
 
                 textSize(40);
-                text("$" + addCommas(Math.round(divProfits * profitRemaining)), 400, 375);
+                text("$" + addCommas(Math.round(divProfits * profitRemaining)), 800, 375);
                 textSize(30);
                 //distribute 0.5% of profits to each person
                 var dividend = divProfits * 0.03;
-                text("$" + Math.round(dividend), 400 - (20 * loopDiff), 390 + (12 * loopDiff));
-                text("$" + Math.round(dividend), 400, 390 + (12 * loopDiff));
-                text("$" + Math.round(dividend), 400 + (20 * loopDiff), 390 + (12 * loopDiff));
+                text("$" + Math.round(dividend), 800 - (20 * loopDiff), 390 + (12 * loopDiff));
+                text("$" + Math.round(dividend), 800, 390 + (12 * loopDiff));
+                text("$" + Math.round(dividend), 800 + (20 * loopDiff), 390 + (12 * loopDiff));
               } 
               else {
       
                 //wait for player to press enter to continue, with funds distributed
-                text("$" + addCommas(Math.round(reserveFunds)), 175, 265);
-                text("$" + addCommas(Math.round(divProfits / 200)), 625, 265);
+                text("$" + addCommas(Math.round(reserveFunds)), 575, 265);
+                text("$" + addCommas(Math.round(divProfits / 200)), 1025, 265);
                 textSize(40);
-                text("$0", 400, 375);
+                text("$0", 800, 375);
               }
               }
               else{
@@ -4507,16 +4617,16 @@ window.preload = function () {
                 var negReserve = '';
                 if(totProfits<0)(negReserve='-');
                 else(fill("forestGreen"));
-                text(negReserve+"$" + addCommas(Math.round(totProfits)), 175, 265);
+                text(negReserve+"$" + addCommas(Math.round(totProfits)), 575, 265);
                 fill(rgb(200,70,70));
-                text("$0", 625, 265);
+                text("$0", 1025, 265);
                 textSize(40);
-                text("$0", 400, 375);
+                text("$0", 800, 375);
                 if(loopCopy>30&&totProfits<0){
                 fill(rgb(255,190,190,0.95));stroke("black");strokeWeight(3);
-                rect(100,410,600,100);
+                rect(500,410,600,100);
                 fill("black");noStroke();textSize(30);
-                text("The CLDC had a net loss this year.\nIt is imperative that a net profit is reached.",400,465);  
+                text("The CLDC had a net loss this year.\nIt is imperative that a net profit is reached.",800,465);  
                   }
               }
               if (keyWentDown("ENTER")) {
@@ -4537,7 +4647,7 @@ window.preload = function () {
             //
             case 2:
               textSize(30);
-              text("Item 2: Profit History & Statistics", 400, 180);
+              text("Item 2: Profit History & Statistics", 800, 180);
 
               //hint text
               if(meetingYear==1&&!hintList[6]){
@@ -4546,19 +4656,19 @@ window.preload = function () {
               textSize(30);
               //main animation
               fill("white"); stroke("black"); strokeWeight(3);
-              rect(75, 250, 650, 250);
-              rect(25, 540, 350, 65);
+              rect(475, 250, 650, 250);
               rect(425, 540, 350, 65);
+              rect(825, 540, 350, 65);
 
               fill("black"); noStroke();
-              text("Total Annual CLDC Profits Over Time", 400, 225);
-              text("Year After CLDC Was Founded", 400, 520); 
+              text("Total Annual CLDC Profits Over Time", 800, 225);
+              text("Year After CLDC Was Founded", 800, 520); 
               textSize(20);
-              text("Yearly Percent Change In Profit:", 200, 553);
-              text("Total Dividend Payouts:", 600, 553);
+              text("Yearly Percent Change In Profit:", 600, 553);
+              text("Total Dividend Payouts:", 1000, 553);
 
               //fill in graph boxes
-              var xVal = 140; stroke("black"); strokeWeight(3);
+              var xVal = 540; stroke("black"); strokeWeight(3);
               for (var lineNum = 0; lineNum < 9; lineNum++) {
                 line(xVal, 500, xVal, 490);
                 xVal += 65;
@@ -4575,31 +4685,34 @@ window.preload = function () {
                 var boxHeight = profitHistory[historyIndex] * maxFactor;
                 if(profitHistory[historyIndex]<0)(boxHeight=0);
               
-                rect(75 + (65 * boxNum), 500 - boxHeight, 65, boxHeight);
+                rect(475 + (65 * boxNum), 500 - boxHeight, 65, boxHeight);
               
                 fill("black"); noStroke();
                 var boxText = Math.round(profitHistory[historyIndex] / 1000);
                 if(boxText<0){
                   fill(rgb(200,70,70));
                 }
-                text(boxText, 107.5 + (65 * boxNum), 490 - boxHeight);
+                text(boxText, 507.5 + (65 * boxNum), 490 - boxHeight);
                 historyIndex++;
               }
 
               noStroke(); textSize(30); fill("black");
+
+              //fix location 1 ////////////////////////////////////////////
+
               //rotate text 90 degrees
               translate(200, 200);
               rotate(-90);
-              text("Profit (Thousand $)", -175, -150);
+              text("Profit (Thousand $)", -175, 250);
               rotate(90);
               translate(-200, -200);
 
               textSize(40); fill("forestGreen");
-              text("$" + addCommas(Math.round(totalPayouts)), 600, 584);
+              text("$" + addCommas(Math.round(totalPayouts)), 1000, 584);
 
               fill(rgb(230, 180, 80));
               if (meetingYear == 1) {
-                text("N/A", 200, 583)
+                text("N/A", 600, 583)
               } else {
                 var prevYear = profitHistory[profitHistory.length - 2];
                 var curYear = profitHistory[profitHistory.length - 1];
@@ -4612,7 +4725,7 @@ window.preload = function () {
                 else if (percentChange < 0) {
                   fill(rgb(200, 100, 100));
                 }
-                text(percentChange + "%", 200, 584);
+                text(percentChange + "%", 600, 584);
               }
 
               if (keyWentDown("ENTER")) {
@@ -4646,9 +4759,9 @@ window.preload = function () {
               }
               textSize(30);
               if(meetingYear!=1){
-                text("Item 3: Vote for a CLDC Leader", 400, 180);   
+                text("Item 3: Vote for a CLDC Leader", 800, 180);   
               }else {
-                text("Item 4: Vote for a CLDC Leader", 400, 180);   
+                text("Item 4: Vote for a CLDC Leader", 800, 180);   
               }
                
 
@@ -4660,8 +4773,8 @@ window.preload = function () {
               textSize(30);
               //main animation
               fill("white"); stroke("black"); strokeWeight(3);
-              rect(100, 390, 250, 40); rect(450, 390, 250, 40);
-              rect(60, 440, 330, 150); rect(410, 440, 330, 150);
+              rect(500, 390, 250, 40); rect(850, 390, 250, 40);
+              rect(460, 440, 330, 150); rect(810, 440, 330, 150);
 
               var selectionColors = [];
               if (incumbentSelected) (selectionColors = [rgb(180, 255, 200), "lightgray"]);
@@ -4677,28 +4790,28 @@ window.preload = function () {
               }
 
               fill(selectionColors[0]);
-              rect(165, 550, 120, 35);
+              rect(565, 550, 120, 35);
 
               fill(selectionColors[1]);
-              rect(515, 550, 120, 35);
+              rect(915, 550, 120, 35);
 
 
               fill("black"); strokeWeight(1);
-              text(leaderNames[leaderNum], 225, 414); text(leaderNames[oppositionNum], 575, 414);
+              text(leaderNames[leaderNum], 625, 414); text(leaderNames[oppositionNum], 975, 414);
               fill("darkGreen"); stroke("darkGreen");
-              text("- Incumbent Policies -", 225, 460);
+              text("- Incumbent Policies -", 625, 460);
               fill(rgb(200, 60, 60)); stroke(rgb(200, 60, 60));
-              text("- Opposition Policies -", 575, 460);
+              text("- Opposition Policies -", 975, 460);
               noStroke(); fill("black");
-              text("Loan payment: +" + (Math.round(loanRate * 100)-3) + "%\nContingency Fund: " + Math.round(reserveRate * 100) + "%", 225, 510);
-              text("Loan payment: +" + (Math.round(oppositionPolicies[0] * 100)-3) + "%\nContingency Fund: " + Math.round(oppositionPolicies[1] * 100) + "%", 575, 510);
+              text("Loan payment: +" + (Math.round(loanRate * 100)-3) + "%\nContingency Fund: " + Math.round(reserveRate * 100) + "%", 625, 510);
+              text("Loan payment: +" + (Math.round(oppositionPolicies[0] * 100)-3) + "%\nContingency Fund: " + Math.round(oppositionPolicies[1] * 100) + "%", 975, 510);
               var xText = 225;
               if(incumbentSelected)(xText=225);
               else(xText=575);
-              text("[E] Vote",xText,568);
+              text("[E] Vote",xText,968);
               textSize(25);
-              if(incumbentSelected)(text("[R] ->", 335, 567)); 
-              else(text("<- [R]", 465, 567));
+              if(incumbentSelected)(text("[R] ->", 735, 567)); 
+              else(text("<- [R]", 865, 567));
 
               if (keyWentDown("R")) {
                 playSound("audio/app_menu_button_2.mp3");
@@ -4732,18 +4845,18 @@ window.preload = function () {
               }
               textSize(30);
               if(meetingYear!=1){
-                text("Item 4: CLDC Leader Election", 400, 180);
+                text("Item 4: CLDC Leader Election", 800, 180);
               }else{
-                text("Item 5: CLDC Leader Election", 400, 180);
+                text("Item 5: CLDC Leader Election", 800, 180);
               }
-              rect(10, 160, 85, 50);
-              rect(707, 160, 83, 50);
+              rect(410, 160, 85, 50);
+              rect(1107, 160, 83, 50);
 
 
               if (meetingSprites[7].y < 555 && meetingSprites[7].velocityY == -2) {
                 meetingSprites[7].setVelocity(2, 0);
                 meetingSprites[7].setAnimation(animationPrefix + "WalkRight");
-              } else if (meetingSprites[7].x > 500 && meetingSprites[7].velocityX == 2) {
+              } else if (meetingSprites[7].x > 900 && meetingSprites[7].velocityX == 2) {
                 meetingSprites[7].setVelocity(0, 0);
                 meetingSprites[7].setAnimation(animationPrefix + "Up");
               }
@@ -4756,24 +4869,24 @@ window.preload = function () {
               } else if ((loopCopy > 135) && (loopCopy < 295)) {
                 stroke("black"); strokeWeight(3);
                 fill("forestGreen");
-                rect(150, 330, 100, 30);
-
-                fill(rgb(200, 60, 60));
                 rect(550, 330, 100, 30);
 
+                fill(rgb(200, 60, 60));
+                rect(950, 330, 100, 30);
+
                 if (loopCopy > 140) {
-                  typeText("Election Results:", 400, 220,32,0,false,"black",loopCopy);
+                  typeText("Election Results:", 800, 220,32,0,false,"black",loopCopy);
                   if (loopCopy > 175) {
                     if(loopCopy==176)(stopSound("audio/typing.mp3"));
                     
                     fill(rgb(200, 60, 60)); stroke('black'); strokeWeight(2);
-                    arc(400, 310, 130, 130, -90, ((100 - incumbentPopularity) * 3.6) - 90);
+                    arc(800, 310, 130, 130, -90, ((100 - incumbentPopularity) * 3.6) - 90);
                     fill("forestGreen");
-                    arc(400, 310, 130, 130, ((100 - incumbentPopularity) * 3.6) - 90, -90);
+                    arc(800, 310, 130, 130, ((100 - incumbentPopularity) * 3.6) - 90, -90);
 
                     fill("black"); noStroke();
-                    text(incumbentPopularity + "%", 300, 270);
-                    text(100 - incumbentPopularity + "%", 500, 270);
+                    text(incumbentPopularity + "%", 700, 270);
+                    text(100 - incumbentPopularity + "%", 900, 270);
 
 
 
@@ -4782,14 +4895,14 @@ window.preload = function () {
                     if(!proposalDone && profitHistory[profitHistory.length - 1] < 0){
                       if(!hintList[2]&&loopCopy>185&&loopCopy<215){
                         fill(rgb(220,220,220));stroke(rgb(220,25,50));strokeWeight(4);
-                        rect(12,12,600,(loopCopy-185)*2.66);
+                        rect(412,12,600,(loopCopy-185)*2.66);
                       }
                       if(loopCopy==215){
                         if(!hintList[2]){
                           fill(rgb(220,220,220));stroke(rgb(220,25,50));strokeWeight(4);
-                          rect(12,12,600,80);
+                          rect(412,12,600,80);
                           fill("black");noStroke();textSize(24);
-                          text("Take action to ensure that the CLDC can make a profit\nnext year by selecting one of the four options below!",312,50);
+                          text("Take action to ensure that the CLDC can make a profit\nnext year by selecting one of the four options below!",712,50);
                           if(!typingActive){
                             playSound("audio/correct.mp3");
                             typingActive=true;
@@ -4798,27 +4911,27 @@ window.preload = function () {
       
                       loopCopy--;
                       fill(rgb(240,240,240,0.9));stroke("black");strokeWeight(3);
-                      rect(150,400,500,200);
+                      rect(550,400,500,200);
                       strokeWeight(4);
                       for(var count = 0; count<4;count++){
                         fill("white");  
                         if(count==proposalSelected)(fill("forestGreen"));
-                        rect(255+(count*80),565,60,30);
+                        rect(655+(count*80),565,60,30);
                       }
                       //text
                       strokeWeight(3);stroke("darkRed");
-                      line(200,445,600,445);
+                      line(600,445,1000,445);
                       fill("black");textSize(40);noStroke();
-                      text("Profit Action Proposal",400,430);
+                      text("Profit Action Proposal",800,430);
                       textSize(18);
-                      text("[R] Change",202,580);
+                      text("[R] Change",602,580);
                       textSize(25);
                       switch(proposalSelected){
                         case 0:
                           //investment opportunity
-                          text("1) Investment Opportunity - [E] Select",400, 470);
+                          text("1) Investment Opportunity - [E] Select",800, 470);
                           textSize(20);
-                          text("The CLDC can invest to raise monthly income.\nPros: Returns $1,000 a month\nCons: Wait 3 months with $5,000 investment cost",400,524);
+                          text("The CLDC can invest to raise monthly income.\nPros: Returns $1,000 a month\nCons: Wait 3 months with $5,000 investment cost",800,524);
                           if(keyWentDown("E")){
                             playSound("audio/app_interface_button_3.mp3");
                             proposalDone=true;
@@ -4829,9 +4942,9 @@ window.preload = function () {
                           break;
                         case 1:
                           //Community service
-                          text("2) Community Service - [E] Select",400, 470);
+                          text("2) Community Service - [E] Select",800, 470);
                           textSize(20);
-                          text("The community can reduce the CLDC's expenses.\nPros: Community service reduces more expenses\nCons: Less community service points for clearing litter",400,524);
+                          text("The community can reduce the CLDC's expenses.\nPros: Community service reduces more expenses\nCons: Less community service points for clearing litter",800,524);
                           if(keyWentDown("E")){
                             playSound("audio/app_interface_button_3.mp3");
                             proposalDone=true;
@@ -4842,9 +4955,9 @@ window.preload = function () {
                           break;
                         case 2:
                           //Leasing fees
-                          text("3) Leasing Fees - [E] Select",400, 470);
+                          text("3) Leasing Fees - [E] Select",800, 470);
                           textSize(20);
-                          text("The CLDC can raise leasing fees.\nPros: Raises leasing income by 20% immediately\nCons: Businesses are less likely to invest in the city",400,524);
+                          text("The CLDC can raise leasing fees.\nPros: Raises leasing income by 20% immediately\nCons: Businesses are less likely to invest in the city",800,524);
                           if(keyWentDown("E")){
                             playSound("audio/app_interface_button_3.mp3");
                             proposalDone=true;
@@ -4860,9 +4973,9 @@ window.preload = function () {
                           break;
                         case 3:
                           //Nothing just go broke lmao
-                          text("4) Do Nothing - [E] Select",400, 470);
+                          text("4) Do Nothing - [E] Select",800, 470);
                           textSize(20);
-                          text("The CLDC can take no action to raise income.\nPros: None\nCons: The CLDC may continue to go into debt",400,524);
+                          text("The CLDC can take no action to raise income.\nPros: None\nCons: The CLDC may continue to go into debt",800,524);
                           if(keyWentDown("E")){
                             playSound("audio/app_interface_button_3.mp3");
                             proposalDone=true;    
@@ -4892,24 +5005,24 @@ window.preload = function () {
                 }
               } else if (loopCopy > 295) {
                 if(loopCopy==350)(playSound("audio/typing.mp3"));
-                if (meetingSprites[9].x == 400 || meetingSprites[10].x == 400) {
+                if (meetingSprites[9].x == 800 || meetingSprites[10].x == 800) {
                   meetingSprites[9].setVelocity(0, 0); meetingSprites[10].setVelocity(0, 0);
                 }
                 if (loopCopy > 355) {
                   if (incumbentPopularity >= 50) {
                     fill("forestGreen");stroke("black");strokeWeight(3);
-                    rect(95,235,230,70);
-                    typeText(leaderNames[leaderNum] + " has won re-election!", 400, 355,30,0,false,"black",loopCopy);
+                    rect(495,235,230,70);
+                    typeText(leaderNames[leaderNum] + " has won re-election!", 800, 355,30,0,false,"black",loopCopy);
                     textSize(20); 
-                    text("Loan payment: +"+(Math.round(loanRate*100)-3) +"%\nContingency Fund: "+Math.round(reserveRate*100)+"%",210,270);
+                    text("Loan payment: +"+(Math.round(loanRate*100)-3) +"%\nContingency Fund: "+Math.round(reserveRate*100)+"%",610,270);
                     
                   } else {
                     fill(rgb(220,100,100));stroke("black");strokeWeight(3);
-                    rect(475,235,230,70);
-                    typeText(leaderNames[oppositionNum] + " has been elected!", 400, 355,30,0,false,"black",loopCopy);
+                    rect(875,235,230,70);
+                    typeText(leaderNames[oppositionNum] + " has been elected!", 800, 355,30,0,false,"black",loopCopy);
                     textSize(20); 
                     text("Loan payment: +"+(Math.round(oppositionPolicies[0]*100)-3)+
-                         "%\nContingency Fund: "+Math.round(oppositionPolicies[1]*100)+"%",590,270);
+                         "%\nContingency Fund: "+Math.round(oppositionPolicies[1]*100)+"%",990,270);
                   }
                   if(loopCopy==430)(stopSound("audio/typing.mp3"));
                 }
@@ -4923,9 +5036,9 @@ window.preload = function () {
                 meetingLoop += 9000;//default is 9000
                 pauseMainFunctions = false;
                 meetingSprites.setVisibleEach(false);
-                meetingSprites[7].x = 400; meetingSprites[7].y = 650;
+                meetingSprites[7].x = 800; meetingSprites[7].y = 650;
                 meetingSprites[7].setVelocity(0, 0);
-                meetingSprites[9].x=200;meetingSprites[10].x=600;
+                meetingSprites[9].x=600;meetingSprites[10].x=1000;
                 meetingSprites[9].velocityX=meetingSprites[10].velocityX=0;
                 proposalDone=false;
                 proposalSelected=0;
@@ -4958,18 +5071,18 @@ window.preload = function () {
             case 5:
               
                textSize(30);fill("black");noStroke();
-              text("Item 3: Decision - Create Development Plan", 400, 180);
+              text("Item 3: Decision - Create Development Plan", 800, 180);
               //investment choice relocation
               if(introSelection==0){
               //choose esop investment
               textAlign(LEFT,CENTER);
               fill("white");
-              rect(100,208,610,86);
-              rect(65,383,670,193);
+              rect(500,208,610,86);
+              rect(465,383,670,193);
               textSize(35);fill("black");
-              text("Encourage Investment by\nEmployee-Owned (ESOP) Companies?",110,250);
+              text("Encourage Investment by\nEmployee-Owned (ESOP) Companies?",510,250);
               text("Pros: Improves leasing income,\n\t\tkeeps profits in the community\n"+
-                   "Cons: Investment offers are less frequent,\n\t\tcost to the CLDC for paid incentives",75,470);
+                   "Cons: Investment offers are less frequent,\n\t\tcost to the CLDC for paid incentives",475,470);
               textAlign(CENTER,CENTER);
               stroke("black");strokeWeight(4);
               if(mouseIsOver(meetingBtns[0])){
@@ -4978,16 +5091,16 @@ window.preload = function () {
                 fill(rgb(160,255,180));  
               }
               
-              rect(180,310,140,50);//left button
+              rect(580,310,140,50);//left button
               if(mouseIsOver(meetingBtns[1])){
                 fill(rgb(255,180,200)); 
               }else{
                 fill(rgb(255,160,180));  
               }
-              rect(480,310,140,50);//right button
+              rect(880,310,140,50);//right button
               fill("black");noStroke();
-              text("[E] Yes",250,335);
-              text("[R] No",550,335);
+              text("[E] Yes",650,335);
+              text("[R] No",950,335);
                 
                 
 
@@ -5011,23 +5124,23 @@ window.preload = function () {
               stroke("black"); strokeWeight(4);
               if(esopChosen){
                 fill(rgb(200,255,220));
-                rect(50,228,700,44);
+                rect(450,228,700,44);
                 fill("black"); noStroke(); textSize(35);
-                text("Employee-owned investment is encouraged.",400,250);
+                text("Employee-owned investment is encouraged.",800,250);
               }else{
                 fill(rgb(255,200,220));
-                rect(35,228,730,44);
+                rect(435,228,730,44);
                 fill("black"); noStroke(); textSize(35);
-                text("Employee-owned investment isn't encouraged.",400,250);
+                text("Employee-owned investment isn't encouraged.",800,250);
               }
               
             //Choose infrastructure
                 noStroke(); fill("white")
-                rect(90,291,620,44);
-                rect(53,408,702,94);
+                rect(490,291,620,44);
+                rect(453,408,702,94);
             textSize(35);fill("black");
-            text("Invest in More Resilient Infrastructure?",400,315);
-              text("Pros: Less damage from natural disasters\nCons: Spend more revenue on infrastructure",400,450);
+            text("Invest in More Resilient Infrastructure?",800,315);
+              text("Pros: Less damage from natural disasters\nCons: Spend more revenue on infrastructure",800,450);
               stroke("black");strokeWeight(4);
 
               if(mouseIsOver(meetingBtns[2])){
@@ -5035,18 +5148,18 @@ window.preload = function () {
               }else{
                 fill(rgb(160,255,180));  
               }
-              rect(180,345,140,50);//left button
+              rect(580,345,140,50);//left button
               
               if(mouseIsOver(meetingBtns[3])){
                 fill(rgb(255,180,200));
               }else{
                 fill(rgb(255,160,180));  
               }
-              rect(480,345,140,50);//right button
+              rect(880,345,140,50);//right button
               
               fill("black");noStroke();
-              text("[E] Yes",250,370);
-              text("[R] No",550,370);
+              text("[E] Yes",650,370);
+              text("[R] No",950,370);
 
               if(keyWentDown("e") || (mousePressedOver(meetingBtns[2]) && mouseWentDown("leftButton"))){
                 playSound("audio/app_interface_button_3.mp3");
@@ -5068,33 +5181,33 @@ window.preload = function () {
                 stroke("black"); strokeWeight(4);
               if(esopChosen){
                 fill(rgb(200,255,220));
-                rect(50,228,700,44);
+                rect(450,228,700,44);
                 esopText = "Employee-owned investment is encouraged.";
               }else{
                 fill(rgb(255,200,220));
-                rect(35,228,730,44);
+                rect(435,228,730,44);
                 esopText = "Employee-owned investment isn't encouraged.";
               }
               fill("black");noStroke();textSize(35);
-              text(esopText,400,250);
+              text(esopText,800,250);
               //show results from infrastructure choice
               stroke("black");strokeWeight(4);
               var infrastructureText = "";
               if(infrastructureChosen){
                 fill(rgb(200,255,220));
-                rect(110,283,580,44);
+                rect(510,283,580,44);
                 infrastructureText = "Investing in improved infrastructure.";
               }else{
                 fill(rgb(255,200,220));
-                rect(80,283,640,44);
+                rect(480,283,640,44);
                 infrastructureText = "Not investing in improved infrastructure.";
               }
                 noStroke();
                 fill("white");
-                rect(35, 375, 725, 140);
+                rect(435, 375, 725, 140);
               fill("black");
-              text(infrastructureText,400,305);
-              text("Now that the plan for development is created,\nit will come into effect after the CLDC\nelection finishes in the next two steps.",400,445);
+              text(infrastructureText,800,305);
+              text("Now that the plan for development is created,\nit will come into effect after the CLDC\nelection finishes in the next two steps.",800,445);
             }
 
               if(keyWentDown('ENTER')){
@@ -5126,29 +5239,29 @@ window.preload = function () {
             loopCopy++;
             //draw background
             fill(rgb(255, 255, 255, 0.85)); strokeWeight(4); stroke("black");
-            rect(20, 90, 760, 390);
+            rect(420, 90, 760, 390);
             fill(rgb(220, 230, 255)); strokeWeight(2);
-            rect(60, 110, 680, 60);
+            rect(460, 110, 680, 60);
             fill("black"); textSize(44); strokeWeight(0.6);
 
-            text("Voting Results:", 400, 140);
+            text("Voting Results:", 800, 140);
             strokeWeight(2);
             if (cutTimeLeft > 10) {
               fill(rgb(150, 255, 150));
-              arc(400, 280, 200, 200, -90, (voteData[2] * 3.6) - 90);
+              arc(800, 280, 200, 200, -90, (voteData[2] * 3.6) - 90);
               fill(rgb(255, 150, 150));
-              arc(400, 280, 200, 200, (voteData[2] * 3.6) - 90, -90);
+              arc(800, 280, 200, 200, (voteData[2] * 3.6) - 90, -90);
               if (cutTimeLeft > 20) {
                 fill("forestGreen"); textSize(36); stroke('forestgreen');
                 strokeWeight(0.8);
-                text("CLDC Members\nin Favor:\n" + voteData[2] + "%", 640, 280);
+                text("CLDC Members\nin Favor:\n" + voteData[2] + "%", 1040, 280);
                 fill("darkRed"); stroke('darkred');
-                text("CLDC Members\nOpposed:\n" + (100 - voteData[2]) + "%", 160, 280);
+                text("CLDC Members\nOpposed:\n" + (100 - voteData[2]) + "%", 560, 280);
 
                   if (voteData[2] > 50) {
-                    typeText("A majority voted in favor of the offer.\nConstruction will begin shortly.", 400, 430,32,0,false,"forestGreen",loopCopy);
+                    typeText("A majority voted in favor of the offer.\nConstruction will begin shortly.", 800, 430,32,0,false,"forestGreen",loopCopy);
                   } else {
-                   typeText("A majority was not in favor of the offer.\nThe plot will remain open to offers.", 400, 430,32,0,false,"darkRed",loopCopy);
+                   typeText("A majority was not in favor of the offer.\nThe plot will remain open to offers.", 800, 430,32,0,false,"darkRed",loopCopy);
                   }
                 
               }
@@ -5227,7 +5340,7 @@ window.preload = function () {
   
         //--- DEBUG KEYS ----
         if (keyWentDown("k")) {
-          dividends = prompt("Enter dividends for testing");
+          dividends = Number(prompt("Enter dividends for testing"));
         }
         //end game for testing        
         if(keyWentDown("v")){
@@ -5305,40 +5418,40 @@ window.preload = function () {
           }
           
           fill("black");noStroke();
-          rect(10,605,780,195);
+          rect(410,605,780,195);
         }
         else if(introControl == 1){
           textSize(80);
         strokeWeight(8); stroke('black'); 
         fill(190,220,255);
-        rect(5, 5, 790, 130);
+        rect(405, 5, 790, 130);
         
         fill(rgb(210,210,210)); strokeWeight(4);
-        rect(5,545,786,250);
+        rect(405,545,786,250);
         
           fill(190,220,255);
         if (mouseIsOver(tutorialSprites[5])) {
           fill(130, 240, 135);
         }
         strokeWeight(6);
-        rect(260, 710, 280, 60);
+        rect(660, 710, 280, 60);
         fill('black'); noStroke();
-        text('Game Complete!', 400, 75);
+        text('Game Complete!', 800, 75);
         textSize(50);
-        text('Main Menu', 400, 744);
+        text('Main Menu', 800, 744);
         
         
         fill('white'); strokeWeight(4); stroke('black');
-        rect(60, 563, 685, 62);
-        rect(60, 638, 685, 62);
+        rect(460, 563, 685, 62);
+        rect(460, 638, 685, 62);
         fill('black'); noStroke();
       
         let secondsString = (gameplayTime[0] < 10) ? "0"+gameplayTime[0] : gameplayTime[0];
         let minutesString = (gameplayTime[1] < 10) ? "0"+gameplayTime[1] : gameplayTime[1];
         let hoursString = (gameplayTime[2] < 10) ? "0"+gameplayTime[2] : gameplayTime[2];
         let totalScore = Number(dividends) + Number(cPoints + ePoints);
-        text('Time Elapsed: ' + secondsString+":"+minutesString+":"+hoursString, 400, 595);
-        text('Total Score: ' + addCommas(Math.round(totalScore)) + " pts", 400, 670);
+        text('Time Elapsed: ' + secondsString+":"+minutesString+":"+hoursString, 800, 595);
+        text('Total Score: ' + addCommas(Math.round(totalScore)) + " pts", 800, 670);
 
         textAlign('center', 'center'); textSize(30);stroke("black");strokeWeight(0.5);
 
@@ -5346,7 +5459,7 @@ window.preload = function () {
         " more tax revenue is\nbeing generated, and its citizens are now owners.\n\nAs a member of the"+
         "CLDC, you have earned $"+addCommas(Math.round(dividends))+"\nin shareholder dividends and "+
         addCommas(cPoints+ePoints)+" points from\ncommunity service and ownership education.\n\nThe CLDC"+
-        " paid a total of $"+addCommas(Math.round(totalPayouts))+" in\ndividends to its members.", 400, 335);
+        " paid a total of $"+addCommas(Math.round(totalPayouts))+" in\ndividends to its members.", 800, 335);
 
         if (mousePressedOver(tutorialSprites[5])) {
           playSound("audio/app_interface_button_3.mp3");
@@ -5494,144 +5607,147 @@ window.preload = function () {
           tipsSheetOpen=!tipsSheetOpen;
         }
       
-      //Right side menu 
+      //Side menus 
       fill(rgb(110,80,40));noStroke();
-      rect(800,0,800,800);
-      
+      rect(1200,0,400,800);
+      rect(0,0,400,800);
+
       //objective logic
       fillObjList();
-      
-      //middle line
-      stroke('black'); strokeWeight(2); textFont('Tahoma');
-      line(1200, 0, 1200, 800);
     
-      //left header
+      //game stats header
       fill(rgb(200, 200, 200));
-      rect(808, 5, 384, 60);
+      rect(1208, 5, 384, 60);
+
+      stroke('black'); strokeWeight(2);
       //yellow background
       if (dropDownsOpen[0]){
         fill(rgb(255, 242, 204));
-        rect(808, 66, 384, 260);
+        rect(1208, 66, 384, 260);
       } else {
-        fill(rgb(110, 110, 110));//rgb(27, 35, 48)
-        rect(808, 66, 384, 260);
+        fill(rgb(90, 90, 90));//rgb(27, 35, 48)
+        rect(1208, 66, 384, 260);
         fill(rgb(255, 242, 204));
-        rect(808, 66, 384, 105);
+        rect(1208, 66, 384, 105);
       }
       //yellow header
       fill(rgb(255, 229, 153));
-      rect(808, 65, 384, 50);
+      rect(1208, 65, 384, 50);
     
+      //Line between game stats and yellow box
+       line(1208,65,1592,65);
+
+
         //light blue background
         if (dropDownsOpen[1]) {
           fill(rgb(225, 252, 255));
-          rect(808, 336, 384, 200);
+          rect(1208, 336, 384, 200);
         }else {
-          fill(rgb(110, 110, 110));
-          rect(808, 336, 384, 200);
+          fill(rgb(90, 90, 90));
+          rect(1208, 336, 384, 200);
         }
         //light blue header
         fill(rgb(176, 247, 255));
-        rect(808, 335, 384, 50);
+        rect(1208, 335, 384, 50);
 
         //blue background
         if (dropDownsOpen[2]) {
         fill(rgb(207, 226, 243));
-        rect(808, 546, 384, 240);
+        rect(1208, 546, 384, 240);
         } else {
-          fill(rgb(110, 110, 110));
-          rect(808, 546, 384, 240);
+          fill(rgb(90, 90, 90));
+          rect(1208, 546, 384, 240);
           fill(rgb(207, 226, 243));
-          rect(808, 546, 384, 105);
+          rect(1208, 546, 384, 105);
         }
         //blue header
         fill(rgb(159, 197, 232));
-        rect(808, 545, 384, 50);
+        rect(1208, 545, 384, 50);
       
 
-      //right header
+      //objectives header
       fill(rgb(110, 185, 110));
-      rect(1208, 5, 384, 40);
+      rect(8, 5, 384, 40);
       //green background
       if (dropDownsOpen[3]) {
         fill(rgb(217, 234, 211));
-        rect(1208, 45, 384, 160);
+        rect(8, 45, 384, 160);
       }else {
-        fill(rgb(110, 110, 110));
-        rect(1208, 45, 384, 160);
+        fill(rgb(90, 90, 90));
+        rect(8, 45, 384, 160);
       }
       if (dropDownsOpen[4]) {
         fill(rgb(217, 234, 211));
-        rect(1208, 230, 384, 96);
+        rect(8, 230, 384, 96);
       } else {
-        fill(rgb(110, 110, 110));
-        rect(1208, 230, 384, 96);
+        fill(rgb(90, 90, 90));
+        rect(8, 230, 384, 96);
       }
 
       //Objective subheader
       fill(rgb(110, 185, 110));
-      rect(1208, 190, 384, 40);
+      rect(8, 190, 384, 40);
     
         //controls background
         
         if (dropDownsOpen[5]) {
           fill(rgb(72, 72, 72));
-          rect(1208, 336, 384, 450);
+          rect(8, 336, 384, 450);
         }else {
-          fill(rgb(110, 110, 110));
-          rect(1208, 336, 384, 450);
+          fill(rgb(90, 90, 90));
+          rect(8, 336, 384, 450);
         }
         //controls header
         fill(rgb(200, 200, 200));
-        rect(1208, 335, 384, 45);
+        rect(8, 335, 384, 45);
         if (dropDownsOpen[5]) {
         if(!tipsSheetOpen){
           //movement header
           fill(rgb(200, 200, 200));
-          rect(1218, 385, 364, 30);
+          rect(18, 385, 364, 30);
           //movement controls
           for (var x = 0; x < 5; x++) {
             stroke('black');
             //left input box
             fill(controlsColors[x]);
-            rect(1218, 421 + (x * 36), 120, 30);
+            rect(18, 421 + (x * 36), 120, 30);
             //right controls box
             fill('white');
-            rect(1388, 421 + (x * 36), 194, 30);
+            rect(188, 421 + (x * 36), 194, 30);
 
             //connecting line and arrow
             stroke(rgb(220, 220, 220)); fill(rgb(220, 220, 220));
-            line(1342, 436 + (x * 36), 1384, 436 + (x * 36));
-            shape(1384, 436 + (x * 36), 1374, 432 + (x * 36), 1374, 440 + (x * 36));
+            line(142, 436 + (x * 36), 184, 436 + (x * 36));
+            shape(184, 436 + (x * 36), 174, 432 + (x * 36), 174, 440 + (x * 36));
         }
 
         //interaction header
         fill(rgb(200, 200, 200)); stroke('black');
-        rect(1218, 602, 364, 30);
+        rect(18, 602, 364, 30);
         //interaction controls
         for (var x = 0; x < 4; x++) {
           stroke('black');
           //left input box
           fill(controlsColors[x + 5]);
-          rect(1218, 638 + (x * 36), 120, 30);
+          rect(18, 638 + (x * 36), 120, 30);
           //right controls box
           fill('white');
-          rect(1388, 638 + (x * 36), 194, 30);
+          rect(188, 638 + (x * 36), 194, 30);
 
           //connecting line and arrow
           stroke(rgb(220, 220, 220)); fill(rgb(220, 220, 220));
-          line(1342, 653 + (x * 36), 1384, 653 + (x * 36));
-          shape(1384, 653 + (x * 36), 1374, 649 + (x * 36), 1374, 657 + (x * 36));
+          line(142, 653 + (x * 36), 184, 653 + (x * 36));
+          shape(184, 653 + (x * 36), 174, 649 + (x * 36), 174, 657 + (x * 36));
         }
         }
         else{
           fill(rgb(160, 190, 255));
-          rect(1218, 385, 364, 30);
+          rect(18, 385, 364, 30);
           fill("white");
-          rect(1218,415,364,190);
-          rect(1218,640,364,140);
+          rect(18,415,364,190);
+          rect(18,640,364,140);
           fill(rgb(255, 255, 160));
-          rect(1218, 610, 364, 30);
+          rect(18, 610, 364, 30);
           
         }
       }
@@ -5643,49 +5759,49 @@ window.preload = function () {
       if (dropDownsOpen[0]) {
       for (var i = 0; i < 3; i++) {
         fill('white');
-        rect(818, 126 + (i * 46), 194, 34);
+        rect(1218, 126 + (i * 46), 194, 34);
         fill(menuColors[i]);
-        rect(1012, 126 + (i * 46), 165, 34);
+        rect(1412, 126 + (i * 46), 165, 34);
       }
-      line(815, 267, 1180, 267);
+      line(1215, 267, 1580, 267);
       fill(rgb(201, 218, 248));
-      rect(818, 280, 194, 34);
+      rect(1218, 280, 194, 34);
       fill(menuColors[3]);
-      rect(1012, 280, 165, 34);
+      rect(1412, 280, 165, 34);
       }else {
         fill(rgb(201, 218, 248));
-        rect(818, 126, 194, 34);
+        rect(1218, 126, 194, 34);
         fill(menuColors[3]);
-        rect(1012, 126, 165, 34);
+        rect(1412, 126, 165, 34);
       }
         //Light blue "CLDC Loans"
         if (dropDownsOpen[1]) {
         for (var y = 0; y < 3; y++) {
           fill('white');
-          rect(818, 396 + (y * 46), 194, 34);
+          rect(1218, 396 + (y * 46), 194, 34);
           fill(menuColors[y + 4]);
-          rect(1012, 396 + (y * 46), 165, 34);
+          rect(1412, 396 + (y * 46), 165, 34);
         }
       }
         //blue "Your CLDC Scorecard:"
         if (dropDownsOpen[2]) {
         for (var z = 0; z < 4; z++) {
           fill(scorecardColors[z]);
-          rect(818, 605 + (z * 46), 194, 34);
+          rect(1218, 605 + (z * 46), 194, 34);
           fill(menuColors[z + 7]);
-          rect(1012, 605 + (z * 46), 165, 34);
+          rect(1412, 605 + (z * 46), 165, 34);
         }
         } else {
           fill(scorecardColors[3]);
-          rect(818, 605, 194, 34);
+          rect(1218, 605, 194, 34);
           fill(menuColors[10]);
-          rect(1012, 605, 165, 34);
+          rect(1412, 605, 165, 34);
         }
       //CLDC objective boxes
       if (dropDownsOpen[3]) {
         for (var za = 0; za < 3; za++) {
           fill(objColors[za]);
-          rect(1223, 56 + (za * 42), 355, 32);
+          rect(23, 56 + (za * 42), 355, 32);
         }
       }
       
@@ -5693,154 +5809,159 @@ window.preload = function () {
       if (dropDownsOpen[4]) {
       for (var za = 0; za < 2; za++) {
         fill(objColors[za + 3]);
-        rect(1223, 241 + (za * 42), 355, 32);
+        rect(23, 241 + (za * 42), 355, 32);
       }
     }
       //Menu text
-      textSize(34); strokeWeight(1); stroke('black');
+      textSize(34); strokeWeight(1); stroke('black'); textFont('tahoma');
       textAlign(CENTER, CENTER); fill('black');
       textStyle(BOLD);
-      text("Game Stats", 1000, 38);
+      text("Game Stats", 1400, 38);
       textStyle(NORMAL);
 
       
       if(!tipsSheetOpen){
-        text("Controls", 1380, 360);
+        text("Controls", 180, 360);
         
         textSize(20);fill(rgb(220,25,50));
         stroke(rgb(220,25,50));strokeWeight(0.5);
-        text("[T] Show Tips",1515,362);
+        text("[T] Show Tips",315,362);
         noStroke();
         textSize(24);fill("black");
         if (dropDownsOpen[5]) {
-        text("Movement", 1400, 401);
-        text("Interaction", 1400, 618);
+        text("Movement", 200, 401);
+        text("Interaction", 200, 618);
         }
       }
       else{
-        text("Tips", 1380, 360);
+        text("Tips", 180, 360);
         stroke(rgb(220,25,50));strokeWeight(0.5);
         textSize(20);fill(rgb(220,25,50));
-        text("[T] Show Controls",1502,362);
+        text("[T] Show Controls",302,362);
         noStroke();
         textSize(24);fill("black");
         if (dropDownsOpen[5]) {
-        text("Land Development Process", 1400, 401);
-        text("Other Information", 1400, 626);
+        text("Land Development Process", 200, 401);
+        text("Other Information", 200, 626);
         textSize(18);textAlign(LEFT, CENTER);
-        text("1. Develop a land plot: stand on the plot\n    and press [E] to invest in it.\n2. Begin the vote: When an offer appears\n    (sign w/ arrows), press [E] or [R].\n3. Advocate: Make the vote pass or fail\n    by holding [E] on citizens that appear.\n4. Finish construction: If the vote passes,\n    press [E] on the construction site.",1230,510);
-        text("• Use the recycling center for double points\n   by bringing litter to it and pressing [E].\n• A clean-up event must be active to pick\n   up litter - press [F] to start one.\n• To complete the game, develop the city\n   and do 10 objectives from the list above.",1230,710);
+        text("1. Develop a land plot: stand on the plot\n    and press [E] to invest in it.\n"+
+        "2. Begin the vote: When an offer appears\n    (sign w/ arrows), press [E] or [R].\n3. "+
+        "Advocate: Make the vote pass or fail\n    by holding [E] on citizens that appear.\n4. "+
+        "Finish construction: If the vote passes,\n    press [E] on the construction site.",30,510);
+        text("• Use the recycling center for double points\n   by bringing litter to it and pressing "+
+        "[E].\n• A clean-up event must be active to pick\n   up litter - press [F] to start one.\n• To "+
+        "complete the game, develop the city\n   and do 10 objectives from the list above.",30,710);
         }
       }
     
       textAlign(CENTER, CENTER);
       noStroke();
       textSize(28);
-      text("CLDC Objectives", 1400, 27);
-      text("Citizen-Owner Objectives", 1410, 212);
-      text("Annual CLDC Financials", 1000, 94);
-      text("CLDC Loans", 1000, 364);
-      text("Your CLDC Scorecard", 1000, 574);
+      text("CLDC Objectives", 200, 27);
+      text("Citizen-Owner Objectives", 210, 212);
+      text("Annual CLDC Financials", 1400, 94);
+      text("CLDC Loans", 1400, 364);
+      text("Your CLDC Scorecard", 1400, 574);
 
       textSize(24);
       if(!tipsSheetOpen && dropDownsOpen[5]){
         //Movement text
-        text("W or ↑", 1275, 438); text("Move Up", 1485, 437);
-        text("S or ↓", 1275, 473); text("Move Down", 1485, 473);
-        text("A or ←", 1275, 509); text("Move Left", 1485, 509);
-        text("D or →", 1275, 545); text("Move Right", 1485, 545);
-        text("SHIFT", 1275, 581); text("Sprint", 1485, 581);
+        text("W or ↑", 75, 438); text("Move Up", 285, 437);
+        text("S or ↓", 75, 473); text("Move Down", 285, 473);
+        text("A or ←", 75, 509); text("Move Left", 285, 509);
+        text("D or →", 75, 545); text("Move Right", 285, 545);
+        text("SHIFT", 75, 581); text("Sprint", 285, 581);
 
         //Interaction text
-        text("E", 1275, 655); text("Select", 1485, 655);
-        text("ENTER", 1275, 691); text("Skip", 1485, 691);
-        text("F", 1275, 727); text("Toggle Clean-up", 1485, 727);
-        text("R", 1275, 763); text("Change Selection", 1485, 763);
+        text("E", 75, 655); text("Select", 285, 655);
+        text("ENTER", 75, 691); text("Skip", 285, 691);
+        text("F", 75, 727); text("Toggle Clean-up", 285, 727);
+        text("R", 75, 763); text("Change Selection", 285, 763);
       }
         
       
       //Yellow ""CLDC Financials" text
       textSize(22); textAlign(LEFT, CENTER);
       if (dropDownsOpen[0]) {
-        text("Revenue", 825, 145);
-        text("Loan Repayments", 825, 191);
-        text("Other Expenses", 825, 237);
-        text("Profits", 825, 299);
+        text("Revenue", 1225, 145);
+        text("Loan Repayments", 1225, 191);
+        text("Other Expenses", 1225, 237);
+        text("Profits", 1225, 299);
       } else {
-        text("Profits", 825, 145);
+        text("Profits", 1225, 145);
       }
 
         //light blue "CLDC Loans" text
         if (dropDownsOpen[1]) {
-        text("Total Loans", 825, 415);
-        text("Loan Repayments", 825, 461);
-        text("Loan Balance", 825, 507);
+        text("Total Loans", 1225, 415);
+        text("Loan Repayments", 1225, 461);
+        text("Loan Balance", 1225, 507);
         }
         textSize(22);
 
         //blue "Your CLDC Scorecard" text
         if (dropDownsOpen[2]) {
-          text("Dividends Earned", 825, 625);
+          text("Dividends Earned", 1225, 625);
           textSize(19);
-          text("Ownership Education", 825, 671);
+          text("Ownership Education", 1225, 671);
           textSize(21);
-          text("Community Service", 825, 717);
+          text("Community Service", 1225, 717);
           textSize(22);
-          text("Total Score", 825, 763);
+          text("Total Score", 1225, 763);
         }else {
           textSize(22);
-          text("Total Score", 825, 625);
+          text("Total Score", 1225, 625);
         }
         
       textSize(22);
       //Objective list text
       if (dropDownsOpen[3]) {
-        text(curObjListCLDC[0], 1228, 74);
-        text(curObjListCLDC[1], 1228, 116);
-        text(curObjListCLDC[2], 1228, 158);
+        text(curObjListCLDC[0], 28, 74);
+        text(curObjListCLDC[1], 28, 116);
+        text(curObjListCLDC[2], 28, 158);
       }
       
       if (dropDownsOpen[4]) {
-        text(curObjListP[0], 1228, 259);
-        text(curObjListP[1], 1228, 301);
+        text(curObjListP[0], 28, 259);
+        text(curObjListP[1], 28, 301);
       }
       
       
       //Financials number text
       if (dropDownsOpen[0]) {
-      text("$" + addCommas(Math.round(totIncome)), 1020, 145);
-      text("$" + addCommas(Math.round(totLoanPay)), 1020, 191);
-      text("$" + addCommas(Math.round(totExpenses)), 1020, 237);
+      text("$" + addCommas(Math.round(totIncome)), 1420, 145);
+      text("$" + addCommas(Math.round(totLoanPay)), 1420, 191);
+      text("$" + addCommas(Math.round(totExpenses)), 1420, 237);
 
         //move money counter after updating it
         let negSign = '';
         if(totProfits<0)(negSign='-');
-        if (cMoneyUpdateCount + 2 > loopCount) (text(negSign+"$" + addCommas(Math.round(totProfits)), 1020, 297));
-        else (text(negSign+"$" + addCommas(Math.round(totProfits)), 1020, 301));
+        if (cMoneyUpdateCount + 2 > loopCount) (text(negSign+"$" + addCommas(Math.round(totProfits)), 1420, 297));
+        else (text(negSign+"$" + addCommas(Math.round(totProfits)), 1420, 301));
       } else {
         //move money counter after updating it
         let negSign = '';
         if(totProfits<0)(negSign='-');
-        if (cMoneyUpdateCount + 2 > loopCount) (text(negSign+"$" + addCommas(Math.round(totProfits)), 1020, 141));
-        else (text(negSign+"$" + addCommas(Math.round(totProfits)), 1020, 145));
+        if (cMoneyUpdateCount + 2 > loopCount) (text(negSign+"$" + addCommas(Math.round(totProfits)), 1420, 141));
+        else (text(negSign+"$" + addCommas(Math.round(totProfits)), 1420, 145));
       }
 
         //loans number text
         if (dropDownsOpen[1]) {
-        if (loansUpdateCount + 2 > loopCount) (text("$" + addCommas(Math.round(totLoans)), 1020, 410));
-        else (text("$" + addCommas(Math.round(totLoans)), 1020, 415));
-        text("$" + addCommas(Math.round(totLoanPay)), 1020, 461);
-        text("$" + addCommas(Math.round(totLoans - totLoanPay)), 1020, 507);
+        if (loansUpdateCount + 2 > loopCount) (text("$" + addCommas(Math.round(totLoans)), 1420, 410));
+        else (text("$" + addCommas(Math.round(totLoans)), 1420, 415));
+        text("$" + addCommas(Math.round(totLoanPay)), 1420, 461);
+        text("$" + addCommas(Math.round(totLoans - totLoanPay)), 1420, 507);
         }
         //scorecard number text
         if (dropDownsOpen[2]) {
-          text("$" + addCommas(Math.round(dividends)), 1020, 625);
-          text(addCommas(ePoints), 1020, 671);
-          if (cUpdateCount + 2 > loopCount) (text(addCommas(cPoints), 1020, 712));
-          else (text(addCommas(cPoints), 1020, 717));
-          text(addCommas(Math.round(ePoints + cPoints + dividends)), 1020, 763);
+          text("$" + addCommas(Math.round(dividends)), 1420, 625);
+          text(addCommas(ePoints), 1420, 671);
+          if (cUpdateCount + 2 > loopCount) (text(addCommas(cPoints), 1420, 712));
+          else (text(addCommas(cPoints), 1420, 717));
+          text(addCommas(Math.round(ePoints + cPoints + dividends)), 1420, 763);
         }else{
-          text(addCommas(Math.round(ePoints + cPoints + dividends)), 1020, 625);
+          text(addCommas(Math.round(ePoints + cPoints + dividends)), 1420, 625);
         }
       textAlign(CENTER, CENTER);
 
@@ -5862,22 +5983,25 @@ window.preload = function () {
         cursor(HAND);
       } else if (mouseIsOver(dropDownBtns[5])) {
         cursor(HAND);
+      } else if (!startPressed && mouseIsOver(introBtn)) {
+        cursor(HAND);
       } else {
         cursor(ARROW);
       }
 
-      dropDownCircle(830, 90, dropDownsOpen[0]);
-      dropDownCircle(830, 360, dropDownsOpen[1]);
-      dropDownCircle(830, 570, dropDownsOpen[2]);
-      dropDownCircle(1230, 25, dropDownsOpen[3]);
-      dropDownCircle(1230, 210, dropDownsOpen[4]);
-      dropDownCircle(1230, 358, dropDownsOpen[5]);
+      dropDownCircle(1230, 90, dropDownsOpen[0]);
+      dropDownCircle(1230, 360, dropDownsOpen[1]);
+      dropDownCircle(1230, 570, dropDownsOpen[2]);
+      dropDownCircle(30, 25, dropDownsOpen[3]);
+      dropDownCircle(30, 210, dropDownsOpen[4]);
+      dropDownCircle(30, 358, dropDownsOpen[5]);
 
-      //end right side menu
+      //end side menu
 
       //hide menu during annual meeting
       if(meetingControl>0){
-        spotlight(10,10,780,680);
+        //fix location 2 /////////////////
+        spotlight(410,10,780,680);
       }
       
       //Intro animation / tutorial graphics
@@ -5905,7 +6029,7 @@ window.preload = function () {
           if(loopCount==15){
             textStart.push(15);
           }
-          typeText("Welcome!\n    \nAs a long-term member of the community,\nyou know that our city has changed\na lot since you first moved here...",400,350,40,0,false,"white",loopCount);
+          typeText("Welcome!\n    \nAs a long-term member of the community,\nyou know that our city has changed\na lot since you first moved here...",800,350,40,0,false,"white",loopCount);
           if(loopCount==270){
             stopSound("audio/typing.mp3");
             stopMusic();
@@ -5923,9 +6047,9 @@ window.preload = function () {
             textStart=[15,380];
             introStateControl=2;
           }
-          spotlight(10,10,780,460);
+          spotlight(410,10,780,460);
           if(loopCount==380)(textStart.push(380));
-          typeText("The north side, your home, has fallen\ninto a state of disrepair and poverty.\nCrime is rampant, and the land is empty.",400,570,40,1,false,"white",loopCount);
+          typeText("The north side, your home, has fallen\ninto a state of disrepair and poverty.\nCrime is rampant, and the land is empty.",800,570,40,1,false,"white",loopCount);
           if(loopCount==620)(stopSound("audio/typing.mp3"));
         }
         else if(introStateControl==2){//loopCount<1100
@@ -5940,10 +6064,10 @@ window.preload = function () {
             textStart=[15,380,770];
             introStateControl=3;
           }
-          spotlight(10,500,780,190);
+          spotlight(410,500,780,190);
           if(loopCount==765)(playSound("audio/typing.mp3"));
           if(loopCount==770)(textStart.push(770));
-          typeText("Meanwhile, the south side has only\ngotten richer and has become a regional\nhub for economic activity." ,400,330,40,2,false,"white",loopCount);
+          typeText("Meanwhile, the south side has only\ngotten richer and has become a regional\nhub for economic activity." ,800,330,40,2,false,"white",loopCount);
           if(loopCount==970)(stopSound("audio/typing.mp3"));
         }
         else if(introStateControl==3){//loopCount<1880
@@ -5962,7 +6086,9 @@ window.preload = function () {
           spotlight(0,0,0,0);
           if(loopCount==1105)(playSound("audio/typing.mp3"));
           if(loopCount==1110)(textStart.push(1110));
-          typeText("Fortunately, there is a way to redevelop\nand breathe new life into our city!\n   \nBy forming an organizational tool known as\na Citizen's Land Development Coop (CLDC),\nthe north side can be economically REBORN\nwithout creating government debt!\n   \nThe CLDC works in eight phases...",400,320,35,3,false,"white",loopCount);
+          typeText("Fortunately, there is a way to redevelop\nand breathe new life into our city!\n   \nBy forming an "+
+          "organizational tool known as\na Citizen's Land Development Coop (CLDC),\nthe north side can be economically "+
+          "REBORN\nwithout creating government debt!\n   \nThe CLDC works in eight phases...",800,320,35,3,false,"white",loopCount);
           if(loopCount==1680)(stopSound("audio/typing.mp3"));
           // if(loopCount==1875){
           //   playSound("audio/typing.mp3");
@@ -5987,12 +6113,15 @@ window.preload = function () {
 
           spotlight(0,0,0,0);
           fill(rgb(190,200,255));stroke(rgb(200,220,255));strokeWeight(0.25);textSize(30);
-          text("Phases of CLDC Development",400,30);
+          text("Phases of CLDC Development",800,30);
           strokeWeight(3);
-          line(200,44,600,44);
+          line(600,44,1000,44);
           
           textAlign(LEFT,CENTER);
-          typeText("1) Form the CLDC - ☑ DONE\n\n2) Get the blighted properties donated to\nthe CLDC by the city - ☑ DONE\n\n3) Create the plan for development - ☑ DONE\n\n4) Introduce the plan to businesses - ☑ DONE\n\n5) Get contracts promising to lease CLDC\nproperties when developed - ☑ DONE\n\n6) Use the contracts to secure the loans\nrequired to implement the plan - ☑ DONE",40,370,35,0,false,"white",loopCount);
+          typeText("1) Form the CLDC - ☑ DONE\n\n2) Get the blighted properties donated to\nthe CLDC by the city - ☑ "+
+          "DONE\n\n3) Create the plan for development - ☑ DONE\n\n4) Introduce the plan to businesses - ☑ DONE\n\n5)"+
+          " Get contracts promising to lease CLDC\nproperties when developed - ☑ DONE\n\n6) Use the contracts to secure "+
+          "the loans\nrequired to implement the plan - ☑ DONE",440,370,35,0,false,"white",loopCount);
           textAlign(CENTER,CENTER);
               if(loopCount == 2560){
                 stopSound("audio/typing.mp3");
@@ -6006,9 +6135,9 @@ window.preload = function () {
               //   }
           }
           textSize(30);fill("white");noStroke();
-          text('[BACKSPACE] Back  |                             ', 400, 754);
+          text('[BACKSPACE] Back  |                             ', 800, 754);
           fill(rgb(180,250,180));
-          text("[ENTER] Continue", 540,754);
+          text("[ENTER] Continue", 940,754);
         }
         else if(introControl==1){
           if(introStateControl==5){ // loopCount<600
@@ -6028,15 +6157,17 @@ window.preload = function () {
             }
             spotlight(0,0,0,0);
             fill(rgb(190,200,255));stroke(rgb(190,200,255));strokeWeight(0.25);textSize(30);
-          text("Phases of CLDC Development",400,30);
+          text("Phases of CLDC Development",800,30);
           strokeWeight(3);
-          line(200,44,600,44);
+          line(600,44,1000,44);
           if(loopCount==1){
             textStart.push(1);
             playSound("audio/typing.mp3");
           }
             textAlign(LEFT,CENTER);
-          typeText("That leaves us with the last two phases!\n  \n7) Develop the land & properties\n\n8) Lease the properties to repay the loans\nand generate dividends for the owners\n\nThese goals are for you to complete --\nLet's get started!",40,350,35,0,false,"white",loopCount);
+          typeText("That leaves us with the last two phases!\n  \n7) Develop the land & properties\n\n8) "+
+          "Lease the properties to repay the loans\nand generate dividends for the owners\n\nThese goals are "+
+          "for you to complete --\nLet's get started!",440,350,35,0,false,"white",loopCount);
             textAlign(CENTER,CENTER);
             if(loopCount==455)(stopSound("audio/typing.mp3"));
             
@@ -6055,10 +6186,12 @@ window.preload = function () {
               tempDropDownsOpen=dropDownsOpen;
               playSound("audio/typing.mp3");
             }
-            spotlight(800,0,800,800);
+            //only dim out the middle part
+            fill(rgb(0,0,0,0.8)); noStroke();
+            rect(400,0,800,800);
             if(loopCount==600)(textStart.push(600));
-            typeText("The right half of the screen is where important\ninformation is located, like financials, statistics,\nobjectives, and controls."+ 
-            " Each section can be\nopened and closed by clicking the button\nat the top left.",400,350,35,1,false,"white",loopCount);
+            typeText("The sides of the screen are where important\ninformation is located, like financials, statistics,\nobjectives, and controls."+ 
+            " Each section can be\nopened and closed by clicking the button\nat the top left.",800,350,35,1,false,"white",loopCount);
             if(loopCount==850)(stopSound("audio/typing.mp3"));
           }
           else if(introStateControl==7){//loopCount<1490
@@ -6076,9 +6209,10 @@ window.preload = function () {
               introStateControl=8;
               playSound("audio/typing.mp3");
             }
-            spotlight(808,66,384,260);
+            spotlight(1208,66,384,260);
             if(loopCount==970)(textStart.push(970));
-            typeText("This area shows the CLDC's cumulative annual\nrevenue, expenses, and profit. Any profits\nexceeding the reserve minimum are distributed\nas dividends to CLDC members\nat the annual shareholder meeting.",400,350,35,2,false,"white",loopCount);
+            typeText("This area shows the CLDC's cumulative annual\nrevenue, expenses, and profit. Any profits\n"+
+            "exceeding the reserve minimum are distributed\nas dividends to CLDC members\nat the annual shareholder meeting.",800,350,35,2,false,"white",loopCount);
             if(loopCount==1360)(stopSound("audio/typing.mp3"));
           }
           else if(introStateControl==8){//loopCount<1810
@@ -6095,9 +6229,9 @@ window.preload = function () {
               introStateControl=9;
               playSound("audio/typing.mp3");
             }
-            spotlight(808,336,384,200);
+            spotlight(1208,336,384,200);
             if(loopCount==1490)(textStart.push(1490));
-            typeText("This area shows the CLDC's cumulative\nloans, loan repayments, and loan balance\n(the difference).",400,350,35,3,false,"white",loopCount);
+            typeText("This area shows the CLDC's cumulative\nloans, loan repayments, and loan balance\n(the difference).",800,350,35,3,false,"white",loopCount);
             if(loopCount==1680)(stopSound("audio/typing.mp3"));
           }
           else if(introStateControl==9){//loopCount<2280
@@ -6114,9 +6248,10 @@ window.preload = function () {
               introStateControl=10;
               playSound("audio/typing.mp3");
             }
-            spotlight(808,546,384,240);
+            spotlight(1208,546,384,240);
             if(loopCount==1810)(textStart.push(1810));
-            typeText("This area shows your scores including\ndividends, ownership education points, and\ncommunity service points. These are helpful for\ncompleting objectives and reducing expenses.",400,350,35,4,false,"white",loopCount);
+            typeText("This area shows your scores including\ndividends, ownership education points, and\ncommunity "+
+            "service points. These are helpful for\ncompleting objectives and reducing expenses.",800,350,35,4,false,"white",loopCount);
             if(loopCount==2150)(stopSound("audio/typing.mp3"));
             
           }
@@ -6134,9 +6269,9 @@ window.preload = function () {
               introStateControl=11;
               playSound("audio/typing.mp3");
             }
-            spotlight(1208,5,384,321);
+            spotlight(8,5,384,321);
             if(loopCount==2280)(textStart.push(2280));
-            typeText("This area shows some current objectives\nto guide your progress renovating the city.",400,350,35,5,false,"white",loopCount);
+            typeText("This area shows some current objectives\nto guide your progress renovating the city.",800,350,35,5,false,"white",loopCount);
             if(loopCount==2440)(stopSound("audio/typing.mp3"));
           }
           else if(introStateControl==11){//loopCount<2960
@@ -6152,9 +6287,10 @@ window.preload = function () {
               textStart=[1,600,970,1490,1810,2280];
               introStateControl=12;
             }
-            spotlight(1208,336,384,450);
+            spotlight(8,336,384,450);
             if(loopCount==2570)(textStart.push(2570));
-            typeText("This area shows the controls to play the game\nand a tips sheet that can be shown/hidden\nby pressing [T]. Reference this if you\naren't sure what to do.",400,350,35,6,false,"white",loopCount);
+            typeText("This area shows the controls to play the game\nand a tips sheet that can be shown/hidden\nby pressing [T]. "+
+            "Reference this if you\naren't sure what to do.",800,350,35,6,false,"white",loopCount);
             if(loopCount==2780)(stopSound("audio/typing.mp3"));
           }
           else if(introStateControl==12){//loopCount==2960
@@ -6168,24 +6304,24 @@ window.preload = function () {
             textStart=[1];
           }
           textSize(30);fill("white");noStroke();
-          text('[BACKSPACE] Back  |                             ', 400, 754);
+          text('[BACKSPACE] Back  |                             ', 800, 754);
           fill(rgb(180,250,180));
-          text("[ENTER] Continue", 540, 754);
+          text("[ENTER] Continue", 940, 754);
 
           if(introStateControl>=6){//loopCount>=600
             fill(rgb(190,255,200));stroke(rgb(200,255,200));strokeWeight(0.25);textSize(30);
-          text("Menu Explanation",400,30);
+          text("Menu Explanation",800,30);
           strokeWeight(3);
-          line(275,44,525,44);
+          line(675,44,925,44);
           }
         }
         else if(introControl==2){
           noStroke();fill(rgb(0,0,0,0.6));
-          rect(40,10,720,50);
+          rect(440,10,720,50);
           fill("white");textSize(30);
-          text('[BACKSPACE] Back   |                            ', 400,32);
+          text('[BACKSPACE] Back   |                            ', 800,32);
           fill(rgb(180,250,180)); 
-          text("[ENTER] Continue", 565,32);
+          text("[ENTER] Continue", 965,32);
           
           //gameplay walkthrough
                if(introSelection == 0){
@@ -6197,7 +6333,7 @@ window.preload = function () {
                   introSelection = 0;
                   textStart=[1,600,970,1490,1810,2280];
                   educationLevelLeft.visible = leftChar.visible = charHead.visible = music.visible=false;
-                  leftChar.x=400;leftChar.y=200;
+                  leftChar.x=800;leftChar.y=200;
                   if (charNum == 1) {
                     leftChar.setAnimation("leftDown");
                   } else if (charNum == 3) {
@@ -6219,10 +6355,10 @@ window.preload = function () {
 
                 if(loopCount==1)(playSound("audio/typing.mp3"));
             //Explain movement
-            typeText("There you are! Use W-A-S-D or the arrow keys to move!",400,380,30,0,true,"white",loopCount);
+            typeText("There you are! Use W-A-S-D or the arrow keys to move!",800,380,30,0,true,"white",loopCount);
             if(loopCount==110)(stopSound("audio/typing.mp3"));
             stroke("darkRed");strokeWeight(5);
-            line(400,360,leftChar.x,leftChar.y+40);
+            line(800,360,leftChar.x,leftChar.y+40);
             encircle(leftChar.x,leftChar.y,50,80,"darkRed");
             if((keyWentDown("w")||keyWentDown("a")||keyWentDown("s")||keyWentDown("d")||
               keyWentDown("UP_ARROW")||keyWentDown("LEFT_ARROW")||
@@ -6252,13 +6388,13 @@ window.preload = function () {
 
             if(loopCount==1)(playSound("audio/typing.mp3"));
             //explain sprint
-            typeText("Hold [SHIFT] while moving to sprint. Watch the cooldown!",400,380,28,1,true,"white",loopCount);
+            typeText("Hold [SHIFT] while moving to sprint. Watch the cooldown!",800,380,28,1,true,"white",loopCount);
             if(loopCount==110)(stopSound("audio/typing.mp3"));
             //red circle over sprint cooldown
             if(loopCount>80){
               stroke("darkRed");strokeWeight(5);
-              line(400,400,400,740);
-              encircle(400,760,210,80,"darkRed");
+              line(800,400,800,740);
+              encircle(800,760,210,80,"darkRed");
             }
             if(keyWentDown("SHIFT"))(walkthroughLoops[1]=loopCount+45);
             
@@ -6275,7 +6411,7 @@ window.preload = function () {
               introSelection = 1;
               loopCount=0;
               textStart=[1,1,1];
-              leftChar.x=400;leftChar.y=200;
+              leftChar.x=800;leftChar.y=200;
               walkthroughLoops[1]=-1;
           }
           if (keyWentDown("ENTER")&&!pauseMainFunctions) {
@@ -6288,7 +6424,7 @@ window.preload = function () {
 
            //Move to top right land plot
             if(loopCount==1)(playSound("audio/typing.mp3"));
-            typeText("Move to the top right land plot to develop it!",400,380,30,2,true,"white",loopCount);
+            typeText("Move to the top right land plot to develop it!",800,380,30,2,true,"white",loopCount);
             if(loopCount==100)(stopSound("audio/typing.mp3"));
             if(loopCount>80){
               stroke("darkRed");strokeWeight(5);
@@ -6318,8 +6454,9 @@ window.preload = function () {
               closeMenu();
             }
             noStroke();fill(rgb(0,0,0,0.6));
-            rect(20,315,750,135);
-            typeText("Stand on the land and press [E] for the CLDC to develop\nthe land. Later, you can press [R] to switch between\npaying with profits and loans.",400,380,28,3,false,"white",loopCount);
+            rect(420,315,750,135);
+            typeText("Stand on the land and press [E] for the CLDC to develop\nthe land. Later, you can press [R] "+
+            "to switch between\npaying with profits and loans.",800,380,28,3,false,"white",loopCount);
               if(loopCount==330)(stopSound("audio/typing.mp3"));
 
               if (keyWentDown("BACKSPACE")&&!pauseMainFunctions) {
@@ -6327,7 +6464,7 @@ window.preload = function () {
                 introSelection=2;
                 loopCount=0;
                 textStart=[1,1,1,1];
-                leftChar.x=400;leftChar.y=200;
+                leftChar.x=800;leftChar.y=200;
                 closeMenu();
               }
               if (keyWentDown("ENTER")&&!pauseMainFunctions) {
@@ -6370,7 +6507,7 @@ window.preload = function () {
             }
 
             noStroke();fill(rgb(0,0,0,0.6));
-            rect(25,310,750,135);
+            rect(425,310,750,135);
             
             if(voteData[0]=="none"&&votingLoop<0){
               var textStartCount = textStart[4]+360;
@@ -6379,12 +6516,13 @@ window.preload = function () {
                 typingActive=true;
                 playSound("audio/typing.mp3");
               }
-              typeText("Here you can see the offer's income and rating.\nNow press [E] to support the offer and initialize\na CLDC vote. Later, you can press [R] to oppose it.",400,380,30,5,false,"white",loopCount);
+              typeText("Here you can see the offer's income and rating.\nNow press [E] to support the offer "+
+              "and initialize\na CLDC vote. Later, you can press [R] to oppose it.",800,380,30,5,false,"white",loopCount);
               if(loopCount==textStartCount+300)(stopSound("audio/typing.mp3"));
               offerMenu(1,false);
               stroke("darkRed");strokeWeight(5);
-              line(400,445,400,670);
-              encircle(400,750,800,150,"darkRed");
+              line(800,445,800,670);
+              encircle(800,750,800,150,"darkRed");
 
               if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
                 loopCount=roadCooldowns[4]+149;
@@ -6426,7 +6564,7 @@ window.preload = function () {
                 typingActive=true;
               }
               typeText("Congrats, this plot is now developed and someone\njust offered to move in and pay leasing fees!\nMove to the offer to see its potential income.",
-                         400,380,30,4,false,"white",loopCount);
+                         800,380,30,4,false,"white",loopCount);
               if(loopCount==textStartCount-80){
                 stopSound("audio/typing.mp3");
                  typingActive = false;
@@ -6464,7 +6602,7 @@ window.preload = function () {
               encircle(landLocations[4][0],landLocations[4][1],80,80,"darkRed");
               noStroke();
               fill("white");
-              text("Move to the investment offer to continue.",400,380);
+              text("Move to the investment offer to continue.",800,380);
               stopSound("audio/typing.mp3");
               typingActive = false;
             }
@@ -6485,26 +6623,26 @@ window.preload = function () {
           }
           if(leftChar.isTouching(jobSprites[0])){
             noStroke();fill("white");
-            text("Hold [E] while next to the voter to improve\nthe chances of the vote passing!",400,380);
+            text("Hold [E] while next to the voter to improve\nthe chances of the vote passing!",800,380);
             advocacyFunctions(0);
             stopSound("audio/typing.mp3");
             typingActive=false;
             if (jobProgressLeft != 0 && !pauseMainFunctions) {
               fill("black");
-          rect(50, 536, 300, 50);
+          rect(450, 536, 300, 50);
           fill('white');
-          rect(56, 542, 288, 38);
+          rect(456, 542, 288, 38);
           fill('lightGreen');
-          rect(56, 542, 288 * jobProgressLeft, 38);
+          rect(456, 542, 288 * jobProgressLeft, 38);
           fill('black'); textSize(30);
-          text(progressMessageLeft, 200, 562);
+          text(progressMessageLeft, 600, 562);
         }
           }else if(jobSprites[0].x != -50){
               if(loopCount==voteLoop+1 || (!typingActive && loopCount<voteLoop+225)) {
                 playSound("audio/typing.mp3");
                 typingActive=true;
               }
-            typeText("The vote has started! See voting information below.\nYou have 30 seconds to talk to voters to pass the\nvote.",400,380,30,6,false,"white",loopCount);
+            typeText("The vote has started! See voting information below.\nYou have 30 seconds to talk to voters to pass the\nvote.",800,380,30,6,false,"white",loopCount);
             if(loopCount==voteLoop+225)(stopSound("audio/typing.mp3"));
             stroke("darkRed");strokeWeight(5);
             line(leftChar.x-15,leftChar.y,streets[15].x+40,streets[15].y);
@@ -6525,22 +6663,22 @@ window.preload = function () {
         if (!pauseMainFunctions) {
             //graphics
             strokeWeight(1); fill("black"); stroke("black");
-            rect(420, 536, 360, 50);
+            rect(820, 536, 360, 50);
             fill(rgb(255, 170, 170));
-            rect(426, 542, 268, 38);
+            rect(826, 542, 268, 38);
             fill(rgb(170, 255, 170));
-            rect(426, 542, 268 * (voteData[2] / 100), 38);
+            rect(826, 542, 268 * (voteData[2] / 100), 38);
             fill('black'); textSize(30);
-            text("For           Against", 560, 562);
+            text("For           Against", 960, 562);
             fill("white");
-            rect(702, 542, 70, 38);
+            rect(1102, 542, 70, 38);
             fill("black");
             var timeLeft = 30 - Math.round((loopCount - voteLoop) / 30);
   
-            text(timeLeft, 736, 562);
+            text(timeLeft, 1136, 562);
             stroke("black"); strokeWeight(6);
-            line(560, 542, 560, 547);
-            line(560, 580, 560, 574);
+            line(960, 542, 960, 547);
+            line(960, 580, 960, 574);
           }
               
             //start the voting cutscreen
@@ -6578,29 +6716,29 @@ window.preload = function () {
             }
             //draw background
             fill(rgb(255, 255, 255, 0.85)); strokeWeight(4); stroke("black");
-            rect(20, 90, 760, 390);
+            rect(420, 90, 760, 390);
             fill(rgb(220, 230, 255)); strokeWeight(2);
-            rect(60, 110, 680, 60);
+            rect(460, 110, 680, 60);
             fill("black"); textSize(44); strokeWeight(0.6);
 
-            text("Voting Results:", 400, 140);
+            text("Voting Results:", 800, 140);
             strokeWeight(2);
             if (cutTimeLeft > 10) {
               fill(rgb(150, 255, 150));
-              arc(400, 280, 200, 200, -90, (voteData[2] * 3.6) - 90);
+              arc(800, 280, 200, 200, -90, (voteData[2] * 3.6) - 90);
               fill(rgb(255, 150, 150));
-              arc(400, 280, 200, 200, (voteData[2] * 3.6) - 90, -90);
+              arc(800, 280, 200, 200, (voteData[2] * 3.6) - 90, -90);
               if (cutTimeLeft > 20) {
                 fill("forestGreen"); textSize(36); stroke('forestgreen');
                 strokeWeight(0.8);
-                text("CLDC Members\nin Favor:\n" + voteData[2] + "%", 640, 280);
+                text("CLDC Members\nin Favor:\n" + voteData[2] + "%", 1040, 280);
                 fill("darkRed"); stroke('darkred');
-                text("CLDC Members\nOpposed:\n" + (100 - voteData[2]) + "%", 160, 280);
+                text("CLDC Members\nOpposed:\n" + (100 - voteData[2]) + "%", 560, 280);
                 
                   if (voteData[2] > 50) {
-                    typeText("A majority voted in favor of the offer.\nConstruction will begin shortly.", 400, 430,32,0,false,"forestGreen",loopCopy);
+                    typeText("A majority voted in favor of the offer.\nConstruction will begin shortly.", 800, 430,32,0,false,"forestGreen",loopCopy);
                   } else {
-                   typeText("A majority was not in favor of the offer.\nThe plot will remain open to offers.", 400, 430,32,0,false,"darkRed",loopCopy);
+                   typeText("A majority was not in favor of the offer.\nThe plot will remain open to offers.", 800, 430,32,0,false,"darkRed",loopCopy);
                   }
               }
             }
@@ -6689,8 +6827,9 @@ window.preload = function () {
             if(t1BuildingPlaced[4]){
               if(loopCount==textStart[1]+1)(playSound("audio/typing.mp3"));
               noStroke();fill(rgb(0,0,0,0.6));
-              rect(25,310,750,135);
-              typeText("Your first building is complete! Leasing income\nwill be generated when the game begins, shown\nby the green numbers above each building.",400,380,30,1,false,"white",loopCount);
+              rect(425,310,750,135);
+              typeText("Your first building is complete! Leasing income\nwill be generated when the game begins, "+
+              "shown\nby the green numbers above each building.",800,380,30,1,false,"white",loopCount);
               if(loopCount==textStart[1]+260)(stopSound("audio/typing.mp3"));
             if(loopCount==textStart[1]+320){
               introSelection=5;
@@ -6744,20 +6883,20 @@ window.preload = function () {
                 lJobCooldown = loopCount - 85;
                 loopCount=roadCooldowns[4]+511;
                 //place advocacy sprite
-                jobSprites[0].setAnimation("no_" + advocacyPlayer[0]);
+                jobSprites[0].setAnimation("blank_" + advocacyPlayer[0]);
                 jobSprites[0].visible = true;
                 jobSprites[0].x = streets[15].x; jobSprites[0].y = streets[15].y;
               }
               if(keyWentDown("ENTER")&&!pauseMainFunctions){
                 offerBuildCooldowns[0] = loopCount-89;
-                leftChar.x=680;leftChar.y=140;
+                leftChar.x=1080;leftChar.y=140;
               }
 
               if(loopCount==5){
                 playSound("audio/typing.mp3");
                 typingActive=true;
               }
-              typeText("Finish the construction by pressing [E] on the plot.",400,380,30,0,true,"white",loopCount);
+              typeText("Finish the construction by pressing [E] on the plot.",800,380,30,0,true,"white",loopCount);
               if(loopCount==120){
                 stopSound("audio/typing.mp3");
                 typingActive=false;
@@ -6774,7 +6913,7 @@ window.preload = function () {
             
             if(loopCount<2830){
               noStroke();fill(rgb(0,0,0,0.6));
-              rect(20,310,755,135);
+              rect(420,310,755,135);
             }
               
             if(loopCount<450){
@@ -6785,7 +6924,7 @@ window.preload = function () {
               textStart=[1,1];
             }
             
-              typeText("Now we will cover how to improve your score, starting with\ncommunity service points. These points reduce CLDC expenses,\neffectively increasing profit. They can be earned in many ways...",400,380,26,0,false,"white",loopCount);
+              typeText("Now we will cover how to improve your score, starting with\ncommunity service points. These points reduce CLDC expenses,\neffectively increasing profit. They can be earned in many ways...",800,380,26,0,false,"white",loopCount);
               if(loopCount==5)(playSound("audio/typing.mp3"));
               if(loopCount==400)(stopSound("audio/typing.mp3"));
               if(loopCount==449)(textStart.push(460));
@@ -6801,7 +6940,7 @@ window.preload = function () {
               textStart=[10];
             }
             
-              typeText("1) Stopping a fire before it destroys a building gives 1 point.\n2) Stopping a flood before it damages a building gives 10 points.\n- If not stopped, you will lose income and must pay a fee.",400,380,26,1,false,"white",loopCount);
+              typeText("1) Stopping a fire before it destroys a building gives 10 points.\n2) Stopping a flood before it damages a building gives 10 points.\n- If not stopped, you will lose income and must pay a fee.",800,380,26,1,false,"white",loopCount);
               if(loopCount==455)(playSound("audio/typing.mp3"));
               if(loopCount==840)(stopSound("audio/typing.mp3"));
               if(loopCount==949)(textStart.push(960));
@@ -6816,7 +6955,7 @@ window.preload = function () {
               textStart=[10,460];
             }
             
-              typeText("3) Parks can be developed faster by helping with the tasks\nthat appear. These tasks also give community service points.\nWhen developed, parks will reduce the risk of flooding.",400,380,26,2,false,"white",loopCount);
+              typeText("3) Parks can be developed faster by helping with the tasks\nthat appear. These tasks also give community service points.\nWhen developed, parks will reduce the risk of flooding.",800,380,26,2,false,"white",loopCount);
               if(loopCount==955)(playSound("audio/typing.mp3"));
               if(loopCount==1320)(stopSound("audio/typing.mp3"));
               if(loopCount == 1449)(textStart.push(1460));
@@ -6831,7 +6970,7 @@ window.preload = function () {
               textStart=[10,460,960];
             }
             
-              typeText("4) Advocating for an investment offer during a vote\ngives 10 points each. This can be done more effectively after\nyou complete the ownership education quiz.",400,380,26,3,false,"white",loopCount);
+              typeText("4) Advocating for an investment offer during a vote\ngives 10 points each. This can be done more effectively after\nyou complete the ownership education quiz.",800,380,26,3,false,"white",loopCount);
               if(loopCount==1455)(playSound("audio/typing.mp3"));
               if(loopCount==1780)(stopSound("audio/typing.mp3"));
               if(loopCount==1839)(textStart.push(1850));
@@ -6846,7 +6985,7 @@ window.preload = function () {
               textStart=[10,460,960,1460];
             }
             
-              typeText("5) Lastly, picking up litter gives 20-40 points, depending\non the object. Using the recycling center once it is developed\nwill double the points you earn.",400,380,26,4,false,"white",loopCount);
+              typeText("5) Lastly, picking up litter gives 20-40 points, depending\non the object. Using the recycling center once it is developed\nwill double the points you earn.",800,380,26,4,false,"white",loopCount);
               if(loopCount==1845)(playSound("audio/typing.mp3"));
               if(loopCount==2160)(stopSound("audio/typing.mp3"));
               if(loopCount==2229)(textStart.push(2250));
@@ -6863,12 +7002,12 @@ window.preload = function () {
             
               if(loopCount>2430){
                 fill(rgb(255,255,255,0.7));noStroke();
-                rect(316,87,166,64);
+                rect(716,87,166,64);
                 encircle(landLocations[9][0],landLocations[9][1],190,120,"darkRed");
                 fill(rgb(0,0,200)); textSize(21); noStroke();
                 text("Site for\nJustice University",t2Land[1].x, t2Land[1].y);
               }
-              typeText("The ownership quiz is opened with [G], and taking it gives\nownership education points. Developing Justice University \n(top center) unlocks the advanced questions, which when\ncompleted will make advocating more effective.",400,380,26,5,false,"white",loopCount);
+              typeText("The ownership quiz is opened with [G], and taking it gives\nownership education points. Developing Justice University \n(top center) unlocks the quiz, which when\ncompleted will make advocating more effective.",800,380,26,5,false,"white",loopCount);
               if(loopCount==2245)(playSound("audio/typing.mp3"));
               if(loopCount==2700)(stopSound("audio/typing.mp3"));
               if(loopCount==2829){
@@ -6884,7 +7023,7 @@ window.preload = function () {
             }
             else{
               noStroke();fill(rgb(0,0,0,0.6));
-              rect(25,370,750,115);
+              rect(425,370,750,115);
               
               if (keyWentDown("f")) {
                 if (cleanUpActive&&trash[0].x==-50) {
@@ -6904,7 +7043,7 @@ window.preload = function () {
                 if(loopCount==2840)(playSound("audio/typing.mp3"));
                 if(loopCount==3130)(stopSound("audio/typing.mp3"));
               //pick up a piece of litter
-              typeText("See that litter by the road? Press [F] to begin a\ncommunity clean-up event, and you can pick it up by\n holding [E] next to it to earn community service points.",400,430,26,0,false,"white",loopCount);
+              typeText("See that litter by the road? Press [F] to begin a\ncommunity clean-up event, and you can pick it up by\n holding [E] next to it to earn community service points.",800,430,26,0,false,"white",loopCount);
               if(!(charBoxLeft.isTouching(trash[0]))){
                 stroke("darkRed");strokeWeight(5);
                 line(leftChar.x-15,leftChar.y,trash[0].x+30,trash[0].y);
@@ -6958,7 +7097,7 @@ window.preload = function () {
                 trashPositions[0] = -1;
                 jobProgressLeft = 0;
                 textStart=[2845,loopCount+15];
-                leftChar.x=360;leftChar.y=180;
+                leftChar.x=760;leftChar.y=180;
                 cleanUpActive=true;
                 lTouchingJob=false;
                 cleanUpSprites.setVisibleEach(false)  ;
@@ -6967,7 +7106,7 @@ window.preload = function () {
               }
               else{
               if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
-                leftChar.x=420;leftChar.y=200;
+                leftChar.x=820;leftChar.y=200;
                 placeTrash(16,0);
                 trashPickedUp--;
                 trashPoints=0;
@@ -6984,13 +7123,13 @@ window.preload = function () {
                   if(loopCount==textStart[1]-5)(playSound("audio/typing.mp3"));
                   if(loopCount==textStart[1]+350)(stopSound("audio/typing.mp3"));
                   fill(rgb(255,255,255,0.7));noStroke();
-                  rect(478,87,166,64);
+                  rect(878,87,166,64);
                   
                   encircle(landLocations[10][0],landLocations[10][1],190,120,"darkRed");
                   fill(rgb(0,0,200)); textSize(21);noStroke();
                   text("Site for\nRecycling Center",t2Land[2].x, t2Land[2].y);
 
-                  typeText("You picked up the litter! Now press [F] once again to collect\nyour community service points. Once the recycling center is\ndeveloped, press [E] next to it to earn double the points.",400,430,26,1,false,"white",loopCount);
+                  typeText("You picked up the litter! Now press [F] once again to collect\nyour community service points. Once the recycling center is\ndeveloped, press [E] next to it to earn double the points.",800,430,26,1,false,"white",loopCount);
                 }
                 
                 fill("gold"); stroke("black");strokeWeight(2); textStyle(BOLD);
@@ -7002,38 +7141,39 @@ window.preload = function () {
 
               if (jobProgressLeft != 0 && !pauseMainFunctions) {
                 noStroke();fill("black");
-              rect(50, 536, 300, 50);
+              rect(450, 536, 300, 50);
               fill('white');
-              rect(56, 542, 288, 38);
+              rect(456, 542, 288, 38);
               fill('lightGreen');
-              rect(56, 542, 288 * jobProgressLeft, 38);
+              rect(456, 542, 288 * jobProgressLeft, 38);
               fill('black'); textSize(30);
-              text(progressMessageLeft, 200, 562);
+              text(progressMessageLeft, 600, 562);
             }
               if (cleanUpActive && !pauseMainFunctions) {
           textSize(30);stroke("black");
           strokeWeight(1);
           fill("black");
-          rect(400, 536, 380, 50);
+          rect(800, 536, 380, 50);
           fill("white");
-          rect(406, 542, 190, 38);
+          rect(806, 542, 190, 38);
           fill(rgb(180, 255, 180));
-          rect(604, 542, 170, 38);
+          rect(1004, 542, 170, 38);
           fill("black");
-          text("[F]: " + trashPickedUp, 474, 562);
-          text("-->", 570, 562);
-          text(addCommas(trashPoints) + " PTS", 690, 562);
+          text("[F]: " + trashPickedUp, 874, 562);
+          text("-->", 970, 562);
+          text(addCommas(trashPoints) + " PTS", 1090, 562);
             
           //clean up message
           if (cleanUpLoop == loopCount - 1) {
             cleanUpSprites.setVisibleEach(true);
           } else if (cleanUpLoop + 60 > loopCount && !pauseMainFunctions) {
             fill("black"); textSize(32);stroke("black");strokeWeight(1);
-            text("A Community Clean-Up Event Has Started!", 400, 240);
-            text("You can now clear the trash\nlittering your community!", 440, 310);
+            text("A Community Clean-Up Event Has Started!", 800, 240);
+            text("You can now clear the trash\nlittering your community!", 840, 310);
           } else if (cleanUpLoop + 60 == loopCount) {
             cleanUpSprites.setVisibleEach(false);
           }
+          
         }
       }                
     }
@@ -7061,7 +7201,7 @@ window.preload = function () {
         }
         else if(introControl==3){
           noStroke();fill(rgb(0,0,0,0.6));
-            rect(25,290,750,160);
+            rect(425,290,750,160);
           if(loopCount<textStart[0]+360){
             if(keyWentDown("BACKSPACE")&&!pauseMainFunctions){
               introControl=2;
@@ -7082,7 +7222,7 @@ window.preload = function () {
 
             if(loopCount==textStart[0]-5)(playSound("audio/typing.mp3"));
             if(loopCount==textStart[0]+200)(stopSound("audio/typing.mp3"));
-            typeText("At any point in the game, you can press [BACKSPACE]\nto return to the main menu and [P] to pause. Pressing\n[T] toggles the tip sheet on the right. ",400,370,30,0,false,"white",loopCount);
+            typeText("At any point in the game, you can press [BACKSPACE]\nto return to the main menu and [P] to pause. Pressing\n[T] toggles the tip sheet on the right. ",800,370,30,0,false,"white",loopCount);
             if(loopCount==textStart[0]+359)(textStart.push(loopCount));
             if(loopCount==textStart[0]+235)(playSound("audio/typing.mp3"));
           }else if (loopCount<textStart[0]+840){
@@ -7094,7 +7234,7 @@ window.preload = function () {
               loopCount=textStart[0]+840;
             }
             if(loopCount==textStart[0]+630)(stopSound("audio/typing.mp3"));
-            typeText("Every year there's a CLDC meeting that distributes\ndividends and elects a leader for the next year. Your\ngoal is to maximize your dividends and complete\nas many objectives as you can! Good luck!",400,370,30,1,false,"white",loopCount);
+            typeText("Every year there's a CLDC meeting that distributes\ndividends and elects a leader for the next year. Your\ngoal is to maximize your dividends and complete\nas many objectives as you can! Good luck!",800,370,30,1,false,"white",loopCount);
           }else{
             stopLongSounds(false);
             stopMusic();
@@ -7134,17 +7274,18 @@ window.preload = function () {
           stroke("black");
           strokeWeight(3);
           fill(rgb(255,255,200));
-          rect(11,80,400,40);
+          rect(411,80,400,40);
           fill("black");  noStroke();
           textSize(30);
-          text("GAME PAUSED: [P] UNPAUSE",210,102);
+          text("GAME PAUSED: [P] UNPAUSE",610,102);
         }
 
       }
       //Start screen graphics with play button
       else if(level == -1){
         fill("black");
-        rect(800,0,800,800);
+        rect(0,0,400,800);
+        rect(1200,0,400,800);
         fill(introColor);
         noStroke();
         rect(700-introScale,480-introScale,200+introScale*2,80+introScale*2);
@@ -7160,26 +7301,27 @@ window.preload = function () {
       else if (tutorialSkipped && (level == 2) && (loopCount < 15) && !pauseMainFunctions) {
         fill(rgb(255, 255, 255, 0.6 - (loopCount / 25)));
         noStroke();
-        rect(0,0,800,800);
+        rect(400,0,800,800);
       }
 
       
       //debug / mouse coords for graphics
       if(keyDown("q")){
         fill(rgb(0,0,0,0.6));noStroke();
-        rect(0,760,800,40);
+        rect(400,760,800,40);
         fill(rgb(255,50,50));textSize(20);noStroke();textAlign(CENTER,CENTER);
-        text(World.mouseX+", "+World.mouseY+" :: "+loopCount+" | "+quizStateControl+", "+educationProgressLeft,400,780);
+        text(World.mouseX+", "+World.mouseY+" :: "+loopCount+" | "+quizStateControl+", "+educationProgressLeft,800,780);
       }
       if(level == 3 && introControl==0){
-      spotlight(10,10,780,595);
+        //fix location 4 /////////////
+        spotlight(410,10,780,595);
       }
       
       //pause button text
       if(level==2 && gamePaused){
           loopCopy++;
           spotlight(0,0,0,0);
-          typeText("The game is paused.\nPress [P] to resume!",400,350,36,0,false,"white",loopCopy);
+          typeText("The game is paused.\nPress [P] to resume!",800,350,36,0,false,"white",loopCopy);
         }
     }
     
@@ -7430,19 +7572,19 @@ window.preload = function () {
             if(loop==1)(playSound("audio/correct.mp3"));
             //rectangle background drops down
             fill(rgb(220,220,220));stroke(rgb(220,25,50));strokeWeight(4);
-            rect(188,12,600,loop*2.66);
+            rect(588,12,600,loop*2.66);
           }else{
             fill(rgb(220,220,220));stroke(rgb(220,25,50));strokeWeight(4);
-            rect(188,12,600,80);
+            rect(588,12,600,80);
             //"hint" box on the left
             fill(rgb(220,220,220));stroke("black");
-            rect(80,12,104,40);
+            rect(480,12,104,40);
           
             fill("black");noStroke();textSize(size);
-            text(textString,488,52);
+            text(textString,888,52);
           
             textSize(34);fill(rgb(220,25,50));stroke(rgb(220,25,50));strokeWeight(0.5);
-            text("HINT:",136,34);
+            text("HINT:",536,34);
             
             
         }
@@ -7450,13 +7592,13 @@ window.preload = function () {
     
     function investmentDisclaimer(){
       fill(rgb(220,220,220));stroke("black");strokeWeight(4);
-      rect(145,667,510,30);
+      rect(545,667,510,30);
       fill("black");textSize(28);noStroke();
-      text("- All investment is done by the CLDC -",400,683);
+      text("- All investment is done by the CLDC -",800,683);
       
       if(isRaining){
         fill(rgb(0,0,0,0.2)); noStroke();
-        rect(145,667,510,30);
+        rect(545,667,510,30);
       }
     }
     
@@ -7745,12 +7887,12 @@ window.preload = function () {
         var colorFactor = ((Math.abs(12 - (loopCount % 24))) * 3);
         g1Indicator.shapeColor = rgb(170 - colorFactor, 170 - colorFactor, 230 + colorFactor, 1);
         fill("black");noStroke();textSize(26);
-        text("Feasible",610,769);
+        text("Feasible",1010,769);
         thumbUp.visible=true;
         thumbDown.visible=false;
       }else{
         fill("black");noStroke();textSize(26);
-        text("Not Feasible",610,769);
+        text("Not Feasible",1010,769);
         g1Indicator.shapeColor = "red";
         thumbDown.visible=true;
         thumbUp.visible=false;
@@ -7762,14 +7904,14 @@ window.preload = function () {
       fill('black'); textSize(34); noStroke(); textAlign(CENTER, CENTER);
       shareHeader.shapeColor = rgb(110, 220, 115);
 
-      text("[E]\tResidential Land Plot\n[R] " + paymentText[payMethod], 215, 750);
+      text("[E]\tResidential Land Plot\n[R] " + paymentText[payMethod], 615, 750);
       textSize(28);
-      text("Development Cost: $15,000", 610, 727);
+      text("Development Cost: $15,000", 1010, 727);
       stroke(rgb(50, 50, 50));
       strokeWeight(6);
-      line(430, 700, 430, 800);
+      line(830, 700, 830, 800);
       strokeWeight(3);
-      line(10,748,430,748);
+      line(410,748,830,748);
       noStroke();
       if (keyWentDown("E") && !pauseMainFunctions) {
         if (!t1PlotIsCompleted[plot]) {
@@ -7833,12 +7975,12 @@ window.preload = function () {
         var colorFactor = ((Math.abs(12 - (loopCount % 24))) * 3);
         g1Indicator.shapeColor = rgb(170 - colorFactor, 170 - colorFactor, 230 + colorFactor, 1);
         fill("black");noStroke();textSize(26);
-        text("Feasible",610,769);
+        text("Feasible",1010,769);
         thumbUp.visible=true;
         thumbDown.visible=false;
       }else{
         fill("black");noStroke();textSize(26);
-        text("Not Feasible",610,769);
+        text("Not Feasible",1010,769);
         g1Indicator.shapeColor = "red";
         thumbDown.visible=true;
         thumbUp.visible=false;
@@ -7850,17 +7992,17 @@ window.preload = function () {
       shareHeader.shapeColor = rgb(110, 220, 115);
 
       if (plot == 1) {
-        text("[E]\tJustice University\n[R] " + paymentText[payMethod], 215, 750);
+        text("[E]\tJustice University\n[R] " + paymentText[payMethod], 615, 750);
       } else if (plot == 2) {
-        text("[E]\tRecycling Plant\n[R] " + paymentText[payMethod], 215, 750);
+        text("[E]\tRecycling Plant\n[R] " + paymentText[payMethod], 615, 750);
       }
       textSize(28);
-      text("Development Cost: $50,000", 610, 727);
+      text("Development Cost: $50,000", 1010, 727);
       stroke(rgb(50, 50, 50));
       strokeWeight(6);
-      line(430, 700, 430, 800);
+      line(830, 700, 830, 800);
       strokeWeight(3);
-      line(10,748,430,748);
+      line(410,748,830,748);
       noStroke();
       if (keyWentDown("E") && !pauseMainFunctions) {
         if (!t2PlotIsCompleted[plot]) {
@@ -7924,12 +8066,12 @@ window.preload = function () {
             var colorFactor = ((Math.abs(12 - (loopCount % 24))) * 3);
             g1Indicator.shapeColor = rgb(170 - colorFactor, 170 - colorFactor, 230 + colorFactor, 1);
             fill("black");noStroke();textSize(26);
-            text("Feasible",610,769);
+            text("Feasible",1010,769);
             thumbUp.visible=true;
             thumbDown.visible=false;
           }else{
             fill("black");noStroke();textSize(26);
-            text("Not Feasible",610,769);
+            text("Not Feasible",1010,769);
             g1Indicator.shapeColor = "red";
             thumbDown.visible=true;
             thumbUp.visible=false;
@@ -7940,14 +8082,14 @@ window.preload = function () {
       fill('black'); textSize(34); noStroke(); textAlign(CENTER, CENTER);
       shareHeader.shapeColor = rgb(110, 220, 115);
 
-      text("[E]\tCommercial Land Plot\n[R] " + paymentText[payMethod], 215, 750);
+      text("[E]\tCommercial Land Plot\n[R] " + paymentText[payMethod], 615, 750);
       textSize(27);
-      text("Development Cost: $280,000", 610, 727);
+      text("Development Cost: $280,000", 1010, 727);
       stroke(rgb(50, 50, 50));
       strokeWeight(6);
-      line(430, 700, 430, 800);
+      line(830, 700, 830, 800);
       strokeWeight(3);
-      line(10,748,430,748);
+      line(410,748,830,748);
       noStroke();
       
       if (keyWentDown("E") && !pauseMainFunctions) {
@@ -8283,21 +8425,21 @@ window.preload = function () {
         shareHeader.shapeColor = rgb(255, 255, 50);
         fill(rgb(255, 242, 204));
         strokeWeight(2); stroke("black");
-        rect(10, 748, 420, 42);
+        rect(410, 748, 420, 42);
 
         fill(rgb(255,255,255));
-        rect(428, 705, 362, 85);
+        rect(828, 705, 362, 85);
   
         textSize(36); fill("black"); noStroke();
-        text("-- Construction --", 220, 727);
+        text("-- Construction --", 620, 727);
         if(offerBuildCooldowns[offerNum-1]<loopCount-100){
           textSize(28);
-          text("[E] Complete", 220, 770);
+          text("[E] Complete", 620, 770);
           textSize(24);
-          text("Building will be completed a\nfew seconds after [E] is pressed.",610,750);
+          text("Building will be completed a\nfew seconds after [E] is pressed.",1010,750);
         }else{
           textSize(24);
-          text("Construction will finish in "+Math.round((100-(loopCount-offerBuildCooldowns[offerNum-1]))/30)+"...",610,750);
+          text("Construction will finish in "+Math.round((100-(loopCount-offerBuildCooldowns[offerNum-1]))/30)+"...",1010,750);
         }
         if (keyWentDown("e") && !pauseMainFunctions) {
           playSound("audio/hammer6x.mp3");
@@ -8327,27 +8469,27 @@ window.preload = function () {
         shareHeader.shapeColor = rgb(150, 155, 240);
         strokeWeight(2); stroke("black");
         fill(rgb(207, 226, 243));
-        rect(10, 748, 420, 42);
+        rect(410, 748, 420, 42);
 
         fill(rgb(255,255,255));
-        rect(428, 705, 362, 85);
+        rect(828, 705, 362, 85);
         textSize(36); fill("black"); noStroke();
-        text("Investment Offer", 220, 727);
+        text("Investment Offer", 620, 727);
         textSize(28);
-        text("[E] Support | [R] Oppose", 220, 770);
+        text("[E] Support | [R] Oppose", 620, 770);
         if (voteData[0] == "none") {
-          text("Proposed Revenue: $" + offerIncome[offerIndex], 613, 728);
+          text("Proposed Revenue: $" + offerIncome[offerIndex], 1013, 728);
 
           //colored background for rating
           stroke(rgb(20, 20, 20));
           strokeWeight(4);
           fill(ratingColors[offerIndex]);
-          rect(610, 750, 160, 36);
+          rect(1010, 750, 160, 36);
 
           //text output
           fill("black"); noStroke();
-          text("Offer Rating:", 520, 770);
-          text(offerRatings[offerIndex], 690, 770);
+          text("Offer Rating:", 920, 770);
+          text(offerRatings[offerIndex], 1090, 770);
 
           if (keyWentDown("e") && !pauseMainFunctions) {
             playSound("audio/app_interface_button_3.mp3");
@@ -8370,18 +8512,18 @@ window.preload = function () {
             lJobCooldown = loopCount - 85;
           }
         } else if (offerNum + "" != voteData[1]) {
-          text("Finish the current vote first!\nAdvocate for support!", 610, 750);
+          text("Finish the current vote first!\nAdvocate for support!", 1010, 750);
         } else {
           textSize(32);
-          if(opposeOption)(text("This vote is in progress!\nPress [ENTER] to skip!", 610, 750));
-          else(text("This vote is in progress!\nAdvocate for support!", 610, 750));
+          if(opposeOption)(text("This vote is in progress!\nPress [ENTER] to skip!", 1010, 750));
+          else(text("This vote is in progress!\nAdvocate for support!", 1010, 750));
           
         }
       }
       if(isRaining){
         noStroke();fill(rgb(0,0,0,0.2));
-        rect(10, 748, 420, 42);
-        rect(428, 705, 362, 85);
+        rect(410, 748, 420, 42);
+        rect(828, 705, 362, 85);
       }
     }
     //resets game and returns to main menu
@@ -8406,9 +8548,9 @@ window.preload = function () {
       music.setAnimation("music");
       shockChar.x=-50; shockChar.y=-50;
       meetingSprites.setVisibleEach(false);
-      meetingSprites[7].x = 400; meetingSprites[7].y = 650;
+      meetingSprites[7].x = 800; meetingSprites[7].y = 650;
       meetingSprites[7].setVelocity(0, 0);
-      meetingSprites[9].x=200;meetingSprites[10].x=600;
+      meetingSprites[9].x=600;meetingSprites[10].x=1000;
       meetingSprites[9].velocityX=meetingSprites[10].velocityX=0;
        streetsDec[2].visible = streetsDec[3].visible = lowPark.visible = t1Buildings[12].visible = t1Buildings[13].visible = false;
      offer1.x = offer1.y = offer2.x = offer2.y = offer3.x = offer3.y = -50;
@@ -8431,11 +8573,11 @@ window.preload = function () {
       g1Indicator.shapeColor = rgb(255, 255, 255);
       g1Indicator.visible = false;
       thumbDown.visible=thumbUp.visible=false;
-      ship.x = 0; ship.y = -50; ship.velocityX = 0;
+      ship.x = 400; ship.y = -50; ship.velocityX = 0;
       birds[0].x = birds[0].y = birds[1].x = birds[1].y = -50;
       birds.setVelocityXEach(0);
       for (var carNumber = 0; carNumber < 6; carNumber++) {
-        cars[carNumber].x = 0;
+        cars[carNumber].x = 400;
         cars[carNumber].y = -50;
       }
       cars.setVelocityEach(0, 0);
@@ -8493,7 +8635,7 @@ window.preload = function () {
       green5.setAnimation("t1Park2");
       green6.setAnimation("t1Park2");
 
-      leftChar.x = 400; leftChar.y = 200;
+      leftChar.x = 800; leftChar.y = 200;
       leftChar.setAnimation('leftDown');
       //reset street animations
       streets[0].setAnimation("bridgeVert2");
@@ -8749,13 +8891,13 @@ window.preload = function () {
             var currentCar = cars[loop];
             if (randomNumber(0, 1) == 0) {
               currentCar.y = 498;
-              currentCar.x = -50;
+              currentCar.x = 350;
               if (loop != 2) (currentCar.setAnimation("carRight"));
               else (currentCar.setAnimation("busRight"));
               currentCar.velocityX = 8;
             } else {
               currentCar.y = 462;
-              currentCar.x = 850;
+              currentCar.x = 1250;
               if (loop != 2) (currentCar.setAnimation("carLeft"));
               else (currentCar.setAnimation("busLeft"));
               currentCar.velocityX = -8;
@@ -8768,22 +8910,19 @@ window.preload = function () {
       }
       //control car movement, detect when they reach the end
       for (var carNum = 0; carNum < 6; carNum++) {
-        if ((cars[carNum].x < -50) || (cars[carNum].x > 850)) {
+        if ((cars[carNum].x < 350) || (cars[carNum].x > 1250)) {
           cars[carNum].setVelocity(0, 0);
           cars[carNum].y = -50;
-          cars[carNum].x = 0;
+          cars[carNum].x = 400;
           carsAvailable[carNum] = true;
         }
       }
       //}
 
       
-
-      
-
       //boat movement on river
-      if (ship.x > 880) {
-        ship.x = -50;
+      if (ship.x > 1280) {
+        ship.x = 350;
         ship.y = randomNumber(20, 50);
         if(randomNumber(1,25) == 1){
           ship.setAnimation("steamboat_willie");
@@ -8795,15 +8934,15 @@ window.preload = function () {
         }
       }
       //boat horn
-      if(level==2 && ship.x==250 && randomNumber(0,4)==0 && !pauseMainFunctions)(playSound("audio/boatHorn.mp3"));
+      if(level==2 && ship.x==650 && randomNumber(0,4)==0 && !pauseMainFunctions)(playSound("audio/boatHorn.mp3"));
       
       //bird movement
       if (!isRaining && !pauseMainFunctions) {
-        if (birds[0].x > 1000) {
+        if (birds[0].x > 1400) {
           birds[0].x = randomNumber(-800, -20);
           birds[0].y = randomNumber(20, 680);
         }
-        if (birds[1].x > 1000) {
+        if (birds[1].x > 1400) {
           birds[1].x = randomNumber(-800, -20);
           birds[1].y = randomNumber(20, 680);
         }
@@ -8820,22 +8959,22 @@ window.preload = function () {
               case 0:
                 //walk down on left side
                 curPed.setAnimation(pedAnimations[pedNum] + "WalkDown");
-                curPed.x = 95; curPed.y = -10; curPed.velocityY = 0.5;
+                curPed.x = 495; curPed.y = -10; curPed.velocityY = 0.5;
                 break;
               case 1:
                 //walk up on left side
                 curPed.setAnimation(pedAnimations[pedNum] + "WalkUp");
-                curPed.x = 145; curPed.y = 680; curPed.velocityY = -0.5;
+                curPed.x = 545; curPed.y = 680; curPed.velocityY = -0.5;
                 break;
               case 2:
                 //walk down on right side
                 curPed.setAnimation(pedAnimations[pedNum] + "WalkDown");
-                curPed.x = 655; curPed.y = -10; curPed.velocityY = 0.5;
+                curPed.x = 1055; curPed.y = -10; curPed.velocityY = 0.5;
                 break;
               case 3:
                 //walk up on right side
                 curPed.setAnimation(pedAnimations[pedNum] + "WalkUp");
-                curPed.x = 705; curPed.y = 680; curPed.velocityY = -0.5;
+                curPed.x = 1105; curPed.y = 680; curPed.velocityY = -0.5;
                 break;
             }
             break;
@@ -8852,13 +8991,13 @@ window.preload = function () {
             if (curPed.y < 0) {
               curPed.x = curPed.y = -50; curPed.setVelocity(0, 0);
             }
-            else if (curPed.y == 175 && curPed.x == 705 && randomNumber(0, 1) == 0) {
+            else if (curPed.y == 175 && curPed.x == 1105 && randomNumber(0, 1) == 0) {
               curPed.setVelocity(-0.5, 0); curPed.setAnimation(pedAnimations[ped] + "WalkLeft");
-            } else if (curPed.y == 225 && curPed.x == 145 && randomNumber(0, 2) == 0) {
+            } else if (curPed.y == 225 && curPed.x == 545 && randomNumber(0, 2) == 0) {
               curPed.setVelocity(0.5, 0); curPed.setAnimation(pedAnimations[ped] + "WalkRight");
-            } else if (curPed.y == 385 && curPed.x == 145 && randomNumber(0, 2) == 0) {
+            } else if (curPed.y == 385 && curPed.x == 545 && randomNumber(0, 2) == 0) {
               curPed.setVelocity(0.5, 0); curPed.setAnimation(pedAnimations[ped] + "WalkRight");
-            } else if (curPed.y == 225 && curPed.x == 400) {
+            } else if (curPed.y == 225 && curPed.x == 800) {
               curPed.setVelocity(0.5, 0); curPed.setAnimation(pedAnimations[ped] + "WalkRight");
             }
           }
@@ -8867,16 +9006,16 @@ window.preload = function () {
             if (curPed.y > 685) {
               curPed.x = curPed.y = -50; curPed.setVelocity(0, 0);
             }
-            else if (curPed.y == 225 && curPed.x == 95 && randomNumber(0, 1) == 0) {
+            else if (curPed.y == 225 && curPed.x == 495 && randomNumber(0, 1) == 0) {
               curPed.setVelocity(0.5, 0); curPed.setAnimation(pedAnimations[ped] + "WalkRight");
             }
-            else if (curPed.y == 385 && curPed.x == 655 && randomNumber(0, 2) == 0) {
+            else if (curPed.y == 385 && curPed.x == 1055 && randomNumber(0, 2) == 0) {
               curPed.setVelocity(-0.5, 0); curPed.setAnimation(pedAnimations[ped] + "WalkLeft");
             }
-            else if (curPed.y == 175 && curPed.x == 655 && randomNumber(0, 2) == 0) {
+            else if (curPed.y == 175 && curPed.x == 1055 && randomNumber(0, 2) == 0) {
               curPed.setVelocity(-0.5, 0); curPed.setAnimation(pedAnimations[ped] + "WalkLeft");
             }
-            else if (curPed.y == 385 && curPed.x == 400) {
+            else if (curPed.y == 385 && curPed.x == 800) {
               if (randomNumber(0, 1) == 0) {
                 curPed.setVelocity(-0.5, 0); curPed.setAnimation(pedAnimations[ped] + "WalkLeft");
               } else {
@@ -8886,40 +9025,40 @@ window.preload = function () {
           }
           else if (curPed.velocityX < 0) {
             //traveling left
-            if (curPed.x == 145 && randomNumber(0, 1) == 0) {
+            if (curPed.x == 545 && randomNumber(0, 1) == 0) {
               curPed.setVelocity(0, -0.5); curPed.setAnimation(pedAnimations[ped] + "WalkUp");
             }
-            else if (curPed.x == 400 && curPed.y == 385 && randomNumber(0, 1) == 0) {
+            else if (curPed.x == 800 && curPed.y == 385 && randomNumber(0, 1) == 0) {
               curPed.setVelocity(0, -0.5); curPed.setAnimation(pedAnimations[ped] + "WalkUp");
             }
-            else if (curPed.x == 655 && curPed.y == 175 && randomNumber(0, 2) == 0) {
+            else if (curPed.x == 1055 && curPed.y == 175 && randomNumber(0, 2) == 0) {
               curPed.setVelocity(0, 0.5); curPed.setAnimation(pedAnimations[ped] + "WalkDown");
             }
-            else if (curPed.x == 145 && curPed.y == 385) {
+            else if (curPed.x == 545 && curPed.y == 385) {
               curPed.setVelocity(0, -0.5); curPed.setAnimation(pedAnimations[ped] + "WalkUp");
             }
-            else if (curPed.x == 95) {
+            else if (curPed.x == 495) {
               curPed.setVelocity(0, 0.5); curPed.setAnimation(pedAnimations[ped] + "WalkDown");
             }
           }
           else if (curPed.velocityX > 0) {
             //traveling right
-            if (curPed.x == 400 && curPed.y == 225 && randomNumber(0, 2) == 0) {
+            if (curPed.x == 800 && curPed.y == 225 && randomNumber(0, 2) == 0) {
               curPed.setVelocity(0, 0.5); curPed.setAnimation(pedAnimations[ped] + "WalkDown");
             }
-            else if (curPed.x == 655 && curPed.y == 225 && randomNumber(0, 2) == 0) {
+            else if (curPed.x == 1055 && curPed.y == 225 && randomNumber(0, 2) == 0) {
               curPed.setVelocity(0, 0.5); curPed.setAnimation(pedAnimations[ped] + "WalkDown");
             }
-            else if (curPed.x == 400 && curPed.y == 385 && randomNumber(0, 1) == 0) {
+            else if (curPed.x == 800 && curPed.y == 385 && randomNumber(0, 1) == 0) {
               curPed.setVelocity(0, -0.5); curPed.setAnimation(pedAnimations[ped] + "WalkUp");
             }
-            else if (curPed.x == 145 && curPed.y == 175 && randomNumber(0, 2) == 0) {
+            else if (curPed.x == 545 && curPed.y == 175 && randomNumber(0, 2) == 0) {
               curPed.setVelocity(0, -0.5); curPed.setAnimation(pedAnimations[ped] + "WalkUp");
             }
-            else if (curPed.x == 655 && curPed.y == 385) {
+            else if (curPed.x == 1055 && curPed.y == 385) {
               curPed.setVelocity(0, 0.5); curPed.setAnimation(pedAnimations[ped] + "WalkDown");
             }
-            else if (curPed.x == 705) {
+            else if (curPed.x == 1105) {
               curPed.setVelocity(0, -0.5); curPed.setAnimation(pedAnimations[ped] + "WalkUp");
             }
           }
@@ -9397,7 +9536,7 @@ window.preload = function () {
     for (let i = 0; i < swearWords.length; i++) {
       const regex = new RegExp(swearWords[i], 'gi');
       text = text.replace(regex, function(match) {
-          // Replace each character in the swear word with asterisks
+          // Replace each character in the swear word with hashtags
           return '#'.repeat(match.length);
       });
     } 
