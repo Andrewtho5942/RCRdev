@@ -1170,6 +1170,13 @@ window.preload = function () {
 
     dropDownBtns.setVisibleEach(false);
 
+    let tutorialControlBtns = createGroup();
+    tutorialControlBtns.add(createSprite(648, 752, 255, 30))
+    tutorialControlBtns.add(createSprite(935, 752, 240, 30))
+    tutorialControlBtns.add(createSprite(648, 30, 255, 30))
+    tutorialControlBtns.add(createSprite(965, 30, 240, 30))
+
+    tutorialControlBtns.setVisibleEach(false);
 
     credsBackBtn.shapeColor = leaderBackBtn.shapeColor = rgb(180, 200, 255);
 
@@ -1423,7 +1430,16 @@ window.preload = function () {
         fill(rgb(50, 50, 50)); stroke('black'); strokeWeight(6);
 
         if (loopCount > 90) {
-
+          if(loopCount == 160) {
+            //stop all music except for main menu theme (A Night Alone)
+            stopSound("audio/E's Jammy Jam - Forget Me Not.mp3");
+            stopSound("audio/E's Jammy Jam - Nighttime Stroll.mp3");
+            stopSound("audio/E's Jammy Jam - Soul & Mind.mp3");
+            stopSound("audio/Silent Partner - Bet On It.mp3");
+            stopSound("audio/TrackTribe - Home For the Holidays.mp3");
+            stopSound("audio/TrackTribe - A Brand New Start.mp3");
+            stopSound("audio/endgame.mp3");
+          }
           if (menuPage == 0) {
             //start sliding from menu to credits
             if (mousePressedOver(credsBtn) && zoomedIn) {
@@ -1523,7 +1539,6 @@ window.preload = function () {
 
             if ((mousePressedOver(tutorialBtn) || mousePressedOver(startBtn) || keyWentDown('ENTER')) && zoomedIn) {
               playSound("audio/app_interface_button_3.mp3");
-              playSound("audio/bgTraffic.mp3", true);
               stopLongSounds(false);
               stopMusic();
               leftChar1.setAnimation("leftDown");
@@ -1587,8 +1602,10 @@ window.preload = function () {
               menuColors[0] = menuColors[3] = rgb(180, 235, 190);
               if (mousePressedOver(tutorialBtn)) {
                 level = 1;
+                playSound("audio/bgTraffic_quiet.mp3", true);
               } else {
                 level = 2;
+                playSound("audio/bgTraffic.mp3", true);
                 tutorialSkipped = educationLevelLeft.visible = leftChar.visible = charHead.visible = music.visible = true;
                 //set up main game / skip tutorial
                 skipTutorial();
@@ -6011,12 +6028,13 @@ window.preload = function () {
         if (introControl == 0) {
 
           if (introStateControl == 0) {//loopCount<380
-            //go back to main menu if backspace is pressed
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
-              resetGame(true);
-              if (!muteMusic) (playSound("audio/TrackTribe - A Night Alone.mp3", true));
+            if(loopCount==30){
+              stopMusic();
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
               stopSound("audio/intro_1.mp3");
               loopCount = 379;
               textStart[0] = 15;
@@ -6024,24 +6042,32 @@ window.preload = function () {
               playSound("audio/intro_2.mp3");
             }
 
+            //go back to main menu if backspace is pressed
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
+              resetGame(true);
+              if (!muteMusic) (playSound("audio/TrackTribe - A Night Alone.mp3", true));
+            }
+            
             spotlight(0, 0, 0, 0);
             if (loopCount == 10) (playSound("audio/intro_1.mp3"));
             if (loopCount == 15) {
               textStart.push(15);
             }
-            typeText("Welcome!\n    \nAs a long-term member of the community,\nyou know that our city has changed\na lot since you first moved here...", 800, 350, 40, 0, false, "white", loopCount);
-            if (loopCount == 270) {
-              stopSound("audio/intro_1.mp3");
-              stopMusic();
-            }
+            typeText("Welcome!\n    \nAs a long-time member of the community,\nyou know that our city has changed\na lot since you first moved here...", 800, 350, 40, 0, false, "white", loopCount, 1.2);
           }
           else if (introStateControl == 1) {//loopCount<760
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
               stopSound("audio/intro_2.mp3");
               loopCount = 0;
               introStateControl = 0;
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
               stopSound("audio/intro_2.mp3");
               loopCount = 759;
               textStart = [15, 380];
@@ -6053,56 +6079,72 @@ window.preload = function () {
             if (loopCount == 620) (stopSound("audio/intro_2.mp3"));
           }
           else if (introStateControl == 2) {//loopCount<1100
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+            if (loopCount == 765) (playSound("audio/intro_3.mp3"));
+
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
+              stopSound("audio/intro_3.mp3");
               loopCount = 379;
               introStateControl = 1;
+              playSound("audio/intro_2.mp3");
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
+              stopSound("audio/intro_3.mp3");
               loopCount = 1095;
               textStart = [15, 380, 770];
               introStateControl = 3;
             }
             spotlight(410, 500, 780, 190);
-            if (loopCount == 765) (playSound("audio/typing.mp3"));
             if (loopCount == 770) (textStart.push(770));
-            typeText("Meanwhile, the south side has only\ngotten richer and has become a regional\nhub for economic activity.", 800, 330, 40, 2, false, "white", loopCount);
-            if (loopCount == 970) (stopSound("audio/typing.mp3"));
+            typeText("Meanwhile, the south side has only\ngotten richer and has become a regional\nhub for economic activity.", 800, 330, 40, 2, false, "white", loopCount, 1.1);
           }
           else if (introStateControl == 3) {//loopCount<1880
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
+              stopSound("audio/intro_4.mp3");
               loopCount = 759;
               introStateControl = 2;
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
+              stopSound("audio/intro_4.mp3");
               loopCount = 1879;
               textStart = [1880];
               introStateControl = 4;
             }
 
             spotlight(0, 0, 0, 0);
-            if (loopCount == 1105) (playSound("audio/typing.mp3"));
+            if (loopCount == 1105) (playSound("audio/intro_4.mp3"));
             if (loopCount == 1110) (textStart.push(1110));
             typeText("Fortunately, there is a way to redevelop\nand breathe new life into our city!\n   \nBy forming an " +
-              "organizational tool known as\na Citizen's Land Development Coop (CLDC),\nthe north side can be economically " +
-              "REBORN\nwithout creating government debt!\n   \nThe CLDC works in eight phases...", 800, 320, 35, 3, false, "white", loopCount);
-            if (loopCount == 1680) (stopSound("audio/typing.mp3"));
+              "organizational structure known as\na Citizen's Land Development Coop (CLDC),\nthe north side can be economically " +
+              "REBORN\nwithout taxpayer dollars or government debt!\n   \nThe CLDC works in eight phases...", 800, 320, 35, 3, false, "white", loopCount, 1.1);
             // if(loopCount==1875){
             //   playSound("audio/typing.mp3");
             //   textStart=[1880];
             // }
           }
           else if (introStateControl == 4) {
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+            if(loopCount == 1885){
+              playSound("audio/intro_5.mp3")
+            }
+
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
+              stopSound("audio/intro_5.mp3");
               loopCount = 1099;
               textStart = [15, 380, 770];
               introStateControl = 3;
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
               stopLongSounds(false);
               stopMusic();
               loopCount = 0;
@@ -6118,14 +6160,12 @@ window.preload = function () {
             line(600, 44, 1000, 44);
 
             textAlign(LEFT, CENTER);
-            typeText("1) Form the CLDC - ☑ DONE\n\n2) Get the blighted properties donated to\nthe CLDC by the city - ☑ " +
-              "DONE\n\n3) Create the plan for development - ☑ DONE\n\n4) Introduce the plan to businesses - ☑ DONE\n\n5)" +
-              " Get contracts promising to lease CLDC\nproperties when developed - ☑ DONE\n\n6) Use the contracts to secure " +
-              "the loans\nrequired to implement the plan - ☑ DONE", 440, 370, 35, 0, false, "white", loopCount);
+            typeText("1) Form the CLDC - ☑ DONE\n        \n2) Get the blighted properties donated to\nthe CLDC by the city - ☑ " +
+              "DONE\n        \n3) Create the plan for development - ☑ DONE\n    \n4) Introduce the plan to businesses - ☑ DONE\n  \n5)" +
+              " Get contracts promising to lease CLDC\nland when developed - ☑ DONE\n\n6) Use the contracts to secure " +
+              "the loans\nrequired to implement the plan - ☑ DONE", 440, 370, 35, 0, false, "white", loopCount,0.8);
             textAlign(CENTER, CENTER);
-            if (loopCount == 2560) {
-              stopSound("audio/typing.mp3");
-            }
+            
             // if(loopCount==2820){
             //     stopLongSounds(false);
             //     stopMusic();
@@ -6135,21 +6175,30 @@ window.preload = function () {
             //   }
           }
           textSize(30); fill("white"); noStroke();
-          text('[BACKSPACE] Back  |                             ', 800, 754);
-          fill(rgb(180, 250, 180));
-          text("[ENTER] Continue", 940, 754);
+          text('Back [BACKSPACE]  |                             ', 800, 754);
+          strokeWeight(2);stroke("white")
+          line(520, 772, 775, 772);
+
+          fill(rgb(180, 250, 180)); noStroke();
+          text("Continue [ENTER]", 940, 754);
+          strokeWeight(2);stroke(rgb(180, 250, 180))
+          line(815, 772, 1055, 772);
         }
         else if (introControl == 1) {
           if (introStateControl == 5) { // loopCount<600
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
+              stopSound("audio/intro_6.mp3");
               introControl = 0;
               loopCount = 1879;
               textStart = [1880];
               introStateControl = 4;
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
+              stopSound("audio/intro_6.mp3");
               loopCount = 599;
               textStart = [1];
               introStateControl = 6;
@@ -6162,23 +6211,26 @@ window.preload = function () {
             line(600, 44, 1000, 44);
             if (loopCount == 1) {
               textStart.push(1);
-              playSound("audio/typing.mp3");
+              playSound("audio/intro_6.mp3");
             }
             textAlign(LEFT, CENTER);
-            typeText("That leaves us with the last two phases!\n  \n7) Develop the land & properties\n\n8) " +
-              "Lease the properties to repay the loans\nand generate dividends for the owners\n\nThese goals are " +
-              "for you to complete --\nLet's get started!", 440, 350, 35, 0, false, "white", loopCount);
+            typeText("That leaves us with the last two phases!\n  \n7) Develop the land & infrastructure\n\n8) " +
+              "Lease the land to repay the loans\nand generate dividends for the owners\n        \nThese goals are " +
+              "for you to complete --\nHere are some tips to get you started!", 440, 350, 35, 0, false, "white", loopCount,1);
             textAlign(CENTER, CENTER);
-            if (loopCount == 455) (stopSound("audio/typing.mp3"));
 
           }
           else if (introStateControl == 6) {//loopCount<970
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount = 0;
               introStateControl = 5;
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount = 969;
               textStart = [1, 600];
@@ -6196,13 +6248,17 @@ window.preload = function () {
           }
           else if (introStateControl == 7) {//loopCount<1490
             dropDownsOpen = [true, false, false, false, false, false];
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               dropDownsOpen = tempDropDownsOpen;
               stopSound("audio/typing.mp3");
               loopCount = 599;
               introStateControl = 6;
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount = 1489;
               textStart = [1, 600, 970];
@@ -6217,12 +6273,16 @@ window.preload = function () {
           }
           else if (introStateControl == 8) {//loopCount<1810
             dropDownsOpen = [false, true, false, false, false, false];
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+            if ((keyWentDown("BACKSPACE")
+              || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount = 969;
               introStateControl = 7;
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount = 1809;
               textStart = [1, 600, 970, 1490];
@@ -6236,12 +6296,16 @@ window.preload = function () {
           }
           else if (introStateControl == 9) {//loopCount<2280
             dropDownsOpen = [false, false, true, false, false, false];
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount = 1489;
               introStateControl = 8;
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount = 2279;
               textStart = [1, 600, 970, 1490, 1810];
@@ -6257,12 +6321,16 @@ window.preload = function () {
           }
           else if (introStateControl == 10) {//loopCount<2570
             dropDownsOpen = [false, false, false, true, true, false];
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount = 1809;
               introStateControl = 9;
             } dropDownsOpen
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount = 2569;
               textStart = [1, 600, 970, 1490, 1810, 2280];
@@ -6276,12 +6344,16 @@ window.preload = function () {
           }
           else if (introStateControl == 11) {//loopCount<2960
             dropDownsOpen = [false, false, false, false, false, true];
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount = 2279;
               introStateControl = 10;
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               loopCount = 2959;
               textStart = [1, 600, 970, 1490, 1810, 2280];
@@ -6304,9 +6376,14 @@ window.preload = function () {
             textStart = [1];
           }
           textSize(30); fill("white"); noStroke();
-          text('[BACKSPACE] Back  |                             ', 800, 754);
-          fill(rgb(180, 250, 180));
-          text("[ENTER] Continue", 940, 754);
+          text('Back [BACKSPACE]  |                             ', 800, 754);
+          strokeWeight(2);stroke("white")
+          line(520, 772, 775, 772);
+
+          fill(rgb(180, 250, 180));noStroke();
+          text("Continue [ENTER]", 940, 754);
+          strokeWeight(2);stroke(rgb(180, 250, 180))
+          line(815, 772, 1055, 772);
 
           if (introStateControl >= 6) {//loopCount>=600
             fill(rgb(190, 255, 200)); stroke(rgb(200, 255, 200)); strokeWeight(0.25); textSize(30);
@@ -6319,13 +6396,19 @@ window.preload = function () {
           noStroke(); fill(rgb(0, 0, 0, 0.6));
           rect(440, 10, 720, 50);
           fill("white"); textSize(30);
-          text('[BACKSPACE] Back   |                            ', 800, 32);
-          fill(rgb(180, 250, 180));
-          text("[ENTER] Continue", 965, 32);
+          text('Back [BACKSPACE]   |                            ', 800, 32);
+          strokeWeight(2);stroke("white")
+          line(520, 50, 775, 50);
 
+          fill(rgb(180, 250, 180));noStroke();
+          text("Continue [ENTER]", 965, 32);
+          strokeWeight(2);stroke(rgb(180, 250, 180))
+          line(845, 50, 1085, 50);
           //gameplay walkthrough
           if (introSelection == 0) {
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               introControl = 1;
               loopCount = 2569;
@@ -6346,7 +6429,9 @@ window.preload = function () {
               walkthroughLoops[0] = -1;
             }
 
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER")
+              || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               introSelection = 1;
               loopCount = 0;
@@ -6373,13 +6458,17 @@ window.preload = function () {
           }
           else if (introSelection == 1) {
 
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               introSelection = 0;
               loopCount = 0;
               textStart = [1, 1];
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               introSelection = 2;
               loopCount = 0;
@@ -6406,7 +6495,9 @@ window.preload = function () {
             }
           }
           else if (introSelection == 2) {
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               introSelection = 1;
               loopCount = 0;
@@ -6414,7 +6505,9 @@ window.preload = function () {
               leftChar.x = 800; leftChar.y = 200;
               walkthroughLoops[1] = -1;
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               stopSound("audio/typing.mp3");
               leftChar.x = t1Land[4].x; leftChar.y = t1Land[4].y;
               introSelection = 3;
@@ -6459,7 +6552,9 @@ window.preload = function () {
                 "to switch between\npaying with profits and loans.", 800, 380, 28, 3, false, "white", loopCount);
               if (loopCount == 330) (stopSound("audio/typing.mp3"));
 
-              if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+              if ((keyWentDown("BACKSPACE") 
+                || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 stopSound("audio/typing.mp3");
                 introSelection = 2;
                 loopCount = 0;
@@ -6467,7 +6562,9 @@ window.preload = function () {
                 leftChar.x = 800; leftChar.y = 200;
                 closeMenu();
               }
-              if (keyWentDown("ENTER") && !pauseMainFunctions) {
+              if ((keyWentDown("ENTER") 
+                || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 stopSound("audio/typing.mp3");
                 totIncome -= 15000;
                 totProfits -= 15000;
@@ -6524,10 +6621,14 @@ window.preload = function () {
                     line(800, 445, 800, 670);
                     encircle(800, 750, 800, 150, "darkRed");
 
-                    if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+                    if ((keyWentDown("BACKSPACE") 
+                      || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+                    && !pauseMainFunctions) {
                       loopCount = roadCooldowns[4] + 149;
                     }
-                    if (keyWentDown("ENTER") && !pauseMainFunctions) {
+                    if ((keyWentDown("ENTER") 
+                      || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+                    && !pauseMainFunctions) {
                       resetCleanUp();
                       voteData[0] = "support";
                       voteData[1] = 1 + "";
@@ -6538,7 +6639,9 @@ window.preload = function () {
                     }
                   }
                   else if (loopCount < textStartCount) {
-                    if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+                    if ((keyWentDown("BACKSPACE") 
+                      || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+                    && !pauseMainFunctions) {
                       totIncome += 15000;
                       totProfits += 15000;
                       t1PlotIsCompleted[4] = false;
@@ -6554,7 +6657,9 @@ window.preload = function () {
                       roadCooldowns[4] = -360;
                       offer1.x = offer1.y = -50;
                     }
-                    if (keyWentDown("ENTER") && !pauseMainFunctions) {
+                    if ((keyWentDown("ENTER") 
+                      || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+                    && !pauseMainFunctions) {
                       textStart[5] = textStartCount;
                       loopCount = textStartCount;
                     }
@@ -6583,10 +6688,14 @@ window.preload = function () {
                     textStart[5] = loopCount;
                   }
                   else if (loopCount > textStartCount) {
-                    if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+                    if ((keyWentDown("BACKSPACE") 
+                      || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+                    && !pauseMainFunctions) {
                       loopCount = roadCooldowns[4] + 149;
                     }
-                    if (keyWentDown("ENTER") && !pauseMainFunctions) {
+                    if ((keyWentDown("ENTER") 
+                      || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+                    && !pauseMainFunctions) {
                       resetCleanUp();
                       voteData[0] = "support";
                       voteData[1] = 1 + "";
@@ -6761,7 +6870,9 @@ window.preload = function () {
                       cUpdateCount = -3600;
                     }
                   }
-                  if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+                  if ((keyWentDown("BACKSPACE") 
+                    || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+                  && !pauseMainFunctions) {
                     textStart = [1, 1, 1, 1, roadCooldowns[4] + 361, roadCooldowns[4] + 511];
                     loopCount = roadCooldowns[4] + 721;
                     voteData = ["none", "0", 50];
@@ -6776,7 +6887,9 @@ window.preload = function () {
                     lTouchingJob = false;
 
                   }
-                  if (keyWentDown("ENTER") && !pauseMainFunctions) {
+                  if ((keyWentDown("ENTER")
+                    || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+                  && !pauseMainFunctions) {
                     offer1.setAnimation("construction");
                     offerIsConstruction[0] = true;
                     offerRatings[0] = "";
@@ -6838,7 +6951,9 @@ window.preload = function () {
               }
 
               //building finished page control
-              if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+              if ((keyWentDown("BACKSPACE") 
+                || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 t1Land[4].visible = t1Buildings[4].visible = true;
                 t1Buildings[4].setAnimation("t1FenceGrass");
                 t1Roofs[4].visible = false;
@@ -6860,7 +6975,9 @@ window.preload = function () {
                 offerBuildCooldowns[0] = -3600;
               }
 
-              if (keyWentDown("ENTER") && !pauseMainFunctions) {
+              if ((keyWentDown("ENTER") 
+                || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 introSelection = 5;
                 loopCount = 0;
                 textStart = [10];
@@ -6868,7 +6985,9 @@ window.preload = function () {
             }
             else {
               //construction page control
-              if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+              if ((keyWentDown("BACKSPACE")
+                || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 offer1.setAnimation("offerSign");
                 offerIsConstruction[0] = false;
                 introSelection = 3;
@@ -6887,7 +7006,9 @@ window.preload = function () {
                 jobSprites[0].visible = true;
                 jobSprites[0].x = streets[15].x; jobSprites[0].y = streets[15].y;
               }
-              if (keyWentDown("ENTER") && !pauseMainFunctions) {
+              if ((keyWentDown("ENTER") 
+                || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 offerBuildCooldowns[0] = loopCount - 89;
                 leftChar.x = 1080; leftChar.y = 140;
               }
@@ -6917,7 +7038,9 @@ window.preload = function () {
             }
 
             if (loopCount < 450) {
-              if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+              if ((keyWentDown("BACKSPACE") 
+                || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 introSelection = 4;
                 offerBuildCooldowns[0] = -3600;
                 loopCount = 0;
@@ -6929,13 +7052,17 @@ window.preload = function () {
               if (loopCount == 400) (stopSound("audio/typing.mp3"));
               if (loopCount == 449) (textStart.push(460));
 
-              if (keyWentDown("ENTER") && !pauseMainFunctions) {
+              if ((keyWentDown("ENTER") 
+                || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 loopCount = 460;
                 textStart = [10, 460];
               }
             }
             else if (loopCount < 950) {
-              if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+              if ((keyWentDown("BACKSPACE") 
+                || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 loopCount = 10;
                 textStart = [10];
               }
@@ -6944,13 +7071,17 @@ window.preload = function () {
               if (loopCount == 455) (playSound("audio/typing.mp3"));
               if (loopCount == 840) (stopSound("audio/typing.mp3"));
               if (loopCount == 949) (textStart.push(960));
-              if (keyWentDown("ENTER") && !pauseMainFunctions) {
+              if ((keyWentDown("ENTER") 
+                || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 loopCount = 960;
                 textStart = [10, 460, 960];
               }
             }
             else if (loopCount < 1450) {
-              if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+              if ((keyWentDown("BACKSPACE") 
+                || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 loopCount = 459;
                 textStart = [10, 460];
               }
@@ -6959,13 +7090,17 @@ window.preload = function () {
               if (loopCount == 955) (playSound("audio/typing.mp3"));
               if (loopCount == 1320) (stopSound("audio/typing.mp3"));
               if (loopCount == 1449) (textStart.push(1460));
-              if (keyWentDown("ENTER") && !pauseMainFunctions) {
+              if ((keyWentDown("ENTER") 
+                || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 loopCount = 1460;
                 textStart = [10, 460, 960, 1460];
               }
             }
             else if (loopCount < 1840) {
-              if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+              if ((keyWentDown("BACKSPACE") 
+                || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 loopCount = 959;
                 textStart = [10, 460, 960];
               }
@@ -6974,13 +7109,17 @@ window.preload = function () {
               if (loopCount == 1455) (playSound("audio/typing.mp3"));
               if (loopCount == 1780) (stopSound("audio/typing.mp3"));
               if (loopCount == 1839) (textStart.push(1850));
-              if (keyWentDown("ENTER") && !pauseMainFunctions) {
+              if ((keyWentDown("ENTER") 
+                || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 loopCount = 1850;
                 textStart = [10, 460, 960, 1460, 1850];
               }
             }
             else if (loopCount < 2230) {
-              if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+              if ((keyWentDown("BACKSPACE") 
+                || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 loopCount = 1459;
                 textStart = [10, 460, 960, 1460];
               }
@@ -6989,13 +7128,17 @@ window.preload = function () {
               if (loopCount == 1845) (playSound("audio/typing.mp3"));
               if (loopCount == 2160) (stopSound("audio/typing.mp3"));
               if (loopCount == 2229) (textStart.push(2250));
-              if (keyWentDown("ENTER") && !pauseMainFunctions) {
+              if ((keyWentDown("ENTER") 
+                || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 loopCount = 2250;
                 textStart = [10, 460, 960, 1460, 1850, 2250];
               }
             }
             else if (loopCount < 2830) {
-              if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+              if ((keyWentDown("BACKSPACE") 
+                || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 loopCount = 1849;
                 textStart = [10, 460, 960, 1460, 1850];
               }
@@ -7015,7 +7158,9 @@ window.preload = function () {
                 //place trash sprite 
                 placeTrash(16, 0);
               }
-              if (keyWentDown("ENTER") && !pauseMainFunctions) {
+              if ((keyWentDown("ENTER") 
+                || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+              && !pauseMainFunctions) {
                 loopCount = 2845;
                 textStart = [2845];
                 placeTrash(16, 0);
@@ -7076,7 +7221,9 @@ window.preload = function () {
                     textStart = [2845, loopCount + 15];
                   }
                 }
-                if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+                if ((keyWentDown("BACKSPACE") 
+                  || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+                && !pauseMainFunctions) {
                   trashPositions[0] = -1;
                   trash[0].x = trash[0].y = -50;
                   loopCount = 2250;
@@ -7086,7 +7233,9 @@ window.preload = function () {
                   cleanUpLoop = -3600;
                   cleanUpActive = false;
                 }
-                if (keyWentDown("ENTER")) {
+                if ((keyWentDown("ENTER")
+                  || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+                && !pauseMainFunctions) {
                   stopSound("audio/typing.mp3");
                   var pPoints = 30 - litterDebuff;
                   if (pPoints < 1) (pPoints = 1);
@@ -7105,14 +7254,18 @@ window.preload = function () {
                 }
               }
               else {
-                if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+                if ((keyWentDown("BACKSPACE") 
+                  || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+                && !pauseMainFunctions) {
                   leftChar.x = 820; leftChar.y = 200;
                   placeTrash(16, 0);
                   trashPickedUp--;
                   trashPoints = 0;
                   cleanUpActive = false;
                 }
-                if (keyWentDown("ENTER")) {
+                if ((keyWentDown("ENTER")
+                  || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+                && !pauseMainFunctions) {
                   playSound("audio/app_menu_button_2.mp3");
                   resetCleanUp();
                   introControl = 3;
@@ -7203,7 +7356,9 @@ window.preload = function () {
           noStroke(); fill(rgb(0, 0, 0, 0.6));
           rect(425, 290, 750, 160);
           if (loopCount < textStart[0] + 360) {
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               introControl = 2;
               loopCount = 2845;
               cleanUpActive = true;
@@ -7215,7 +7370,9 @@ window.preload = function () {
               cPoints = 0;
             }
 
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               loopCount = textStart[0] + 360;
               textStart[1] = loopCount;
             }
@@ -7226,17 +7383,24 @@ window.preload = function () {
             if (loopCount == textStart[0] + 359) (textStart.push(loopCount));
             if (loopCount == textStart[0] + 235) (playSound("audio/typing.mp3"));
           } else if (loopCount < textStart[0] + 840) {
-            if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
+            if ((keyWentDown("BACKSPACE") 
+              || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               loopCount = textStart[0];
               cUpdateCount = -3600;
             }
-            if (keyWentDown("ENTER") && !pauseMainFunctions) {
+            if ((keyWentDown("ENTER") 
+              || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
+            && !pauseMainFunctions) {
               loopCount = textStart[0] + 840;
             }
             if (loopCount == textStart[0] + 630) (stopSound("audio/typing.mp3"));
             typeText("Every year there's a CLDC meeting that distributes\ndividends and elects a leader for the next year. Your\ngoal is to maximize your dividends and complete\nas many objectives as you can! Good luck!", 800, 370, 30, 1, false, "white", loopCount);
           } else {
             stopLongSounds(false);
+            stopSound("audio/bgTraffic_quiet.mp3")
+            playSound("audio/bgTraffic.mp3")
+
             stopMusic();
             //reset intro and begin the game
             level = 2;
@@ -7541,7 +7705,11 @@ window.preload = function () {
       stopSound("audio/fire.mp3");
       stopSound("audio/fireSiren.mp3");
       stopSound("audio/shock.mp3");
-      if (traffic) (stopSound("audio/bgTraffic.mp3"));
+      if (traffic) {
+        stopSound("audio/bgTraffic.mp3");
+        stopSound("audio/bgTraffic_quiet.mp3");
+
+      }
       stopSound("audio/hammer6x.mp3");
       stopSound("audio/flood.mp3");
       
@@ -7617,9 +7785,10 @@ window.preload = function () {
       arc(x, y, width, height, 0, 360);
     }
 
-    function typeText(msg, x, y, txtSize, index, showBackground, textColor, loop) {
+    function typeText(msg, x, y, txtSize, index, showBackground, textColor, loop, speed_mod = 1) {
       if (textStart[index] == 0) (textStart[index] = loop);
-      var numLetters = (loop - textStart[index]) / 2;
+      var numLetters = round(((loop - textStart[index]) / 2) * speed_mod);
+      
       if (numLetters > msg.length) (numLetters = msg.length);
 
       //background for visibility
