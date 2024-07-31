@@ -5970,6 +5970,7 @@ window.preload = function () {
       for (let dropBtn = 0; dropBtn < 6; dropBtn++) {
         if (mousePressedOver(dropDownBtns[dropBtn]) && mouseWentDown("leftButton")) {
           dropDownsOpen[dropBtn] = !dropDownsOpen[dropBtn];
+          playSound("audio/app_menu_button_2.mp3");
         }
       }
       if (mouseIsOver(dropDownBtns[0])) {
@@ -6001,7 +6002,6 @@ window.preload = function () {
 
       //hide menu during annual meeting
       if (meetingControl > 0) {
-        //fix location 2 /////////////////
         spotlight(410, 10, 780, 680);
       }
 
@@ -6013,37 +6013,36 @@ window.preload = function () {
           if (introStateControl == 0) {//loopCount<380
             //go back to main menu if backspace is pressed
             if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
               resetGame(true);
               if (!muteMusic) (playSound("audio/TrackTribe - A Night Alone.mp3", true));
             }
             if (keyWentDown("ENTER") && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_1.mp3");
               loopCount = 379;
               textStart[0] = 15;
               introStateControl = 1;
-              playSound("audio/typing.mp3");
+              playSound("audio/intro_2.mp3");
             }
 
             spotlight(0, 0, 0, 0);
-            if (loopCount == 10) (playSound("audio/typing.mp3"));
+            if (loopCount == 10) (playSound("audio/intro_1.mp3"));
             if (loopCount == 15) {
               textStart.push(15);
             }
             typeText("Welcome!\n    \nAs a long-term member of the community,\nyou know that our city has changed\na lot since you first moved here...", 800, 350, 40, 0, false, "white", loopCount);
             if (loopCount == 270) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_1.mp3");
               stopMusic();
             }
           }
           else if (introStateControl == 1) {//loopCount<760
             if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_2.mp3");
               loopCount = 0;
               introStateControl = 0;
             }
             if (keyWentDown("ENTER") && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_2.mp3");
               loopCount = 759;
               textStart = [15, 380];
               introStateControl = 2;
@@ -6051,7 +6050,7 @@ window.preload = function () {
             spotlight(410, 10, 780, 460);
             if (loopCount == 380) (textStart.push(380));
             typeText("The north side, your home, has fallen\ninto a state of disrepair and poverty.\nCrime is rampant, and the land is empty.", 800, 570, 40, 1, false, "white", loopCount);
-            if (loopCount == 620) (stopSound("audio/typing.mp3"));
+            if (loopCount == 620) (stopSound("audio/intro_2.mp3"));
           }
           else if (introStateControl == 2) {//loopCount<1100
             if (keyWentDown("BACKSPACE") && !pauseMainFunctions) {
@@ -7545,6 +7544,16 @@ window.preload = function () {
       if (traffic) (stopSound("audio/bgTraffic.mp3"));
       stopSound("audio/hammer6x.mp3");
       stopSound("audio/flood.mp3");
+      
+      // Intro exposition voiceovers
+      stopSound("audio/intro_1.mp3")
+      stopSound("audio/intro_2.mp3")
+      stopSound("audio/intro_3.mp3")
+      stopSound("audio/intro_4.mp3")
+      stopSound("audio/intro_5.mp3")
+      stopSound("audio/intro_6.mp3")
+
+
     }
 
     function stopMusic() {
