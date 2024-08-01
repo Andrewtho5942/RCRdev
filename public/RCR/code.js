@@ -453,6 +453,8 @@ window.preload = function () {
     var hintsOn = true;
     var menuPage = 0;
     var xSlide = 0;
+    var ySlide = 0;
+    var verticalSlide = false;
     var credsCounter = 0;
 
     //leaderboard data
@@ -1143,17 +1145,19 @@ window.preload = function () {
     var aChar1 = createSprite(1135, 695);
     aChar1.scale = 0.5; aChar1.setAnimation("aDown");
 
-    var tutorialBtn = createSprite(800, 340, 160, 50);
-    var startBtn = createSprite(800, 410, 280, 60);
-    var leaderBtn = createSprite(690, 480, 210, 50);
-    var credsBtn = createSprite(910, 480, 140, 50);
-
+    var tutorialBtn = createSprite(800, 320, 160, 50);
+    var startBtn = createSprite(800, 410, 260, 60);
+    var leaderBtn = createSprite(690, 460, 210, 50);
+    var credsBtn = createSprite(910, 460, 140, 50);
+    var learningBtn = createSprite(800,525, 300,50);
 
     var credsBackBtn = createSprite(1655, 740, 160, 60);
     var leaderBackBtn = createSprite(-55, 740, 160, 60);
     var hintsMenuBtn = createSprite(565, 665, 280, 50);
     var musicMenuBtn = createSprite(565, 750, 280, 50);
     var quizContBtn = createSprite(800, 615, 180, 40);
+    var learningBackBtn = createSprite(800,1585,150,50);
+
     let quizBtns = createGroup();
     for (let fl = 0; fl < 4; fl++) {
       quizBtns.add(createSprite(800, 310 + (fl * 79), 784, 79));
@@ -1178,10 +1182,15 @@ window.preload = function () {
 
     tutorialControlBtns.setVisibleEach(false);
 
+    let pauseControlBtn = createSprite(805,724,80,24)
+    let tipsControlBtn = createSprite(304,360,172,30)
+    pauseControlBtn.visible = tipsControlBtn.visible = false;
+
     credsBackBtn.shapeColor = leaderBackBtn.shapeColor = rgb(180, 200, 255);
 
     hintsMenuBtn.visible = musicMenuBtn.visible = tutorialBtn.visible = startBtn.visible = leaderBtn.visible
-      = credsBtn.visible = credsBackBtn.visible = leaderBackBtn.visible = quizContBtn.visible = false;
+      = credsBtn.visible = credsBackBtn.visible = leaderBackBtn.visible = quizContBtn.visible = 
+      learningBtn.visible = learningBackBtn.visible = false;
 
     var rChars = createGroup();
     rChars.add(createSprite(865, 760, 50, 50));
@@ -1328,7 +1337,7 @@ window.preload = function () {
     confetti.visible = false; confetti.scale = 1.4;
 
 
-    /////////////////////////////Draw Starts///////////////////////////////////
+    ///////////////////////////// Draw Starts ///////////////////////////////////
     function draw() {
       controlColors();
       if (startPressed && !pauseMainFunctions) {
@@ -1441,11 +1450,13 @@ window.preload = function () {
             stopSound("audio/endgame.mp3");
           }
           if (menuPage == 0) {
-            //start sliding from menu to credits
-            if (mousePressedOver(credsBtn) && zoomedIn) {
+            //start sliding over from menu to learning center
+            if ((mousePressedOver(learningBtn) || keyWentDown("DOWN_ARROW")) && zoomedIn) {
               playSound("audio/swoosh.mp3");
-              menuPage = 1;
+              menuPage = 3;
               credsCounter = 24;
+              xSlide=0;
+              ySlide=0;
 
               //reset char select movement
               leftChar1.setAnimation("leftDown");
@@ -1453,11 +1464,29 @@ window.preload = function () {
               bChar1.setAnimation("bDown");
               aChar1.setAnimation("aDown");
             }
+
+            //start sliding from menu to credits
+            if ((mousePressedOver(credsBtn) || keyWentDown("RIGHT_ARROW")) && zoomedIn) {
+              playSound("audio/swoosh.mp3");
+              menuPage = 1;
+              credsCounter = 24;
+              ySlide=0;
+              xSlide=0;
+
+              //reset char select movement
+              leftChar1.setAnimation("leftDown");
+              rightChar1.setAnimation("rightDown");
+              bChar1.setAnimation("bDown");
+              aChar1.setAnimation("aDown");
+            }
+
             //start sliding from menu to leaderboard
-            if (mousePressedOver(leaderBtn) && zoomedIn) {
+            if ((mousePressedOver(leaderBtn) || keyWentDown("LEFT_ARROW")) && zoomedIn) {
               playSound("audio/swoosh.mp3");
               menuPage = 2;
               credsCounter = -24;
+              ySlide=0;
+              xSlide=0;
               formatTime();
 
               //reset char select movement
@@ -1476,6 +1505,11 @@ window.preload = function () {
             if (xSlide > 0) {
               xSlide += credsCounter * 3;
               credsCounter++;
+            }
+
+            if(ySlide < 0) {
+              ySlide += credsCounter * 3;
+              credsCounter--;
             }
 
             //char select movement
@@ -1618,10 +1652,11 @@ window.preload = function () {
               credsCounter--;
             }
 
-            if (mousePressedOver(credsBackBtn) || keyWentDown("backspace")) {
+            if (mousePressedOver(credsBackBtn) || keyWentDown("backspace") || keyWentDown("LEFT_ARROW")) {
               playSound("audio/swoosh.mp3");
               menuPage = 0;
               credsCounter = 24;
+              verticalSlide = false;
             }
           } else if (menuPage == 2) {
             //slide from menu to leaderboard
@@ -1630,15 +1665,28 @@ window.preload = function () {
               credsCounter++;
             }
 
-            if (mousePressedOver(leaderBackBtn) || keyWentDown("backspace")) {
+            if (mousePressedOver(leaderBackBtn) || keyWentDown("backspace") || keyWentDown("RIGHT_ARROW")) {
               playSound("audio/swoosh.mp3");
               menuPage = 0;
               credsCounter = -24;
+              verticalSlide = false;
+
+            }
+          } else if (menuPage == 3) {
+            //slide from menu to learning center
+            if (credsCounter > 5) {
+              ySlide -= credsCounter * 3;
+              credsCounter--;
+            }
+
+            if (mousePressedOver(learningBackBtn) || keyWentDown("backspace") || keyWentDown("UP_ARROW")) {
+              playSound("audio/swoosh.mp3");
+              menuPage = 0;
+              credsCounter = 24;
+              verticalSlide = true;
             }
           }
-
         }
-
         if (zoomedIn) {
           //update sprite xValues to slide over
           leftChar1.x = 865 + xSlide;
@@ -1651,13 +1699,38 @@ window.preload = function () {
           leaderBtn.x = 715 + xSlide;
           credsBackBtn.x = 1655 + xSlide;
           leaderBackBtn.x = -55 + xSlide;
+          learningBtn.x = 800 + xSlide;
+          learningBackBtn.x = 800 + xSlide;
+          
+          // and update the y values
+          learningBtn.y = 525 + ySlide;
+          learningBackBtn.y = 1585 + ySlide;
+          leaderBtn.y = 460 + ySlide;
+          tutorialBtn.y = 320 + ySlide;
+          credsBtn.y = 460 + ySlide;
+          startBtn.y = 410 + ySlide;
+          leftChar1.y = 695 + ySlide;
+          rightChar1.y = 695 + ySlide;
+          bChar1.y = 695 + ySlide;
+          aChar1.y = 695 + ySlide;
 
           rChars[0].x = rChars[4].x = 865 + xSlide;
           rChars[1].x = rChars[5].x = 955 + xSlide;
           rChars[2].x = rChars[6].x = 1045 + xSlide;
           rChars[3].x = rChars[7].x = 1135 + xSlide;
           rChars[8].x = rChars[9].x = 750 + xSlide;
+          rChars[0].x = rChars[4].x = 865 + xSlide;
+
+          rChars[0].y = rChars[4].y =
+          rChars[1].y = rChars[5].y = 
+          rChars[2].y = rChars[6].y =
+          rChars[3].y = rChars[7].y = 760 + ySlide;
+          rChars[8].y = 655 + ySlide;
+          rChars[9].y = 745 + ySlide;
+
           musicMenuBtn.x = hintsMenuBtn.x = 565 + xSlide;
+          musicMenuBtn.y = 750 + ySlide;
+          hintsMenuBtn.y = 665 + ySlide;
         }
 
         drawSprites();
@@ -1678,25 +1751,39 @@ window.preload = function () {
           } else {
             fill(rgb(200, 215, 255));
           }
-          rect(720 + xSlide, 315, 160, 50);
+          rect(720 + xSlide, 295 + ySlide, 160, 50);
           if (mouseIsOver(startBtn)) {
             fill(rgb(180, 255, 200));
           } else {
             fill(rgb(150, 230, 180));
           }
-          rect(660 + xSlide, 380, 280, 60);
+          rect(660 + xSlide, 360 + ySlide, 280, 60);
           if (mouseIsOver(leaderBtn)) {
             fill(rgb(250, 200, 200));
           } else {
             fill(rgb(230, 180, 180));
           }
-          rect(610 + xSlide, 455, 210, 50);
+          rect(610 + xSlide, 435 + ySlide, 210, 50);
           if (mouseIsOver(credsBtn)) {
             fill(rgb(210, 180, 255));
           } else {
             fill(rgb(190, 155, 245));
           }
-          rect(850 + xSlide, 455, 140, 50);
+          rect(850 + xSlide, 435 + ySlide, 140, 50);
+
+          if (mouseIsOver(learningBtn)) {
+            fill(rgb(255, 244, 168));
+          } else {
+            fill(rgb(255, 229, 153));
+          }
+          rect(660 + xSlide, 500 + ySlide, 280, 50);
+
+          if (mouseIsOver(learningBackBtn)) {
+            fill(rgb(255, 244, 168));
+          } else {
+            fill(rgb(255, 229, 153));
+          }
+          rect(700, 1560 + ySlide, 200, 50);
 
           if (mouseIsOver(credsBackBtn)) {
             fill(rgb(200, 170, 255));
@@ -1714,37 +1801,38 @@ window.preload = function () {
 
           fill(rgb(200, 255, 210, 0.4));
           strokeWeight(1); stroke("black");
-          rect(550 + xSlide, 75, 500, 175);
-          rect(1545 + xSlide, 50, 220, 80);
-          rect(-350 + xSlide, 50, 590, 80);
+          rect(550 + xSlide, 75 + ySlide, 500, 175);
+          rect(1545 + xSlide, 50 + ySlide, 220, 80);
+          rect(-350 + xSlide, 50 + ySlide, 590, 80);
 
           textSize(65); fill('black');
           textAlign('center', 'center'); textFont("impact");
-          text('River City Reborn', 800 + xSlide, 120);
+          text('River City Reborn', 800 + xSlide, 120 + ySlide);
           strokeWeight(0.5); stroke("black"); textSize(60);
-          text('Credits', 1655 + xSlide, 92);
-          text('Monthly Leaderboard', -55 + xSlide, 92);
+          text('Credits', 1655 + xSlide, 92 + ySlide);
+          text('Monthly Leaderboard', -55 + xSlide, 92 + ySlide);
           textSize(50); strokeWeight(2); textFont("georgia");
           strokeWeight(1);
-          text('Start Game', 800 + xSlide, 410);
+          text('Start Game', 800 + xSlide, 390 + ySlide);
           textSize(34); noStroke();
-          text('Tutorial', 800 + xSlide, 340);
-          text("Leaderboard", 715 + xSlide, 480);
-          text("Credits", 920 + xSlide, 480);
+          text('Tutorial', 800 + xSlide, 320 + ySlide);
+          text("Leaderboard", 715 + xSlide, 460 + ySlide);
+          text("Credits", 920 + xSlide, 460 + ySlide);
+          text("Learning Center", 800 + xSlide, 525 + ySlide)
 
           stroke('black');
           textSize(26); strokeWeight(0.5);
-          text("--- [R] Switch Character ---", 1000 + xSlide, 634);
+          text("--- [R] Switch Character ---", 1000 + xSlide, 634 + ySlide);
 
           strokeWeight(3);
-          line(800 + xSlide, 612, 800 + xSlide, 788);
-          line(413 + xSlide, 700, 800 + xSlide, 700);
+          line(800 + xSlide, 612 + ySlide, 800 + xSlide, 788 + ySlide);
+          line(413 + xSlide, 700 + ySlide, 800 + xSlide, 700 + ySlide);
 
           textSize(30); strokeWeight(0.5);
-          text('By the Center for Economic\nand Social Justice', 800 + xSlide, 200);
+          text('By the Center for Economic\nand Social Justice', 800 + xSlide, 200 + ySlide);
 
 
-          //credits screen graphics (add 1255 to the x value)
+          //credits screen graphics (add 855 to the x value)
           if (xSlide < 0) {
             var creditColors = [rgb(255, 230, 220), rgb(212, 240, 255), rgb(220, 255, 230), rgb(220, 230, 255)];
             for (var xg = 0; xg < 4; xg++) {
@@ -1771,7 +1859,7 @@ window.preload = function () {
             text("← Back", 1655 + xSlide, 740);
           }
 
-          //leaderboard screen graphics (subtract 455 from the x value)
+          //leaderboard screen graphics (subtract 855 from the x value)
           if (xSlide > 0) {
             strokeWeight(1); stroke("black"); textStyle(BOLD);
             fill(rgb(255, 255, 255, 0.4));
@@ -1874,6 +1962,12 @@ window.preload = function () {
 
           }
 
+          //learning center graphics
+          if(ySlide < 0) {
+            textSize(40); fill("black"); strokeWeight(1);
+            text("Back ↑", learningBackBtn.x, learningBackBtn.y);
+          }
+
 
           //change the colors of the character selection boxes
 
@@ -1900,11 +1994,11 @@ window.preload = function () {
             musicColor = "_red";
             fill(rgb(180, 255, 210, 0.4));
             strokeWeight(3); stroke("black");
-            rect(425 + xSlide, 725, 280, 50);
+            rect(425 + xSlide, 725 + ySlide, 280, 50);
           } else {
             fill(rgb(150, 230, 180, 0.5));
             strokeWeight(3); stroke("black");
-            rect(425 + xSlide, 725, 280, 50);
+            rect(425 + xSlide, 725 + ySlide, 280, 50);
           }
 
           var hintColor = "";
@@ -1913,21 +2007,21 @@ window.preload = function () {
 
             fill(rgb(220, 235, 255, 0.4));
             strokeWeight(3); stroke("black");
-            rect(425 + xSlide, 640, 280, 50);
+            rect(425 + xSlide, 640 + ySlide, 280, 50);
           } else {
             fill(rgb(200, 215, 255, 0.5));
             strokeWeight(3); stroke("black");
-            rect(425 + xSlide, 640, 280, 50);
+            rect(425 + xSlide, 640 + ySlide, 280, 50);
           }
 
 
           textSize(35); fill("black"); noStroke(); textAlign(CENTER, CENTER);
 
-          if (hintsOn) (text("Hints are on!", 565 + xSlide, 665));
-          else (text("Hints are off!", 565 + xSlide, 665));
+          if (hintsOn) (text("Hints are on!", 565 + xSlide, 665 + ySlide));
+          else (text("Hints are off!", 565 + xSlide, 665 + ySlide));
 
-          if (muteMusic) (text("Music is muted!", 565 + xSlide, 750));
-          else (text("Music is playing!", 565 + xSlide, 750));
+          if (muteMusic) (text("Music is muted!", 565 + xSlide, 750 + ySlide));
+          else (text("Music is playing!", 565 + xSlide, 750 + ySlide));
           textAlign(LEFT, CENTER);
 
           //Music hover and mute 
@@ -2082,9 +2176,9 @@ window.preload = function () {
         }
 
         //add income from land, calculate loans, place offers, place trash{
-        if ((loopCount % 10 == 0) && !pauseMainFunctions) {
+        if ((loopCount % 45 == 0) && !pauseMainFunctions) {
           //add leasing income from buildings 
-          var buildingIndex = (loopCount / 10) % 13;
+          var buildingIndex = (loopCount / 45) % 13;
           var curIncome = incomeArr[buildingIndex];
           incomeUpdates[buildingIndex] = loopCount;
           totIncome += curIncome;
@@ -2093,7 +2187,7 @@ window.preload = function () {
             playSound("audio/moneyPing.mp3");
             cMoneyUpdateCount = loopCount;
           }
-          if (loopCount % 130 == 0) {
+          if (loopCount % 585 == 0) {
             if (!objListCLDC[5][3]) (completeEntireCity());
             //add income from investment proposal if cooldown is done
             if (incomeArr[13] % 1000 != 0) (incomeArr[13]++);
@@ -2105,7 +2199,7 @@ window.preload = function () {
             }
 
             //randomly place trade offers on completed plots
-            rRollLeft = randomNumber(1, 20) * (21 + plotsCompletedLeft);
+            rRollLeft = randomNumber(5, 20) * (21 + plotsCompletedLeft);
             if (rRollLeft >= 250 + offerDebuff) {
               //loop through each of the three offers, if one is open use that one
               for (var xa = 0; xa < 3; xa++) {
@@ -2129,8 +2223,8 @@ window.preload = function () {
 
             //start a fire rarely if a plot has a building
             var fireChance = 0;
-            if (infrastructureChosen) (fireChance = randomNumber(1, 110));
-            else (fireChance = randomNumber(1, 85));
+            if (infrastructureChosen) (fireChance = randomNumber(1, 120));
+            else (fireChance = randomNumber(1, 90));
             if ((fireChance == 1) && !fireActive && !isRaining && !pauseMainFunctions) {
               var plotNum = -1;
               for (var f1 = 0; f1 < 2; f1++) {
@@ -2192,7 +2286,7 @@ window.preload = function () {
                   if (fireLocation != 3 && fireLocation != 7 && fireLocation != 8) {
                     //fire has a plot below it
                     if (t1BuildingPlaced[fireLocation + 1] && t1LandIsOpen[fireLocation + 1] &&
-                      randomNumber(1, 4) == 1) {
+                      randomNumber(1, 3) == 1) {
                       var newFireNum = findOpenFire();
                       if (newFireNum != -1) {
                         //spread fire below
@@ -2207,7 +2301,7 @@ window.preload = function () {
                   if (fireLocation != 0 && fireLocation != 4 && fireLocation != 8) {
                     //fire has a plot above it
                     if (t1BuildingPlaced[fireLocation - 1] && t1LandIsOpen[fireLocation - 1] &&
-                      randomNumber(1, 4) == 1) {
+                      randomNumber(1, 3) == 1) {
                       var newFireNum = findOpenFire();
                       if (newFireNum != -1) {
                         //spread fire above
@@ -2234,7 +2328,7 @@ window.preload = function () {
                     }
                   }
                   else if (fireLocation == 10 && t2BuildingPlaced[1] && t2LandIsOpen[1] &&
-                    randomNumber(1, 4) == 1) {
+                    randomNumber(1, 3) == 1) {
                     var newFireNum = findOpenFire();
                     if (newFireNum != -1) {
                       //spread to plot 9
@@ -2608,7 +2702,7 @@ window.preload = function () {
           } else if ((t2BuildingPlaced[1] && !initOpent2[1]) && !hintList[10]) {
             //university hall hint
             var hintLoop = loopCount - univHallLoop;
-            showHint("You've just unlocked the questions for\nthe ownership quiz! Press [G] to get started!", hintLoop, 26);
+            showHint("You've just built the university hall!\nPress [G] to take the ownership quiz!", hintLoop, 26);
             if (keyWentDown('g') || hintLoop == 280) (hintList[10] = true);
           }
         }
@@ -2921,12 +3015,12 @@ window.preload = function () {
             var colorFactor = ((Math.abs(12 - (loopCount % 24))) * 3);
             g1Indicator.shapeColor = rgb(170 - colorFactor, 170 - colorFactor, 230 + colorFactor, 1);
             fill("black"); noStroke(); textSize(26);
-            text("Feasible", 610, 769);
+            text("Feasible", 1010, 769);
             thumbUp.visible = true;
             thumbDown.visible = false;
           } else {
             fill("black"); noStroke(); textSize(26);
-            text("Not Feasible", 610, 769);
+            text("Not Feasible", 1010, 769);
             g1Indicator.shapeColor = "red";
             thumbDown.visible = true;
             thumbUp.visible = false;
@@ -2942,7 +3036,7 @@ window.preload = function () {
 
           text("[E]\tNorth Park\n[R] " + paymentText[payMethod], 615, 750);
           textSize(28);
-          text("Development Cost: $20,000", 610, 727);
+          text("Development Cost: $20,000", 1010, 727);
           stroke(rgb(50, 50, 50));
           strokeWeight(6);
           line(830, 700, 830, 800);
@@ -3238,8 +3332,8 @@ window.preload = function () {
         //Ownership quiz logic
         if (educationOpen) {
           loopCopy++;
-          //university hall must be placed
-          if (t2BuildingPlaced[1] && !initOpent2[1]) {
+          //university hall does not need to be placed anymore, but uncomment this if needed
+          //  if (t2BuildingPlaced[1] && !initOpent2[1]) {
             if (educationProgressLeft < 0) {
               if (keyWentDown("e") && quizStartLoop < 0) {
                 playSound("audio/app_interface_button_3.mp3");
@@ -3526,7 +3620,7 @@ window.preload = function () {
                 objCount++;
               }
             }
-          }
+          // }
 
 
           //Ownership quiz visuals
@@ -3587,15 +3681,15 @@ window.preload = function () {
               text("- Test your knowledge by taking an Ownership Quiz!\n- All answers can" +
                 " be found on the cesj website.\n- When you finish, you will be more effective at advocating.", 424, 325);
               //advanced questions are locked until university hall is developed
-              if (!t2BuildingPlaced[1] || initOpent2[1]) {
-                fill(200, 50, 50); textAlign(CENTER, CENTER);
-                text("You must develop Justice University\nfirst to start the quiz!\n\nIt is the top center plot\nabove the central park.", 800, 470);
-                fill("black"); textSize(30);
-                text("Develop Justice University First!", 800, 232);
-              } else {
+              // if (!t2BuildingPlaced[1] || initOpent2[1]) {
+              //   fill(200, 50, 50); textAlign(CENTER, CENTER);
+              //   text("You must develop Justice University\nfirst to start the quiz!\n\nIt is the top center plot\nabove the central park.", 800, 470);
+              //   fill("black"); textSize(30);
+              //   text("Develop Justice University First!", 800, 232);
+              // } else {
                 textAlign(CENTER, CENTER); fill("black"); textSize(30);
                 text("[E] Start the Quiz", 800, 232);
-              }
+              // }
             } else {
               if (quizStateControl == 0) {
                 fill(rgb(240, 240, 240));
@@ -4171,7 +4265,8 @@ window.preload = function () {
           }
         }
         //pause button 
-        if (keyWentDown('p')) {
+        if (keyWentDown('p')
+          || (mousePressedOver(pauseControlBtn) && mouseWentDown("leftButton"))) {
           if (gamePaused) {
             if (!muteMusic) (playRandomSong());
             playSound('audio/correct2.mp3');
@@ -5620,7 +5715,8 @@ window.preload = function () {
         }
       }
 
-      if (keyWentDown('T')) {
+      if (keyWentDown('T')
+      || (mousePressedOver(tipsControlBtn) && mouseWentDown("leftButton"))) {
         playSound("audio/app_interface_button_3.mp3");
         tipsSheetOpen = !tipsSheetOpen;
       }
@@ -6123,11 +6219,7 @@ window.preload = function () {
             if (loopCount == 1110) (textStart.push(1110));
             typeText("Fortunately, there is a way to redevelop\nand breathe new life into our city!\n   \nBy forming an " +
               "organizational structure known as\na Citizen's Land Development Coop (CLDC),\nthe north side can be economically " +
-              "REBORN\nwithout taxpayer dollars or government debt!\n   \nThe CLDC works in eight phases...", 800, 320, 35, 3, false, "white", loopCount, 1.1);
-            // if(loopCount==1875){
-            //   playSound("audio/typing.mp3");
-            //   textStart=[1880];
-            // }
+              "REBORN\nwithout taxpayer dollars or government debt!\n   \nThe CLDC works in eight phases...", 800, 320, 35, 3, false, "white", loopCount, 1.1); 
           }
           else if (introStateControl == 4) {
             if(loopCount == 1885){
@@ -6165,14 +6257,6 @@ window.preload = function () {
               " Get contracts promising to lease CLDC\nland when developed - ☑ DONE\n\n6) Use the contracts to secure " +
               "the loans\nrequired to implement the plan - ☑ DONE", 440, 370, 35, 0, false, "white", loopCount,0.8);
             textAlign(CENTER, CENTER);
-            
-            // if(loopCount==2820){
-            //     stopLongSounds(false);
-            //     stopMusic();
-            //     loopCount=0;
-            //     introControl=1;
-            //     textStart=[];
-            //   }
           }
           textSize(30); fill("white"); noStroke();
           text('Back [BACKSPACE]  |                             ', 800, 754);
@@ -6941,14 +7025,9 @@ window.preload = function () {
               if (loopCount == textStart[1] + 1) (playSound("audio/typing.mp3"));
               noStroke(); fill(rgb(0, 0, 0, 0.6));
               rect(425, 310, 750, 135);
-              typeText("Your first building is complete! Leasing income\nwill be generated when the game begins, " +
+              typeText("Your first building is complete! Monthly leasing income\nwill be generated when the game begins, " +
                 "shown\nby the green numbers above each building.", 800, 380, 30, 1, false, "white", loopCount);
-              if (loopCount == textStart[1] + 260) (stopSound("audio/typing.mp3"));
-              if (loopCount == textStart[1] + 320) {
-                introSelection = 5;
-                loopCount = 0;
-                textStart = [10];
-              }
+              if (loopCount == textStart[1] + 280) (stopSound("audio/typing.mp3"));
 
               //building finished page control
               if ((keyWentDown("BACKSPACE") 
@@ -7037,7 +7116,7 @@ window.preload = function () {
               rect(420, 310, 755, 135);
             }
 
-            if (loopCount < 450) {
+            if (introStateControl==12) {
               if ((keyWentDown("BACKSPACE") 
                 || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
               && !pauseMainFunctions) {
@@ -7045,6 +7124,7 @@ window.preload = function () {
                 offerBuildCooldowns[0] = -3600;
                 loopCount = 0;
                 textStart = [1, 1];
+                
               }
 
               typeText("Now we will cover how to improve your score, starting with\ncommunity service points. These points reduce CLDC expenses,\neffectively increasing profit. They can be earned in many ways...", 800, 380, 26, 0, false, "white", loopCount);
@@ -7057,14 +7137,16 @@ window.preload = function () {
               && !pauseMainFunctions) {
                 loopCount = 460;
                 textStart = [10, 460];
+                introStateControl=13;
               }
             }
-            else if (loopCount < 950) {
+            else if (introStateControl==13) {
               if ((keyWentDown("BACKSPACE") 
                 || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
               && !pauseMainFunctions) {
                 loopCount = 10;
                 textStart = [10];
+                introStateControl=12;
               }
 
               typeText("1) Stopping a fire before it destroys a building gives 10 points.\n2) Stopping a flood before it damages a building gives 10 points.\n- If not stopped, you will lose income and must pay a fee.", 800, 380, 26, 1, false, "white", loopCount);
@@ -7076,14 +7158,16 @@ window.preload = function () {
               && !pauseMainFunctions) {
                 loopCount = 960;
                 textStart = [10, 460, 960];
+                introStateControl=14;
               }
             }
-            else if (loopCount < 1450) {
+            else if (introStateControl==14) {
               if ((keyWentDown("BACKSPACE") 
                 || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
               && !pauseMainFunctions) {
                 loopCount = 459;
                 textStart = [10, 460];
+                introStateControl=13;
               }
 
               typeText("3) Parks can be developed faster by helping with the tasks\nthat appear. These tasks also give community service points.\nWhen developed, parks will reduce the risk of flooding.", 800, 380, 26, 2, false, "white", loopCount);
@@ -7095,14 +7179,16 @@ window.preload = function () {
               && !pauseMainFunctions) {
                 loopCount = 1460;
                 textStart = [10, 460, 960, 1460];
+                introStateControl=15;
               }
             }
-            else if (loopCount < 1840) {
+            else if (introStateControl==15) {
               if ((keyWentDown("BACKSPACE") 
                 || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
               && !pauseMainFunctions) {
                 loopCount = 959;
                 textStart = [10, 460, 960];
+                introStateControl=14;
               }
 
               typeText("4) Advocating for an investment offer during a vote\ngives 10 points each. This can be done more effectively after\nyou complete the ownership education quiz.", 800, 380, 26, 3, false, "white", loopCount);
@@ -7114,14 +7200,16 @@ window.preload = function () {
               && !pauseMainFunctions) {
                 loopCount = 1850;
                 textStart = [10, 460, 960, 1460, 1850];
+                introStateControl=16;
               }
             }
-            else if (loopCount < 2230) {
+            else if (introStateControl==16) {
               if ((keyWentDown("BACKSPACE") 
                 || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
               && !pauseMainFunctions) {
                 loopCount = 1459;
                 textStart = [10, 460, 960, 1460];
+                introStateControl=15;
               }
 
               typeText("5) Lastly, picking up litter gives 20-40 points, depending\non the object. Using the recycling center once it is developed\nwill double the points you earn.", 800, 380, 26, 4, false, "white", loopCount);
@@ -7133,14 +7221,16 @@ window.preload = function () {
               && !pauseMainFunctions) {
                 loopCount = 2250;
                 textStart = [10, 460, 960, 1460, 1850, 2250];
+                introStateControl=17;
               }
             }
-            else if (loopCount < 2830) {
+            else if (introStateControl==17) {
               if ((keyWentDown("BACKSPACE") 
                 || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
               && !pauseMainFunctions) {
                 loopCount = 1849;
                 textStart = [10, 460, 960, 1460, 1850];
+                introStateControl=16;
               }
 
               if (loopCount > 2430) {
@@ -7164,9 +7254,9 @@ window.preload = function () {
                 loopCount = 2845;
                 textStart = [2845];
                 placeTrash(16, 0);
+                introStateControl=18;
               }
-            }
-            else {
+            } else if (introStateControl == 18) {
               noStroke(); fill(rgb(0, 0, 0, 0.6));
               rect(425, 370, 750, 115);
 
@@ -7232,6 +7322,7 @@ window.preload = function () {
                   cleanUpSprites.setVisibleEach(false);
                   cleanUpLoop = -3600;
                   cleanUpActive = false;
+                  introStateControl=17;
                 }
                 if ((keyWentDown("ENTER")
                   || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
@@ -7271,6 +7362,8 @@ window.preload = function () {
                   introControl = 3;
                   textStart = [loopCount + 15];
                   stopLongSounds(false);
+                  introStateControl=19;
+
                 }
                 if (cleanUpActive) {
                   if (loopCount == textStart[1] - 5) (playSound("audio/typing.mp3"));
@@ -7351,11 +7444,27 @@ window.preload = function () {
               }
             }
           }
-        }
-        else if (introControl == 3) {
+
+
+
+        } else if (introControl == 3) {
+          
+          noStroke(); fill(rgb(0, 0, 0, 0.6));
+          rect(440, 10, 720, 50);
+          fill("white"); textSize(30);
+          text('Back [BACKSPACE]   |                            ', 800, 32);
+          strokeWeight(2);stroke("white")
+          line(520, 50, 775, 50);
+
+          fill(rgb(180, 250, 180));noStroke();
+          text("Continue [ENTER]", 965, 32);
+          strokeWeight(2);stroke(rgb(180, 250, 180))
+          line(845, 50, 1085, 50);
+          
+
           noStroke(); fill(rgb(0, 0, 0, 0.6));
           rect(425, 290, 750, 160);
-          if (loopCount < textStart[0] + 360) {
+          if (introStateControl == 19) {
             if ((keyWentDown("BACKSPACE") 
               || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
@@ -7368,13 +7477,15 @@ window.preload = function () {
               trashPickedUp = 1;
               textStart = [2845, 2845];
               cPoints = 0;
+              introStateControl=18;
             }
 
             if ((keyWentDown("ENTER") 
               || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
-            && !pauseMainFunctions) {
+              && !pauseMainFunctions) {
               loopCount = textStart[0] + 360;
               textStart[1] = loopCount;
+              introStateControl=20;
             }
 
             if (loopCount == textStart[0] - 5) (playSound("audio/typing.mp3"));
@@ -7382,21 +7493,23 @@ window.preload = function () {
             typeText("At any point in the game, you can press [BACKSPACE]\nto return to the main menu and [P] to pause. Pressing\n[T] toggles the tip sheet on the right. ", 800, 370, 30, 0, false, "white", loopCount);
             if (loopCount == textStart[0] + 359) (textStart.push(loopCount));
             if (loopCount == textStart[0] + 235) (playSound("audio/typing.mp3"));
-          } else if (loopCount < textStart[0] + 840) {
+          } else if (introStateControl==20) {
             if ((keyWentDown("BACKSPACE") 
               || (mousePressedOver(tutorialControlBtns[2]) && mouseWentDown("leftButton")))
-            && !pauseMainFunctions) {
+              && !pauseMainFunctions) {
               loopCount = textStart[0];
               cUpdateCount = -3600;
+              introStateControl=19;
             }
             if ((keyWentDown("ENTER") 
               || (mousePressedOver(tutorialControlBtns[3]) && mouseWentDown("leftButton")))
-            && !pauseMainFunctions) {
+              && !pauseMainFunctions) {
               loopCount = textStart[0] + 840;
+              introStateControl=21;
             }
             if (loopCount == textStart[0] + 630) (stopSound("audio/typing.mp3"));
             typeText("Every year there's a CLDC meeting that distributes\ndividends and elects a leader for the next year. Your\ngoal is to maximize your dividends and complete\nas many objectives as you can! Good luck!", 800, 370, 30, 1, false, "white", loopCount);
-          } else {
+          } else if (introStateControl == 21) {
             stopLongSounds(false);
             stopSound("audio/bgTraffic_quiet.mp3")
             playSound("audio/bgTraffic.mp3")
@@ -7419,6 +7532,7 @@ window.preload = function () {
             voteData = ["none", "0", 50];
             introControl = 0;
             introSelection = 0;
+            introStateControl=0;
             loopCopy = 0;
             pauseMainFunctions = false;
             cleanUpLoop = -3600;
@@ -9117,15 +9231,33 @@ window.preload = function () {
 
       //bird movement
       if (!isRaining && !pauseMainFunctions) {
-        if (birds[0].x > 1400) {
-          birds[0].x = randomNumber(-800, -20);
+        if (birds[0].x > 1600 || birds[0].x < 0) {
+          if(randomNumber(0,1) == 0) {
+            birds[0].mirrorX(1);
+            birds[0].velocityX = 4;
+          birds[0].x = randomNumber(1,380);
+          birds[0].y = randomNumber(20, 680);
+        }else {
+          birds[0].mirrorX(-1);
+          birds[0].velocityX = -4;
+          birds[0].x = randomNumber(1220, 1599);
           birds[0].y = randomNumber(20, 680);
         }
-        if (birds[1].x > 1400) {
-          birds[1].x = randomNumber(-800, -20);
+        }
+        if (birds[1].x > 1600 || birds[1].x < 0) {
+          if(randomNumber(0,1) == 0) {
+            birds[1].mirrorX(1);
+            birds[1].velocityX = 4;
+          birds[1].x = randomNumber(1,380);
+          birds[1].y = randomNumber(20, 680);
+        }else {
+          birds[1].mirrorX(-1);
+          birds[1].velocityX = -4;
+          birds[1].x = randomNumber(1220, 1599);
           birds[1].y = randomNumber(20, 680);
         }
       }
+    }
 
       //start pedestrian movement on sidewalks
       if (pedCooldown - loopCount == 0) {
