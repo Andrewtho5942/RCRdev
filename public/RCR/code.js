@@ -1449,6 +1449,7 @@ window.preload = function () {
             stopSound("audio/TrackTribe - A Brand New Start.mp3");
             stopSound("audio/endgame.mp3");
           }
+
           if (menuPage == 0) {
             //start sliding over from menu to learning center
             if ((mousePressedOver(learningBtn) || keyWentDown("DOWN_ARROW")) && zoomedIn) {
@@ -1686,6 +1687,7 @@ window.preload = function () {
               verticalSlide = true;
             }
           }
+          
         }
         if (zoomedIn) {
           //update sprite xValues to slide over
@@ -6286,7 +6288,7 @@ window.preload = function () {
               loopCount = 599;
               textStart = [1];
               introStateControl = 6;
-              playSound("audio/typing.mp3");
+              playSound("audio/intro_7.mp3");
             }
             spotlight(0, 0, 0, 0);
             fill(rgb(190, 200, 255)); stroke(rgb(190, 200, 255)); strokeWeight(0.25); textSize(30);
@@ -6308,19 +6310,19 @@ window.preload = function () {
             if ((keyWentDown("BACKSPACE") 
               || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_7.mp3");
               loopCount = 0;
               introStateControl = 5;
             }
             if ((keyWentDown("ENTER") 
               || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_7.mp3");
               loopCount = 969;
               textStart = [1, 600];
               introStateControl = 7;
               tempDropDownsOpen = dropDownsOpen;
-              playSound("audio/typing.mp3");
+              playSound("audio/intro_8.mp3");
             }
             //only dim out the middle part
             fill(rgb(0, 0, 0, 0.8)); noStroke();
@@ -6336,18 +6338,18 @@ window.preload = function () {
               || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
               dropDownsOpen = tempDropDownsOpen;
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_8.mp3");
               loopCount = 599;
               introStateControl = 6;
             }
             if ((keyWentDown("ENTER") 
               || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_8.mp3");
               loopCount = 1489;
               textStart = [1, 600, 970];
               introStateControl = 8;
-              playSound("audio/typing.mp3");
+              playSound("audio/intro_9.mp3");
             }
             spotlight(1208, 66, 384, 260);
             if (loopCount == 970) (textStart.push(970));
@@ -6360,18 +6362,18 @@ window.preload = function () {
             if ((keyWentDown("BACKSPACE")
               || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_9.mp3");
               loopCount = 969;
               introStateControl = 7;
             }
             if ((keyWentDown("ENTER") 
               || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_9.mp3");
               loopCount = 1809;
               textStart = [1, 600, 970, 1490];
               introStateControl = 9;
-              playSound("audio/typing.mp3");
+              playSound("audio/intro_10.mp3");
             }
             spotlight(1208, 336, 384, 200);
             if (loopCount == 1490) (textStart.push(1490));
@@ -6383,18 +6385,18 @@ window.preload = function () {
             if ((keyWentDown("BACKSPACE") 
               || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_10.mp3");
               loopCount = 1489;
               introStateControl = 8;
             }
             if ((keyWentDown("ENTER") 
               || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_10.mp3");
               loopCount = 2279;
               textStart = [1, 600, 970, 1490, 1810];
               introStateControl = 10;
-              playSound("audio/typing.mp3");
+              playSound("audio/intro_11.mp3");
             }
             spotlight(1208, 546, 384, 240);
             if (loopCount == 1810) (textStart.push(1810));
@@ -6408,18 +6410,18 @@ window.preload = function () {
             if ((keyWentDown("BACKSPACE") 
               || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_11.mp3");
               loopCount = 1809;
               introStateControl = 9;
             } dropDownsOpen
             if ((keyWentDown("ENTER") 
               || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_11.mp3");
               loopCount = 2569;
               textStart = [1, 600, 970, 1490, 1810, 2280];
               introStateControl = 11;
-              playSound("audio/typing.mp3");
+              playSound("audio/intro_12.mp3");
             }
             spotlight(8, 5, 384, 321);
             if (loopCount == 2280) (textStart.push(2280));
@@ -6431,14 +6433,14 @@ window.preload = function () {
             if ((keyWentDown("BACKSPACE") 
               || (mousePressedOver(tutorialControlBtns[0]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_12.mp3");
               loopCount = 2279;
               introStateControl = 10;
             }
             if ((keyWentDown("ENTER") 
               || (mousePressedOver(tutorialControlBtns[1]) && mouseWentDown("leftButton")))
             && !pauseMainFunctions) {
-              stopSound("audio/typing.mp3");
+              stopSound("audio/intro_12.mp3");
               loopCount = 2959;
               textStart = [1, 600, 970, 1490, 1810, 2280];
               introStateControl = 12;
