@@ -7,7 +7,11 @@ export default function App() {
 useEffect(() => {
   const handleResize = () => {
     console.log("resized");
-    const newScaleFactor = window.innerWidth / 1600;
+    //const newScaleFactor = window.innerWidth / 1600;
+    let sf1 = ((window.innerWidth) / 1600)
+    let sf2 = ((window.innerHeight) / 800)
+
+    const newScaleFactor = Math.min(sf1, sf2);
     setScaleFactor(newScaleFactor);
   };
 
@@ -21,7 +25,11 @@ useEffect(() => {
 useEffect(() => {
   const handleOnLoad = () => {
     console.log("init scale resized");
-    const newScaleFactor = window.innerWidth / 1600;
+    //const newScaleFactor = window.innerWidth / 1600;
+    let sf1 = ((window.innerWidth) / 1600)
+    let sf2 = ((window.innerHeight) / 800)
+
+    const newScaleFactor = Math.min(sf1, sf2);
     setScaleFactor(newScaleFactor);
   };
 
