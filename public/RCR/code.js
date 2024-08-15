@@ -26,6 +26,19 @@ signInAnonymously(auth)
     console.error('Error signing in:', error.message);
   });
 
+  //done with firebase
+
+  
+  //prevent arrow keys and spacebar from moving main window if embedded in iframe
+document.addEventListener('keydown', function(event) {
+  
+  if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(event.key)) {
+    event.preventDefault();
+  }
+});
+
+
+
 var p5Inst = new p5(null, 'sketch');
 
 window.preload = function () {
@@ -6174,7 +6187,6 @@ window.preload = function () {
             spotlight(410, 10, 780, 460);
             if (loopCount == 380) (textStart.push(380));
             typeText("The north side, your home, has fallen\ninto a state of disrepair and poverty.\nCrime is rampant, and the land is empty.", 800, 570, 40, 1, false, "white", loopCount);
-            if (loopCount == 620) (stopSound("audio/intro_2.mp3"));
           }
           else if (introStateControl == 2) {//loopCount<1100
             if (loopCount == 765) (playSound("audio/intro_3.mp3"));
