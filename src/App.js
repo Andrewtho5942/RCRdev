@@ -15,26 +15,11 @@ useEffect(() => {
   };
 
   window.addEventListener('resize', handleResize);
+  window.addEventListener('load', handleResize);
 
   return () => {
     window.removeEventListener('resize', handleResize);
-  };
-}, []);
-
-useEffect(() => {
-  const handleOnLoad = () => {
-    console.log("init scale resized");
-    let sf1 = ((window.innerWidth) / 1600)
-    let sf2 = ((window.innerHeight) / 800)
-
-    const newScaleFactor = Math.min(sf1, sf2);
-    setScaleFactor(newScaleFactor);
-  };
-
-  window.addEventListener('load', handleOnLoad);
-
-  return () => {
-    window.removeEventListener('load', handleOnLoad);
+    window.removeEventListener('load', handleResize);
   };
 }, []);
 
